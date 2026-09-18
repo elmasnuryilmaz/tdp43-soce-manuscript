@@ -2,6 +2,8 @@
 # R 4.3.2 with DESeq2 1.42.1, FRASER 1.14.1, sva 3.50.0, data.table 1.17.0,
 # GenomicAlignments 1.38.2, Rsamtools 2.18.0, BiocParallel 1.36.0, SummarizedExperiment 1.32.0,
 # IsoformSwitchAnalyzeR 2.6.0, DRIMSeq 1.34.0, stageR 1.28.0.
+# Installed outside this environment: LeafCutter 0.2.9 (from source, with its own R
+# dependencies) and SUPPA2 2.3 (pip). Both are used in Methods 2.4.
 name: tdp43-soce
 channels: [bioconda, conda-forge]
 dependencies:
@@ -10,7 +12,8 @@ dependencies:
   - trim-galore=0.6.11
   - cutadapt=5.2
   - hisat2=2.2.2
-  - samtools=1.23
+  - samtools=1.23           # alignment sorting and indexing
+  # samtools 1.21 was used for the junction and coverage steps (Methods 2.5, 2.7)
   - subread=2.1.1
   - multiqc=1.25.1
   - rmats=4.3.0
