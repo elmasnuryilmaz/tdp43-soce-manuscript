@@ -1,0 +1,456 @@
+# TDP-43 knockdown is associated with reduced store-operated Ca²⁺ entry and altered calcium-regulatory RNA profiles in SH-SY5Y cells
+
+**Elmasnur Yılmaz¹, Yasin Kaymaz², Yasemin Eraç¹\***
+
+¹ Department of Pharmacology, Faculty of Pharmacy, Ege University, İzmir, Türkiye
+² Department of Bioengineering / Institute of Natural and Applied Sciences, Ege University, İzmir, Türkiye
+
+\* Correspondence: yasemin.erac@ege.edu.tr
+
+> **Submission note:** author order, affiliations, ethics/biosafety wording and repository links must be confirmed before submission. The reference list is not yet complete: the Introduction and Methods still require citations to the primary literature and to the software used. Figure 6 and Supplementary Table S1 must be assembled from the laboratory source data, and the abstract must be trimmed to the target journal's word limit.
+
+## Abstract
+
+**Background.** Nuclear clearance of TDP-43 is the molecular lesion of approximately 97% of amyotrophic lateral sclerosis (ALS) cases and of about half of frontotemporal lobar degeneration cases. Disturbed intracellular Ca²⁺ handling is well documented in these diseases, but whether TDP-43 loss acts on the store-operated Ca²⁺ entry (SOCE) machinery, and at which level, is unresolved.
+
+**Methods.** We reanalysed six public RNA-seq comparisons of TDP-43 depletion (human and mouse; 38 libraries) with DESeq2 and rMATS, applying coverage filters, replicate-level percent-spliced-in, bootstrap intervals and leave-one-out checks to candidate events, and examined isoform usage with Salmon, IsoformSwitchAnalyzeR, DRIMSeq, stageR, LeafCutter and SUPPA2. Annotation-free junction analysis covered eleven comparisons, including FUS and TAF15 knockdown controls. Coverage-based intronic and 3′-terminal usage indices and an independent NMD-interaction dataset were analysed as exploratory tests. In a separate SH-SY5Y knockdown experiment, target mRNAs were measured by RT-qPCR, cytosolic Ca²⁺ by Fura-2/AM and viability by WST-1. Candidate genes were examined in ALS post-mortem tissue and in comparison neurological cohorts, with junction-level cryptic *STMN2* inclusion as a sample-level marker of TDP-43 dysfunction.
+
+**Results.** Coverage-supported splicing changes were detected in several SOCE-related genes; *CBARP* was the most reproducible candidate across species and datasets, with *STIM2*, *STIMATE* and *ORAI3* supported in the primary model. In the knockdown experiment *TRPC1*, *STIM1*, *ORAI1* and *ATP2A3* mRNAs increased 1.7- to 3.2-fold, whereas the Fura-2 SOCE response fell from 1.542 ± 0.282 to 0.245 ± 0.083 Δ(F340/F380) (p = 0.0115; n = 3 per group); ER release did not differ (p = 0.299). Length-corrected family summaries showed the dominant ORAI, SERCA and mitochondrial-uptake members falling while minor members rose. Annotation-free analysis recovered canonical cryptic targets, including *STMN2* and *UNC13A*, and none of them in FUS or TAF15 knockdown, but no high-confidence cryptic junction in the core SOCE panel; exploratory APA and NMD analyses added no confirmed core-SOCE event. In ALS tissue *TRPC1* and *SARAF* were increased and *CBARP* decreased in six of seven brain regions, and *TRPC1* moved the other way in every comparison cohort. Cryptic *STMN2* inclusion followed the regional distribution of TDP-43 pathology but did not correlate with *TRPC1* within ALS regions.
+
+**Conclusions.** TDP-43 knockdown is associated with a large reduction in Fura-2-measured SOCE and with altered expression and splicing of calcium-regulatory genes in SH-SY5Y cells. The data do not identify a single causal RNA switch, establish protein-level stoichiometry, or show that the ALS-tissue associations are driven by TDP-43 loss. *CBARP* and *SARAF* are prioritised for targeted follow-up.
+
+**Keywords:** TDP-43; store-operated Ca²⁺ entry; calcium homeostasis; alternative splicing; SARAF; CBARP; ALS; neurodegeneration
+
+## 1. Introduction
+
+TAR DNA-binding protein 43 (TDP-43, encoded by *TARDBP*) is a ubiquitously expressed RNA-binding protein that governs splicing, transcript stability and transport. Nuclear clearance with cytoplasmic accumulation of TDP-43 is found in approximately 97% of ALS cases and about half of frontotemporal lobar degeneration cases (Neumann et al., 2006; Arai et al., 2006; Ling et al., 2013), and in limbic-predominant age-related TDP-43 encephalopathy (Nelson et al., 2019), making TDP-43 dysfunction one of the few molecular events shared across otherwise distinct neurodegenerative syndromes.
+
+The principal consequence of nuclear TDP-43 loss is failure to repress cryptic splicing. The best-characterised targets, *STMN2* and *UNC13A* (Ling et al., 2015; Klim et al., 2019; Melamed et al., 2019; Brown et al., 2022; Ma et al., 2022), are now the basis of antisense oligonucleotide strategies (Baughn et al., 2023), establishing that TDP-43-dependent mis-splicing is both measurable and, in principle, correctable. This has motivated systematic searches for further TDP-43-dependent RNA processing events with functional consequences.
+
+Disturbed intracellular Ca²⁺ homeostasis is a longstanding feature of ALS. Motor neurons are notable for low cytosolic Ca²⁺-buffering capacity, and Ca²⁺-dependent excitotoxicity, mitochondrial dysfunction and ER stress have all been implicated. Store-operated Ca²⁺ entry — the STIM1/ORAI-mediated influx triggered by ER store depletion (Putney, 2010; Prakriya and Lewis, 2015), with contributions from TRPC channels (Ambudkar et al., 2007) — is a principal route of Ca²⁺ entry in non-excitable and many excitable cells. ORAI2 can modulate ORAI1-dependent SOCE in a context-dependent manner (Vaeth et al., 2017), and SARAF facilitates slow Ca²⁺-dependent inactivation of SOCE (Palty et al., 2012), including in SH-SY5Y cells (Albarran et al., 2016). Disease-associated TDP-43 has been reported to disrupt VAPB–PTPIP51 tethering and thereby ER–mitochondrial Ca²⁺ transfer (Stoica et al., 2014), but whether TDP-43 loss affects the SOCE pathway itself, and whether it does so through RNA processing, has not been examined systematically.
+
+Here we address that question at three levels. We first ask whether TDP-43 depletion produces reproducible splicing and isoform-usage changes in genes of the Ca²⁺ homeostasis machinery, applying robustness criteria that are stricter than the field default. We then ask what functional phenotype accompanies TDP-43 knockdown by measuring SOCE directly. Finally we ask whether the transcript-level changes we identify are recapitulated in ALS brain and how their direction compares with that in selected neurological comparison cohorts.
+
+A recurring theme in what follows is that the level of analysis determines the answer. Individual splicing events in these data are frequently underpowered; the transcript-level changes are best treated as candidate explanations for, rather than demonstrated causes of, the functional phenotype.
+
+## 2. Materials and Methods
+
+### 2.1 Public RNA-seq datasets
+
+Six comparisons with paired controls and publicly available raw reads were selected for the expression and event-level splicing analyses: SH-SY5Y (GSE296712), iPSC colonies (GSE230647), iPSC-derived motor neurons (GSE77702), mouse striatum (GSE27394/GSE27218), and mouse C2C12 and NSC34 (GSE171714/SRP314028) — 38 libraries in total, counting the pooled technical fragments of GSE27394 as one library per biological replicate. Two further comparisons, K562 total RNA and poly(A)+ mRNA (ENCODE ENCSR372DZW/ENCSR455TNF and ENCSR129RWD/ENCSR134JRE), were added for the annotation-free junction analysis only (Section 2.5) and were not processed with rMATS or DESeq2. Inclusion required a condition reducing TARDBP expression or TDP-43 protein, at least two biological replicates, open raw reads, and the ability to evaluate *STMN2* and *UNC13A* as positive controls. GSE296712, a subseries of the dataset reported by Bryce-Smith et al. (2025), was designated the primary human model because the laboratory experiments use the same cell line.
+
+Reads were downloaded with SRA-Toolkit v3.2.1 (Leinonen et al., 2011), quality-assessed with FastQC v0.12.1 (Andrews, 2010), trimmed with Trim Galore v0.6.11 (Cutadapt v5.2, Martin 2011; Illumina TruSeq adapter auto-detected, Phred Q20, minimum length 20 bases) and aligned with HISAT2 v2.2.2 (Kim et al., 2019) in `--dta` mode with a known-splice-site file, to the GRCh38 primary assembly or, for mouse data, to the mm10 index distributed with HISAT2; GENCODE v47 (basic annotation) and vM25 were used for all downstream annotation and counting. Alignments were sorted and indexed with SAMtools v1.23 (Danecek et al., 2021) and summarised with MultiQC v1.25.1 (Ewels et al., 2016); the junction and coverage analyses of Sections 2.5 and 2.7 were run with SAMtools v1.21. Library strandedness was determined per dataset and rMATS was re-run accordingly (fr-secondstrand for SH-SY5Y; fr-firststrand for iPSC colony, iPSC-MN and mouse single-end).
+
+For GSE27394, two technical sequencing fragments (SRR107072, SRR107073) showed lower alignment rates; these are fragments of the same biological replicate and counts were pooled within biological replicates, yielding four control and four knockdown replicates.
+
+### 2.2 Differential expression
+
+Gene counts were generated with featureCounts v2.1.1 (Liao et al., 2014) at meta-feature level against the same annotation (`-s 0 -g gene_name`, with `-p --countReadPairs` for paired-end libraries; multi-mapping and multi-overlapping reads not counted) and modelled with DESeq2 v1.42.1 (Love et al., 2014) within each dataset, with Benjamini–Hochberg correction (Benjamini and Hochberg, 1995). Genes with p_adj < 0.05 and |log2FC| ≥ 1 were called differentially expressed. Sensitivity to unmodelled variation was assessed with svaseq (sva v3.50.0; Leek, 2014); the principal findings were unchanged.
+
+### 2.3 Alternative splicing and robustness assessment
+
+Splicing was quantified with rMATS Turbo v4.3.0 (Shen et al., 2014) with `--novelSS` for skipped exons, alternative 5′ and 3′ splice sites, mutually exclusive exons and retained introns, using both junction-count (JC) and junction+exon-body (JCEC) models. Events were called at FDR < 0.05 with |ΔPSI| ≥ 0.10.
+
+Because rMATS applies FDR correction across all events irrespective of read support, we additionally applied a coverage pre-filter **before** correction, retaining events with ≥ 10 informative reads per sample on average and ≥ 5 informative reads in every sample, and recomputing Benjamini–Hochberg q-values within the filtered set. For candidate events we further computed (i) per-replicate PSI from raw IJC/SJC counts, (ii) replicate-level bootstrap 95% confidence intervals for ΔPSI (20,000 resamples for the *TRPC1* analysis of Section 3.1; 10,000 for the SOCE candidate events of Section 3.2), and (iii) leave-one-out ΔPSI, removing each replicate in turn. Group assignment (b1 = knockdown, b2 = control) was verified from the labelled group files of GSE27394. Exon coordinates taken from rMATS output are reported here as 1-based, inclusive intervals.
+
+Detection power was estimated by simulation over the observed coverage distribution for a 3 + 3 design.
+
+### 2.4 Isoform usage
+
+Transcript-level quantification used Salmon v1.11.4 (Patro et al., 2017) against an index built from the comprehensive GENCODE v47 transcript set (384,354 transcripts). Transcript estimates were aggregated to genes with the complete GENCODE v47 transcript-to-gene map; the basic annotation used in the first version of this analysis covers only 157,588 of those transcripts and discards 26% of the transcripts per million, so all gene-level Salmon summaries reported here were recomputed with the complete map. Differential isoform usage was assessed with IsoformSwitchAnalyzeR v2.6.0 (Vitting-Seerup and Sandelin, 2019), DRIMSeq v1.34.0 (Nowicka and Robinson, 2016) and stageR v1.28.0 (Van den Berge et al., 2017), including open reading frame, premature termination codon/NMD prediction and protein domain consequence. As an annotation-independent comparison, LeafCutter v0.2.9 (Li et al., 2018) was run on the same alignments, and SUPPA2 v2.3 (Trincado et al., 2018) was run on the three control and three 75 ng/mL libraries as a check of method concordance.
+
+### 2.5 Annotation-free junction-level analysis
+
+Splice junctions were extracted directly from the alignments in two independent ways, so that no conclusion rests on a single extraction rule. The first set was produced with regtools v1.0 (Cotto et al., 2023; `junctions extract -s XS -a 8 -m 50 -M 1000000`). The second was produced with an in-house extractor that parses N operations from the CIGAR string and additionally requires MAPQ ≥ 30, primary non-duplicate alignment, an 8 bp matched anchor on both sides, and an intron length between 50 and 500,000 bp. Junctions are reported as 1-based, intron-inclusive intervals. On the primary SH-SY5Y comparison the two raw sets share 217,550 junctions, counted before strand-independent merging and before the read-support filters below; the sets differ in size because regtools applies no mapping-quality threshold and admits longer introns. All eleven comparisons were run on the regtools set; the SH-SY5Y comparison was run on both, and every conclusion drawn from it holds in each.
+
+Junctions were classified against GENCODE v47 (human) or vM25 (mouse) as annotated, novel combination (both splice sites annotated, the junction not), novel site (one site unannotated), or fully novel. Local splicing variations were defined by shared donor and by shared acceptor, and the share of an LSV's reads carried by each junction defined its percent-spliced-in. Differences between groups were tested with a beta-binomial likelihood-ratio test using a dataset-wide overdispersion parameter chosen by profile likelihood, with Benjamini–Hochberg correction across all tested junctions, and replicate-level bootstrap 95% confidence intervals (2,000 resamples). An LSV required at least 20 reads per sample on average and non-zero coverage in every sample; a junction required at least 5 reads in at least one sample.
+
+The calling threshold was calibrated against a control-versus-control null: in datasets with four control replicates, the controls were split 2 + 2, the analysis repeated unchanged, and every call counted as a false positive. Under a permissive definition (unannotated junction, ΔPSI ≥ 0.05, q < 0.05, control PSI ≤ 0.05) the null produced as many calls as the real comparison in iPSC colonies and twice as many in K562 total RNA, so raw call counts are not interpretable. We therefore adopted an effect-based definition — a **high-confidence unannotated splicing change** requires a novel splice site, ΔPSI ≥ 0.20, q < 0.05, a bootstrap lower bound above 0.05, at least 20 reads in the knockdown group, and non-zero counts in every knockdown replicate. A requirement of zero counts in controls was deliberately not imposed, because it removes genuinely cryptic exons with basal leakiness, *STMN2* among them. Positive-control recovery, not call count, is used throughout as the measure of whether an analysis worked.
+
+Eleven comparisons were analysed: SH-SY5Y at 75 and at 25 ng/mL doxycycline, iPSC colonies, iPSC-derived motor neurons with TDP-43, FUS or TAF15 knockdown, K562 total RNA and poly(A)+ mRNA, C2C12, NSC34, and mouse striatum. For mouse striatum, technical sequencing fragments were pooled within biological replicates, giving four per group.
+
+### 2.6 Aberrant splicing outlier detection
+
+FRASER v1.14.1 (Mertes et al., 2021) was run on the nine-sample SH-SY5Y doxycycline series (0, 25 and 75 ng/mL), counting split and non-split reads from the alignments and modelling ψ5, ψ3 and splicing efficiency θ. FRASER treats aberrant splicing as a rare, sample-specific deviation from a cohort norm; that assumption is not met when depleted samples form two-thirds of the cohort, and results are therefore reported as per-sample outlier burden with the limitation stated explicitly.
+
+### 2.7 Alternative polyadenylation
+
+Cryptic polyadenylation was assessed from coverage rather than from junctions. Windows were built for 696 genes: those of the 732-gene expanded Ca²⁺ panel for which annotated introns and terminal exons could be retrieved, together with the cryptic positive controls. Two 500 bp windows were placed at the 5′ and 3′ ends of every intron of at least 1,200 bp (50 bp buffer from each splice site), and the terminal exon of each gene of at least 400 bp was split into proximal and distal halves, both in the direction of transcription. Depth was summed with `samtools bedcov` (MAPQ ≥ 30) while excluding CIGAR reference skips and deletions with `-j`. The corrected analysis was rerun for the primary SH-SY5Y model on the positive-control and core SOCE target set; full-panel results are reported only where all input windows passed the depth filter. Equivalent windows were built for 687 orthologous mouse genes, and the corrected analysis was run in all four knockdown comparisons whose alignments were available: SH-SY5Y, iPSC-derived motor neurons, C2C12 and NSC34.
+
+The **intronic polyadenylation index** is the 5′ window's share of the two intronic windows. Premature termination within an intron raises the 5′ window relative to the 3′ window; intron retention raises both equally and leaves the index unchanged, so the index responds to a coverage gradient rather than to retention. The **distal 3′UTR usage index** is the distal half's share of the terminal exon, following the logic of DaPars (Xia et al., 2014). In the corrected analysis both indices are reported as point estimates with bootstrap 95% confidence intervals obtained by complete enumeration of all 3⁶ = 729 replicate combinations; no p or q values are produced. A unit was retained only if the summed depth of its two windows was at least 3 in every sample.
+
+### 2.8 Nonsense-mediated decay inhibition
+
+Gene-level counts were obtained from GSE307054 (i3Neurons; TDP-43 knockdown crossed with knockdown of XRN1, UPF1 and SMG6 in four combinations, two replicates each) and normalised with the authors' size factors. Sequencing batch is confounded with TDP-43 status in that design, so the interaction was formed as a difference of within-batch differences:
+
+*interaction(c) = [log2(TDP-43 KD + NMD inhibition c) − log2(TDP-43 KD)] − [log2(control + NMD inhibition c) − log2(control)]*
+
+for each of the four NMD-inhibition conditions c, giving four condition-level interaction values per gene; the two replicates within each condition are averaged. A positive interaction indicates a transcript that is produced upon TDP-43 loss and degraded by NMD. Genes with at least 10 normalised counts were tested (n = 19,145) by a sensitivity analysis using a four-condition one-sample t-test and an exact sign test. Because the TDP-43 factor is confounded with sequencing batch, these results are treated as exploratory.
+
+### 2.9 Ca²⁺ gene panels and enrichment testing
+
+Four cumulative gene panels were assembled from curated SOCE/TRP components (n = 51), channels and transport systems (n = 117), curated Ca²⁺-handling genes (n = 258) and an expanded Ca²⁺-associated set from KEGG and Gene Ontology (n = 732). Symbols were harmonised to HGNC/MGI and orthology verified via Ensembl Compara.
+
+Enrichment of significant splicing events within panels was tested both by hypergeometric test against all testable genes and against a **covariate-matched empirical null**: for each panel gene, the 25 nearest background genes in the space of log event count (a proxy for gene length and testability) and log total read support (a proxy for expression) were identified, and 5,000 permutations were drawn from these matched pools. The matched permutation p-value is reported as the primary result, because detection power for splicing events scales with gene length and expression and Ca²⁺ channel genes lie at the extreme of both distributions.
+
+### 2.10 Transcript-family abundance
+
+Transcripts per million (TPM) from Salmon were summed to gene level for the primary SH-SY5Y comparison (0 vs 75 ng/mL doxycycline, n = 3 + 3), so that members of a family are compared on a length-corrected scale. For each functional family (STIM, ORAI, SERCA, TRPC, SOCE regulators, mitochondrial Ca²⁺ uptake, PMCA) we computed each member's relative share of the family total in control cells and the change in its TPM. Fold changes and adjusted p-values for the same genes come from DESeq2 applied to the gene-level Salmon counts of the same six libraries. These summaries remain transcript-level measures and are not estimates of absolute molecule number, protein abundance or complex stoichiometry.
+
+### 2.11 Patient tissue and cross-disease comparison
+
+ALS post-mortem RNA-seq was taken from the NYGC ALS Consortium/Target ALS collection (GSE153960; Prudencio et al., 2020; 1,641 samples with metadata after filtering). After a low-expression filter (CPM > 0.40), comparisons used log2 CPM with per-sample median centring, Mann–Whitney U tests, Benjamini–Hochberg correction within each region and Cliff's δ as effect size (Cliff, 1993). Ten regions were analysed at the expression level: seven brain regions (cerebellum; frontal, occipital and temporal cortex; lateral and medial motor cortex; hippocampus) and three spinal cord levels (cervical, thoracic, lumbar). The junction-level analysis of Section 3.10 covers eleven regions, adding motor cortex of unspecified subdivision. Within the same cohort, the "Other Neurological Disorders" group was compared against the **same** non-neurological controls as ALS, so that control-side confounders (RNA quality, post-mortem interval, collection site, library batch) are shared between the two comparisons; case numbers allowed this comparison in three regions.
+
+Independent cohorts were analysed identically: Alzheimer's disease (GSE125583, fusiform gyrus, 219 cases/70 controls), Parkinson's disease (GSE68719, BA9, 29/44) and multiple sclerosis (GSE138614, white matter, 10 MS/5 control donors, 97 samples; GSE123496, five brain regions, 5/5 donors). GSE138614 is white matter, whereas the ALS, Alzheimer's and Parkinson's comparisons are predominantly grey matter; the tissue compartment therefore differs and is not controlled for. For multiple sclerosis, because TRPC1 is expressed in oligodendrocytes and oligodendrocyte precursors, two additional controls were applied: analysis restricted to normal-appearing white matter, in which myelin markers are preserved, and regression of TRPC1 on MBP, PLP1 and GFAP with testing of the residuals. Donor identity was not modelled in the lesion-type and normal-appearing white matter analyses, in which several samples come from the same donor; their p values are therefore optimistic.
+
+Cell-composition markers (GFAP, AIF1, SNAP25, RBFOX3, MBP, PLP1) were carried through all comparisons.
+
+Junction-level quantification of the truncated *STMN2* transcript was obtained without access to the original alignments: the same SRA study (SRP270799) is present in recount3 (Wilks et al., 2021) as a junction count matrix of 12,653,421 junctions across 2,256 libraries, from which the 215,321 junctions falling in 171 target genes were extracted. Cryptic PSI was computed at the shared exon-1 donor as cryptic junction reads divided by all reads leaving that donor, requiring at least 20 reads at the donor. The cryptic junction coordinates were not taken from the literature but from our own de novo discovery in SH-SY5Y (Section 3.3); their agreement with published positions is therefore an independent check rather than an assumption. Libraries were linked to the cohort metadata through the CGND identifier.
+
+### 2.12 Cell culture and TDP-43 knockdown
+
+SH-SY5Y cells were maintained in DMEM/F12 with L-glutamine and 15 mM HEPES, 10% FBS and penicillin–streptomycin, and were mycoplasma-tested. TARDBP was silenced with a pLKO.1-TRC lentiviral shRNA; particles were produced in HEK293T cells and transduced cells selected with puromycin. Three groups were compared: non-transduced cells, a non-targeting shRNA control and shTDP-43. Lentiviral work followed institutional biosafety rules.
+
+### 2.13 RT-qPCR
+
+Total RNA was reverse transcribed and amplified with iTaq Universal SYBR Green Supermix (Bio-Rad, cat. no. 1725121) in 10 µL reactions on a LightCycler 480 II (Roche). Targets and GAPDH were run on the same plate with no-template and no-reverse-transcriptase controls, and specificity was checked from a single melt-curve peak. Relative expression was calculated by the 2^−ΔΔCt method (Livak and Schmittgen, 2001) with the control set to 1.0 (n = 4 biological replicates per group; TARDBP knockdown and the target genes were measured on separate RNA sets, 14 April – 21 May and 3 June – 10 July 2026). Primer sequences, product sizes, annealing temperatures and the thermal cycling profile are given in Supplementary Table S1.
+
+### 2.14 Cytosolic Ca²⁺ measurement
+
+Measurements were made 72 h after transduction. Cells were seeded in 24-well plates at 40,000 cells per well; the three samples of each group came from a single culture plate and are therefore not independent culture days. Cells were loaded with 5 µM Fura-2/AM and 0.02% Pluronic F-127 in 1% BSA/HBS for 60 min at 25 °C in the dark and washed three times for 15 min in 1% BSA/HBS. HBS contained 135 mM NaCl, 5.9 mM KCl, 1.2 mM MgCl₂, 1.5 mM CaCl₂, 11.6 mM HEPES, 5 mM NaHCO₃ and 11.5 mM D-glucose (pH 7.3). Cytosolic free Ca²⁺ was followed spectrofluorometrically as the F340/F380 ratio (excitation 340 and 380 nm, emission 510 nm; Grynkiewicz et al., 1985) in a cuvette-based system with perfusion, following the protocol of Selli et al. (2009). Loaded cells were transferred to Ca²⁺-free HBS containing EGTA; SERCA was then inhibited with 10 µM cyclopiazonic acid (Sigma-Aldrich, cat. no. C1530) and the transient rise in F340/F380 was recorded as ER Ca²⁺ release. CaCl₂ was then added to a final concentration of 1.5 mM and the subsequent rise was recorded as store-operated Ca²⁺ entry. Both were quantified as Δ(F340/F380) relative to the respective preceding baseline (n = 3 per group).
+
+### 2.15 Viability
+
+Viability was measured at 48 h with the WST-1 assay, normalised to the mean of the control group at the same time point (n = 4 wells).
+
+### 2.16 Statistics
+
+Bioinformatic thresholds are given above. Laboratory data are mean ± SEM. TARDBP knockdown was assessed by one-way ANOVA with Tukey's multiple comparison test; other laboratory comparisons used two-tailed Student's t-tests (GraphPad Prism 10). No correction for multiple comparisons was applied across the four RT-qPCR targets. Significance was set at p < 0.05.
+
+### 2.17 Data and code availability
+
+All RNA-seq datasets analysed are public and none were generated for this study; accessions are listed in Supplementary Table S17. The analysis package — scripts in execution order, including the corrected coverage, NMD, transcript-family and donor-level scripts used for the results reported here, the four Ca²⁺ gene panels, per-event count tables, junction and LSV tables, and the code that draws every figure — is deposited at **[GitHub repository — to be created]** and archived at **[Zenodo DOI — to be minted]**; the complete 23 GB rMATS output is archived in the same deposit. The package downloads the two externally hosted resources it needs (the recount3 junction matrix for SRP270799 and the GSE307054 count table) at run time. Every rMATS event that meets the thresholds of Section 2.3, with its raw junction counts, is provided as Supplementary Table S3. RT-qPCR, Fura-2 and WST-1 source data, including per-replicate values and the statistics behind every panel of Figure 6, are provided in Supplementary Table S1.
+
+## 3. Results
+
+### 3.1 TDP-43 depletion alters splicing across Ca²⁺ homeostasis genes, but most individual events are underpowered
+
+Across the six comparisons, TDP-43 depletion produced widespread splicing changes; in the primary SH-SY5Y model 7,854 events met FDR < 0.05 and |ΔPSI| ≥ 0.10 before coverage filtering. Positive-control behaviour of *STMN2* and *UNC13A* was consistent with published direction of change. A local-event method run on the same libraries gave a more conservative picture: SUPPA2 tested 31,474 events in 5,345 genes and returned no event that met the shared FDR and |ΔPSI| ≥ 0.10 thresholds, and among the 9,369 skipped-exon events whose coordinates matched between the two tools ΔPSI agreed only weakly (Spearman ρ = 0.319; 62.4% directional concordance).
+
+However, a substantial proportion of nominally significant events rested on very low read support. Applying a coverage pre-filter before FDR correction removed 18–78% of tested events depending on dataset (Table 1) and reduced the number of significant calls by 33–76%, with the largest losses in the two single-end datasets (iPSC-derived motor neurons 70%; mouse striatum 76%).
+
+Simulation over the observed coverage distribution showed why. For a 3 + 3 design at 10 informative reads per sample — a coverage typical of the lower quartile of events — power to detect a true ΔPSI of 0.10 is only 0.08, and even at 100 reads per sample it reaches only 0.28. Attaining 80% power at realistic depth requires |ΔPSI| ≳ 0.30. Nominally significant events at low coverage are therefore expected to be substantially inflated in effect size, and individual events at the |ΔPSI| ≥ 0.10 threshold should not be interpreted without explicit read-level support.
+
+We applied this reasoning to our own prior candidate. A *TRPC1* skipped-exon event (chr3:142,792,824–142,792,967; ΔPSI = +0.108, FDR = 0.0459) had been prioritised on threshold criteria. Replicate-level inspection showed that the entire signal derived from seven skipping reads across six libraries, with the skipping form absent in four of six samples; the bootstrap 95% confidence interval spanned zero (−0.093 to +0.522); removing one control replicate reversed the sign of ΔPSI (−0.074); and the event did not survive coverage pre-filtering. LeafCutter did not call *TRPC1* in the same comparison. We therefore do not report this event as a finding, and present it instead as an illustration of why threshold-based prioritisation of splicing events requires read-level verification (Figure 1).
+
+### 3.2 Robust splicing changes concentrate in SOCE regulators
+
+Applying the robustness criteria to the Ca²⁺ panels identified a small set of events supported by adequate coverage and bootstrap intervals excluding zero (Table 2, Figure 3).
+
+In the primary SH-SY5Y model these were *STIMATE* (ΔPSI = +0.244; FDR = 9.0 × 10⁻⁷; 95% CI +0.095 to +0.368), *ORAI3* (−0.269; 1.0 × 10⁻²; −0.404 to −0.107) and *STIM2* (−0.120; < 1 × 10⁻¹⁶; −0.165 to −0.064). A *STIM1* event (chr11:4,088,702–4,088,738; 37 bp, frame-disrupting) reached ΔPSI = +0.145 (FDR = 4.0 × 10⁻⁴) with a confidence interval marginally including zero, and was positive in all three human datasets. Isoform-level testing supported *STIM1* (DRIMSeq gene-level q = 5.49 × 10⁻⁷) with two isoforms predicted to carry premature termination codons.
+
+*CBARP*, encoding a suppressor of voltage-gated Ca²⁺ channel activity and Ca²⁺-evoked exocytosis, was the most reproducible candidate: events meeting both threshold and coverage criteria were present in five of six datasets — iPSC colonies, mouse striatum, SH-SY5Y, C2C12 and NSC34 — with the same event architecture at the orthologous human chr19 and mouse chr10 loci and effect sizes of 0.15 to 0.74 supported by hundreds to thousands of reads. *CBARP* also showed the largest expression change of any SOCE regulator in SH-SY5Y (log2FC = −1.254; p_adj = 3.1 × 10⁻²⁵).
+
+LeafCutter, which does not use the reference annotation to define events, independently called *CBARP* (p_adj = 0.0133) and *STIM2* (p_adj = 0.0288) in SH-SY5Y. Three approaches — coverage-filtered rMATS, bootstrap interval estimation and LeafCutter — therefore converge on the same candidates.
+
+### 3.3 Annotation-free analysis recovers cryptic exons genome-wide but does not detect high-confidence events in the core SOCE machinery
+
+rMATS and LeafCutter both constrain what can be found: the first by the event classes and annotation it works from, the second by clustering rules that discard sparse junctions. To remove those constraints we extracted splice junctions directly from the alignments and tested local splicing variations with a beta-binomial model, across eleven comparisons; the primary SH-SY5Y comparison was additionally repeated on a second, independently produced junction set (Methods 2.5).
+
+The approach recovered the established TDP-43 cryptic targets without being given their coordinates (Figure 4A). In SH-SY5Y at 75 ng/mL doxycycline, 188,491 junctions passed the read-support filters with the mapping-quality-filtered extractor, 23,421 of them absent from GENCODE v47, and 117 high-confidence unannotated splicing changes in 87 genes were called. Twelve of the sixteen literature positive controls were among them: *STMN2* (chr8:79,611,215–79,616,821; PSI 0.985 in knockdown versus 0.028 in control, ΔPSI +0.957, q = 2.0 × 10⁻³⁰⁴, 10,926 versus 176 reads), *UNC13A*, *ACTL6B*, *PFKP*, *HDGFL2*, *AGRN*, *ARHGAP32*, *ATG4B*, *ELAVL3*, *SETD5*, *RSF1* and *GPSM2*. The acceptor of the *STMN2* cryptic junction falls one base before the published start of the cryptic exon, and both flanking junctions of the *UNC13A* cryptic exon were recovered separately, placing that exon at chr19:17,642,414–17,642,541. On the regtools set the same comparison gave 165 high-confidence events in 113 genes and the same twelve positive controls plus *KALRN*; twelve were recovered at 25 ng/mL (Table 3).
+
+Specificity was tested by running the same analysis on FUS and TAF15 knockdown in the same iPSC-derived motor neurons, at the same depth and with the same design (Figure 5A). Under the permissive definition the three comparisons produced call counts of the same order (141 for TDP-43, 124 for FUS and 126 for TAF15); TDP-43 knockdown recovered two of the sixteen positive-control genes (*STMN2* and *KALRN*) and FUS and TAF15 knockdown recovered **none**. This dataset is too shallow for the high-confidence threshold to recover a positive control in any of the three comparisons (18, 26 and 23 events, none of them a control gene), so the within-dataset contrast rests on the permissive definition. In the two deeper TDP-43 comparisons the same permissive analysis recovered thirteen of sixteen positive controls in SH-SY5Y and fifteen in iPSC colonies. The background rate of the procedure is not specific to TDP-43; the genes it identifies are.
+
+The null test also sets the limits of interpretation. It could be run in the three datasets with four control replicates: for every real call the split-control null produced 0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in mouse striatum (high-confidence definition). These ratios are not calibrated false-discovery rates — they are the ratio of two call counts from analyses with different sample sizes and different numbers of tests — but they show that call counts are not interpretable on their own. In SH-SY5Y, iPSC-derived motor neurons and K562 poly(A)+ mRNA the controls could not be split, and positive-control recovery is the only available check. Across the eleven comparisons the burden of high-confidence unannotated splicing changes ranged from 12 to 477 events, and of the three datasets with a null, the one with the largest burden also had the largest null.
+
+Applied to the Ca²⁺ panels, the analysis returned an almost complete negative. **No gene of the core SOCE/TRP panel (Tier 1, n = 51) carried a high-confidence unannotated splicing change in ten of the eleven comparisons**, including the primary SH-SY5Y model at both doses. The single exception was iPSC colonies, where *CBARP* and *TRPM3* were called — in the dataset whose null test produced 0.64 calls for every real call, so a lone call there is not evidence, although the *CBARP* junction is corroborated elsewhere (below). *STIM1*, *STIM2*, *ORAI1–3*, *TRPC1*, *SARAF*, *STIMATE* and the SERCA and mitochondrial uptake genes carried none in any comparison. Under the permissive definition, SH-SY5Y additionally showed events in *PLCD4* and in six genes of the expanded Ca²⁺ panel (*ADCY1*, *SYT7*, *PDE3B*, *AKT3*, *PIK3CB*, *PPP2R5C*), and novel combinations of annotated splice sites appeared in *ATP2A3* (both doses, ΔPSI +0.16 and +0.20) and *MCUB* (iPSC colonies, +0.27) (Figure 4B). Within the coverage, models and calling criteria used here, we did not detect high-confidence unannotated splicing changes in the store-operated entry machinery. This finding does not exclude lower-abundance or context-specific events, but it provides no support for a cryptic-splicing switch as the explanation for the observed SOCE phenotype.
+
+What the annotation-free analysis did confirm were the annotated events. *CBARP* showed the largest local change of any SOCE gene in SH-SY5Y (ΔPSI +0.74, 95% CI +0.51 to +0.83, q = 2.7 × 10⁻¹²; +0.76, q = 5.6 × 10⁻¹⁷ in the second junction set), and one arm of the *CBARP* event uses a splice site absent from the annotation. This is the fourth method, after rMATS with `--novelSS`, LeafCutter and isoform-level testing, to converge on this locus. The same unannotated *CBARP* splice site was recovered independently in iPSC colonies (ΔPSI +0.33, q = 4.3 × 10⁻¹⁶, 201 versus 137 reads), where it met the cryptic criteria outright. *ORAI2*, the most abundant ORAI-family gene in the current transcript estimates, showed a change of +0.16 (q = 1.9 × 10⁻³) in the mapping-quality-filtered set and +0.15 (q = 0.087) in the unfiltered set; we report it as supported but not established.
+
+Junction-level data also allowed the *STIM2.1*/STIM2β question to be revisited directly. Inclusion of the 24-nucleotide SOAR exon (chr4:27,007,983–27,008,006) was positive in direction in all five TDP-43 comparisons in which it was measurable, but the effect was small and inconsistent: ΔPSI +0.149 in SH-SY5Y at 75 ng/mL (q = 0.033, 20 versus 3 reads), +0.116 at 25 ng/mL (q = 0.14), and +0.020 in iPSC colonies (q = 0.82), the best-powered comparison with 441 versus 281 reads. The junction-level estimate is larger than the rMATS estimate for the same exon in the same libraries (+0.149 versus +0.059) because the two are not the same quantity: rMATS combines both flanking junctions and normalises by effective length, whereas the junction-level PSI is the share of the single downstream junction among all junctions leaving that donor, which is the more sensitive and the noisier of the two for a lowly used exon. On either measure the direction is reproducible and the magnitude is too small to support an isoform switch, and the negative conclusion of the meta-analysis stands.
+
+FRASER, run on the nine-sample doxycycline series, returned no genome-wide significant outlier and no difference in per-sample outlier burden between depleted and control libraries (4.8 versus 2.3 events at p < 10⁻⁵; p = 0.35). This is the expected behaviour of an outlier method applied to a cohort in which the aberrant state is the majority, and we report it as a limit of that approach at this cohort size rather than as evidence against aberrant splicing.
+
+### 3.4 Exploratory NMD interactions prioritise CBARP but do not confirm an NMD target
+
+Cryptic exons frequently introduce premature termination codons, which can make their transcripts susceptible to nonsense-mediated decay (NMD) and under-represented in steady-state RNA. An independent experiment in which TDP-43 knockdown is crossed with knockdown of XRN1, UPF1 and SMG6 (GSE307054) provides an exploratory interaction test (Figure 4C): a transcript pool produced upon TDP-43 loss and degraded by NMD would be expected to rise preferentially when both perturbations are present (Methods 2.8).
+
+The original analysis treated eight contrasts derived from the same two control libraries as independent observations. We therefore repeated the calculation with the four NMD-inhibition conditions as the unit of inference, averaging the two replicates within each condition and retaining the shared controls only within each contrast. The direction of several positive-control and calcium-gene interactions was retained, but no gene passed genome-wide FDR correction in this conservative sensitivity analysis. The result is therefore supportive at the level of a ranked exploratory signal, not a confirmatory NMD test.
+
+*CBARP* remained the largest SOCE-panel interaction (+1.52 log₂; positive in all four conditions), but its conservative condition-level q-value was 0.145 (two-sided t-test; exact one-sided sign-test q = 0.310). It is therefore a prioritised candidate rather than an established NMD target. *RYR2* and *MCU* also retained positive interactions, without genome-wide significance after the dependence correction.
+
+Two negative results follow. First, the prediction from isoform-level testing that *STIM1* produces a premature-termination-codon-bearing, NMD-sensitive isoform was **not supported**: in the four-condition analysis the interaction was −0.325 (p = 0.317, q = 0.508), in the opposite direction, and we withdraw that inference. Second, in the same four-condition analysis none of the four Ca²⁺ panels showed collective NMD sensitivity (one-sided Mann–Whitney p = 0.44, 0.91, 0.96 and 0.91 for Tiers 1–4), and the sixteen positive-control genes were not NMD-sensitive as a group either (p = 0.62), consistent with the absence of cryptic events in the core machinery.
+
+### 3.5 A coverage-based APA screen yields candidate gradients but no confirmed core-SOCE events
+
+Cryptic polyadenylation accounts for a substantial part of TDP-43-dependent RNA processing (Bryce-Smith et al., 2025) — the truncated *STMN2* transcript is generated this way — and had not been assessed for the Ca²⁺ gene set. We measured it from coverage, as the 5′ share of the two ends of each intron (an intronic polyadenylation index) and as the distal share of each terminal exon (a 3′UTR usage index), across the 696 qualifying genes of the expanded Ca²⁺ panel and the cryptic positive controls (Methods 2.7; Figure 5B).
+
+After the `-j` correction, the primary SH-SY5Y positive control no longer showed a near-complete shift: using all six libraries, the corrected *STMN2* intronic index gave a group difference of +0.145 (bootstrap 95% CI +0.085 to +0.205), against +0.489 before the correction; the earlier estimate included reference-skip coverage and is not retained. *STMN2* falls outside the depth-filtered summary table because one control library has a summed two-window depth of 2.97, just below the pre-specified threshold of 3; one knockdown library has a measured coverage of zero in the 3′ window, which by the definition of the index contributes a value of 1.0 rather than missing data, and excluding that library gives +0.121 (+0.068 to +0.173) (Figure 5C).
+
+Among the depth-qualified core SOCE targets in the corrected full-panel analysis, two intronic units showed moderate decreases (*STIM1* intron 17, Δ = −0.173, bootstrap 95% CI −0.233 to −0.123; *STIM2* intron 13, Δ = −0.156, −0.239 to −0.037). These are candidate coverage gradients rather than localised poly(A) sites. Sparse intronic windows produced unstable point estimates and were excluded by the pre-specified depth filter.
+
+The corrected analysis therefore identifies moderate candidate gradients in *STIM1* and *STIM2* but does not establish a direct APA event in any core SOCE gene. No index change of 0.05 or more was found for *ORAI1–3*, *TRPC1*, *SARAF*, *STIMATE*, *CBARP* or the SERCA genes; the only other intervals excluding zero were negligible in size (*SARAF* terminal exon −0.036, *ORAI2* terminal exon +0.012). Because the positive control was no longer robust in this model after correction, absence of a signal should not be interpreted as evidence that these genes are definitively spared.
+
+We therefore repeated the corrected analysis in the iPSC-derived motor neurons, where 59 units in 29 genes passed the same depth filter. Here the assay's positive control behaved as intended: the *STMN2* intron 2 index rose from 0.570 in controls to 0.819 in knockdown (Δ = +0.249, interval +0.208 to +0.290), and a second control moved in the expected direction (*UNC13A* intron 31, −0.145). Against that working positive control, the core SOCE genes again showed only small shifts — the largest were *ATP2A2* intron 3 (−0.164) and, below 0.10, *SARAF* intron 5 (+0.097), *TRPC1* intron 1 (+0.083) and the *STIM2* terminal exon (−0.074) — and of the two SH-SY5Y candidates, *STIM2* intron 13 did not reproduce (−0.024, interval spanning zero) while *STIM1* intron 17 did not reach the depth filter in this shallower dataset. This comparison has only two replicates per group, so the enumerated bootstrap has sixteen draws and its intervals are coarse; the point estimates, not the intervals, carry the information.
+
+The two mouse lines gave 74 qualifying units in C2C12 and 131 in NSC34. The positive control was informative only in the motor-neuron-like line, where the *Stmn2* intron 2 index moved in the expected direction (+0.148, interval +0.005 to +0.290); in the myoblast line that intron did not pass the depth filter. No core SOCE unit exceeded |Δ| = 0.30 in either line, and the two largest (*Atp2a2* intron 6, +0.285, and *Trpc1* intron 7, +0.260, both in C2C12) have intervals that include zero and are not reproduced in the other line. One unit is positive in both neuronal models: the *SARAF* intron 5 index rises in the iPSC-derived motor neurons (+0.097) and in NSC34 (+0.204), and is not measurable in SH-SY5Y. We record it as a candidate rather than a finding: the NSC34 interval is wide, the myoblast line shows nothing there, and a coverage gradient is not a poly(A) site.
+
+Taken together, the corrected analyses support altered calcium-related RNA profiles but do not establish whether any core SOCE gene is a direct target of cryptic splicing, APA or NMD-coupled degradation.
+
+### 3.6 Enrichment of splicing changes in Ca²⁺ genes is model-dependent
+
+Testing whether Ca²⁺ genes are enriched for splicing changes required care, because power to detect an event scales with gene length, exon number and expression, and Ca²⁺ channel genes are extreme on all three.
+
+In SH-SY5Y, the expanded Ca²⁺ panel showed 133 of 383 testable genes with at least one significant event (34.7%) against a background of 30.7%, giving an uncorrected hypergeometric p = 0.051. Against the covariate-matched empirical null, however, the expected rate was 32.4% and the permutation p-value was 0.139. The apparent enrichment in this model is therefore largely attributable to the length and expression properties of Ca²⁺ genes.
+
+The result differed by model. In iPSC-derived motor neurons — the most disease-relevant system examined — enrichment survived matching for both the channel/transport panel (p = 0.046) and the curated Ca²⁺-handling panel (p = 0.032). In iPSC colonies, by contrast, nominally significant enrichment (p = 0.018–0.022) disappeared entirely against the matched null (p = 0.54–0.64).
+
+We therefore report enrichment of splicing changes in Ca²⁺ homeostasis genes as a motor-neuron-associated finding rather than a general property of TDP-43 depletion.
+
+### 3.7 TDP-43 knockdown reduces SOCE despite increased transcript levels of SOCE components
+
+Lentiviral shRNA reduced TARDBP mRNA by 94.4% relative to the non-targeting shRNA control and 94.8% relative to non-transduced cells (one-way ANOVA with Tukey's test, p < 0.0001, n = 4).
+
+In these cells, mRNA levels of four SOCE-associated targets increased: *TRPC1* ≈ 1.8-fold (p < 0.001), *STIM1* ≈ 1.9-fold (p < 0.001), *ORAI1* ≈ 1.7-fold (p < 0.01) and *ATP2A3*/SERCA3 ≈ 3.2-fold (p < 0.0001; n = 4, two-tailed t-tests). All four directions matched the RNA-seq results in the same cell line (*STIM1* log2FC = 0.929, p_adj = 4.3 × 10⁻⁴⁷; *TRPC1* 0.958, 1.3 × 10⁻¹²; *ORAI1* 0.433, 2.4 × 10⁻⁴; *ATP2A3* 1.306, 1.4 × 10⁻²⁹).
+
+Functionally, however, the SOCE response fell markedly (Figure 6). ER Ca²⁺ release did not differ significantly between groups (control 0.268 ± 0.042 versus shTDP-43 0.180 ± 0.061 Δ(F340/F380); p = 0.299), whereas store-operated Ca²⁺ entry decreased from 1.542 ± 0.282 to 0.245 ± 0.083 (p = 0.0115; n = 3 per group). Viability moved in opposite directions at the two time points measured: 116.8 ± 1.6% of control at 24 h (p = 2.4 × 10⁻⁴) and 61.5 ± 0.8% at 48 h (p = 2.1 × 10⁻⁷; n = 4 wells).
+
+The direction of the transcript changes and the direction of the functional response are therefore opposite. This is the central observation of the study.
+
+### 3.8 Transcript-family abundance provides candidate explanations for the discordance
+
+The apparent contradiction can be explored by comparing transcript-family abundance rather than fold-change alone (Figure 7; Table 4).
+
+In the length-corrected (TPM) estimates, *ORAI2* and *ATP2A2* are the dominant members of their respective families (77% and 98% of the family total in control cells) and both decrease in knockdown, whereas *ORAI1* and *ATP2A3* are minor members (15% and 1.5%) that increase. *STIM1* and *TRPC1* are the dominant members of their families and also increase. At family level the SERCA and mitochondrial-uptake pools fall (−32% and −43% of total TPM) while the STIM pool rises (+13%) and the ORAI and SOCE-regulator pools are almost unchanged (−3% and −1%). These are descriptive summaries of transcript abundance and cannot be converted directly into protein-complex stoichiometry.
+
+*SARAF* is the dominant SOCE regulator (82% of that family's transcript pool) and increases in the knockdown libraries. The mitochondrial panel also changes, but MCU, MCUB and MICU proteins have distinct and context-dependent roles (Lambert et al., 2019), so their summed transcript change does not establish a change in mitochondrial Ca²⁺ uptake. The STIM1:ORAI1 RNA ratio is not a measurement of the protein ratio at ER–plasma-membrane junctions (Hoover and Lewis, 2011) and is not used here as a mechanistic readout.
+
+These transcript patterns are compatible with a compositional contribution to reduced SOCE, but protein abundance, membrane localisation, channel assembly and causal rescue were not measured.
+
+The transcriptome state therefore provides testable candidate explanations for the SOCE phenotype, rather than a demonstrated mechanism.
+
+### 3.9 TRPC1, SARAF and CBARP differ across ALS and neurological comparison cohorts
+
+We next asked whether these transcript-level changes are present in patient tissue (Figure 8; Table 5).
+
+In the NYGC ALS cohort, *TRPC1* was increased in six of the seven brain regions tested (Cliff's δ = +0.447 to +0.699, q < 0.05), the exception being occipital cortex, in which no gene reached significance in any comparison. *SARAF* was increased and *CBARP* decreased in the same six regions, and both also changed significantly in cervical and lumbar cord (*SARAF* δ = +0.48 and +0.50; *CBARP* δ = −0.46 and −0.45). *ORAI1* — a lower-relative-abundance member of its transcript family in the cellular model — showed no significant change in any ALS region. *ATP2A3*, the other low-abundance member that rises in the cellular model, moved in the opposite direction in tissue: it was significantly decreased in frontal and lateral motor cortex, hippocampus, and cervical and lumbar cord (δ = −0.36 to −0.57).
+
+Notably, the ALS increase in *TRPC1* was confined to brain: none of the three spinal cord levels reached significance, and thoracic cord trended negative (δ = −0.321). Cervical and lumbar cord are well powered in this cohort, so the absence there is informative; thoracic cord and occipital cortex are not, since no gene reached significance in either.
+
+The "Other Neurological Disorders" group within the same cohort was compared against the same controls. *TRPC1* decreased in all three testable regions (δ = −0.407 to −0.717), the opposite direction to ALS. Shared controls remove confounding specific to the control samples, but do not resolve differences in disease composition, brain region, case processing or cell composition between the case groups. GFAP and SNAP25 moved more strongly in the comparison group than in ALS while *TRPC1* fell; these markers make a simple neurodegeneration explanation less compelling but do not provide comprehensive cell-composition adjustment.
+
+Three independent cohorts extended this. *TRPC1* was decreased in Alzheimer's disease (δ = −0.447; q = 1.6 × 10⁻⁷, with Braak-stage correlation ρ = −0.183, p = 1.8 × 10⁻³) and in Parkinson's disease (δ = −0.677; q = 1.8 × 10⁻⁴). In multiple sclerosis, *TRPC1* was decreased at donor level (δ = −0.840; q = 0.038) and in lesions (δ = −0.594; q = 1.3 × 10⁻⁴); in the second multiple sclerosis cohort the direction was the same but the study was underpowered (five regions pooled, δ = −0.226; q = 0.49). Because TRPC1 is expressed in oligodendrocytes and their precursors, we asked whether the decrease was simply demyelination. In normal-appearing white matter, where the myelin markers MBP (δ = +0.048), PLP1 (−0.082), MOG (−0.261) and MAG (−0.299) were unchanged, *TRPC1* was still reduced; because several samples come from the same donor, we repeated the test with the donor as the unit of inference, and the reduction held (seven multiple sclerosis donors versus five control donors, δ = −0.771, p = 0.030). Regression of TRPC1 on MBP, PLP1 and GFAP weakened but did not remove the difference (sample level δ = −0.557 → −0.395; donor level δ = −0.640, p = 0.055). *TRPC1* was lower in every lesion type, including remyelinating and inactive lesions (donor-level δ = −1.000 for both). Multiple sclerosis showed marked astrogliosis (GFAP δ = +0.84 to +0.96), again with *TRPC1* falling.
+
+Among the disease cohorts and regions surveyed here, ALS was the only setting in which *TRPC1* was significantly increased.
+
+### 3.10 A junction-based marker of TDP-43 dysfunction does not correlate with TRPC1 within ALS regions
+
+The comparisons above establish that *TRPC1*, *SARAF* and *CBARP* differ between ALS and control tissue. They do not establish that the differences are caused by TDP-43 loss. A per-sample marker of TDP-43 dysfunction is needed for that question; gene-level *STMN2*, the proxy used in earlier work and in our own first attempt, is inadequate on its own because in bulk tissue it also strongly tracks neuronal content.
+
+The same cohort is present in recount3 as a junction count matrix, which allowed the truncated *STMN2* transcript to be quantified directly (Methods 2.11). This junction-based measure is more proximal to a known consequence of TDP-43 dysfunction than total *STMN2* expression, but remains sparse and can capture only one route of TDP-43-dependent RNA misprocessing. Its regional distribution is consistent with the expected anatomical pattern: 70.5% of lumbar-cord and 63.5% of cervical-cord ALS samples carried the cryptic junction, compared with 33.7–43.5% across motor cortex, 28.3% in temporal cortex, 11.2% in frontal cortex, and **2.6% in cerebellum**. Against non-neurological controls from the same cohort, cryptic inclusion was increased in lumbar cord (Cliff's δ = +0.705, q = 9.6 × 10⁻¹⁴), cervical cord (+0.619, q = 1.9 × 10⁻¹⁰), medial motor cortex (+0.337, q = 0.012) and temporal cortex (+0.283, q = 1.6 × 10⁻³), and was unchanged in cerebellum (−0.040, q = 0.34).
+
+The junction-based measure also helps assess the proxy problem. Within ALS samples, gene-level *STMN2* correlated strongly with the neuronal marker *SNAP25* (ρ = 0.66 to 0.93 across regions), whereas cryptic PSI did not (ρ = −0.28 to +0.05). Thus, in this bulk-tissue cohort, total *STMN2* expression should not be interpreted as a specific measure of TDP-43 dysfunction; its prior positive correlations may substantially reflect neuronal content.
+
+Using this junction-based marker, we found no significant correlation between cryptic *STMN2* inclusion and *TRPC1* in any region (ρ = −0.19 to +0.18; all q > 0.05). Of the 110 correlations tested against the junction-based marker, eight survived Benjamini–Hochberg correction (applied across all 231 correlations computed with both proxies): gene-level *STMN2* fell with cryptic inclusion (cervical cord ρ = −0.244, q = 0.010), *SNAP25* fell and *GFAP* rose in medial motor cortex (ρ = −0.276 and +0.284, q = 0.026 and 0.021) — all three internally consistent — together with *ATP2A2* (medial motor cortex, −0.299, q = 0.014), *STIM1* (lumbar cord, −0.280, q = 0.0019), *SARAF* (lumbar cord, −0.194, q = 0.045) and *ORAI1* (+0.278 in cervical and +0.234 in lumbar cord, q = 0.0027 and 0.012). Two of these four SOCE correlations run in the direction the cellular model predicts (the *ATP2A2* fall and the *ORAI1* rise) and two run against it (*STIM1* and *SARAF*).
+
+We therefore report the patient-tissue findings as association with ALS and not as evidence that TDP-43 loss drives them. The regional pattern makes the point sharply: cryptic *STMN2* is highest in spinal cord, where *TRPC1* does not increase, and *TRPC1* rises in cortex, where cryptic inclusion is comparatively rare.
+
+## 4. Discussion
+
+This study asked whether TDP-43 knockdown is associated with altered store-operated Ca²⁺ entry and which RNA-level changes might explain that phenotype. The data support a marked reduction in the Fura-2 SOCE readout, but do not establish its molecular level or a causal RNA mechanism.
+
+**A functional deficit with candidate transcript explanations.** TDP-43 knockdown reduced the Fura-2 SOCE response by approximately 84%, while the ER-release comparison was inconclusive at the current sample size. This supports a cellular phenotype, but the n = 3 experiments require independent biological replication and do not localise the defect exclusively to plasma-membrane influx. The length-corrected transcript summaries show decreases in the dominant ORAI and SERCA members and an increase in *SARAF*, alongside increases in the minor members *ORAI1* and *ATP2A3*. These patterns are compatible with a compositional contribution, but TPM is not an absolute measurement and protein abundance, membrane localisation and complex assembly were not measured. ORAI2 and MCUB also have context-dependent regulatory roles, so their RNA changes cannot be assigned a unique functional direction without rescue or perturbation experiments.
+
+**RNA-processing analyses are informative but not exclusionary.** Annotation-free junction analysis recovered canonical TDP-43 cryptic targets and none of those controls in FUS or TAF15 knockdown. After correcting the APA coverage calculation for reference skips, the *STMN2* positive control was no longer a near-complete shift in the primary model, although it remained clear in the iPSC-derived motor neurons (intronic index +0.249), where the core SOCE genes nonetheless moved little; the conservative NMD analysis did not yield a genome-wide significant gene. The corrected data therefore do not establish direct or indirect targeting of the core SOCE machinery by any one RNA-processing route. *CBARP* remains a reproducible splicing candidate, but its NMD sensitivity is exploratory and requires isoform-level validation.
+
+**Splicing changes are real but individually small.** Robust, reproducible splicing changes do occur in SOCE regulators. *CBARP* is the clearest: the same event architecture in five of six datasets across two species, with large effect sizes and deep read support, independently confirmed by an annotation-free method, and accompanied by the largest expression change of any SOCE regulator. *STIM2*, *STIMATE* and *ORAI3* are supported in the primary model. What we could not demonstrate is that any of these individually accounts for the functional deficit, and the honest reading of the data is that no single event does.
+
+We were unable to confirm a specific mechanistic hypothesis we had considered attractive. Inclusion of the 24-nucleotide exon that converts STIM2 into the dominant-negative STIM2.1/STIM2β isoform was positive in five of six datasets, but with a pooled ΔPSI of +0.0013 (95% CI −0.022 to +0.024; p = 0.914) the effect size is negligible. Within the sensitivity of these data, the results do not support a STIM2.1 isoform switch as the explanation for the SOCE reduction.
+
+**Methodological implications.** Two of our results are cautionary and, we think, generalisable. First, threshold-based splicing calls at the |ΔPSI| ≥ 0.10 level are not interpretable without read-level support: at the coverage typical of these datasets, power at that effect size is below 0.30, so significant calls are enriched for inflated estimates. Our own *TRPC1* candidate failed every robustness check we applied to it, and we report that failure rather than the original call. Second, enrichment tests for splicing changes in curated gene panels require a covariate-matched null. Ca²⁺ channel genes are long, multi-exonic and highly expressed, and against a naive background this alone produces apparent enrichment; matching removed the signal in two of the three human models while leaving it intact in iPSC-derived motor neurons.
+
+**Relevance to disease tissue.** *TRPC1*, *SARAF* and *CBARP* differ between ALS and control samples in several regions, and *TRPC1* shows the opposite direction in the comparison cohorts. These are disease-associated transcript patterns. Bulk tissue, region and donor differences prevent a causal attribution to TDP-43 loss; the junction-level *STMN2* analysis did not provide a within-ALS correlation with *TRPC1*.
+
+Two features of these data restrain interpretation. The regional pattern is discordant with ALS pathology: *TRPC1* rises in cortex, hippocampus and cerebellum but not in spinal cord, where motor neuron loss is most severe. Bulk spinal cord in advanced ALS is dominated by glia, and the cortical signal may reflect tissue in which vulnerable neurons are still present; but this remains an explanation to be tested rather than one supported here.
+
+More importantly, *TRPC1* expression does not scale with the junction-based marker of TDP-43 dysfunction within ALS cases. Our first attempt at this test used gene-level *STMN2* as the proxy and produced positive correlations in all nine regions then examined, the opposite of what the mechanistic model predicts. Gene-level *STMN2* correlates with *SNAP25* at up to ρ = 0.93 within regions and should not be treated as a specific measure of TDP-43 function in bulk tissue. Cryptic *STMN2* inclusion is a more direct but still incomplete marker; it lacks this strong correlation with *SNAP25*, is sparse outside spinal cord and reflects one RNA-processing route. Measured with this limitation in mind, *TRPC1* showed no significant relationship to cryptic *STMN2* inclusion in any region. Of the SOCE components tested, the *ATP2A2* fall in medial motor cortex and the *ORAI1* rise in cord move in the direction the cellular model predicts, while *STIM1* and *SARAF* move against it.
+
+The patient-tissue findings are therefore an association with ALS, and we no longer offer them in support of causation. The regional dissociation is the clearest statement of the problem: cryptic *STMN2* is most abundant in spinal cord, where *TRPC1* does not change, and *TRPC1* rises in cortical regions where cryptic inclusion is comparatively rare. Whether the cortical *TRPC1* increase reflects a slower, indirect consequence of TDP-43 dysfunction, a cell-composition shift that our markers do not capture, or a process unrelated to TDP-43, cannot be settled with bulk data.
+
+**Relation to existing work.** Previous work linking TDP-43 to Ca²⁺ has centred on ER–mitochondrial contacts, where disease-associated TDP-43 disrupts VAPB–PTPIP51 tethering and reduces IP₃-receptor-mediated mitochondrial Ca²⁺ uptake. Our findings concern a different route — plasma-membrane store-operated influx — and the two are not mutually exclusive. The reduction we observe in mitochondrial uptake transcripts is compatible with convergent effects on the same Ca²⁺ network, but does not establish a change in mitochondrial flux. The context dependence of ORAI2 regulation (Vaeth et al., 2017) and the reported SARAF activity in SH-SY5Y (Albarran et al., 2016) also argue for direct perturbation experiments rather than directional inference from transcript abundance.
+
+## 5. Limitations
+
+SH-SY5Y is a neuroblastoma line and not a motor neuron. The functional measurements rest on three samples per group for Ca²⁺ imaging and four wells for viability, and the three Ca²⁺ samples of each group were prepared from a single culture plate rather than on independent culture days; they are therefore not independent biological replicates and the phenotype requires replication with a second silencing reagent and a TDP-43 rescue. Protein levels, membrane localisation and complex assembly of candidate genes were not measured. The WST-1 assay does not separate proliferation from cell death, and the opposite directions at 24 h and 48 h show that it is not a direct viability measure. Transcript-family summaries are length-corrected short-read estimates, not absolute stoichiometry.
+
+Patient-tissue analyses are bulk and associative. Cryptic *STMN2* PSI is a more direct but incomplete marker of one consequence of TDP-43 dysfunction, and it is sparse: median inclusion is zero outside the spinal cord, so the correlation analysis has good power in cord and progressively less in cortical regions, and a small true effect in cortex would not be detected. Two further limits apply to the negative result. The measure reports the state of the tissue at death rather than the cumulative history of TDP-43 dysfunction that shaped its transcriptome, and a downstream change that persists after the lesion would not correlate with it. Truncated *STMN2* is also generated by cryptic polyadenylation, so its junction reports one RNA-processing route and may not represent all of TDP-43 function.
+
+The ratio of null calls to real calls in the annotation-free analysis varies by dataset and, in two of the three datasets where a split-control null could be computed, approaches or exceeds one. That ratio is not a calibrated false-discovery rate; calibration would require label permutation and depth-matched simulation, which we did not perform. Call counts are therefore not comparable between datasets, and our conclusions rest on positive-control recovery and on the identity of the genes called rather than on how many were called. In the remaining eight comparisons the control replicates could not be split, so no null could be computed there. Junctions were extracted with strand information but aggregated by chromosome and coordinate, so at loci with an antisense partner a junction could in principle be assigned to either gene. Several SOCE genes have such a partner, *CBARP* among them: its junctions fall inside the divergent transcript *CBARP-DT*. For *CBARP* the same event is independently supported by the strand-aware rMATS and LeafCutter analyses, but for any single junction-level call at an antisense locus the gene assignment should be treated as provisional.
+
+The corrected alternative-polyadenylation analysis is coverage-based and does not localise poly(A) sites; 3′-end sequencing would be required for that purpose. The positive control fails the depth filter in SH-SY5Y after the correction, so the negative result in that model rests on an assay whose sensitivity could not be demonstrated there; in the iPSC-derived motor neurons the same control works, but that comparison has only two replicates per group. Across the four comparisons in which the corrected analysis could be run, the assay's own positive control is informative in two and silent in two. Excluding reference skips reduced the *STMN2* positive control from a near-complete shift to +0.145 (bootstrap 95% CI +0.085 to +0.205), and the control falls just below the pre-specified depth filter, so the assay's own positive control is no longer strong in this model. The completed full-panel correction identified moderate candidate gradients in *STIM1* and *STIM2*, but no large, reproducible APA shift in the core SOCE machinery. Sparse windows remain a sensitivity limit, and the correction was applied only to the primary SH-SY5Y model, so the negative result is not definitive evidence of sparing.
+
+FRASER was applied but is not informative at this cohort size, because its model treats aberrant splicing as rare within the cohort and the depleted samples are the majority. MAJIQ itself was not run; the local-splicing-variation analysis we substituted (Vaquero-Garcia et al., 2016) covers the same annotation-free ground but does not reproduce MAJIQ's quantification model.
+
+The nonsense-mediated decay experiment is a published gene-level dataset in a different cell model. Shared control libraries were reused across the four intervention contrasts; after treating the four conditions as the unit of inference, no gene passed genome-wide FDR correction. Because the variance between the four conditions does not capture the uncertainty of the shared control difference, and because the four interventions are distinct perturbations rather than biological replicates, even the conservative q values should not be read as fully calibrated. The analysis tests whether a gene-level transcript pool is NMD-sensitive, not whether the specific cryptic isoform identified here is the degraded species.
+
+## 6. Conclusion
+
+TDP-43 depletion in SH-SY5Y cells was associated with a large reduction in Fura-2-measured SOCE and with altered expression and splicing of calcium-regulatory genes. Transcript-family summaries and reproducible *CBARP* splicing identify candidate explanations, but they do not establish protein stoichiometry or a single causal RNA switch. Corrected APA and conservative NMD analyses do not provide confirmatory evidence that core SOCE genes are direct targets of those pathways. In ALS tissue, *TRPC1*, *SARAF* and *CBARP* show disease-associated expression differences, whereas junction-level *STMN2* inclusion does not correlate with *TRPC1* within ALS samples. *CBARP* and *SARAF* are therefore priorities for targeted molecular and functional follow-up.
+
+## References
+
+Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA. Store-operated Ca²⁺ entry-associated regulatory factor (SARAF) plays an important role in the regulation of arachidonate-regulated Ca²⁺ (ARC) channels. *J Biol Chem*. 2016;291:6982–6988. doi:10.1074/jbc.M115.704940
+
+Ambudkar IS, Ong HL, Liu X, Bandyopadhyay BC, Cheng KT. TRPC1: the link between functionally distinct store-operated calcium channels. *Cell Calcium*. 2007;42:213–223. doi:10.1016/j.ceca.2007.01.013
+
+Andrews S. FastQC: a quality control tool for high throughput sequence data. Babraham Bioinformatics; 2010. https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
+Arai T, Hasegawa M, Akiyama H, et al. TDP-43 is a component of ubiquitin-positive tau-negative inclusions in frontotemporal lobar degeneration and amyotrophic lateral sclerosis. *Biochem Biophys Res Commun*. 2006;351:602–611. doi:10.1016/j.bbrc.2006.10.093
+
+Baughn MW, Melamed Z, López-Erauskin J, et al. Mechanism of STMN2 cryptic splice-polyadenylation and its correction for TDP-43 proteinopathies. *Science*. 2023;379:1140–1149. doi:10.1126/science.abq5622
+
+Benjamini Y, Hochberg Y. Controlling the false discovery rate: a practical and powerful approach to multiple testing. *J R Stat Soc Series B*. 1995;57:289–300.
+
+Brown AL, Wilkins OG, Keuss MJ, et al. TDP-43 loss and ALS-risk SNPs drive mis-splicing and depletion of UNC13A. *Nature*. 2022;603:131–137. doi:10.1038/s41586-022-04436-3
+
+Bryce-Smith S, Brown AL, Chien MZYJ, et al. TDP-43 loss induces cryptic polyadenylation in ALS/FTD. *Nat Neurosci*. 2025;28:2190–2200. doi:10.1038/s41593-025-02050-w
+
+Cliff N. Dominance statistics: ordinal analyses to answer ordinal questions. *Psychol Bull*. 1993;114:494–509. doi:10.1037/0033-2909.114.3.494
+
+Cotto KC, Feng YY, Ramu A, et al. Integrated analysis of genomic and transcriptomic data for the discovery of splice-associated variants in cancer. *Nat Commun*. 2023;14:1589. doi:10.1038/s41467-023-37266-6
+
+Danecek P, Bonfield JK, Liddle J, et al. Twelve years of SAMtools and BCFtools. *Gigascience*. 2021;10:giab008. doi:10.1093/gigascience/giab008
+
+Ewels P, Magnusson M, Lundin S, Käller M. MultiQC: summarize analysis results for multiple tools and samples in a single report. *Bioinformatics*. 2016;32:3047–3048. doi:10.1093/bioinformatics/btw354
+
+Frankish A, Diekhans M, Ferreira A-M, et al. GENCODE reference annotation for the human and mouse genomes. *Nucleic Acids Res*. 2019;47:D766–D773. doi:10.1093/nar/gky955
+
+Grynkiewicz G, Poenie M, Tsien RY. A new generation of Ca²⁺ indicators with greatly improved fluorescence properties. *J Biol Chem*. 1985;260:3440–3450.
+
+Hoover PJ, Lewis RS. Stoichiometric requirements for trapping and gating of Ca²⁺ release-activated Ca²⁺ (CRAC) channels by stromal interaction molecule 1 (STIM1). *Proc Natl Acad Sci USA*. 2011;108:13299–13304. doi:10.1073/pnas.1101664108
+
+Kim D, Paggi JM, Park C, Bennett C, Salzberg SL. Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype. *Nat Biotechnol*. 2019;37:907–915. doi:10.1038/s41587-019-0201-4
+
+Klim JR, Williams LA, Limone F, et al. ALS-implicated protein TDP-43 sustains levels of STMN2, a mediator of motor neuron growth and repair. *Nat Neurosci*. 2019;22:167–179. doi:10.1038/s41593-018-0300-4
+
+Lambert JP, Luongo TS, Tomar D, et al. MCUB regulates the molecular composition of the mitochondrial calcium uniporter channel to limit mitochondrial calcium overload during stress. *Circulation*. 2019;140:1720–1733. doi:10.1161/CIRCULATIONAHA.118.037968
+
+Leek JT. svaseq: removing batch effects and other unwanted noise from sequencing data. *Nucleic Acids Res*. 2014;42:e161. doi:10.1093/nar/gku864
+
+Leinonen R, Sugawara H, Shumway M; International Nucleotide Sequence Database Collaboration. The Sequence Read Archive. *Nucleic Acids Res*. 2011;39:D19–D21. doi:10.1093/nar/gkq1019
+
+Li YI, Knowles DA, Humphrey J, et al. Annotation-free quantification of RNA splicing using LeafCutter. *Nat Genet*. 2018;50:151–158. doi:10.1038/s41588-017-0004-9
+
+Liao Y, Smyth GK, Shi W. featureCounts: an efficient general purpose program for assigning sequence reads to genomic features. *Bioinformatics*. 2014;30:923–930. doi:10.1093/bioinformatics/btt656
+
+Ling JP, Pletnikova O, Troncoso JC, Wong PC. TDP-43 repression of nonconserved cryptic exons is compromised in ALS-FTD. *Science*. 2015;349:650–655. doi:10.1126/science.aab0983
+
+Ling S-C, Polymenidou M, Cleveland DW. Converging mechanisms in ALS and FTD: disrupted RNA and protein homeostasis. *Neuron*. 2013;79:416–438. doi:10.1016/j.neuron.2013.07.033
+
+Livak KJ, Schmittgen TD. Analysis of relative gene expression data using real-time quantitative PCR and the 2^−ΔΔCt method. *Methods*. 2001;25:402–408. doi:10.1006/meth.2001.1262
+
+Love MI, Huber W, Anders S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. *Genome Biol*. 2014;15:550. doi:10.1186/s13059-014-0550-8
+
+Ma XR, Prudencio M, Koike Y, et al. TDP-43 represses cryptic exon inclusion in the FTD–ALS gene UNC13A. *Nature*. 2022;603:124–130. doi:10.1038/s41586-022-04424-7
+
+Martin M. Cutadapt removes adapter sequences from high-throughput sequencing reads. *EMBnet J*. 2011;17:10–12. doi:10.14806/ej.17.1.200
+
+Melamed Z, López-Erauskin J, Baughn MW, et al. Premature polyadenylation-mediated loss of stathmin-2 is a hallmark of TDP-43-dependent neurodegeneration. *Nat Neurosci*. 2019;22:180–190. doi:10.1038/s41593-018-0293-z
+
+Mertes C, Scheller IF, Yépez VA, et al. Detection of aberrant splicing events in RNA-seq data using FRASER. *Nat Commun*. 2021;12:529. doi:10.1038/s41467-020-20573-7
+
+Nelson PT, Dickson DW, Trojanowski JQ, et al. Limbic-predominant age-related TDP-43 encephalopathy (LATE): consensus working group report. *Brain*. 2019;142:1503–1527. doi:10.1093/brain/awz099
+
+Neumann M, Sampathu DM, Kwong LK, et al. Ubiquitinated TDP-43 in frontotemporal lobar degeneration and amyotrophic lateral sclerosis. *Science*. 2006;314:130–133. doi:10.1126/science.1134108
+
+Nowicka M, Robinson MD. DRIMSeq: a Dirichlet-multinomial framework for multivariate count outcomes in genomics. *F1000Res*. 2016;5:1356. doi:10.12688/f1000research.8900.2
+
+Palty R, Raveh A, Kaminsky I, Meller R, Reuveny E. SARAF inactivates the store operated calcium entry machinery to prevent excess calcium refilling. *Cell*. 2012;149:425–438. doi:10.1016/j.cell.2012.01.055
+
+Patro R, Duggal G, Love MI, Irizarry RA, Kingsford C. Salmon provides fast and bias-aware quantification of transcript expression. *Nat Methods*. 2017;14:417–419. doi:10.1038/nmeth.4197
+
+Prakriya M, Lewis RS. Store-operated calcium channels. *Physiol Rev*. 2015;95:1383–1436. doi:10.1152/physrev.00020.2014
+
+Prudencio M, Humphrey J, Pickles S, et al. Truncated stathmin-2 is a marker of TDP-43 pathology in frontotemporal dementia. *J Clin Invest*. 2020;130:6080–6092. doi:10.1172/JCI139741
+
+Putney JW. Pharmacology of store-operated calcium channels. *Mol Interv*. 2010;10:209–218. doi:10.1124/mi.10.4.4
+
+Selli Ç, Eraç Y, Kosova B, Tosun M. Post-transcriptional silencing of TRPC1 ion channel gene by RNA interference upregulates TRPC6 expression and store-operated Ca²⁺ entry in A7r5 vascular smooth muscle cells. *Vascul Pharmacol*. 2009;51:96–100. doi:10.1016/j.vph.2009.04.001
+
+Shen S, Park JW, Lu Z-x, et al. rMATS: robust and flexible detection of differential alternative splicing from replicate RNA-Seq data. *Proc Natl Acad Sci USA*. 2014;111:E5593–E5601. doi:10.1073/pnas.1419161111
+
+Stoica R, De Vos KJ, Paillusson S, et al. ER–mitochondria associations are regulated by the VAPB–PTPIP51 interaction and are disrupted by ALS/FTD-associated TDP-43. *Nat Commun*. 2014;5:3996. doi:10.1038/ncomms4996
+
+Trincado JL, Entizne JC, Hysenaj G, et al. SUPPA2: fast, accurate, and uncertainty-aware differential splicing analysis across multiple conditions. *Genome Biol*. 2018;19:40. doi:10.1186/s13059-018-1417-1
+
+Vaeth M, Yang J, Yamashita M, et al. ORAI2 modulates store-operated calcium entry and T cell-mediated immunity. *Nat Commun*. 2017;8:14714. doi:10.1038/ncomms14714
+
+Van den Berge K, Soneson C, Robinson MD, Clement L. stageR: a general stage-wise method for controlling the gene-level false discovery rate in differential expression and differential transcript usage. *Genome Biol*. 2017;18:151. doi:10.1186/s13059-017-1277-0
+
+Vaquero-Garcia J, Barrera A, Gazzara MR, et al. A new view of transcriptome complexity and regulation through the lens of local splicing variations. *eLife*. 2016;5:e11752. doi:10.7554/eLife.11752
+
+Vitting-Seerup K, Sandelin A. IsoformSwitchAnalyzeR: analysis of changes in genome-wide patterns of alternative splicing and its functional consequences. *Bioinformatics*. 2019;35:4469–4471. doi:10.1093/bioinformatics/btz247
+
+Wilks C, Zheng SC, Chen FY, et al. recount3: summaries and queries for large-scale RNA-seq expression and splicing. *Genome Biol*. 2021;22:323. doi:10.1186/s13059-021-02533-6
+
+Xia Z, Donehower LA, Cooper TA, et al. Dynamic analyses of alternative polyadenylation from RNA-seq reveal a 3′-UTR landscape across seven tumour types. *Nat Commun*. 2014;5:5274. doi:10.1038/ncomms6274
+
+## Declarations
+
+**Ethics approval.** No new human or animal material was collected for this study. All RNA-seq datasets are publicly available and were reanalysed under the terms of the repositories that host them. The laboratory experiments used an established cell line (SH-SY5Y) and no human participants or animals. Lentiviral work was carried out under the institutional biosafety rules of Ege University.
+
+**Funding.** This work was supported by the Ege University Scientific Research Projects Coordination Unit (BAP), project 31901. E.Y. was supported by the Council of Higher Education (YÖK) 100/2000 PhD Scholarship Programme (priority area: Molecular Pharmacology and Drug Research) and by the TÜBİTAK BİDEB 2211-A National PhD Scholarship Programme. The funders had no role in study design, data collection and analysis, the decision to publish, or the preparation of the manuscript.
+
+**Author contributions.** [To be completed by the authors, for example: E.Y. designed and performed the laboratory experiments, carried out the computational analyses and wrote the first draft; Y.K. supervised the computational analyses; Y.E. supervised the project and the laboratory work; all authors reviewed and approved the manuscript.]
+
+**Conflicts of interest.** The authors declare no competing interests.
+
+**Acknowledgements.** The authors thank the ALS Consortium of the New York Genome Center and Target ALS for making the post-mortem RNA-seq data available, and the authors of GSE296712, GSE230647, GSE77702, GSE27394, GSE171714, GSE307054, GSE125583, GSE68719, GSE138614 and GSE123496 for depositing their raw data.
+
+## Figures
+
+**Figure 1. Threshold-based splicing calls require read-level verification.** (A) Replicate-level PSI for the *TRPC1* skipped-exon event, with IJC/SJC counts annotated. (B) Bootstrap distribution of ΔPSI (20,000 resamples); the 95% interval spans zero. (C) Leave-one-out ΔPSI; removal of one control replicate reverses the sign.
+
+**Figure 2. Detection power for splicing events in a 3 + 3 design,** simulated over the observed coverage distribution for true ΔPSI values of 0.05 to 0.30 at mean informative depths of 10 to 100 reads per sample.
+
+**Figure 3. Robust SOCE splicing candidates in SH-SY5Y** with replicate-level bootstrap 95% confidence intervals (10,000 resamples).
+
+**Figure 4. Annotation-free junction analysis and exploratory NMD interaction.** (A) Cryptic junctions recovered de novo in SH-SY5Y, with knockdown and control read counts. (B) Genes carrying cryptic events in each of the four cumulative Ca²⁺ panels. (C) Condition-level TDP-43-specific NMD interaction for genes carrying cryptic junctions versus the rest of the transcriptome, with *CBARP* marked; the NMD analysis is exploratory because the TDP-43 factor is confounded with sequencing batch.
+
+**Figure 5. Specificity of the cryptic calls and the corrected alternative-polyadenylation analysis.** (A) Positive-control genes recovered in each comparison under the permissive definition, with FUS and TAF15 knockdown as controls. (B) Depth-qualified intronic and distal 3′-terminal usage estimates in the corrected SH-SY5Y analysis. (C) Coverage at the two ends of *STMN2* intron 2 in each replicate after reference skips are excluded; one knockdown replicate has a measured coverage of zero in the 3′ window.
+
+**Figure 6. Functional consequences of TDP-43 knockdown in SH-SY5Y cells.** (A) TARDBP mRNA in non-transduced cells, non-targeting shRNA controls and shTDP-43 cells (2^−ΔΔCt, n = 4; one-way ANOVA on log2 values with Tukey's test). (B) Relative mRNA of the four SOCE-associated targets (n = 4; two-tailed t-tests). (C) WST-1 viability at 24 h and 48 h (n = 4 wells). (D) Representative Fura-2 traces for a control and a knockdown sample: SERCA inhibition with 10 µM cyclopiazonic acid in Ca²⁺-free medium, then re-addition of 1.5 mM CaCl₂. (E) Group data for the two phases, as Δ(F340/F380) relative to the preceding baseline (n = 3 samples per group, prepared from a single culture plate). Bars are mean ± SEM with individual values; ** p < 0.01, *** p < 0.001, **** p < 0.0001.
+
+**Figure 7. Transcript-family abundance of SOCE-related genes in SH-SY5Y.** Gene-level TPM per family member in control and TDP-43 knockdown cells for the ORAI, SERCA, STIM, SOCE-regulator and mitochondrial-uptake families; the TRPC and PMCA families are given in Table 4. Asterisks mark the RT-qPCR targets, each of which is a minor member of its family. These are transcript-level summaries, not protein stoichiometry.
+
+**Figure 8. Direction of *TRPC1* expression change across five diseases.** Cliff's δ (case − control) for ALS (NYGC; all seven brain regions and three spinal cord levels), other neurological disorders (same controls, three testable regions), Alzheimer's disease, Parkinson's disease and multiple sclerosis, the last including the donor-level, lesion, normal-appearing white matter and myelin-adjusted analyses. Pale bars are not significant.
+
+**Figure 9. Junction-level cryptic *STMN2* in ALS post-mortem tissue.** (A) Proportion of samples carrying the cryptic junction by region, ALS versus non-neurological control. (B) Spearman correlations of the same target genes against two proxies for TDP-43 loss in the same samples: gene-level *STMN2* and cryptic *STMN2* PSI.
+
+## Tables
+
+**Table 1.** Effect of coverage pre-filtering on event counts and significance, by dataset.
+**Table 2.** Robust splicing events in SOCE machinery genes with bootstrap confidence intervals.
+**Table 3.** Cryptic events recovered by annotation-free junction analysis in eleven comparisons, with RNA-binding-protein specificity controls.
+**Table 4.** Transcript-family abundance of SOCE-related genes in SH-SY5Y.
+**Table 5.** Cross-disease comparison of *TRPC1*, *SARAF* and *CBARP*.
+
+## Supplementary
+
+**S1.** Laboratory source data (RT-qPCR Ct values, Fura-2 traces, WST-1 absorbances).
+**S2.** Ca²⁺ gene panels (four cumulative sets).
+**S3.** Full rMATS output, JC and JCEC, six datasets.
+**S4.** Matched permutation enrichment results, all datasets and panels.
+**S5.** Cryptic events, all datasets.
+**S6.** Cryptic positive controls and the dataset × gene matrix.
+**S7.** SOCE genes in the annotation-free analysis.
+**S8.** Cryptic *STMN2* PSI in ALS versus control by region (NYGC).
+**S9.** Correlations of cryptic *STMN2* PSI with target genes within ALS samples.
+**S10.** Nonsense-mediated decay interaction for the SOCE panel (four-condition analysis).
+**S11.** Depth-qualified candidate intronic polyadenylation and 3′UTR usage gradients from the corrected SH-SY5Y analysis; these are not direct poly(A)-site calls.
+**S12.** Cryptic event counts by dataset with FUS and TAF15 knockdown controls.
+**S13.** *STIM2* SOAR exon at junction level, all datasets.
+**S14.** Control-versus-control null test of the cryptic calling procedure.
+**S15.** STIM2.1 exon analysis across six datasets.
+**S16.** Multiple sclerosis analysis, both cohorts, with myelin adjustment and the donor-level re-analysis.
+**S17.** Accession list for every dataset analysed, with design, library type and sample-to-group assignment.

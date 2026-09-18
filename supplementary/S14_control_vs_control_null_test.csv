@@ -1,0 +1,10 @@
+dataset,tier,criteria,real_calls,null_calls,null_to_real_ratio,positive_controls
+iPSC colonies,K1,"ΔPSI≥0.1, GA>0.0, ≥10 reads",1146,749,0.65,13
+iPSC colonies,K2,"ΔPSI≥0.2, GA>0.05, ≥20 reads",477,307,0.64,12
+iPSC colonies,K3,"ΔPSI≥0.3, GA>0.1, ≥30 reads",234,180,0.77,10
+K562 total RNA,K1,"ΔPSI≥0.1, GA>0.0, ≥10 reads",81,172,2.12,0
+K562 total RNA,K2,"ΔPSI≥0.2, GA>0.05, ≥20 reads",23,50,2.17,0
+K562 total RNA,K3,"ΔPSI≥0.3, GA>0.1, ≥30 reads",6,33,5.5,0
+Mouse striatum,K1,"ΔPSI≥0.1, GA>0.0, ≥10 reads",39,16,0.41,0
+Mouse striatum,K2,"ΔPSI≥0.2, GA>0.05, ≥20 reads",12,10,0.83,0
+Mouse striatum,K3,"ΔPSI≥0.3, GA>0.1, ≥30 reads",8,6,0.75,0

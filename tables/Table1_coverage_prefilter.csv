@@ -1,0 +1,7 @@
+dataset,events_tested,events_after_filter,events_removed_pct,significant_before_filter,significant_after_filter,significant_lost_pct
+iPSC colonies (GSE230647),392236,302415,22.9,15512,10055,35.2
+Mouse striatum (GSE27394),23000,4969,78.4,644,157,75.6
+SH-SY5Y (GSE296712),118664,90143,24.0,7854,5282,32.7
+iPSC-derived motor neurons (GSE77702),49392,28463,42.4,1465,443,69.8
+C2C12 (GSE171714),225016,184869,17.8,5468,3140,42.6
+NSC34 (GSE171714),338017,273077,19.2,8142,4599,43.5

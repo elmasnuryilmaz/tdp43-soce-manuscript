@@ -1,0 +1,8 @@
+# Python 3.9.6 (system interpreter; the Anaconda python on the study machine is broken)
+pandas==2.2.0
+numpy==1.26.4
+scipy==1.12.0
+matplotlib==3.8.3
+openpyxl
+# statsmodels is deliberately absent: Benjamini-Hochberg, the beta-binomial likelihood-ratio
+# test and the meta-analysis are implemented in code/lib_junc.py and code/01_rmats_core.py

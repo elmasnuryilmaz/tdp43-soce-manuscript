@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""v3 — S17: accession list and sample-to-group assignment for every dataset analysed."""
+import pandas as pd
+SUP = "/Users/elmas/Desktop/MAKALE/09_YAYIN_PAKETI/supplementary"
+rows = [
+ # analysis, dataset, accession, species, model, library, design, knockdown samples, control samples
+ ("expression + splicing + junction", "SH-SY5Y, 75 ng/mL doxycycline", "GSE296712 / PRJNA1256902", "human",
+  "neuroblastoma, doxycycline-inducible TDP-43 knockdown", "fr-secondstrand, paired-end, ~100 bp", "3 + 3",
+  "SRR33374999; SRR33374997; SRR33375000", "SRR33374996; SRR33375001; SRR33374995"),
+ ("junction only", "SH-SY5Y, 25 ng/mL doxycycline", "GSE296712 / PRJNA1256902", "human",
+  "neuroblastoma, doxycycline-inducible TDP-43 knockdown", "fr-secondstrand, paired-end, ~100 bp", "3 + 3 (shared controls)",
+  "SRR33374939; SRR33375002; SRR33374998", "SRR33374996; SRR33375001; SRR33374995"),
+ ("expression + splicing + junction", "iPSC colonies", "GSE230647 / PRJNA962064", "human",
+  "iPSC, TDP-43 shRNA", "fr-firststrand, paired-end, 151 bp", "4 + 4",
+  "SRR24314005; SRR24314021; SRR24314018; SRR24314015", "SRR24314006; SRR24314022; SRR24314019; SRR24314016"),
+ ("expression + splicing + junction", "iPSC-derived motor neurons, TDP-43 KD", "GSE77702 / PRJNA311234", "human",
+  "iPSC-derived motor neurons", "fr-firststrand, single-end, 100 bp", "2 + 2",
+  "SRR3153259; SRR3153260", "SRR3153255; SRR3153256"),
+ ("junction only (RBP specificity control)", "iPSC-derived motor neurons, FUS KD", "GSE77702 / PRJNA311234", "human",
+  "iPSC-derived motor neurons", "fr-firststrand, single-end, 100 bp", "2 + 2 (shared controls)",
+  "SRR3153251; SRR3153252", "SRR3153255; SRR3153256"),
+ ("junction only (RBP specificity control)", "iPSC-derived motor neurons, TAF15 KD", "GSE77702 / PRJNA311234", "human",
+  "iPSC-derived motor neurons", "fr-firststrand, single-end, 100 bp", "2 + 2 (shared controls)",
+  "SRR3153257; SRR3153258", "SRR3153255; SRR3153256"),
+ ("expression + splicing + junction", "Mouse striatum", "GSE27394 / GSE27218", "mouse",
+  "antisense-oligonucleotide TDP-43 knockdown", "fr-firststrand, single-end, 72 bp",
+  "4 + 4 after pooling technical fragments",
+  "kd_rep1 SRR107072/107073/107076; kd_rep2 SRR107074/107075/107077; kd_rep3 SRR107078/107080; kd_rep4 SRR107079/107081",
+  "ctrl_rep1 SRR107061/107066; ctrl_rep2 SRR107062/107067/107068; ctrl_rep3 SRR107063/107069/107070; ctrl_rep4 SRR107064/107065/107071"),
+ ("expression + splicing + junction", "C2C12", "GSE171714 / SRP314028", "mouse", "myoblast",
+  "fr-unstranded, paired-end, 150 bp", "3 + 3",
+  "SRR14183633; SRR14183634; SRR14183635", "SRR14183630; SRR14183631; SRR14183632"),
+ ("expression + splicing + junction", "NSC34", "GSE171714 / SRP314028", "mouse", "motor-neuron-like",
+  "fr-unstranded, paired-end, 150 bp", "3 + 3",
+  "SRR14183639; SRR14183640; SRR14183641", "SRR14183636; SRR14183637; SRR14183638"),
+ ("junction only", "K562 total RNA", "ENCODE ENCSR372DZW / ENCSR455TNF", "human", "K562, shRNA TDP-43 knockdown",
+  "total RNA", "4 + 4", "SRR4421818-SRR4421821", "SRR4421701-SRR4421704"),
+ ("junction only", "K562 poly(A)+ mRNA", "ENCODE ENCSR129RWD / ENCSR134JRE", "human", "K562, shRNA TDP-43 knockdown",
+  "poly(A)+ mRNA", "2 + 2", "SRR3469414; SRR3469415", "SRR3469418; SRR3469419"),
+ ("NMD interaction", "i3Neurons, TDP-43 x NMD inhibition", "GSE307054 / PRJNA1235234", "human",
+  "i3Neurons; XRN1, XRN1+SMG6, XRN1+UPF1, UPF1+SMG6", "gene-level counts from the authors", "22 libraries",
+  "see GEO sample table", "see GEO sample table"),
+ ("patient tissue", "NYGC ALS Consortium / Target ALS", "GSE153960 / SRP270799 (recount3)", "human",
+  "post-mortem, 10 regions", "junction and gene level", "1,641 samples after metadata filtering",
+  "ALS spectrum MND", "non-neurological control"),
+ ("comparison cohort", "Alzheimer's disease", "GSE125583", "human", "fusiform gyrus", "gene level", "219 / 70", "AD", "control"),
+ ("comparison cohort", "Parkinson's disease", "GSE68719", "human", "BA9", "gene level", "29 / 44", "PD", "control"),
+ ("comparison cohort", "Multiple sclerosis", "GSE138614", "human", "white matter, by lesion type", "gene level",
+  "10 MS / 5 control donors, 97 samples", "MS", "control"),
+ ("comparison cohort", "Multiple sclerosis", "GSE123496", "human", "five brain regions", "gene level",
+  "5 / 5 donors", "MS", "control"),
+]
+df = pd.DataFrame(rows, columns=["analysis", "dataset", "accession", "species", "model",
+                                 "library_type", "design", "knockdown_or_case_samples",
+                                 "control_samples"])
+p = f"{SUP}/S17_dataset_accessions.csv"
+df.to_csv(p, index=False)
+print("written:", p, len(df), "rows")
