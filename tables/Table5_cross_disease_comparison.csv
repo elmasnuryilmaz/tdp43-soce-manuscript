@@ -55,15 +55,15 @@ GSE123496,MS,Internal capsule,CBARP,5.0,5.0,-0.3594,-0.52,0.54
 GSE123496,MS,Parietal cortex,TRPC1,5.0,5.0,-0.9218,-0.28,0.894
 GSE123496,MS,Parietal cortex,SARAF,5.0,5.0,-0.3375,-0.04,1.0
 GSE123496,MS,Parietal cortex,CBARP,5.0,5.0,-0.4045,-0.2,0.894
-GSE123496,MS,TUM BOLGELER (bolge icinde merkezlenmis),TRPC1,25.0,25.0,-0.321,-0.226,0.494
-GSE123496,MS,TUM BOLGELER (bolge icinde merkezlenmis),SARAF,25.0,25.0,-0.1239,-0.075,0.883
-GSE123496,MS,TUM BOLGELER (bolge icinde merkezlenmis),CBARP,25.0,25.0,-0.0589,-0.043,0.883
-GSE138614,MS,MS NAWM vs kontrol WM,TRPC1,21.0,25.0,-0.3419,-0.482,0.104
-GSE138614,MS,MS NAWM vs kontrol WM,SARAF,21.0,25.0,0.0148,-0.166,0.739
-GSE138614,MS,MS NAWM vs kontrol WM,CBARP,21.0,25.0,-0.12,0.051,0.817
-GSE138614,MS,MS lezyonlari vs kontrol WM,TRPC1,52.0,25.0,-0.5593,-0.594,0.00013
-GSE138614,MS,MS lezyonlari vs kontrol WM,SARAF,52.0,25.0,-0.0293,-0.138,0.523
-GSE138614,MS,MS lezyonlari vs kontrol WM,CBARP,52.0,25.0,0.4385,0.327,0.05
-GSE138614,MS,DENEK duzeyi (10 MS vs 5 kontrol),TRPC1,10.0,5.0,-0.4531,-0.84,0.038
-GSE138614,MS,DENEK duzeyi (10 MS vs 5 kontrol),SARAF,10.0,5.0,-0.0183,-0.12,0.768
-GSE138614,MS,DENEK duzeyi (10 MS vs 5 kontrol),CBARP,10.0,5.0,0.1126,0.12,0.768
+GSE123496,MS,All five regions pooled (centred within region),TRPC1,25.0,25.0,-0.321,-0.226,0.494
+GSE123496,MS,All five regions pooled (centred within region),SARAF,25.0,25.0,-0.1239,-0.075,0.883
+GSE123496,MS,All five regions pooled (centred within region),CBARP,25.0,25.0,-0.0589,-0.043,0.883
+GSE138614,MS,Normal-appearing white matter vs control white matter,TRPC1,21.0,25.0,-0.3419,-0.482,0.104
+GSE138614,MS,Normal-appearing white matter vs control white matter,SARAF,21.0,25.0,0.0148,-0.166,0.739
+GSE138614,MS,Normal-appearing white matter vs control white matter,CBARP,21.0,25.0,-0.12,0.051,0.817
+GSE138614,MS,MS lesions vs control white matter,TRPC1,52.0,25.0,-0.5593,-0.594,0.00013
+GSE138614,MS,MS lesions vs control white matter,SARAF,52.0,25.0,-0.0293,-0.138,0.523
+GSE138614,MS,MS lesions vs control white matter,CBARP,52.0,25.0,0.4385,0.327,0.05
+GSE138614,MS,Donor level (10 MS vs 5 control donors),TRPC1,10.0,5.0,-0.4531,-0.84,0.038
+GSE138614,MS,Donor level (10 MS vs 5 control donors),SARAF,10.0,5.0,-0.0183,-0.12,0.768
+GSE138614,MS,Donor level (10 MS vs 5 control donors),CBARP,10.0,5.0,0.1126,0.12,0.768

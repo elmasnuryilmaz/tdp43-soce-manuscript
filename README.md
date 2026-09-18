@@ -4,6 +4,11 @@ Code, figures, tables, supplementary files and source data for the manuscript
 *TDP-43 knockdown is associated with reduced store-operated Ca²⁺ entry and altered
 calcium-regulatory RNA profiles in SH-SY5Y cells*.
 
+![Graphical abstract: TDP-43 knockdown reduces store-operated Ca2+ entry while the transcripts of its components increase](figures/graphical_abstract.png)
+
+*Every value in this summary is read from the files in this repository by
+`code/fig_graphical_abstract.py`; it is not a figure of the manuscript.*
+
 Every number in the manuscript is produced by the scripts in `code/` from the files in this
 repository, and the agreement between the text and the data is verified automatically
 (`logs/consistency_check.txt`, 120 checks).
@@ -38,6 +43,7 @@ and why. Where the two repositories differ, this one is current.
 | `Figure7_transcript_family_abundance` | Figure 7 | family abundance, TPM based (recomputed in v4) |
 | `Figure8_TRPC1_disease_direction` | Figure 8 | TRPC1 across five diseases (all regions, donor-level MS) |
 | `Figure9_NYGC_cryptic_STMN2` | Figure 9 | junction-level cryptic STMN2 in ALS tissue |
+| `graphical_abstract` | — | repository summary, not part of the manuscript |
 
 Figure numbers are **not** burned into the images; the file name carries the number.
 
