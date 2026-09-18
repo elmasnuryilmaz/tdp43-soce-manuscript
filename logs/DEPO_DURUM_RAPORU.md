@@ -72,19 +72,21 @@ manuscript/ figures/ tables/ supplementary/ code/ source_data/ logs/
 
 GitHub sınırları açısından sorun yok: 40 MB'ı aşan tek dosya yok, toplam 21 MB.
 
-## 5. Karar ve sonraki adım
+## 5. Karar ve yapılanlar (18 Eylül)
 
-İki seçenek var:
+**Seçilen yol: ayrı makale deposu.**
 
-**(a) Makale için ayrı depo** (önerilen) — `tdp43-soce-manuscript` gibi. Makalenin bağlantısı
-yalnızca makaleye ait materyale gider; tez deposu olduğu gibi kalır ve README'lerden
-karşılıklı bağlantı verilir. §3'teki çelişki riski en aza iner.
+- **https://github.com/elmasnuryilmaz/tdp43-soce-manuscript** oluşturuldu (**private**),
+  121 dosya tek commit ile push edildi. Depo kökü `09_YAYIN_PAKETI/` klasörüdür; `qa/`
+  `.gitignore` ile dışarıda bırakıldı.
+- Deponun README'sine tez deposuna bağlantı ve **hangi tez sonuçlarının makale tarafından
+  geçersiz kılındığı** (APA `-j`, dört koşullu NMD, tam harita + TPM, donör düzeyi MS, geri
+  çekilen TRPC1 olayı) açıkça yazıldı.
+- Makalenin 2.17 bölümündeki yer tutucu bu adresle değiştirildi; depo "hakem sürecinde private,
+  kabulde açılacak, editör/hakem erişimi talep üzerine" biçiminde tanımlandı. Zenodo DOI'si
+  kabulde basılacak olarak bırakıldı (23 GB rMATS çıktısı da o arşive gidecek).
+- Tez deposundaki 11 silinmiş dosya `git restore` ile geri yüklendi; çalışma ağacı temiz
+  (depo 776 MB) ve `origin/main` ile eşit. Yanlışlıkla silme commit'i riski kalktı.
 
-**(b) Tez deposuna alt klasör** — `manuscript_2026/` olarak eklenir. Tek yerde toplanır ama
-okuyucu 17 tez klasörünün arasına düşer; geçersiz kılınan sonuçlar için depo kökündeki
-README'ye büyük bir uyarı notu koymak şart olur.
-
-Her iki durumda da **push işlemi dışa dönüktür ve sizin onayınızla yapılır.** Onay verirseniz:
-depoyu hazırlar, commit mesajını yazar, `git push` öncesi ne gideceğini size gösteririm.
-Makalenin 2.17 bölümündeki `[GitHub repository — to be created]` yer tutucusu da o adreste
-güncellenecek.
+**Kabulden sonra yapılacaklar:** depoyu public'e çevir, Zenodo arşivini oluştur, DOI'yi
+makaleye yaz, 23 GB rMATS çıktısını arşive yükle.
