@@ -259,7 +259,7 @@ out.append("\n=== manuscript strings that must be present ===")
 for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of the seven brain regions",
           "0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in mouse striatum",
           "interaction was −0.325 (p = 0.317, q = 0.508)", "chr11:4,088,702–4,088,738",
-          "chr4:27,007,983–27,008,006", "single culture plate", "10 µM cyclopiazonic acid",
+          "chr4:27,007,983–27,008,006", "three independent cultures", "10 µM cyclopiazonic acid",
           "Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA",
           "Of the 110 correlations tested against the junction-based marker",
           "116.8 ± 1.6% of control at 24 h", "Cutadapt v5.2",
@@ -277,6 +277,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of the sev
     check("present", s, True)
 out.append("\n=== strings that must be gone ===")
 for s in ["Sah P, et al.", "10,930", "four spinal cord regions", "p = 0.13)", "log2FC = −1.746",
+          "single culture plate", "not independent biological replicates",
           "prioritized candidate", "full GENCODE v47 index", "Cutadapt v4.6",
           "the mouse datasets were not analysed at all",
           "all 3\u2076 = 729 replicate combinations", "their p values are therefore optimistic",

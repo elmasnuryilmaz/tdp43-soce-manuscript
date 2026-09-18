@@ -155,7 +155,7 @@ PASS  present: 0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in m
 PASS  present: interaction was −0.325 (p = 0.317, q = 0.508)
 PASS  present: chr11:4,088,702–4,088,738
 PASS  present: chr4:27,007,983–27,008,006
-PASS  present: single culture plate
+PASS  present: three independent cultures
 PASS  present: 10 µM cyclopiazonic acid
 PASS  present: Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA
 PASS  present: Of the 110 correlations tested against the junction-based marker
@@ -179,6 +179,8 @@ PASS  absent: 10,930
 PASS  absent: four spinal cord regions
 PASS  absent: p = 0.13)
 PASS  absent: log2FC = −1.746
+PASS  absent: single culture plate
+PASS  absent: not independent biological replicates
 PASS  absent: prioritized candidate
 PASS  absent: full GENCODE v47 index
 PASS  absent: Cutadapt v4.6
@@ -191,4 +193,4 @@ PASS  absent: used in the first version of this analysis
 PASS  absent: The original analysis treated eight contrasts
 PASS  absent: the correction was applied only to the primary SH-SY5Y model
 
-==== 166 passed, 0 failed ====
+==== 168 passed, 0 failed ====

@@ -131,7 +131,7 @@ readme = pd.DataFrame({"sheet": ["TARDBP_qPCR", "Target_qPCR_Ct", "Target_qPCR_r
         "Fura-2/AM measurements. ER Ca2+ release is the rise in F340/F380 after 10 uM "
         "cyclopiazonic acid in Ca2+-free HBS with EGTA; SOCE is the rise after re-addition "
         "of 1.5 mM CaCl2. Both as delta(F340/F380) versus the preceding baseline. The three "
-        "samples of each group were prepared from a single culture plate.",
+        "samples of each group come from three independent cultures.",
         "WST-1 viability, four wells per group, normalised to the mean of the control group "
         "at the same time point.",
         "Group means, SEM and the statistical test behind every panel of Figure 6.",
