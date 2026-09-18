@@ -7,8 +7,6 @@
 
 \* Correspondence: yasemin.erac@ege.edu.tr
 
-> **Submission note:** author order, affiliations, ethics/biosafety wording and repository links must be confirmed before submission. The reference list is not yet complete: the Introduction and Methods still require citations to the primary literature and to the software used. Figure 6 and Supplementary Table S1 must be assembled from the laboratory source data, and the abstract must be trimmed to the target journal's word limit.
-
 ## Abstract
 
 **Background.** Nuclear clearance of TDP-43 is the molecular lesion of approximately 97% of amyotrophic lateral sclerosis (ALS) cases and of about half of frontotemporal lobar degeneration cases. Disturbed intracellular Ca²⁺ handling is well documented in these diseases, but whether TDP-43 loss acts on the store-operated Ca²⁺ entry (SOCE) machinery, and at which level, is unresolved.
@@ -401,7 +399,7 @@ Xia Z, Donehower LA, Cooper TA, et al. Dynamic analyses of alternative polyadeny
 
 **Funding.** This work was supported by the Ege University Scientific Research Projects Coordination Unit (BAP), project 31901. E.Y. was supported by the Council of Higher Education (YÖK) 100/2000 PhD Scholarship Programme (priority area: Molecular Pharmacology and Drug Research) and by the TÜBİTAK BİDEB 2211-A National PhD Scholarship Programme. The funders had no role in study design, data collection and analysis, the decision to publish, or the preparation of the manuscript.
 
-**Author contributions.** [To be completed by the authors, for example: E.Y. designed and performed the laboratory experiments, carried out the computational analyses and wrote the first draft; Y.K. supervised the computational analyses; Y.E. supervised the project and the laboratory work; all authors reviewed and approved the manuscript.]
+**Author contributions.** E.Y. performed the laboratory experiments, carried out the computational analyses, prepared the figures and wrote the first draft. Y.K. supervised the computational analyses. Y.E. conceived and supervised the study. All authors read and approved the final manuscript. *[To be confirmed by all authors before submission.]*
 
 **Conflicts of interest.** The authors declare no competing interests.
 

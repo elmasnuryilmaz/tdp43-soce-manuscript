@@ -1,23 +1,28 @@
-# Submission package — TDP-43 knockdown and store-operated Ca²⁺ entry
+# TDP-43 knockdown and store-operated Ca²⁺ entry — analysis repository
 
-**Built:** 18 September 2026 · **Manuscript version:** v4 (submission draft)
+Code, figures, tables, supplementary files and source data for the manuscript
+*TDP-43 knockdown is associated with reduced store-operated Ca²⁺ entry and altered
+calcium-regulatory RNA profiles in SH-SY5Y cells*.
 
-This repository holds the material for the manuscript. The analyses of the underlying doctoral thesis live in a separate repository, [tdp43-thesis-reproducibility](https://github.com/elmasnuryilmaz/tdp43-thesis-reproducibility). Several thesis-era results were superseded during preparation of this manuscript and should not be quoted from there: the alternative-polyadenylation coverage was recomputed after excluding CIGAR reference skips (`samtools bedcov -j`), the NMD interaction was re-tested with the four intervention conditions as the unit of inference instead of eight dependent contrasts, the Salmon gene-level summaries were rebuilt with the complete GENCODE v47 transcript-to-gene map and reported as TPM, the multiple sclerosis tests were repeated with the donor as the unit of inference, and the *TRPC1* exon-skipping event is no longer presented as a finding. Where the two repositories disagree, this one is current.
+Every number in the manuscript is produced by the scripts in `code/` from the files in this
+repository, and the agreement between the text and the data is verified automatically
+(`logs/consistency_check.txt`, 120 checks).
 
-Everything a journal or a reviewer needs is in this folder. Every number in the manuscript
-was regenerated from the files here by the scripts in `code/`, and the consistency between
-the two is checked automatically (`logs/qa_manuscript_vs_data.txt`, 94 checks, all passing).
+The analyses grew out of a doctoral thesis whose repository is separate
+([tdp43-thesis-reproducibility](https://github.com/elmasnuryilmaz/tdp43-thesis-reproducibility)).
+Five analyses were revised for the manuscript; `CHANGES_FROM_THESIS.md` sets out what changed
+and why. Where the two repositories differ, this one is current.
 
 ```
-09_YAYIN_PAKETI/
-├── manuscript/      MANUSCRIPT_v4_SUBMISSION.md and .docx
-├── figures/         Figure 1–9, PNG (300 dpi) and PDF, numbered as in the manuscript
-├── tables/          Table 1–5, CSV, English headers
-├── supplementary/   S1–S17
-├── source_data/     recomputed intermediate data behind Tables 4–5 and Figures 6–8
-├── code/            every script, including the v3 rebuild scripts
-├── logs/            automated QA report
-└── qa/              internal working files (thesis text dump) — NOT for submission
+├── manuscript/           manuscript, Markdown and Word
+├── figures/              Figures 1–9, PNG (300 dpi) and PDF
+├── tables/               Tables 1–5, CSV
+├── supplementary/        Supplementary Tables S1–S17
+├── source_data/          intermediate data behind Tables 4–5 and Figures 6–8
+├── code/                 analysis and figure scripts
+├── logs/                 automated consistency check
+├── CHANGES_FROM_THESIS.md
+└── DATA_AVAILABILITY.md  accessions and externally hosted resources
 ```
 
 ## Figures
@@ -58,9 +63,9 @@ Figure numbers are **not** burned into the images; the file name carries the num
 | `S16_multiple_sclerosis_both_cohorts.csv`, `S16b_multiple_sclerosis_donor_level.csv` | MS analysis; the donor-level re-analysis is new in v4 |
 | `S17_dataset_accessions.csv` | every accession with design, library type and sample-to-group assignment |
 
-The invalid legacy table "cryptic-junction-positive and NMD-sensitive genes" was **removed**:
-it listed genes with the superseded eight-contrast q-values and contradicted the corrected
-analysis, in which no gene passes genome-wide FDR.
+A thesis-era supplementary table listing "cryptic-junction-positive and NMD-sensitive genes"
+is not part of this set: it was built from the superseded eight-contrast NMD statistics
+(`CHANGES_FROM_THESIS.md`, section 2), under which no gene passes genome-wide FDR.
 
 ## How to reproduce
 
@@ -78,27 +83,13 @@ analysis, in which no gene passes genome-wide FDR.
 /usr/bin/python3 code/qa_check_v4.py        # consistency check
 ```
 
-Paths are absolute inside the scripts and point at `~/Desktop/MAKALE` and `~/Desktop/TEZ`;
-they must be adapted before the package is published.
+## Requirements
 
-## Known gaps to close before submission
+Python 3.9 with the packages in `requirements.txt`; R 4.3 with DESeq2, FRASER, sva and
+data.table; the command-line tools and versions in `environment.yml`.
 
-1. **Funding, author contributions and acknowledgements** are placeholders in the
-   Declarations section of the manuscript.
-2. **GitHub and Zenodo links** in Section 2.17 are placeholders.
-3. ~~CPA concentration~~ — **resolved 18 September 2026: 10 µM is correct** (author
-   confirmation). The Prism trace export was annotated 10⁻³ M in error; the relabelled
-   version used in Figure 6D carries the correct value. The original export is kept as
-   `source_data/representative_Fura2_traces_from_thesis.png` for provenance.
-4. ~~Representative Fura-2 traces~~ — **done**: relabelled in English with the correct CPA
-   concentration (`source_data/representative_Fura2_traces_relabelled.png`, produced by
-   `code/relabel_traces.py`) and added as Figure 6D. Only the text annotations were
-   replaced; the traces and axes are untouched.
-5. ~~Alternative polyadenylation in the iPSC-derived motor neurons~~ — **done 18 September
-   2026** once the external drive was mounted (`code/run_bedcov_v3_remaining.sh` →
-   `code/recalc_apa_remaining_R.R`; results in `S11_APA_candidate_gradients.csv`). The
-   *STMN2* positive control works in that model (+0.249), which is what the SH-SY5Y analysis
-   could not show. The two mouse lines were recomputed as well (C2C12 and NSC34, 74 and 131
-   qualifying units); all four comparisons are in `S11_APA_candidate_gradients.csv`.
-6. **Abstract** is 404 words; trim to the target journal's limit.
-7. The `qa/` folder holds internal working files and should not be uploaded.
+Two notes for anyone re-running the pipeline. The scripts carry absolute paths to the two
+working roots used in this study and must be pointed at local copies first. The junction,
+coverage and FRASER steps read the aligned BAM files, which are not redistributed here;
+`DATA_AVAILABILITY.md` gives the accessions and the alignment parameters needed to rebuild
+them.

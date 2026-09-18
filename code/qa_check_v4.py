@@ -3,7 +3,7 @@
 """v3 — automated consistency check between MANUSCRIPT_v4_SUBMISSION.md and the package files.
 
 Every check re-reads the number from the file that produced it and compares it with the
-string in the manuscript. Writes 09_YAYIN_PAKETI/logs/qa_manuscript_vs_data.txt
+string in the manuscript. Writes 09_YAYIN_PAKETI/logs/consistency_check.txt
 """
 import io, os, re
 import numpy as np
@@ -200,8 +200,8 @@ for s in ["Sah P, et al.", "10,930", "four spinal cord regions", "p = 0.13)", "l
 
 out.append(f"\n==== {ok} passed, {bad} failed ====")
 os.makedirs(f"{P}/logs", exist_ok=True)
-io.open(f"{P}/logs/qa_manuscript_vs_data.txt", "w", encoding="utf-8").write("\n".join(out))
+io.open(f"{P}/logs/consistency_check.txt", "w", encoding="utf-8").write("\n".join(out))
 print("\n".join(out[-3:]))
-print("report:", f"{P}/logs/qa_manuscript_vs_data.txt")
+print("report:", f"{P}/logs/consistency_check.txt")
 if bad:
     print("\n".join([l for l in out if l.startswith("FAIL")]))
