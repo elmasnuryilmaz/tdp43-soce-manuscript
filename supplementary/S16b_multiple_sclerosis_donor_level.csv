@@ -1,19 +1,19 @@
 comparison,gene,unit,n_case,n_control,cliffs_delta,p
-NAWM vs control WM,MBP,sample,21,25,0.048,0.79129
+NAWM vs control WM,MBP,sample,21,25,0.051,0.77435
 NAWM vs control WM,MBP,donor,7,5,0.257,0.5303
-NAWM vs control WM,PLP1,sample,21,25,-0.082,0.64329
+NAWM vs control WM,PLP1,sample,21,25,-0.074,0.67521
 NAWM vs control WM,PLP1,donor,7,5,-0.086,0.87626
-NAWM vs control WM,MOG,sample,21,25,-0.261,0.13372
+NAWM vs control WM,MOG,sample,21,25,-0.257,0.13953
 NAWM vs control WM,MOG,donor,7,5,-0.429,0.26768
 NAWM vs control WM,MAG,sample,21,25,-0.299,0.085412
-NAWM vs control WM,MAG,donor,7,5,-0.429,0.26768
-NAWM vs control WM,GFAP,sample,21,25,0.246,0.15813
-NAWM vs control WM,GFAP,donor,7,5,0.257,0.5303
-NAWM vs control WM,TRPC1,sample,21,25,-0.463,0.0076218
+NAWM vs control WM,MAG,donor,7,5,-0.486,0.20202
+NAWM vs control WM,GFAP,sample,21,25,0.242,0.16474
+NAWM vs control WM,GFAP,donor,7,5,0.143,0.75505
+NAWM vs control WM,TRPC1,sample,21,25,-0.482,0.0054587
 NAWM vs control WM,TRPC1,donor,7,5,-0.771,0.030303
-"MS vs control, raw TRPC1",TRPC1,sample,73,25,-0.557,3.4723e-05
-"MS vs control, raw TRPC1",TRPC1,donor,10,5,-0.8,0.012654
-"MS vs control, myelin+glia-adjusted TRPC1",TRPC1,sample,73,25,-0.395,0.0033474
+"MS vs control, raw TRPC1",TRPC1,sample,73,25,-0.562,3.0108e-05
+"MS vs control, raw TRPC1",TRPC1,donor,10,5,-0.84,0.007992
+"MS vs control, myelin+glia-adjusted TRPC1",TRPC1,sample,73,25,-0.418,0.0019026
 "MS vs control, myelin+glia-adjusted TRPC1",TRPC1,donor,10,5,-0.64,0.055278
 Normal appearing white matter (NAWM) vs control WM,TRPC1,donor,7,5,-0.771,0.030303
 Remyelinating (RL) vs control WM,TRPC1,donor,4,5,-1.0,0.015873

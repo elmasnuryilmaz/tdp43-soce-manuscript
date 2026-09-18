@@ -13,7 +13,7 @@ def yaz(df, ad, **kw):
 # --- S5: kriptik pozitif kontroller (tüm veri setleri)
 rows = []
 for f in sorted(glob.glob(f"{OUT}/YUKSEK_GUVEN_*.tsv")):
-    ds = os.path.basename(f)[14:-4]
+    ds = os.path.basename(f)[len("YUKSEK_GUVEN_"):-len(".tsv")]
     d = pd.read_csv(f, sep="\t")
     d["veri_seti"] = ds
     rows.append(d)
@@ -23,10 +23,11 @@ if rows:
            "psi_KD", "psi_CTRL", "dPSI", "GA_alt", "GA_ust", "q",
            "okuma_KD", "okuma_CTRL", "toplam_KD", "toplam_CTRL"]]
     yaz(K, "S5_yuksek_guven_kriptik_olaylar")
+    # the sixteen literature cryptic targets, as defined in A2_lsv_sorgu.py (POS_H),
+    # with the mouse spellings of the same genes
     POS = ["STMN2", "UNC13A", "HDGFL2", "ACTL6B", "AGRN", "KALRN", "ARHGAP32", "PFKP",
-           "ATG4B", "SETD5", "ELAVL3", "POLDIP3", "CAMK2B", "RSF1",
-           "Stmn2", "Unc13a", "Hdgfl2", "Actl6b", "Agrn", "Kalrn", "Arhgap32", "Pfkp",
-           "Atg4b", "Setd5", "Elavl3", "Poldip3", "Camk2b", "Rsf1"]
+           "ATG4B", "SETD5", "CAMK2B", "ELAVL3", "POLDIP3", "RSF1", "GPSM2", "SYNJ2"]
+    POS = POS + [g.capitalize() for g in POS]
     yaz(K[K["gene"].isin(POS)], "S6_kriptik_pozitif_kontroller")
     # veri seti x gen matrisi
     K["gen_u"] = K["gene"].str.upper()

@@ -9,6 +9,7 @@ All column names are in English; all values are read from the analysis outputs.
 import os, shutil
 import numpy as np
 import pandas as pd
+from scipy import stats
 
 M = "/Users/elmas/Desktop/MAKALE"
 TEZ = "/Users/elmas/Desktop/TEZ"
@@ -80,9 +81,10 @@ s = s.rename(columns={"olay": "event_class", "gen": "gene", "chr": "chrom",
     "PSI_KONTROL": "PSI_control", "toplam_okuma": "total_informative_reads",
     "ort_okuma": "mean_reads_per_sample", "min_bilgilendirici": "min_informative_reads",
     "GA_alt": "CI95_low", "GA_ust": "CI95_high", "sifir_GA_icinde": "CI_includes_zero"})
-s["reading_frame"] = s.reading_frame.map({"EVET": "preserved", "hayir": "disrupted",
-                                          True: "preserved", False: "disrupted"}).fillna(s.reading_frame)
-s["CI_includes_zero"] = s.CI_includes_zero.map({"EVET": "yes", "hayir": "no"}).fillna("")
+s["reading_frame"] = s.reading_frame.astype(str).str.lower().map(
+    {"evet": "preserved", "hayir": "disrupted", "true": "preserved", "false": "disrupted"}).fillna("")
+s["CI_includes_zero"] = s.CI_includes_zero.astype(str).str.strip().str.lower().map(
+    {"evet": "yes", "hayir": "no", "true": "yes", "false": "no"}).fillna("")
 s["dataset"] = "SH-SY5Y (GSE296712)"
 s["start_1based"] = s["start"] + 1
 w(s[["dataset", "gene", "event_class", "chrom", "start_1based", "end", "strand", "exon_bp",
@@ -158,7 +160,14 @@ rows += [dict(cohort="Alzheimer's disease (GSE125583)", group="AD", region="Fusi
               gene="TRPC1", n_case=219, n_control=70, log2FC=-0.476, cliffs_delta=-0.447, q_value=1.61e-7),
          dict(cohort="Parkinson's disease (GSE68719)", group="PD", region="BA9",
               gene="TRPC1", n_case=29, n_control=44, log2FC=-0.570, cliffs_delta=-0.677, q_value=1.8e-4)]
+MSLAB = {"DENEK duzeyi (10 MS vs 5 kontrol)": "Donor level (10 MS vs 5 control donors)",
+         "MS NAWM vs kontrol WM": "Normal-appearing white matter vs control white matter",
+         "MS lezyonlari vs kontrol WM": "MS lesions vs control white matter",
+         "TUM BOLGELER (bolge icinde merkezlenmis)": "All five regions pooled (centred within region)"}
 ms = pd.read_csv(f"{M}/06_MS_ANALIZI/MS_TRPC1_sonuclar.tsv", sep="\t")
+ms["karsilastirma"] = ms.karsilastirma.map(
+    lambda v: " \u00b7 ".join([p if i == 0 else MSLAB.get(p, p)
+                                for i, p in enumerate(str(v).split(" \u00b7 "))]))
 for _, r in ms[ms.gen.isin(G)].iterrows():
     rows.append(dict(cohort=r.karsilastirma.split(" · ")[0], group="MS",
                      region=r.karsilastirma.split(" · ")[-1], gene=r.gen,
@@ -177,8 +186,8 @@ e = pd.read_csv(f"{M}/03_TABLOLAR/zenginlesme_gercek_paneller_permutasyon.tsv", 
 e.columns = ["dataset", "panel", "testable_genes", "significant_genes", "observed_pct",
              "background_pct", "matched_null_pct", "matched_null_CI", "p_hypergeometric",
              "p_matched_permutation", "decision"]
-e["decision"] = e.decision.replace({"zenginlesme yok": "no enrichment",
-                                    "zenginlesme var": "enrichment"})
+e["decision"] = e.decision.str.strip().str.lower().replace(
+    {"zenginlesme yok": "no enrichment", "zenginlesme var": "enrichment"})
 w(e, f"{SUP}/S4_matched_permutation_enrichment.csv")
 # S5, S6, S7 junction tables
 for src, dst in [("S5_yuksek_guven_kriptik_olaylar", "S5_high_confidence_cryptic_events"),
@@ -203,7 +212,23 @@ s9 = pd.read_csv(f"{D}/tablolar/S9_NYGC_kriptikPSI_korelasyon.tsv", sep="\t")
 s9.columns = ["region", "target_gene", "proxy", "n", "spearman_rho", "p_value", "q_value"]
 s9["proxy"] = s9.proxy.replace({"kriptik_STMN2_PSI": "cryptic STMN2 PSI",
                                 "gen_duzeyi_STMN2": "gene-level STMN2"})
+# gene-level STMN2 correlated against itself is 1.0 by construction in every region;
+# those 11 tests are excluded from the correction family, leaving 220 informative tests.
+triv = (s9.proxy == "gene-level STMN2") & (s9.target_gene == "STMN2")
+s9["in_correction_family"] = np.where(triv, "no", "yes")
+inf = s9.loc[~triv].sort_values("p_value")
+m = len(inf)
+raw = inf.p_value.values
+q = np.minimum.accumulate((raw * m / np.arange(1, m + 1))[::-1])[::-1]
+s9["q_value"] = np.nan
+s9.loc[inf.index, "q_value"] = np.minimum(q, 1.0)
+s9 = s9[["region", "target_gene", "proxy", "n", "spearman_rho", "p_value",
+         "q_value", "in_correction_family"]]
 w(s9, f"{SUP}/S9_cryptic_PSI_correlations_within_ALS.csv")
+_sig = s9[(s9.proxy == "cryptic STMN2 PSI") & (s9.q_value < 0.05)]
+print("    q recomputed over %d informative tests; %d significant: %s"
+      % (m, len(_sig), ", ".join("%s/%s q=%.4f" % (r.target_gene, r.region.split()[-1], r.q_value)
+                                 for r in _sig.sort_values("q_value").itertuples())))
 # S10 NMD
 s10 = pd.read_csv(f"{D}/tablolar/S10_NMD_etkilesimi_SOCE.tsv", sep="\t")
 s10 = s10.rename(columns={"symbol": "gene", "interaction_log2": "interaction_log2",
@@ -213,6 +238,16 @@ s10 = s10.rename(columns={"symbol": "gene", "interaction_log2": "interaction_log
     "US": "interaction_UPF1_SMG6"})
 w(s10, f"{SUP}/S10_NMD_interaction_SOCE_panel.csv")
 pn = pd.read_csv(f"{M}/03_TABLOLAR/v3/nmd_panel_t4.csv")
+# the same one-sided test for the sixteen literature cryptic targets, quoted in Section 3.4
+_r = pd.read_csv(f"{D}/sonuclar/NMD_etkilesim_paylasimli_kontrol_t4_sembol.tsv", sep="\t")
+_POS16 = {"STMN2", "UNC13A", "HDGFL2", "ACTL6B", "AGRN", "KALRN", "ARHGAP32", "PFKP",
+          "ATG4B", "SETD5", "CAMK2B", "ELAVL3", "POLDIP3", "RSF1", "GPSM2", "SYNJ2"}
+_v = _r.loc[_r.symbol.isin(_POS16), "interaction_log2"].values
+_u = stats.mannwhitneyu(_v, _r.interaction_log2.values, alternative="greater")
+pn = pd.concat([pn, pd.DataFrame([{
+    "panel": "Cryptic_positive_controls_16", "n_genes": len(_v),
+    "median_interaction_log2": float(np.median(_v)),
+    "p_one_sided_MWU": float(_u.pvalue)}])], ignore_index=True)
 w(pn, f"{SUP}/S10b_NMD_panel_level_tests.csv")
 # S11 APA
 s11 = pd.read_csv(f"{D}/tablolar/S12_APA_anlamli_olaylar.tsv", sep="\t")

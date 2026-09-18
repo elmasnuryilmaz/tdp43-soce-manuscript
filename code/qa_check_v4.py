@@ -178,6 +178,83 @@ close("ER release control mean", 0.268, x.loc["ER Ca2+ release delta F340/F380 |
 close("WST-1 48 h knockdown", 61.5, x.loc["WST-1 viability 48 h | shTDP-43", "mean"], tol=0.05)
 close("WST-1 24 h knockdown", 116.8, x.loc["WST-1 viability 24 h | shTDP-43", "mean"], tol=0.05)
 
+out.append("\n=== cross-file agreement and the corrected correction family ===")
+# the same GSE138614 donor-level test appears in Table 5 and in S16b; the two pipelines
+# must share the low-expression filter, or the per-sample median centring shifts the delta
+_t5 = pd.read_csv(f"{P}/tables/Table5_cross_disease_comparison.csv")
+_t5d = _t5[(_t5.group == "MS") & (_t5.region.str.startswith("Donor level")) & (_t5.gene == "TRPC1")]
+_s16 = pd.read_csv(f"{P}/supplementary/S16b_multiple_sclerosis_donor_level.csv")
+_s16d = _s16[(_s16.comparison == "MS vs control, raw TRPC1") & (_s16.unit == "donor")]
+close("MS donor-level delta: Table 5 vs S16b", float(_t5d.cliffs_delta.iloc[0]),
+      float(_s16d.cliffs_delta.iloc[0]), tol=0.001)
+# S9: the eleven self-correlations of gene-level STMN2 carry no information and are
+# excluded from the Benjamini-Hochberg family
+_s9 = pd.read_csv(f"{P}/supplementary/S9_cryptic_PSI_correlations_within_ALS.csv")
+close("S9 tests in the correction family", 220, int((_s9.in_correction_family == "yes").sum()), tol=0)
+close("S9 trivial tests excluded", 11, int((_s9.in_correction_family == "no").sum()), tol=0)
+close("S9 excluded tests have no q value", 0, int(_s9.loc[_s9.in_correction_family == "no", "q_value"].notna().sum()), tol=0)
+_sig = _s9[(_s9.proxy == "cryptic STMN2 PSI") & (_s9.q_value < 0.05)].copy()
+_sig["tag"] = _sig.target_gene + " " + _sig.region
+for _gene, _reg, _q in [("STIM1", "Spinal Cord Lumbar", 0.0021), ("ORAI1", "Spinal Cord Cervical", 0.0031),
+                        ("STMN2", "Spinal Cord Cervical", 0.011), ("ORAI1", "Spinal Cord Lumbar", 0.013),
+                        ("ATP2A2", "Cortex Motor Medial", 0.015), ("GFAP", "Cortex Motor Medial", 0.023),
+                        ("SNAP25", "Cortex Motor Medial", 0.028), ("SARAF", "Spinal Cord Lumbar", 0.049)]:
+    _r = _sig[(_sig.target_gene == _gene) & (_sig.region == _reg)]
+    close(f"S9 q, {_gene} {_reg}", _q, float(_r.q_value.iloc[0]) if len(_r) else -9, tol=0.0006)
+
+out.append("\n=== published tables carry English dataset labels and the full control set ===")
+_POS16 = {"STMN2", "UNC13A", "HDGFL2", "ACTL6B", "AGRN", "KALRN", "ARHGAP32", "PFKP",
+          "ATG4B", "SETD5", "CAMK2B", "ELAVL3", "POLDIP3", "RSF1", "GPSM2", "SYNJ2"}
+for _f in ["S5_high_confidence_cryptic_events", "S6_cryptic_positive_controls",
+           "S7_SOCE_genes_annotation_free"]:
+    _d = pd.read_csv(f"{P}/supplementary/{_f}.csv")
+    _bad = [c for c in _d.comparison.unique()
+            if re.search(r"koloni|DOZ|Fare|^[A-Z0-9]*_", str(c))]
+    close(f"{_f}: untranslated dataset labels", 0, len(_bad), tol=0)
+_s6 = pd.read_csv(f"{P}/supplementary/S6_cryptic_positive_controls.csv")
+close("S6 genes all belong to the sixteen literature controls", 0,
+      len({g for g in _s6.gene if g.upper() not in _POS16}), tol=0)
+close("S6 contains GPSM2, named in Section 3.3", 1, int("GPSM2" in set(_s6.gene)), tol=0)
+_s4 = pd.read_csv(f"{P}/supplementary/S4_matched_permutation_enrichment.csv")
+close("S4 decision values are English", 0,
+      len(set(_s4.decision) - {"enrichment", "no enrichment"}), tol=0)
+close("S4 panels with surviving enrichment", 2, int((_s4.decision == "enrichment").sum()), tol=0)
+_t3 = pd.read_csv(f"{P}/tables/Table3_cryptic_events_eleven_comparisons.csv")
+close("Table 3 rows = eleven comparisons", 11, len(_t3), tol=0)
+_mq = _s6[_s6.comparison == "SH-SY5Y 75 ng/mL (MAPQ-filtered set)"]
+close("SH-SY5Y MAPQ-filtered positive controls", 12, _mq.gene.nunique(), tol=0)
+
+out.append("\n=== Section 3.2 CBARP figures and Section 3.5 completeness ===")
+_f = pd.read_pickle(f"{M}/03_TABLOLAR/_filtreli_olaylar.pkl")
+_cb = _f[_f.geneSymbol.astype(str).str.upper() == "CBARP"]
+_cb = _cb[(_cb.FDR < 0.05) & (_cb.IncLevelDifference.abs() >= 0.10)].copy()
+_cb["reads"] = _cb.apply(lambda r: sum(int(x) for c in
+    ["IJC_SAMPLE_1", "SJC_SAMPLE_1", "IJC_SAMPLE_2", "SJC_SAMPLE_2"]
+    for x in str(r[c]).split(",")), axis=1)
+close("CBARP coverage-qualified events", 32, len(_cb), tol=0)
+close("CBARP datasets", 5, _cb.dataset.nunique(), tol=0)
+close("CBARP |dPSI| minimum", 0.11, _cb.IncLevelDifference.abs().min(), tol=0.005)
+close("CBARP |dPSI| maximum", 0.74, _cb.IncLevelDifference.abs().max(), tol=0.005)
+close("CBARP |dPSI| median", 0.37, _cb.IncLevelDifference.abs().median(), tol=0.005)
+close("CBARP reads minimum", 61, _cb.reads.min(), tol=0)
+close("CBARP reads maximum", 4559, _cb.reads.max(), tol=0)
+close("CBARP reads median", 246, _cb.reads.median(), tol=0.5)
+close("CBARP events above 100 reads", 26, int((_cb.reads >= 100).sum()), tol=0)
+_shsy = _cb[_cb.dataset == "GSE296712_SHSY5Y"]
+close("CBARP SH-SY5Y events, all negative", 3, int((_shsy.IncLevelDifference < 0).sum()), tol=0)
+# every SH-SY5Y unit whose bootstrap interval excludes zero must be named in Section 3.5
+_apa = pd.read_csv(f"{M}/07_DISK_ANALIZLERI/sonuclar/APA_corrected_full_core_summary.tsv", sep="\t")
+_POS16b = {"STMN2", "UNC13A", "HDGFL2", "ACTL6B", "AGRN", "KALRN", "ARHGAP32", "PFKP",
+           "ATG4B", "SETD5", "CAMK2B", "ELAVL3", "POLDIP3", "RSF1", "GPSM2", "SYNJ2"}
+_ex = _apa[((_apa.boot_low > 0) | (_apa.boot_high < 0)) & ~_apa.gene.str.upper().isin(_POS16b)]
+_unnamed = sorted({g for g in _ex.gene if f"*{g}*" not in TXT})
+close("Ca2+ units excluding zero that Section 3.5 does not name", 0, len(_unnamed), tol=0)
+out.append("    " + ("all named: " + ", ".join(sorted(set(_ex.gene)))) if not _unnamed
+           else "    unnamed: " + ", ".join(_unnamed))
+_s10b = pd.read_csv(f"{P}/supplementary/S10b_NMD_panel_level_tests.csv").set_index("panel")
+close("S10b positive-control panel p", 0.62,
+      float(_s10b.loc["Cryptic_positive_controls_16", "p_one_sided_MWU"]), tol=0.005)
+
 out.append("\n=== manuscript strings that must be present ===")
 for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of the seven brain regions",
           "0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in mouse striatum",
@@ -190,12 +267,22 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of the sev
           "from 0.570 in controls to 0.819 in knockdown (Δ = +0.249",
           "`-p --countReadPairs` for paired-end libraries",
           "74 qualifying units in C2C12 and 131 in NSC34",
-          "*SARAF* intron 5 index rises in the iPSC-derived motor neurons (+0.097) and in NSC34 (+0.204)"]:
+          "*SARAF* intron 5 index rises in the iPSC-derived motor neurons (+0.097) and in NSC34 (+0.204)",
+          "3\u2076 = 729 combinations for the three-versus-three comparisons and 2\u2074 = 16",
+          "applied across the 220 informative correlations",
+          "Viability was measured at 24 h and 48 h",
+          "10 MS/5 control donors, 98 samples",
+          "in SH-SY5Y the same unit is uninformative (0.000, interval \u22120.264 to +0.241)",
+          "decreased at donor level across all sampled lesion types (\u03b4 = \u22120.840; q = 0.038)"]:
     check("present", s, True)
 out.append("\n=== strings that must be gone ===")
 for s in ["Sah P, et al.", "10,930", "four spinal cord regions", "p = 0.13)", "log2FC = −1.746",
           "prioritized candidate", "full GENCODE v47 index", "Cutadapt v4.6",
-          "the mouse datasets were not analysed at all"]:
+          "the mouse datasets were not analysed at all",
+          "all 3\u2076 = 729 replicate combinations", "their p values are therefore optimistic",
+          "applied across all 231 correlations", "is not measurable in SH-SY5Y",
+          "used in the first version of this analysis", "The original analysis treated eight contrasts",
+          "the correction was applied only to the primary SH-SY5Y model"]:
     check("absent", s, False)
 
 out.append(f"\n==== {ok} passed, {bad} failed ====")

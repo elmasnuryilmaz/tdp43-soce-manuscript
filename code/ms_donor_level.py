@@ -42,7 +42,9 @@ cols = [c for c in C.columns if c in m.index]
 C, m = C[cols], m.loc[cols]
 
 cpm = C.divide(C.sum(0), axis=1) * 1e6
-cpm = cpm[(cpm > 0.4).sum(axis=1) >= 20]
+# same low-expression filter as run_ms.py, so the two tables share the per-sample
+# median used for centring and the donor-level delta is directly comparable
+cpm = cpm[(cpm > 0.4).sum(axis=1) >= max(3, int(0.2 * cpm.shape[1]))]
 lg = np.log2(cpm + 1)
 lg = lg.sub(lg.median(axis=0), axis=1)
 

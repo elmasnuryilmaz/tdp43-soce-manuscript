@@ -107,6 +107,46 @@ PASS  ER release control mean: manuscript 0.268 vs data 0.268
 PASS  WST-1 48 h knockdown: manuscript 61.5 vs data 61.5
 PASS  WST-1 24 h knockdown: manuscript 116.8 vs data 116.8
 
+=== cross-file agreement and the corrected correction family ===
+PASS  MS donor-level delta: Table 5 vs S16b: manuscript -0.84 vs data -0.84
+PASS  S9 tests in the correction family: manuscript 220 vs data 220
+PASS  S9 trivial tests excluded: manuscript 11 vs data 11
+PASS  S9 excluded tests have no q value: manuscript 0 vs data 0
+PASS  S9 q, STIM1 Spinal Cord Lumbar: manuscript 0.0021 vs data 0.0021124477079655
+PASS  S9 q, ORAI1 Spinal Cord Cervical: manuscript 0.0031 vs data 0.0030875816332164
+PASS  S9 q, STMN2 Spinal Cord Cervical: manuscript 0.011 vs data 0.0113556217795629
+PASS  S9 q, ORAI1 Spinal Cord Lumbar: manuscript 0.013 vs data 0.0132932012607874
+PASS  S9 q, ATP2A2 Cortex Motor Medial: manuscript 0.015 vs data 0.015404130698704
+PASS  S9 q, GFAP Cortex Motor Medial: manuscript 0.023 vs data 0.0228045301551542
+PASS  S9 q, SNAP25 Cortex Motor Medial: manuscript 0.028 vs data 0.0282142118398403
+PASS  S9 q, SARAF Spinal Cord Lumbar: manuscript 0.049 vs data 0.0488764493568879
+
+=== published tables carry English dataset labels and the full control set ===
+PASS  S5_high_confidence_cryptic_events: untranslated dataset labels: manuscript 0 vs data 0
+PASS  S6_cryptic_positive_controls: untranslated dataset labels: manuscript 0 vs data 0
+PASS  S7_SOCE_genes_annotation_free: untranslated dataset labels: manuscript 0 vs data 0
+PASS  S6 genes all belong to the sixteen literature controls: manuscript 0 vs data 0
+PASS  S6 contains GPSM2, named in Section 3.3: manuscript 1 vs data 1
+PASS  S4 decision values are English: manuscript 0 vs data 0
+PASS  S4 panels with surviving enrichment: manuscript 2 vs data 2
+PASS  Table 3 rows = eleven comparisons: manuscript 11 vs data 11
+PASS  SH-SY5Y MAPQ-filtered positive controls: manuscript 12 vs data 12
+
+=== Section 3.2 CBARP figures and Section 3.5 completeness ===
+PASS  CBARP coverage-qualified events: manuscript 32 vs data 32
+PASS  CBARP datasets: manuscript 5 vs data 5
+PASS  CBARP |dPSI| minimum: manuscript 0.11 vs data 0.109
+PASS  CBARP |dPSI| maximum: manuscript 0.74 vs data 0.743
+PASS  CBARP |dPSI| median: manuscript 0.37 vs data 0.37
+PASS  CBARP reads minimum: manuscript 61 vs data 61
+PASS  CBARP reads maximum: manuscript 4559 vs data 4559
+PASS  CBARP reads median: manuscript 246 vs data 246.0
+PASS  CBARP events above 100 reads: manuscript 26 vs data 26
+PASS  CBARP SH-SY5Y events, all negative: manuscript 3 vs data 3
+PASS  Ca2+ units excluding zero that Section 3.5 does not name: manuscript 0 vs data 0
+    all named: ITPR1, ITPR3, MICU3, ORAI2, SARAF, STIM1, STIM2
+PASS  S10b positive-control panel p: manuscript 0.62 vs data 0.6161950274296075
+
 === manuscript strings that must be present ===
 PASS  present: 10,926 versus 176 reads
 PASS  present: three spinal cord levels
@@ -126,6 +166,12 @@ PASS  present: from 0.570 in controls to 0.819 in knockdown (Δ = +0.249
 PASS  present: `-p --countReadPairs` for paired-end libraries
 PASS  present: 74 qualifying units in C2C12 and 131 in NSC34
 PASS  present: *SARAF* intron 5 index rises in the iPSC-derived motor neurons (+0.097) and in NSC34 (+0.2
+PASS  present: 3⁶ = 729 combinations for the three-versus-three comparisons and 2⁴ = 16
+PASS  present: applied across the 220 informative correlations
+PASS  present: Viability was measured at 24 h and 48 h
+PASS  present: 10 MS/5 control donors, 98 samples
+PASS  present: in SH-SY5Y the same unit is uninformative (0.000, interval −0.264 to +0.241)
+PASS  present: decreased at donor level across all sampled lesion types (δ = −0.840; q = 0.038)
 
 === strings that must be gone ===
 PASS  absent: Sah P, et al.
@@ -137,5 +183,12 @@ PASS  absent: prioritized candidate
 PASS  absent: full GENCODE v47 index
 PASS  absent: Cutadapt v4.6
 PASS  absent: the mouse datasets were not analysed at all
+PASS  absent: all 3⁶ = 729 replicate combinations
+PASS  absent: their p values are therefore optimistic
+PASS  absent: applied across all 231 correlations
+PASS  absent: is not measurable in SH-SY5Y
+PASS  absent: used in the first version of this analysis
+PASS  absent: The original analysis treated eight contrasts
+PASS  absent: the correction was applied only to the primary SH-SY5Y model
 
-==== 120 passed, 0 failed ====
+==== 166 passed, 0 failed ====
