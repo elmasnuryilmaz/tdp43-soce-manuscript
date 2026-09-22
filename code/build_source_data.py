@@ -53,8 +53,11 @@ tg = pd.read_excel(os.path.join(TEZ, "SHSY5Y_TDP43_qPCR_Ct_Data.xlsx"),
                    sheet_name="SOCE_Apoptosis_Genes_Ct", skiprows=4,
                    names=["gene", "group", "replicate", "date", "target_Ct", "GAPDH_Ct",
                           "dCt", "ddCt", "rel_expression", "note"])
-tg = tg[tg.gene.notna() & tg.group.notna()].copy()
-tg["group"] = tg.group.map({"Kontrol": "Control", "shTDP-43": "shTDP-43"}).fillna(tg.group)
+# Keep the replicate rows only. The lab workbook ends with a summary block in Turkish (group
+# means and an interpretation column) and carries per-replicate direction notes (UP/DOWN);
+# neither is source data, so neither is published.
+tg = tg[tg.group.isin(["Kontrol", "shTDP-43"])].drop(columns="note").copy()
+tg["group"] = tg.group.map({"Kontrol": "Control", "shTDP-43": "shTDP-43"})
 
 rel = []
 for g, tab in qp.items():
@@ -102,22 +105,23 @@ for g in ["TRPC1", "STIM1", "ORAI1", "ATP2A3"]:
     rows.append(dict(panel="6B", measurement=f"{g} relative mRNA", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 3), SEM=round(sem(k), 3),
                      test="two-tailed Student's t-test", p_value=f"{p:.3g}"))
-for tab, lab in [("ER_Ca2_release", "ER Ca2+ release"), ("SOCE", "SOCE")]:
-    c = np.array(fu[tab]["Control"]); k = np.array(fu[tab]["TDP-43 KD"])
-    p = stats.ttest_ind(c, k).pvalue
-    rows.append(dict(panel="6C", measurement=f"{lab} delta F340/F380", group="Control",
-                     n=len(c), mean=round(c.mean(), 3), SEM=round(sem(c), 3), test="", p_value=""))
-    rows.append(dict(panel="6C", measurement=f"{lab} delta F340/F380", group="shTDP-43",
-                     n=len(k), mean=round(k.mean(), 3), SEM=round(sem(k), 3),
-                     test="two-tailed Student's t-test", p_value=f"{p:.4f}"))
+# Figure 6: C = WST-1, D = representative traces (no statistics), E = Fura-2 group data
 for tab, lab in [("WST_1_24h", "24 h"), ("WST_1_48h", "48 h")]:
     c = np.array(ws[tab]["Control"]); k = np.array(ws[tab]["shTDP-43"])
     p = stats.ttest_ind(c, k).pvalue
-    rows.append(dict(panel="6D", measurement=f"WST-1 viability {lab}", group="Control",
+    rows.append(dict(panel="6C", measurement=f"WST-1 viability {lab}", group="Control",
                      n=len(c), mean=round(c.mean(), 1), SEM=round(sem(c), 1), test="", p_value=""))
-    rows.append(dict(panel="6D", measurement=f"WST-1 viability {lab}", group="shTDP-43",
+    rows.append(dict(panel="6C", measurement=f"WST-1 viability {lab}", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 1), SEM=round(sem(k), 1),
                      test="two-tailed Student's t-test", p_value=f"{p:.3g}"))
+for tab, lab in [("ER_Ca2_release", "ER Ca2+ release"), ("SOCE", "SOCE")]:
+    c = np.array(fu[tab]["Control"]); k = np.array(fu[tab]["TDP-43 KD"])
+    p = stats.ttest_ind(c, k).pvalue
+    rows.append(dict(panel="6E", measurement=f"{lab} delta F340/F380", group="Control",
+                     n=len(c), mean=round(c.mean(), 3), SEM=round(sem(c), 3), test="", p_value=""))
+    rows.append(dict(panel="6E", measurement=f"{lab} delta F340/F380", group="shTDP-43",
+                     n=len(k), mean=round(k.mean(), 3), SEM=round(sem(k), 3),
+                     test="two-tailed Student's t-test", p_value=f"{p:.4f}"))
 summ = pd.DataFrame(rows)
 
 readme = pd.DataFrame({"sheet": ["TARDBP_qPCR", "Target_qPCR_Ct", "Target_qPCR_rel",
