@@ -5,7 +5,8 @@
 Every value is read from the analysis outputs, not typed in:
   A  TARDBP knockdown and the Fura-2 SOCE amplitude   supplementary/S1_laboratory_source_data.xlsx
   B  RT-qPCR fold changes                              same workbook
-  C  change in transcript-family composition (TPM)     tables/Table4_transcript_family_abundance.csv
+  C  change in transcript-family composition           tables/Table4_transcript_family_abundance.csv
+     (TPM adjusted for library composition)
   D  direction of TRPC1 across five diseases           tables/Table5_cross_disease_comparison.csv
 """
 import os
@@ -44,7 +45,7 @@ t5 = pd.read_csv(f"{P}/tables/Table5_cross_disease_comparison.csv")
 t5 = t5[t5.gene == "TRPC1"]
 
 fig = plt.figure(figsize=(15.5, 5.4))
-gs = fig.add_gridspec(1, 4, width_ratios=[0.95, 1.05, 1.05, 1.15], wspace=0.42)
+gs = fig.add_gridspec(1, 4, width_ratios=[0.95, 1.05, 1.05, 1.15], wspace=0.62)
 
 # ---------------------------------------------------- A: model and the phenotype
 ax = fig.add_subplot(gs[0, 0])
@@ -84,8 +85,8 @@ ax.set_title("B · The discordance", loc="left")
 
 # ------------------------------------- C: which family members carry the change
 ax = fig.add_subplot(gs[0, 2])
-sel = ["ATP2A2", "ORAI2", "MCU", "MCUB", "ORAI1", "ATP2A3", "SARAF", "STIM1"]
-d = [t4.loc[s, "delta_TPM"] for s in sel]
+sel = ["ATP2A2", "MCU", "MCUB", "ORAI2", "ORAI1", "ATP2A3", "ORAI3", "STIM1", "SARAF"]
+d = [t4.loc[s, "delta_TPM_adjusted"] for s in sel]
 order = np.argsort(d)
 sel = [sel[i] for i in order]; d = [d[i] for i in order]
 cols = [KD_C if v < 0 else ACC for v in d]
@@ -93,18 +94,19 @@ ax.barh(np.arange(len(sel)), d, color=cols, alpha=.9)
 ax.axvline(0, color="#333", lw=1)
 labs = [f"{s}  ({t4.loc[s, 'share_of_family_control_pct']:.0f}%)" for s in sel]
 ax.set_yticks(np.arange(len(sel))); ax.set_yticklabels(labs, fontsize=8.2)
-ax.set_xlabel("change in transcript abundance (ΔTPM)\n% = share of its family in control cells",
-              fontsize=8.5)
-ax.set_xlim(-78, 42)
-ax.text(0.03, 0.97, "the dominant members fall,\nthe minor ones rise", transform=ax.transAxes,
-        fontsize=8, color="#555", ha="left", va="top")
-ax.set_title("C · Composition, not direction", loc="left")
+ax.set_xlabel("change in transcript abundance (ΔTPM, adjusted\nfor library composition); "
+              "% = share of its family in control cells", fontsize=8.5)
+ax.set_xlim(-30, 88)
+ax.text(0.97, 0.03, "ORAI3 and SARAF rise;\nthe dominant ORAI2 and\nATP2A2 fall modestly",
+        transform=ax.transAxes, fontsize=8, color="#555", ha="right", va="bottom")
+ax.set_title("C · Composition shifts within families", loc="left")
 
 # ---------------------------------------------------- D: patient tissue, TRPC1
 ax = fig.add_subplot(gs[0, 3])
 rows = []
-als = t5[(t5.group == "ALS") & (~t5.region.str.startswith("Spinal")) & (t5.q_value < 0.05)]
-rows.append(("ALS · brain (6 regions)", als.cliffs_delta.mean(), True))
+# all seven brain regions, not only the six in which the increase is significant
+als = t5[(t5.group == "ALS") & (~t5.region.str.startswith("Spinal"))]
+rows.append((f"ALS · brain ({len(als)} regions)", als.cliffs_delta.mean(), True))
 cord = t5[(t5.group == "ALS") & (t5.region.str.startswith("Spinal"))]
 rows.append(("ALS · spinal cord", cord.cliffs_delta.mean(), False))
 ond = t5[t5.group == "ONd"]
@@ -135,8 +137,8 @@ ax.set_title("D · TRPC1 in patient tissue", loc="left")
 fig.suptitle("TDP-43 knockdown reduces store-operated Ca²⁺ entry while the transcripts of its components increase",
              y=1.035, fontsize=12.5, weight="bold")
 fig.text(0.5, -0.055,
-         "No high-confidence cryptic splice junction was found in the 51-gene core SOCE panel in ten of eleven comparisons, "
-         "and cryptic $\\it{STMN2}$ inclusion does not correlate with $\\it{TRPC1}$ within ALS tissue:\n"
+         "No high-confidence cryptic splice junction was found in the 51-gene core SOCE/TRP panel in SH-SY5Y, where the canonical "
+         "cryptic targets were recovered, and cryptic $\\it{STMN2}$ inclusion does not correlate with $\\it{TRPC1}$ within ALS tissue:\n"
          "the transcript changes are candidate explanations for the functional deficit, not a demonstrated mechanism.",
          ha="center", fontsize=9, color="#444")
 fig.savefig(OUT + ".png")

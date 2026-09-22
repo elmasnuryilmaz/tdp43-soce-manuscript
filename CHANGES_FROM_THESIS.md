@@ -19,7 +19,9 @@ Effect: the *STMN2* intron 2 positive control falls from +0.489 to +0.145 in SH-
 control then lies just below the pre-specified depth filter in that model. The corrected
 analysis was extended to every comparison with available alignments (SH-SY5Y, iPSC-derived
 motor neurons, C2C12, NSC34); the control behaves as intended in the iPSC-derived motor neurons
-(+0.249) and in NSC34 (+0.148). Results: `supplementary/S11_APA_candidate_gradients.csv`.
+(+0.249). The mouse lines have no equivalent control, because the *STMN2* cryptic
+polyadenylation site is absent from the mouse gene. Results:
+`supplementary/S11_APA_candidate_gradients.csv`, which now lists the genomic windows of every unit.
 
 ## 2. NMD interaction: four conditions as the unit of inference
 
@@ -40,7 +42,11 @@ The Salmon index was built from the comprehensive GENCODE v47 transcript set (38
 transcripts), but gene-level summaries had been aggregated with the transcript-to-gene map of
 the basic annotation, which covers 157,588 of them and discards 26% of the transcripts per
 million. Counts were re-aggregated with the complete map, DESeq2 was re-run, and family
-abundance is now reported as length-corrected TPM rather than counts per million.
+abundance is now reported as length-corrected TPM rather than counts per million. Because a
+few abundant transcripts take a larger share of the TPM total in the knockdown libraries (the
+median expressed gene has 24% lower TPM there), changes between conditions are computed after a
+median-of-ratios adjustment for library composition (`code/build_family_abundance.py`); with
+that adjustment the ORAI pool rises by 27% and shifts towards ORAI3, rather than staying flat.
 
 Effect on the genes discussed in the manuscript: *STIM1* log2FC 0.803 → 0.929, *TRPC1*
 0.967 → 0.958, *ATP2A3* 1.202 → 1.306, *CBARP* −1.746 → −1.254, and *ORAI1* becomes
@@ -66,7 +72,7 @@ reads across six libraries, with the skipping form absent from four of them. Its
 confidence interval spans zero (−0.093 to +0.522), removing one control replicate reverses the
 sign, it does not survive coverage pre-filtering, and LeafCutter does not call it. The
 manuscript reports it as an illustration of why threshold-based splicing calls need read-level
-verification, not as a result. Data: `figures/Figure1_TRPC1_robustness.*`,
+verification, not as a result. Data: `figures/Figure2_TRPC1_robustness.*`,
 `supplementary/S3_rMATS_significant_events.csv.gz`.
 
 ## Software versions

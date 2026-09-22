@@ -11,7 +11,7 @@ calcium-regulatory RNA profiles in SH-SY5Y cells*.
 
 Every number in the manuscript is produced by the scripts in `code/` from the files in this
 repository, and the agreement between the text and the data is verified automatically
-(`logs/consistency_check.txt`, 120 checks).
+(`logs/consistency_check.txt`, 244 checks).
 
 The analyses grew out of a doctoral thesis whose repository is separate
 ([tdp43-thesis-reproducibility](https://github.com/elmasnuryilmaz/tdp43-thesis-reproducibility)).
@@ -34,13 +34,13 @@ and why. Where the two repositories differ, this one is current.
 
 | File | Manuscript | Content |
 |---|---|---|
-| `Figure1_TRPC1_robustness` | Figure 1 | replicate-level failure of the TRPC1 call |
-| `Figure2_detection_power` | Figure 2 | power in a 3 + 3 design |
+| `Figure1_detection_power` | Figure 1 | power in a 3 + 3 design |
+| `Figure2_TRPC1_robustness` | Figure 2 | replicate-level failure of the TRPC1 call |
 | `Figure3_robust_candidates` | Figure 3 | SOCE splicing candidates with bootstrap CIs |
 | `Figure4_cryptic_discovery_and_NMD` | Figure 4 | cryptic discovery, Ca²⁺ panels, NMD interaction |
 | `Figure5_specificity_and_APA` | Figure 5 | RBP specificity, corrected APA, STMN2 intron 2 coverage |
 | `Figure6_functional_consequences` | Figure 6 | laboratory experiments (new in v4) |
-| `Figure7_transcript_family_abundance` | Figure 7 | family abundance, TPM based (recomputed in v4) |
+| `Figure7_transcript_family_abundance` | Figure 7 | family abundance, TPM adjusted for library composition |
 | `Figure8_TRPC1_disease_direction` | Figure 8 | TRPC1 across five diseases (all regions, donor-level MS) |
 | `Figure9_NYGC_cryptic_STMN2` | Figure 9 | junction-level cryptic STMN2 in ALS tissue |
 | `graphical_abstract` | — | repository summary, not part of the manuscript |
@@ -56,15 +56,15 @@ Figure numbers are **not** burned into the images; the file name carries the num
 | `S3_rMATS_significant_events.csv.gz` | every rMATS event at FDR < 0.05 and \|ΔPSI\| ≥ 0.10, JC and JCEC, six datasets, with raw junction counts |
 | `S4_matched_permutation_enrichment.csv` | enrichment against the covariate-matched null |
 | `S5_high_confidence_cryptic_events.csv` | high-confidence unannotated splicing changes, all comparisons |
-| `S6_cryptic_positive_controls.csv`, `S6b_positive_control_matrix.csv` | positive-control recovery (matrix headers rebuilt in v4) |
+| `S6_cryptic_positive_controls.csv`, `S6b_positive_control_matrix.csv` | positive-control recovery in the human comparisons (the controls are not conserved in mouse) |
 | `S7_SOCE_genes_annotation_free.csv` | SOCE genes in the junction-level analysis |
 | `S8_cryptic_STMN2_ALS_vs_control.csv` | cryptic PSI by region, ALS versus control |
 | `S9_cryptic_PSI_correlations_within_ALS.csv` | all 231 correlations within ALS samples |
 | `S10_NMD_interaction_SOCE_panel.csv`, `S10b_NMD_panel_level_tests.csv` | four-condition NMD interaction and panel-level tests (recomputed in v4) |
-| `S11_APA_candidate_gradients.csv` | depth-qualified coverage gradients after the `-j` correction |
+| `S11_APA_candidate_gradients.csv` | depth-qualified coverage gradients after the `-j` correction, with the genomic windows of every unit |
 | `S12_cryptic_counts_by_dataset.csv` | call counts per comparison with the RBP controls |
 | `S13_STIM2_SOAR_exon_junction_level.csv` | SOAR exon at junction level |
-| `S14_control_vs_control_null_test.csv` | split-control null test, three tiers |
+| `S14_control_vs_control_null_test.csv` | split-control null test: permissive definition and three stricter tiers |
 | `S15_STIM2.1_exon_six_datasets.csv` | STIM2.1 meta-analysis |
 | `S16_multiple_sclerosis_both_cohorts.csv`, `S16b_multiple_sclerosis_donor_level.csv` | MS analysis; the donor-level re-analysis is new in v4 |
 | `S17_dataset_accessions.csv` | every accession with design, library type and sample-to-group assignment |
@@ -76,6 +76,7 @@ is not part of this set: it was built from the superseded eight-contrast NMD sta
 ## How to reproduce
 
 ```bash
+/usr/bin/python3 code/build_family_abundance.py  # Table 4 source: composition-adjusted TPM
 /usr/bin/python3 code/fig_v3_main.py        # Figures 1, 2, 3, 7
 /usr/bin/python3 code/fig_v3_junction.py    # Figures 4, 5, 9
 /usr/bin/python3 code/fig_v3_lab.py         # Figure 6

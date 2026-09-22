@@ -142,8 +142,10 @@ fig, axes = plt.subplots(1, 3, figsize=(14.5, 4.3),
 ax = axes[0]
 POSG = {"STMN2","UNC13A","HDGFL2","ACTL6B","AGRN","KALRN","ARHGAP32","PFKP","ATG4B",
         "SETD5","ELAVL3","POLDIP3","CAMK2B","RSF1","GPSM2","SYNJ2"}
-SIRA2 = ["SH_SY5Y","SH_SY5Y_DOZ25","iPSC_koloni","K562_mRNA","NSC34","iPSC_MN",
-         "K562_totalRNA","C2C12","Fare_striatum","iPSC_MN_FUS","iPSC_MN_TAF15"]
+# human comparisons only: the literature controls are human cryptic events that are not
+# conserved in mouse, so a gene-name match in a mouse line is not a recovered control
+SIRA2 = ["SH_SY5Y","SH_SY5Y_DOZ25","iPSC_koloni","K562_mRNA","iPSC_MN",
+         "K562_totalRNA","iPSC_MN_FUS","iPSC_MN_TAF15"]
 ETI = {"SH_SY5Y":"SH-SY5Y 75 ng/mL","SH_SY5Y_DOZ25":"SH-SY5Y 25 ng/mL",
        "iPSC_koloni":"iPSC colonies","K562_mRNA":"K562 poly(A)+","NSC34":"NSC34",
        "iPSC_MN":"iPSC-MN · TDP-43","K562_totalRNA":"K562 total RNA","C2C12":"C2C12",
@@ -168,7 +170,7 @@ ax.legend(handles=[Patch(color=KD_C, label="TDP-43 KD (primary model)"),
                    Patch(color=CT_C, label="TDP-43 KD (other)"),
                    Patch(color="#8e44ad", label="FUS / TAF15 KD")],
           frameon=False, fontsize=7, loc="lower right")
-ax.set_title("A · Positive-control recovery by comparison\n(permissive definition)", loc="left")
+ax.set_title("A · Positive-control recovery, human comparisons\n(permissive definition)", loc="left")
 
 ax = axes[1]
 A = pd.read_csv(f"{OUT}/APA_corrected_full_core_summary.tsv", sep="\t")
@@ -176,14 +178,16 @@ sig = A[A["delta"].abs() >= 0.05].sort_values("delta")
 renk2 = np.where(sig["measure"] == "IPA_index", ACC, "#8e44ad")
 ax.barh(np.arange(len(sig)), sig["delta"], color=renk2)
 ax.set_yticks(np.arange(len(sig)))
+# STIM2 intron 13: the 5' window contains the alternatively spliced STIM2 exon of Table 2
 ax.set_yticklabels([f"{g} · {b.replace('termexon','terminal exon')}"
+                    + (" †" if (g, b) == ("STIM2", "intron13") else "")
                     for g, b in zip(sig["gene"], sig["unit"])], fontsize=6.5)
 ax.axvline(0, color="#666", lw=.8)
 ax.set_xlabel("Δ coverage index (knockdown − control)")
 ax.legend(handles=[Patch(color=ACC, label="intronic polyadenylation index"),
                    Patch(color="#8e44ad", label="distal 3′UTR usage index")],
           frameon=True, framealpha=0.92, edgecolor="none", fontsize=7, loc="lower right")
-ax.set_title("B · Alternative polyadenylation in Ca²⁺ genes,\nSH-SY5Y", loc="left")
+ax.set_title("B · Coverage-based APA indices, SH-SY5Y\n(Ca²⁺ genes and positive controls)", loc="left")
 
 ax = axes[2]
 MANx = pd.read_csv(f"{D}/kod/ornekler.tsv", sep="\t")
@@ -214,6 +218,6 @@ if len(st) == 2:
     ax.set_xticks([0.04, 1.04]); ax.set_xticklabels(["intron 5′ end", "intron 3′ end"])
     ax.set_ylabel("mean coverage depth")
     ax.legend(frameon=False, fontsize=8)
-    ax.set_title("C · Corrected coverage across STMN2 intron 2\n(one knockdown 3′ window has a measured coverage of zero)",
+    ax.set_title("C · Coverage at the ends of STMN2 intron 2\n(contains cryptic exon 2a; reference skips excluded)",
                  loc="left")
 kaydet(fig, "Figure5_specificity_and_APA")

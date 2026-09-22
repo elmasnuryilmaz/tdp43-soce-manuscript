@@ -1,0 +1,15 @@
+quantity,value
+scaling factor SRR33374996,1.133
+scaling factor SRR33375001,1.1536
+scaling factor SRR33374995,1.1507
+scaling factor SRR33374999,0.8797
+scaling factor SRR33374997,0.8735
+scaling factor SRR33375000,0.8725
+genes used for the scaling factors (TPM > 1 in all six libraries),13907.0
+genes with mean TPM > 5 in both groups,10958.0
+"median KD/control TPM ratio, unadjusted",0.7612
+"median KD/control TPM ratio, adjusted",0.9963
+median (adjusted log2 ratio - DESeq2 log2FC),-0.0212
+TPM gained in KD by the 100 largest gainers,185761.0
+"CHGA mean TPM, control",1856.9
+"CHGA mean TPM, knockdown",10674.8

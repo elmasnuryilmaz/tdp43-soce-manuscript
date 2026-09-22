@@ -97,7 +97,7 @@ hc = pd.read_csv(f"{D}/tablolar/S13_yuksek_guven_kriptik_ozet.tsv", sep="\t")
 hc = hc.rename(columns={"veri_seti": "comparison", "olay": "high_confidence_events",
     "gen": "genes", "pozitif_kontrol": "positive_controls_high_confidence",
     "bulunan": "positive_control_genes_high_confidence", "Tier1": "Tier1_genes",
-    "cekirdek_SOCE": "core_SOCE_genes"})
+    "cekirdek_SOCE": "SOCE_machinery_genes"})
 perm = {}
 for ds in hc.comparison:
     f = f"{D}/sonuclar/RT_KRIPTIK_{ds}.tsv"
@@ -115,9 +115,19 @@ null = null[null.kademe == "K2"].set_index("veri_seti")
 hc["null_calls_high_confidence"] = [null.bos_olay.get(d, np.nan) for d in hc.comparison]
 hc["null_to_real_ratio"] = [null.yanlis_pozitif_orani.get(d, np.nan) for d in hc.comparison]
 hc["comparison"] = hc.comparison.map(lambda x: DSET.get(x, x))
+# The sixteen literature controls are human cryptic events; the STMN2 and UNC13A events are
+# absent from the mouse genes (Melamed et al., 2019; Ma et al., 2022). A match in a mouse
+# comparison is a gene-name match only (for example an unrelated acceptor in NSC34 Unc13a),
+# so recovery is not assessed there.
+MOUSE = {"C2C12", "NSC34", "Mouse striatum"}
+_m = hc.comparison.isin(MOUSE)
+hc["positive_controls_permissive"] = hc.positive_controls_permissive.astype(object)
+hc["positive_controls_high_confidence"] = hc.positive_controls_high_confidence.astype(object)
+hc.loc[_m, ["positive_controls_permissive", "positive_controls_high_confidence",
+            "positive_control_genes_high_confidence"]] = "n/a (mouse)"
 hc = hc[["comparison", "permissive_events", "permissive_genes", "positive_controls_permissive",
          "high_confidence_events", "genes", "positive_controls_high_confidence",
-         "positive_control_genes_high_confidence", "Tier1_genes", "core_SOCE_genes",
+         "positive_control_genes_high_confidence", "Tier1_genes", "SOCE_machinery_genes",
          "null_calls_high_confidence", "null_to_real_ratio"]]
 w(hc, f"{TAB}/Table3_cryptic_events_eleven_comparisons.csv")
 
@@ -194,10 +204,14 @@ for src, dst in [("S5_yuksek_guven_kriptik_olaylar", "S5_high_confidence_cryptic
                  ("S6_kriptik_pozitif_kontroller", "S6_cryptic_positive_controls"),
                  ("S7_SOCE_anotasyonsuz_analiz", "S7_SOCE_genes_annotation_free")]:
     df = en_junction(pd.read_csv(f"{D}/tablolar/{src}.tsv", sep="\t"))
+    if dst.startswith("S6_"):
+        # positive-control recovery is assessed in the human comparisons only (see Table 3)
+        df = df[~df.comparison.isin(MOUSE)]
     w(df, f"{SUP}/{dst}.csv")
 # S6b matrix - headers were corrupted in the original output; rebuilt here
 mat = pd.read_csv(f"{D}/tablolar/S6_kriptik_pozitif_kontroller.tsv", sep="\t")
 mat["veri_seti"] = mat.veri_seti.map(lambda x: DSET.get(x, x))
+mat = mat[~mat.veri_seti.isin(MOUSE)]
 piv = mat.pivot_table(index="gene", columns="veri_seti", values="dPSI", aggfunc="max")
 piv.index.name = "gene"
 piv.reset_index().to_csv(f"{SUP}/S6b_positive_control_matrix.csv", index=False)
@@ -278,6 +292,31 @@ if extra:
     ex = pd.concat(extra, ignore_index=True).drop_duplicates(["dataset", "gene", "unit", "index"])
     s11 = pd.concat([s11, ex[[c for c in ex.columns if c in list(s11.columns) + ["n_boot"]]]],
                     ignore_index=True)
+# SH-SY5Y intervals come from the same complete enumeration (3^6 replicate combinations)
+s11.loc[s11.dataset.str.startswith("SH-SY5Y") & s11.n_boot.isna(), "n_boot"] = 729
+# Unit numbers are indices of the gaps between merged exons of all basic-annotation
+# transcripts, in the direction of transcription; they need not match canonical intron
+# numbers, so the genomic windows of every unit are given (1-based, inclusive).
+def _windows(bedfile):
+    b = pd.read_csv(bedfile, sep="\t", header=None, names=["chrom", "s0", "end", "name"])
+    p = b.name.str.split("|", expand=True)
+    b["gene"], b["unit"], b["win"], b["strand"] = p[0], p[1], p[2], p[3]
+    b["chrom"] = "chr" + b.chrom.astype(str).str.replace("^chr", "", regex=True)
+    b["iv"] = (b.s0 + 1).astype(str) + "-" + b.end.astype(str)
+    iv = b.pivot_table(index=["gene", "unit"], columns="win", values="iv", aggfunc="first")
+    meta = b.groupby(["gene", "unit"])[["chrom", "strand"]].first()
+    out = meta.join(iv).reset_index()
+    out["first_window"] = out.I5.where(out.unit != "termexon", out.Uprox)
+    out["second_window"] = out.I3.where(out.unit != "termexon", out.Udist)
+    return out[["gene", "unit", "chrom", "strand", "first_window", "second_window"]]
+_wh = _windows(f"{D}/kod/apa_pencereleri_human.bed")
+_wm = _windows(f"{D}/kod/apa_pencereleri_mouse.bed")
+_human = s11.dataset.str.startswith("SH-SY5Y") | s11.dataset.str.startswith("iPSC-MN")
+s11 = pd.concat([s11[_human].merge(_wh, on=["gene", "unit"], how="left"),
+                 s11[~_human].merge(_wm, on=["gene", "unit"], how="left")], ignore_index=True)
+s11 = s11.rename(columns={"first_window": "window_5prime_or_proximal",
+                          "second_window": "window_3prime_or_distal"})
+assert s11.window_5prime_or_proximal.notna().all(), "S11 unit without genomic window"
 w(s11, f"{SUP}/S11_APA_candidate_gradients.csv")
 # S12 cryptic counts (= Table 3 source, per dataset)
 w(hc, f"{SUP}/S12_cryptic_counts_by_dataset.csv")
@@ -290,8 +329,24 @@ w(s13, f"{SUP}/S13_STIM2_SOAR_exon_junction_level.csv")
 s14 = pd.read_csv(f"{D}/tablolar/S15_kriptik_esik_kalibrasyonu.tsv", sep="\t")
 s14.columns = ["dataset", "tier", "criteria", "real_calls", "null_calls",
                "null_to_real_ratio", "positive_controls"]
+# the permissive definition of Methods 2.5 (A12_null_kontrol.py): null calls against real calls
+_perm = []
+for ds in s14.dataset.unique():
+    rf, nf = f"{D}/sonuclar/RT_KRIPTIK_{ds}.tsv", f"{D}/sonuclar/NULL_KRIPTIK_{ds}.tsv"
+    if os.path.exists(rf) and os.path.exists(nf):
+        r_, n_ = pd.read_csv(rf, sep="\t"), pd.read_csv(nf, sep="\t")
+        _perm.append(dict(dataset=ds, tier="permissive",
+                          criteria="unannotated, ΔPSI≥0.05, q<0.05, control PSI≤0.05, CI lower bound>0",
+                          real_calls=len(r_), null_calls=len(n_),
+                          null_to_real_ratio=round(len(n_) / len(r_), 2),
+                          positive_controls=len(set(r_.gene.astype(str).str.upper()) & _POS16)))
+s14 = pd.concat([pd.DataFrame(_perm), s14], ignore_index=True)
 s14["dataset"] = s14.dataset.map(lambda x: DSET.get(x, x))
-s14["criteria"] = s14.criteria.str.replace("okuma", "reads")
+s14["tier"] = s14.tier.replace({"K1": "tier 1", "K2": "tier 2 (high-confidence)", "K3": "tier 3"})
+s14["criteria"] = (s14.criteria.str.replace("okuma", "reads")
+                   .str.replace("GA>", "CI lower bound>", regex=False))
+s14["positive_controls"] = s14.positive_controls.astype(object)
+s14.loc[s14.dataset.isin(MOUSE), "positive_controls"] = "n/a (mouse)"
 w(s14, f"{SUP}/S14_control_vs_control_null_test.csv")
 # S15 STIM2.1 meta across six datasets
 s15 = pd.read_csv(f"{M}/03_TABLOLAR/STIM2_1_SOAR_ekzonu_meta.tsv", sep="\t")

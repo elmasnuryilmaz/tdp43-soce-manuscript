@@ -33,7 +33,10 @@ PASS  SH-SY5Y permissive positive controls: manuscript 13 vs data 13
 PASS  iPSC colonies permissive positive controls: manuscript 15 vs data 15
 PASS  permissive call counts, TDP-43 / FUS / TAF15: manuscript 141 vs data 141
 PASS  burden minimum: manuscript 12 vs data 12
+PASS  Table 3 mouse rows: positive controls not assessed: manuscript 3 vs data 3
 PASS  burden maximum: manuscript 477 vs data 477
+PASS  permissive null ratio iPSC colonies (Methods 2.5: 0.98 per real call): manuscript 0.98 vs data 0.98
+PASS  permissive null ratio K562 total RNA (Methods 2.5: 2.01): manuscript 2.01 vs data 2.01
 PASS  null ratio iPSC colonies: manuscript 0.64 vs data 0.64
 PASS  null ratio K562 total RNA: manuscript 2.17 vs data 2.17
 PASS  null ratio mouse striatum: manuscript 0.83 vs data 0.83
@@ -48,11 +51,26 @@ PASS  STIM1 log2FC: manuscript 0.929 vs data 0.929
 PASS  ORAI1 log2FC: manuscript 0.433 vs data 0.433
 PASS  ATP2A3 log2FC: manuscript 1.306 vs data 1.306
 PASS  TRPC1 log2FC: manuscript 0.958 vs data 0.958
-PASS  family net SERCA (Ca2+ re-uptake into ER): manuscript -32 vs data -32
-PASS  family net Mitochondrial Ca2+ uptake: manuscript -43 vs data -43
-PASS  family net STIM (ER Ca2+ sensor): manuscript 13 vs data 13
-PASS  family net ORAI (CRAC channel): manuscript -3 vs data -3
-PASS  family net SOCE regulators: manuscript -1 vs data -1
+PASS  STIM1 share: manuscript 64 vs data 64
+PASS  TRPC1 share: manuscript 98 vs data 98
+PASS  ATP2A3 share: manuscript 1.5 vs data 1.5
+PASS  ORAI2 log2FC (-0.17): manuscript -0.17 vs data -0.173
+PASS  ATP2A2 log2FC (-0.25): manuscript -0.25 vs data -0.247
+PASS  ORAI3 log2FC (2.06): manuscript 2.06 vs data 2.056
+PASS  SARAF log2FC (0.55): manuscript 0.55 vs data 0.548
+PASS  family net, adjusted, SERCA (Ca2+ re-uptake into ER): manuscript -12 vs data -12
+PASS  family net, adjusted, Mitochondrial Ca2+ uptake: manuscript -25 vs data -25
+PASS  family net, adjusted, STIM (ER Ca2+ sensor): manuscript 48 vs data 48
+PASS  family net, adjusted, ORAI (CRAC channel): manuscript 27 vs data 27
+PASS  family net, adjusted, SOCE regulators: manuscript 30 vs data 30
+PASS  ORAI3 share of ORAI pool, control (8%): manuscript 8 vs data 8
+PASS  ORAI3 share of ORAI pool, knockdown (30%): manuscript 30 vs data 30
+PASS  ORAI2 share of ORAI pool, knockdown (53%): manuscript 53 vs data 53
+PASS  median KD/control TPM ratio, unadjusted (24% lower): manuscript 24 vs data 24
+PASS  genes used for the scaling factors: manuscript 13907 vs data 13907.0
+PASS  median adjusted-minus-DESeq2 log2 difference (-0.02): manuscript -0.02 vs data -0.0212
+PASS  CHGA control TPM (1,857): manuscript 1857 vs data 1856.9
+PASS  CHGA knockdown TPM (10,675): manuscript 10675 vs data 10674.8
 
 === Table 5 / S16: patient tissue ===
 PASS  TRPC1 significant brain regions: manuscript 6 vs data 6
@@ -83,22 +101,29 @@ PASS  TRPC1 significant correlations: manuscript 0 vs data 0
 === S11: corrected APA, both models ===
 PASS  SH-SY5Y STIM1 intron17 delta: manuscript -0.173 vs data -0.172977780794914
 PASS  SH-SY5Y STIM2 intron13 delta: manuscript -0.156 vs data -0.155710144756217
+PASS  SH-SY5Y STIM2 intron13 control index (0.96): manuscript 0.96 vs data 0.956298207249431
+PASS  STIM2 intron13 5' window contains the Table 2 STIM2 exon: manuscript 1 vs data 1
+PASS  S11: every unit has a genomic window: manuscript 0 vs data 0
 PASS  iPSC-MN units passing the depth filter: manuscript 59 vs data 59
 PASS  iPSC-MN genes: manuscript 29 vs data 29
 PASS  iPSC-MN STMN2 intron2 delta: manuscript 0.249 vs data 0.248871901453919
 PASS  iPSC-MN STMN2 intron2 index KD: manuscript 0.819 vs data 0.819049467297218
 PASS  iPSC-MN STMN2 intron2 index control: manuscript 0.57 vs data 0.570177565843299
-PASS  iPSC-MN UNC13A intron31 delta: manuscript -0.145 vs data -0.145411743652571
 PASS  iPSC-MN ATP2A2 intron3 delta: manuscript -0.164 vs data -0.16399905272513
 PASS  iPSC-MN SARAF intron5 delta: manuscript 0.097 vs data 0.0968644110005561
 PASS  iPSC-MN TRPC1 intron1 delta: manuscript 0.083 vs data 0.0826744715152234
 PASS  iPSC-MN STIM2 terminal exon delta: manuscript -0.074 vs data -0.074419909502691
 PASS  C2C12 units: manuscript 74 vs data 74
 PASS  NSC34 units: manuscript 131 vs data 131
-PASS  NSC34 Stmn2 intron2 delta: manuscript 0.148 vs data 0.147788353889929
 PASS  NSC34 Saraf intron5 delta: manuscript 0.204 vs data 0.204495291613076
 PASS  C2C12 Atp2a2 intron6 delta: manuscript 0.285 vs data 0.284554222416124
 PASS  C2C12 Trpc1 intron7 delta: manuscript 0.26 vs data 0.259501452073075
+
+=== isoform-level tests quoted for CBARP ===
+PASS  CBARP IsoformSwitchAnalyzeR gene-level q (0.12): manuscript 0.12 vs data 0.116709859460621
+PASS  CBARP DRIMSeq q (0.34): manuscript 0.34 vs data 0.339345536212653
+PASS  CBARP significant switching isoforms: manuscript 0 vs data 0
+PASS  CBARP-DT IsoformSwitchAnalyzeR gene-level q (0.008): manuscript 0.008 vs data 0.0077898915668415
 
 === S1: laboratory source data ===
 PASS  SOCE control mean: manuscript 1.542 vs data 1.542
@@ -165,7 +190,16 @@ PASS  present: 59 units in 29 genes passed the same depth filter
 PASS  present: from 0.570 in controls to 0.819 in knockdown (Δ = +0.249
 PASS  present: `-p --countReadPairs` for paired-end libraries
 PASS  present: 74 qualifying units in C2C12 and 131 in NSC34
-PASS  present: *SARAF* intron 5 index rises in the iPSC-derived motor neurons (+0.097) and in NSC34 (+0.2
+PASS  present: *SARAF* intron 5 index rises in the iPSC-derived motor neurons (+0.097) and the *Saraf* in
+PASS  present: almost as many calls as the real comparison in iPSC colonies (0.98 per real call)
+PASS  present: this check is available only for the human comparisons
+PASS  present: isoform-level testing did not detect a *CBARP* isoform switch
+PASS  present: the three mouse comparisons have no conserved control
+PASS  present: *ORAI3* went from 8% to 30% of ORAI transcripts and *ORAI2* from 77% to 53%
+PASS  present: The STIM (+48%) and SOCE-regulator (+30%) pools also rose, whereas the SERCA and mitochond
+PASS  present: the median gene expressed in both groups (mean TPM > 5) had 24% lower TPM
+PASS  present: The *STIM2* unit is not an independent observation
+PASS  present: Yoast RE, Emrich SM, Zhang X, et al.
 PASS  present: 3⁶ = 729 combinations for the three-versus-three comparisons and 2⁴ = 16
 PASS  present: applied across the 220 informative correlations
 PASS  present: Viability was measured at 24 h and 48 h
@@ -192,5 +226,51 @@ PASS  absent: is not measurable in SH-SY5Y
 PASS  absent: used in the first version of this analysis
 PASS  absent: The original analysis treated eight contrasts
 PASS  absent: the correction was applied only to the primary SH-SY5Y model
+PASS  absent: require independent biological replication
+PASS  absent: Ca²⁺ imaging
+PASS  absent: isoform-level testing, to converge
+PASS  absent: each of which is a minor member
+PASS  absent: lie outside the core panel
+PASS  absent: about two-thirds as many calls
+PASS  absent: a second control moved in the expected direction
+PASS  absent: silent in SH-SY5Y
+PASS  absent: the dominant members fall
+PASS  absent: in the second junction set
+PASS  absent: in ten of the eleven comparisons
+PASS  absent: Length-corrected family summaries
+PASS  absent: (−32% and −43%
+PASS  absent: (−3% and −1%)
+PASS  absent: informative in the two neuronal models
+PASS  absent: the current transcript estimates
+PASS  absent: the positive control was informative only in the motor-neuron-like line
 
-==== 168 passed, 0 failed ====
+=== every figure and supplementary table is cited in the text ===
+PASS  Figure 1 cited in the text: manuscript 1 vs data 1
+PASS  Figure 2 cited in the text: manuscript 1 vs data 1
+PASS  Figure 3 cited in the text: manuscript 1 vs data 1
+PASS  Figure 4 cited in the text: manuscript 1 vs data 1
+PASS  Figure 5 cited in the text: manuscript 1 vs data 1
+PASS  Figure 6 cited in the text: manuscript 1 vs data 1
+PASS  Figure 7 cited in the text: manuscript 1 vs data 1
+PASS  Figure 8 cited in the text: manuscript 1 vs data 1
+PASS  Figure 9 cited in the text: manuscript 1 vs data 1
+PASS  figures first cited in numerical order: manuscript 1 vs data 1
+PASS  Supplementary Table S1 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S2 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S3 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S4 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S5 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S6 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S7 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S8 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S9 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S10 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S11 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S12 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S13 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S14 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S15 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S16 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S17 cited in the text: manuscript 1 vs data 1
+
+==== 244 passed, 0 failed ====

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """v3 — main figures for the submission package.
 
-Figure 1 (TRPC1 robustness), Figure 2 (detection power), Figure 3 (robust SOCE
-candidates) and Figure 7 (transcript-family abundance, TPM based).
-Numbering follows MANUSCRIPT_v3; figure numbers are not burned into the images."""
+Figure 1 (detection power), Figure 2 (TRPC1 robustness), Figure 3 (robust SOCE
+candidates) and Figure 7 (transcript-family abundance, composition-adjusted TPM).
+Numbering follows MANUSCRIPT_v4_SUBMISSION; figure numbers are not burned into the images."""
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
@@ -27,7 +27,7 @@ plt.rcParams.update({
 })
 KD_C, CT_C, ACC, WARN = "#c0392b", "#2c6fa8", "#0d6259", "#b07d0a"
 
-# ================================================================ FIG 1: TRPC1
+# ================================================================ FIG 2: TRPC1
 fig, axes = plt.subplots(1, 3, figsize=(12.6, 3.6),
                          gridspec_kw={"width_ratios": [1, 1.15, 1.3], "wspace": 0.32})
 
@@ -98,14 +98,17 @@ ax.annotate("removing control rep 3\nreverses the sign of ΔPSI", xy=(-0.074, 5)
             arrowprops=dict(arrowstyle="->", color=WARN, lw=1))
 fig.suptitle("The TRPC1 skipped-exon call does not survive replicate-level "
              "inspection (SH-SY5Y; seven skipping reads in total)", y=1.04, fontsize=10.5, weight="bold")
-fig.savefig(os.path.join(FIG, "Figure1_TRPC1_robustness.png"))
-fig.savefig(os.path.join(FIG, "Figure1_TRPC1_robustness.pdf"))
+fig.savefig(os.path.join(FIG, "Figure2_TRPC1_robustness.png"))
+fig.savefig(os.path.join(FIG, "Figure2_TRPC1_robustness.pdf"))
 plt.close(fig)
-print("Figure 1 written")
+print("Figure 2 (TRPC1 robustness) written")
 
 # ======================================= FIG 7: transcript-family abundance (TPM)
+# TPM adjusted for library composition (build_family_abundance.py): unadjusted TPM would
+# show every gene about a quarter lower in knockdown, because a few abundant transcripts
+# take a larger share of the fixed TPM total there.
 S = pd.read_csv(os.path.join(core.OUT, "03_TABLOLAR", "v3", "Table4_family_TPM.csv"))
-S = S[(S.Gene != "FAMILY TOTAL") & S.TPM_control.notna()]
+S = S[(S.Gene != "FAMILY TOTAL") & S.TPM_control_adjusted.notna()]
 fams = ["ORAI (CRAC channel)", "SERCA (Ca2+ re-uptake into ER)", "STIM (ER Ca2+ sensor)",
         "SOCE regulators", "Mitochondrial Ca2+ uptake"]
 TITLES = {"ORAI (CRAC channel)": "ORAI (CRAC channel)",
@@ -116,17 +119,18 @@ TITLES = {"ORAI (CRAC channel)": "ORAI (CRAC channel)",
 fig, axes = plt.subplots(1, 5, figsize=(15, 3.6))
 RTQ = {"TRPC1", "STIM1", "ORAI1", "ATP2A3"}
 for ax, fam in zip(axes, fams):
-    sub = S[S.Family == fam].sort_values("TPM_control", ascending=False)
+    sub = S[S.Family == fam].sort_values("TPM_control_adjusted", ascending=False)
     x = np.arange(len(sub)); w = 0.38
-    ax.bar(x - w/2, sub.TPM_control, w, color=CT_C, label="Control")
-    ax.bar(x + w/2, sub.TPM_KD, w, color=KD_C, label="TDP-43 KD")
+    ax.bar(x - w/2, sub.TPM_control_adjusted, w, color=CT_C, label="Control")
+    ax.bar(x + w/2, sub.TPM_KD_adjusted, w, color=KD_C, label="TDP-43 KD")
+    ax.set_ylim(0, 1.2 * max(sub.TPM_control_adjusted.max(), sub.TPM_KD_adjusted.max()))
     labs = [f"$\\bf{{{g}}}$*" if g in RTQ else g for g in sub.Gene]
     ax.set_xticks(x); ax.set_xticklabels(labs, rotation=45, ha="right", fontsize=8)
     ax.set_title(TITLES[fam], loc="left", fontsize=9)
     if ax is axes[0]:
-        ax.set_ylabel("TPM (library- and length-normalised)")
-    net = sub.TPM_KD.sum() - sub.TPM_control.sum()
-    pct = 100 * net / sub.TPM_control.sum()
+        ax.set_ylabel("TPM, adjusted for library composition")
+    net = sub.TPM_KD_adjusted.sum() - sub.TPM_control_adjusted.sum()
+    pct = 100 * net / sub.TPM_control_adjusted.sum()
     ax.annotate(f"family net: {pct:+.1f}%", xy=(0.97, 0.97), xycoords="axes fraction",
                 ha="right", va="top", fontsize=8.5, weight="bold",
                 color=(KD_C if net < 0 else ACC))
@@ -134,15 +138,15 @@ fig.legend(handles=[Patch(facecolor=CT_C, label="Control"),
                     Patch(facecolor=KD_C, label="TDP-43 KD")],
            loc="lower center", ncol=2, frameon=False, fontsize=9,
            bbox_to_anchor=(0.5, -0.16))
-fig.suptitle("Transcript-family abundance of the SOCE machinery in SH-SY5Y. "
-             "RT-qPCR targets (*) are minor family members; the dominant members fall",
+fig.suptitle("Transcript-family abundance of SOCE-related genes in SH-SY5Y "
+             "(TPM adjusted for library composition; * RT-qPCR targets)",
              y=1.06, fontsize=10.5, weight="bold")
 fig.savefig(os.path.join(FIG, "Figure7_transcript_family_abundance.png"))
 fig.savefig(os.path.join(FIG, "Figure7_transcript_family_abundance.pdf"))
 plt.close(fig)
 print("Figure 7 written")
 
-# ================================================================ FIG 3: guc
+# ================================================================ FIG 1: detection power
 P = pd.read_csv(os.path.join(TAB, "guc_simulasyonu.tsv"), sep="\t")
 fig, ax = plt.subplots(figsize=(5.6, 3.8))
 dps = [0.05, 0.10, 0.15, 0.20, 0.30]
@@ -159,12 +163,12 @@ ax.set_ylim(0, 1.02)
 ax.set_title("Detection power in a 3 + 3 design\nthe TRPC1 event sat at ~10 reads per sample",
              loc="left")
 ax.legend(fontsize=7.5, frameon=False, loc="upper left")
-fig.savefig(os.path.join(FIG, "Figure2_detection_power.png"))
-fig.savefig(os.path.join(FIG, "Figure2_detection_power.pdf"))
+fig.savefig(os.path.join(FIG, "Figure1_detection_power.png"))
+fig.savefig(os.path.join(FIG, "Figure1_detection_power.pdf"))
 plt.close(fig)
-print("Figure 2 written")
+print("Figure 1 (detection power) written")
 
-# ================================================================ FIG 4: saglam adaylar
+# ================================================================ FIG 3: saglam adaylar
 B = pd.read_csv(os.path.join(TAB, "SOCE_izoform_bootstrap_GA.tsv"), sep="\t")
 B = B[B.veri_seti == "GSE296712_SHSY5Y"].copy()
 B["etiket"] = B.gen + " (" + B.olay + ")"
