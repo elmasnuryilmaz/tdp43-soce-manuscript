@@ -31,13 +31,14 @@ KD_C, CT_C, ACC, GREY = "#c0392b", "#2c6fa8", "#0d6259", "#7f8c8d"
 # ------------------------------------------------------------------ source data
 x = pd.read_excel(f"{P}/supplementary/S1_laboratory_source_data.xlsx", sheet_name="Summary_stats")
 x["key"] = x.measurement + " | " + x.group
-soce_c = float(x.loc[x.key == "SOCE delta F340/F380 | Control", "mean"].iloc[0])
+NT = "Non-targeting shRNA control"
+soce_c = float(x.loc[x.key == f"SOCE delta F340/F380 | {NT}", "mean"].iloc[0])
 soce_k = float(x.loc[x.key == "SOCE delta F340/F380 | shTDP-43", "mean"].iloc[0])
-soce_ce = float(x.loc[x.key == "SOCE delta F340/F380 | Control", "SEM"].iloc[0])
+soce_ce = float(x.loc[x.key == f"SOCE delta F340/F380 | {NT}", "SEM"].iloc[0])
 soce_ke = float(x.loc[x.key == "SOCE delta F340/F380 | shTDP-43", "SEM"].iloc[0])
 rel = pd.read_excel(f"{P}/supplementary/S1_laboratory_source_data.xlsx", sheet_name="Target_qPCR_rel")
 folds = {g: rel[(rel.gene == g) & (rel.group == "shTDP-43")].rel_expression.mean()
-         / rel[(rel.gene == g) & (rel.group == "Control")].rel_expression.mean()
+         / rel[(rel.gene == g) & (rel.group == NT)].rel_expression.mean()
          for g in ["TRPC1", "STIM1", "ORAI1", "ATP2A3"]}
 t4 = pd.read_csv(f"{P}/tables/Table4_transcript_family_abundance.csv")
 t4 = t4[t4.Gene != "FAMILY TOTAL"].set_index("Gene")
@@ -62,7 +63,7 @@ bx = ax.inset_axes([0.17, 0.05, 0.68, 0.42])
 bx.bar([0], [soce_c], 0.55, color=CT_C, alpha=.85)
 bx.bar([1], [soce_k], 0.55, color=KD_C, alpha=.85)
 bx.errorbar([0, 1], [soce_c, soce_k], yerr=[soce_ce, soce_ke], fmt="none", color="#222", capsize=4, lw=1.2)
-bx.set_xticks([0, 1]); bx.set_xticklabels(["control", "TDP-43 KD"], fontsize=8)
+bx.set_xticks([0, 1]); bx.set_xticklabels(["non-targeting", "TDP-43 KD"], fontsize=8)
 bx.set_ylabel("SOCE  Δ(F340/F380)", fontsize=8)
 bx.set_ylim(0, 2.1); bx.tick_params(labelsize=7.5)
 bx.annotate(f"−{100*(1-soce_k/soce_c):.0f}%\np = 0.0115", xy=(1, soce_k + .18), ha="center",

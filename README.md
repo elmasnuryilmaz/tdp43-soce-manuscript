@@ -11,7 +11,7 @@ calcium-regulatory RNA profiles in SH-SY5Y cells*.
 
 Every number in the manuscript is produced by the scripts in `code/` from the files in this
 repository, and the agreement between the text and the data is verified automatically
-(`logs/consistency_check.txt`, 250 checks).
+(`logs/consistency_check.txt`, 275 checks).
 
 The analyses grew out of a doctoral thesis whose repository is separate
 ([tdp43-thesis-reproducibility](https://github.com/elmasnuryilmaz/tdp43-thesis-reproducibility)).

@@ -215,9 +215,9 @@ close("CBARP-DT IsoformSwitchAnalyzeR gene-level q (0.008)", 0.008, _sw.loc["CBA
 out.append("\n=== S1: laboratory source data ===")
 x = pd.read_excel(f"{P}/supplementary/S1_laboratory_source_data.xlsx", sheet_name="Summary_stats")
 x = x.set_index(x.measurement + " | " + x.group)
-close("SOCE control mean", 1.542, x.loc["SOCE delta F340/F380 | Control", "mean"])
+close("SOCE control mean", 1.542, x.loc["SOCE delta F340/F380 | Non-targeting shRNA control", "mean"])
 close("SOCE knockdown mean", 0.245, x.loc["SOCE delta F340/F380 | shTDP-43", "mean"])
-close("ER release control mean", 0.268, x.loc["ER Ca2+ release delta F340/F380 | Control", "mean"])
+close("ER release control mean", 0.268, x.loc["ER Ca2+ release delta F340/F380 | Non-targeting shRNA control", "mean"])
 close("WST-1 48 h knockdown", 61.5, x.loc["WST-1 viability 48 h | shTDP-43", "mean"], tol=0.05)
 close("WST-1 24 h knockdown", 116.8, x.loc["WST-1 viability 24 h | shTDP-43", "mean"], tol=0.05)
 
@@ -344,7 +344,14 @@ for s in ["Sah P, et al.", "10,930", "four spinal cord regions", "p = 0.13)", "l
           "the dominant members fall", "in the second junction set",
           "in ten of the eleven comparisons", "Length-corrected family summaries",
           "(−32% and −43%", "(−3% and −1%)", "informative in the two neuronal models",
-          "the current transcript estimates", "the positive control was informative only in the motor-neuron-like line"]:
+          "the current transcript estimates", "the positive control was informative only in the motor-neuron-like line",
+          # revision-history wording removed on 22 September 2026
+          "no longer", "before the correction", "The corrected analysis", "the corrected analyses",
+          "corrected full-panel", "Corrected APA", "After correcting the APA", "Our first attempt",
+          "we withdraw that inference", "our own prior candidate", "the original call",
+          "remained the largest", "also retained positive", "is not retained", "Our own *TRPC1* candidate",
+          # the laboratory control group is named, and the apoptosis markers are not part of the study
+          "with the control set to 1.0", "normalised to the mean of the control group", "BCL2", "BAK1"]:
     check("absent", s, False)
 
 out.append("\n=== every figure and supplementary table is cited in the text ===")
@@ -359,6 +366,16 @@ close("figures first cited in numerical order", 1,
 for _i in range(1, 18):
     close(f"Supplementary Table S{_i} cited in the text", 1,
           int(re.search(rf"Table S{_i}(?![0-9])", _body) is not None), tol=0)
+
+out.append("\n=== S1 carries the four reported targets and names the control group ===")
+_s1 = pd.ExcelFile(f"{P}/supplementary/S1_laboratory_source_data.xlsx")
+_tg = pd.read_excel(_s1, "Target_qPCR_Ct")
+close("S1 target genes are the four reported targets", 1,
+      int(sorted(_tg.gene.unique()) == ["ATP2A3", "ORAI1", "STIM1", "TRPC1"]), tol=0)
+for _sh in ["Target_qPCR_Ct", "Target_qPCR_rel", "Fura2", "WST1"]:
+    close(f"S1 {_sh}: control group is the non-targeting shRNA control", 1,
+          int(set(pd.read_excel(_s1, _sh).group) == {"Non-targeting shRNA control", "shTDP-43"}), tol=0)
+check("Methods name the comparison group", "compared shTDP-43 cells with the non-targeting shRNA control", True)
 
 out.append("\n=== Tables 1-5 in the manuscript match tables/*.csv ===")
 import subprocess as _sp

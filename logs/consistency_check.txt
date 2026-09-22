@@ -243,6 +243,25 @@ PASS  absent: (−3% and −1%)
 PASS  absent: informative in the two neuronal models
 PASS  absent: the current transcript estimates
 PASS  absent: the positive control was informative only in the motor-neuron-like line
+PASS  absent: no longer
+PASS  absent: before the correction
+PASS  absent: The corrected analysis
+PASS  absent: the corrected analyses
+PASS  absent: corrected full-panel
+PASS  absent: Corrected APA
+PASS  absent: After correcting the APA
+PASS  absent: Our first attempt
+PASS  absent: we withdraw that inference
+PASS  absent: our own prior candidate
+PASS  absent: the original call
+PASS  absent: remained the largest
+PASS  absent: also retained positive
+PASS  absent: is not retained
+PASS  absent: Our own *TRPC1* candidate
+PASS  absent: with the control set to 1.0
+PASS  absent: normalised to the mean of the control group
+PASS  absent: BCL2
+PASS  absent: BAK1
 
 === every figure and supplementary table is cited in the text ===
 PASS  Figure 1 cited in the text: manuscript 1 vs data 1
@@ -273,6 +292,14 @@ PASS  Supplementary Table S15 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S16 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S17 cited in the text: manuscript 1 vs data 1
 
+=== S1 carries the four reported targets and names the control group ===
+PASS  S1 target genes are the four reported targets: manuscript 1 vs data 1
+PASS  S1 Target_qPCR_Ct: control group is the non-targeting shRNA control: manuscript 1 vs data 1
+PASS  S1 Target_qPCR_rel: control group is the non-targeting shRNA control: manuscript 1 vs data 1
+PASS  S1 Fura2: control group is the non-targeting shRNA control: manuscript 1 vs data 1
+PASS  S1 WST1: control group is the non-targeting shRNA control: manuscript 1 vs data 1
+PASS  Methods name the comparison group: compared shTDP-43 cells with the non-targeting shRNA control
+
 === Tables 1-5 in the manuscript match tables/*.csv ===
 PASS  Markdown tables regenerated from the CSV files are identical: manuscript 0 vs data 0
 PASS  table 1 block present: <!-- table:1 -->
@@ -281,4 +308,4 @@ PASS  table 3 block present: <!-- table:3 -->
 PASS  table 4 block present: <!-- table:4 -->
 PASS  table 5 block present: <!-- table:5 -->
 
-==== 250 passed, 0 failed ====
+==== 275 passed, 0 failed ====

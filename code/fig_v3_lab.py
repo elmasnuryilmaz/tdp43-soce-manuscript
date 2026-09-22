@@ -119,7 +119,7 @@ ax.set_ylabel("relative mRNA (2$^{-\\Delta\\Delta Ct}$)")
 ax.set_ylim(0, 5.0)
 ax.legend(handles=[plt.Rectangle((0, 0), 1, 1, color=CT_C, alpha=.85),
                    plt.Rectangle((0, 0), 1, 1, color=KD_C, alpha=.85)],
-          labels=["Control", "shTDP-43"], frameon=False, fontsize=8, loc="upper left")
+          labels=["Non-targeting shRNA", "shTDP-43"], frameon=False, fontsize=8, loc="upper left")
 ax.set_title("B · SOCE-associated target mRNAs", loc="left")
 
 # ------------------------------------------------------------------ C: WST-1
@@ -136,7 +136,7 @@ for i, (lab, tab) in enumerate([("24 h", ws["WST_1_24h"]), ("48 h", ws["WST_1_48
     ax.text(i, max(c.mean(), k.mean()) + 7, stars(p), ha="center", fontsize=10)
 ax.axhline(100, color="#999", lw=.8, ls="--")
 ax.set_xticks([0, 1]); ax.set_xticklabels(["24 h", "48 h"], fontsize=9)
-ax.set_ylabel("viability (% of control)")
+ax.set_ylabel("viability (% of non-targeting control)")
 ax.set_ylim(0, 145)
 ax.set_title("C · WST-1 viability (n = 4 wells)", loc="left")
 

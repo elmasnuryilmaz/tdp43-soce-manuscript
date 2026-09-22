@@ -5,7 +5,7 @@
 Sheets
   README            what each sheet contains and how the values were produced
   TARDBP_qPCR       raw Ct, dCt, ddCt and 2^-ddCt for the three groups (n = 4)
-  Target_qPCR_Ct    raw Ct for the SOCE/apoptosis targets (n = 4 per group)
+  Target_qPCR_Ct    raw Ct for the four SOCE-associated targets (n = 4 per group)
   Target_qPCR_rel   relative expression per replicate (the values plotted in Figure 6B)
   Fura2             per-replicate ER release and SOCE amplitudes (n = 3)
   WST1              per-well viability at 24 h and 48 h (n = 4)
@@ -18,6 +18,11 @@ import pandas as pd
 from scipy import stats
 
 TEZ = "/Users/elmas/Desktop/TEZ"
+# the comparison group of the target-gene RT-qPCR, Fura-2 and WST-1 experiments
+NT = "Non-targeting shRNA control"
+# the four targets reported in the manuscript; the lab workbook also holds apoptosis markers,
+# which are not part of this study and are not published
+TARGETS = ["TRPC1", "STIM1", "ORAI1", "ATP2A3"]
 PZ = os.path.join(TEZ, "10_GRAPHPAD_PRISM_DOSYALARI", "01_tez_sekil_kaynaklari")
 SUP = "/Users/elmas/Desktop/MAKALE/09_YAYIN_PAKETI/supplementary"
 os.makedirs(SUP, exist_ok=True)
@@ -56,14 +61,16 @@ tg = pd.read_excel(os.path.join(TEZ, "SHSY5Y_TDP43_qPCR_Ct_Data.xlsx"),
 # Keep the replicate rows only. The lab workbook ends with a summary block in Turkish (group
 # means and an interpretation column) and carries per-replicate direction notes (UP/DOWN);
 # neither is source data, so neither is published.
-tg = tg[tg.group.isin(["Kontrol", "shTDP-43"])].drop(columns="note").copy()
-tg["group"] = tg.group.map({"Kontrol": "Control", "shTDP-43": "shTDP-43"})
+tg = tg[tg.group.isin(["Kontrol", "shTDP-43"]) & tg.gene.isin(TARGETS)].drop(columns="note").copy()
+tg["group"] = tg.group.map({"Kontrol": NT, "shTDP-43": "shTDP-43"})
 
 rel = []
 for g, tab in qp.items():
+    if g not in TARGETS:
+        continue
     for grp, vals in tab.items():
         for i, v in enumerate(vals, 1):
-            rel.append(dict(gene=g, group=("Control" if grp == "Control" else "shTDP-43"),
+            rel.append(dict(gene=g, group=(NT if grp == "Control" else "shTDP-43"),
                             replicate=i, rel_expression=v))
 rel = pd.DataFrame(rel)
 
@@ -72,7 +79,7 @@ for tab, lab in [("ER_Ca2_release", "ER Ca2+ release"), ("SOCE", "SOCE")]:
     for grp, vals in fu[tab].items():
         for i, v in enumerate(vals, 1):
             fura.append(dict(measurement=lab,
-                             group=("Control" if grp == "Control" else "shTDP-43"),
+                             group=(NT if grp == "Control" else "shTDP-43"),
                              replicate=i, delta_F340_F380=v))
 fura = pd.DataFrame(fura)
 
@@ -80,7 +87,7 @@ wst = []
 for tab, lab in [("WST_1_24h", "24 h"), ("WST_1_48h", "48 h")]:
     for grp, vals in ws[tab].items():
         for i, v in enumerate(vals, 1):
-            wst.append(dict(time=lab, group=("Control" if grp == "Control" else "shTDP-43"),
+            wst.append(dict(time=lab, group=(NT if grp == "Control" else "shTDP-43"),
                             well=i, viability_pct_of_control=v))
 wst = pd.DataFrame(wst)
 
@@ -100,7 +107,7 @@ rows.append(dict(panel="6A", measurement="TARDBP silencing", group="shTDP-43 vs 
 for g in ["TRPC1", "STIM1", "ORAI1", "ATP2A3"]:
     c = np.array(qp[g]["Control"]); k = np.array(qp[g]["shTDP-43"])
     p = stats.ttest_ind(c, k).pvalue
-    rows.append(dict(panel="6B", measurement=f"{g} relative mRNA", group="Control",
+    rows.append(dict(panel="6B", measurement=f"{g} relative mRNA", group=NT,
                      n=len(c), mean=round(c.mean(), 3), SEM=round(sem(c), 3), test="", p_value=""))
     rows.append(dict(panel="6B", measurement=f"{g} relative mRNA", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 3), SEM=round(sem(k), 3),
@@ -109,7 +116,7 @@ for g in ["TRPC1", "STIM1", "ORAI1", "ATP2A3"]:
 for tab, lab in [("WST_1_24h", "24 h"), ("WST_1_48h", "48 h")]:
     c = np.array(ws[tab]["Control"]); k = np.array(ws[tab]["shTDP-43"])
     p = stats.ttest_ind(c, k).pvalue
-    rows.append(dict(panel="6C", measurement=f"WST-1 viability {lab}", group="Control",
+    rows.append(dict(panel="6C", measurement=f"WST-1 viability {lab}", group=NT,
                      n=len(c), mean=round(c.mean(), 1), SEM=round(sem(c), 1), test="", p_value=""))
     rows.append(dict(panel="6C", measurement=f"WST-1 viability {lab}", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 1), SEM=round(sem(k), 1),
@@ -117,7 +124,7 @@ for tab, lab in [("WST_1_24h", "24 h"), ("WST_1_48h", "48 h")]:
 for tab, lab in [("ER_Ca2_release", "ER Ca2+ release"), ("SOCE", "SOCE")]:
     c = np.array(fu[tab]["Control"]); k = np.array(fu[tab]["TDP-43 KD"])
     p = stats.ttest_ind(c, k).pvalue
-    rows.append(dict(panel="6E", measurement=f"{lab} delta F340/F380", group="Control",
+    rows.append(dict(panel="6E", measurement=f"{lab} delta F340/F380", group=NT,
                      n=len(c), mean=round(c.mean(), 3), SEM=round(sem(c), 3), test="", p_value=""))
     rows.append(dict(panel="6E", measurement=f"{lab} delta F340/F380", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 3), SEM=round(sem(k), 3),
@@ -129,15 +136,17 @@ readme = pd.DataFrame({"sheet": ["TARDBP_qPCR", "Target_qPCR_Ct", "Target_qPCR_r
     "content": [
         "RT-qPCR of TARDBP in three groups, four biological replicates each; raw Ct for "
         "TARDBP and GAPDH, dCt, ddCt and 2^-ddCt. Experiment dates 14.04-21.05.2026.",
-        "Raw Ct values for the SOCE and apoptosis targets, four biological replicates per "
-        "group, same RNA set; experiment window 03.06-10.07.2026.",
+        "Raw Ct values for the four SOCE-associated targets and GAPDH in shTDP-43 cells and "
+        "the non-targeting (scrambled) shRNA control, four biological replicates per group, "
+        "same RNA set; experiment window 03.06-10.07.2026.",
         "Relative expression per replicate (2^-ddCt) for the four targets plotted in Figure 6B.",
         "Fura-2/AM measurements. ER Ca2+ release is the rise in F340/F380 after 10 uM "
         "cyclopiazonic acid in Ca2+-free HBS with EGTA; SOCE is the rise after re-addition "
         "of 1.5 mM CaCl2. Both as delta(F340/F380) versus the preceding baseline. The three "
-        "samples of each group come from three independent cultures.",
-        "WST-1 viability, four wells per group, normalised to the mean of the control group "
-        "at the same time point.",
+        "samples of each group come from three independent cultures. The control group is the "
+        "non-targeting (scrambled) shRNA control.",
+        "WST-1 viability, four wells per group, normalised to the mean of the non-targeting "
+        "(scrambled) shRNA control at the same time point.",
         "Group means, SEM and the statistical test behind every panel of Figure 6.",
         "Primer sequences, product sizes and annealing temperatures for the RT-qPCR targets "
         "and the GAPDH reference.",

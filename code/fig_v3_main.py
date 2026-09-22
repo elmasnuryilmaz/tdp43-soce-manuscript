@@ -185,7 +185,7 @@ for i, (_, r) in enumerate(B.iterrows()):
 ax.plot([-0.093, 0.522], [len(B), len(B)], color=KD_C, lw=3, alpha=.55,
         solid_capstyle="round")
 ax.plot(0.108, len(B), "o", ms=8, color=KD_C, markeredgecolor="white", markeredgewidth=1.2)
-labels = list(B.etiket) + ["TRPC1 (SE) — the original candidate"]
+labels = list(B.etiket) + ["TRPC1 (SE), the event of Figure 2"]
 ax.axvline(0, color="#333", lw=1, ls="--")
 ax.set_yticks(list(y) + [len(B)]); ax.set_yticklabels(labels, fontsize=8.5)
 ax.get_yticklabels()[-1].set_color(KD_C)
