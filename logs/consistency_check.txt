@@ -273,4 +273,12 @@ PASS  Supplementary Table S15 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S16 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S17 cited in the text: manuscript 1 vs data 1
 
-==== 244 passed, 0 failed ====
+=== Tables 1-5 in the manuscript match tables/*.csv ===
+PASS  Markdown tables regenerated from the CSV files are identical: manuscript 0 vs data 0
+PASS  table 1 block present: <!-- table:1 -->
+PASS  table 2 block present: <!-- table:2 -->
+PASS  table 3 block present: <!-- table:3 -->
+PASS  table 4 block present: <!-- table:4 -->
+PASS  table 5 block present: <!-- table:5 -->
+
+==== 250 passed, 0 failed ====

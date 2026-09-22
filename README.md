@@ -11,7 +11,7 @@ calcium-regulatory RNA profiles in SH-SY5Y cells*.
 
 Every number in the manuscript is produced by the scripts in `code/` from the files in this
 repository, and the agreement between the text and the data is verified automatically
-(`logs/consistency_check.txt`, 244 checks).
+(`logs/consistency_check.txt`, 250 checks).
 
 The analyses grew out of a doctoral thesis whose repository is separate
 ([tdp43-thesis-reproducibility](https://github.com/elmasnuryilmaz/tdp43-thesis-reproducibility)).
@@ -21,7 +21,7 @@ and why. Where the two repositories differ, this one is current.
 ```
 ├── manuscript/           manuscript, Markdown and Word
 ├── figures/              Figures 1–9, PNG (300 dpi) and PDF
-├── tables/               Tables 1–5, CSV
+├── tables/               Tables 1–5, CSV (typeset in the manuscript by code/build_manuscript_docx.py)
 ├── supplementary/        Supplementary Tables S1–S17
 ├── source_data/          intermediate data behind Tables 4–5 and Figures 6–8
 ├── code/                 analysis and figure scripts
@@ -87,6 +87,7 @@ is not part of this set: it was built from the superseded eight-contrast NMD sta
 /usr/bin/python3 code/build_S17_datasets.py # S17
 /usr/local/bin/Rscript  code/deseq_full.R   # DESeq2 on the complete transcript map
 /usr/bin/python3 code/ms_donor_level.py     # donor-level MS analysis
+/usr/bin/python3 code/build_manuscript_docx.py  # manuscript .docx with Tables 1-5 (pandoc)
 /usr/bin/python3 code/qa_check_v4.py        # consistency check
 ```
 

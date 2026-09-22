@@ -6,7 +6,7 @@ Writes 09_YAYIN_PAKETI/tables/Table1..5.csv and
        09_YAYIN_PAKETI/supplementary/S1..S16.*
 All column names are in English; all values are read from the analysis outputs.
 """
-import os, shutil
+import io, os, shutil
 import numpy as np
 import pandas as pd
 from scipy import stats
@@ -157,13 +157,21 @@ for key, lab in REG.items():
                              log2FC=round(d.loc[g, "log2FC"], 3), cliffs_delta=round(d.loc[g, "delta"], 3),
                              q_value=float(f"{d.loc[g,'q']:.3g}")))
 ON = f"{TEZ}/output/NYGC_ozgulluk_22.08.26"
+# group sizes of the ONd comparisons, as logged by the analysis that produced them
+import re as _re
+_n_ond = {}
+for _line in io.open(f"{ON}/run.log", encoding="utf-8"):
+    _m = _re.match(r"\s+(\S.*?)\s+ONd\s+hasta=\s*(\d+)\s+kontrol=\s*(\d+)", _line)
+    if _m:
+        _n_ond[_m.group(1).replace(" ", "_")] = (int(_m.group(2)), int(_m.group(3)))
 for key, lab in [("Cerebellum", "Cerebellum"), ("Cortex_Frontal", "Frontal cortex"),
                  ("Cortex_Temporal", "Temporal cortex")]:
     d = pd.read_csv(f"{ON}/{key}_ONd.csv").set_index("gen")
     for g in G:
         if g in d.index:
             rows.append(dict(cohort="Other neurological disorders (NYGC, same controls)",
-                             group="ONd", region=lab, gene=g, n_case=np.nan, n_control=np.nan,
+                             group="ONd", region=lab, gene=g,
+                             n_case=_n_ond[key][0], n_control=_n_ond[key][1],
                              log2FC=round(d.loc[g, "log2FC"], 3), cliffs_delta=round(d.loc[g, "delta"], 3),
                              q_value=float(f"{d.loc[g,'q']:.3g}")))
 rows += [dict(cohort="Alzheimer's disease (GSE125583)", group="AD", region="Fusiform gyrus",
@@ -184,6 +192,8 @@ for _, r in ms[ms.gen.isin(G)].iterrows():
                      n_case=r.n_hasta, n_control=r.n_kontrol, log2FC=r.medyan_fark,
                      cliffs_delta=r.cliffs_delta, q_value=float(f"{r.q:.3g}")))
 t5 = pd.DataFrame(rows)
+t5["n_case"] = t5.n_case.astype("Int64")
+t5["n_control"] = t5.n_control.astype("Int64")
 w(t5, f"{TAB}/Table5_cross_disease_comparison.csv")
 
 # ------------------------------------------------------------- supplementary

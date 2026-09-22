@@ -3,6 +3,7 @@
 **Elmasnur Yılmaz¹, Yasin Kaymaz², Yasemin Eraç¹\***
 
 ¹ Department of Pharmacology, Faculty of Pharmacy, Ege University, İzmir, Türkiye
+
 ² Department of Bioengineering / Institute of Natural and Applied Sciences, Ege University, İzmir, Türkiye
 
 \* Correspondence: yasemin.erac@ege.edu.tr
@@ -427,30 +428,175 @@ Yoast RE, Emrich SM, Zhang X, et al. The native ORAI channel trio underlies the 
 
 **Figure 9. Junction-level cryptic *STMN2* in ALS post-mortem tissue.** (A) Proportion of samples carrying the cryptic junction by region, ALS versus non-neurological control. (B) Spearman correlations of the same target genes against two proxies for TDP-43 loss in the same samples: gene-level *STMN2* and cryptic *STMN2* PSI.
 
-## Tables
-
-**Table 1.** Effect of coverage pre-filtering on event counts and significance, by dataset.
-**Table 2.** Robust splicing events in the primary SH-SY5Y model among the twelve SOCE-machinery genes examined event by event (Methods 2.3), with bootstrap confidence intervals; all four are skipped-exon events. *CBARP* was not among the twelve; its events are in Supplementary Table S3.
-**Table 3.** Cryptic events recovered by annotation-free junction analysis in eleven comparisons, with RNA-binding-protein specificity controls. Positive-control recovery is not assessed in the three mouse comparisons, because the sixteen literature controls are human cryptic events that are not conserved in mouse.
-**Table 4.** Transcript-family abundance of SOCE-related genes in SH-SY5Y: unadjusted and composition-adjusted TPM (Methods 2.10), each member's share of its family in control cells, and DESeq2 fold changes.
-**Table 5.** Cross-disease comparison of *TRPC1*, *SARAF* and *CBARP*.
-
 ## Supplementary
 
 **S1.** Laboratory source data: raw Ct values and per-replicate relative expression, Fura-2 amplitudes, WST-1 viability values, primer sequences and thermal profile, and the summary statistics behind every panel of Figure 6.
+
 **S2.** Ca²⁺ gene panels (four cumulative sets).
+
 **S3.** rMATS events meeting FDR < 0.05 and |ΔPSI| ≥ 0.10, JC and JCEC, six datasets, with the raw junction counts needed to reproduce the coverage pre-filter.
+
 **S4.** Matched permutation enrichment results, all datasets and panels.
+
 **S5.** High-confidence unannotated splicing changes in every comparison, including the independently produced mapping-quality-filtered SH-SY5Y junction set.
+
 **S6.** Cryptic positive controls, the sixteen literature genes, and the dataset × gene recovery matrix for the human comparisons.
+
 **S7.** SOCE genes in the annotation-free analysis.
+
 **S8.** Cryptic *STMN2* PSI in ALS versus control by region (NYGC).
+
 **S9.** Correlations of both TDP-43 proxies with target genes within ALS samples; the `in_correction_family` column marks the 220 informative tests over which the Benjamini–Hochberg correction was applied.
+
 **S10.** Nonsense-mediated decay interaction for the SOCE panel and the panel-level tests, four-condition analysis.
+
 **S11.** Depth-qualified intronic polyadenylation and 3′UTR usage estimates from the corrected analysis in all four comparisons, with the genomic windows of every unit; these are coverage gradients, not direct poly(A)-site calls.
+
 **S12.** Machine-readable version of Table 3: cryptic event counts by comparison, with the FUS and TAF15 knockdown controls and the null-test ratios.
+
 **S13.** *STIM2* SOAR exon measured at junction level, with both flanking junctions, in every comparison in which it was measurable.
+
 **S14.** Control-versus-control null test of the cryptic calling procedure, under the permissive definition and three stricter thresholds.
+
 **S15.** The same *STIM2.1*/SOAR exon measured as an rMATS event, with per-replicate PSI and bootstrap intervals, across six datasets — the estimate compared with S13 in Section 3.3.
+
 **S16.** Multiple sclerosis analysis, both cohorts, with myelin adjustment and the donor-level re-analysis.
+
 **S17.** Accession list for every dataset analysed, with design, library type and sample-to-group assignment.
+
+## Tables
+
+**Table 1.** Effect of coverage pre-filtering on event counts and significance, by dataset.
+
+<!-- table:1 -->
+
+| Dataset | Events tested | Events after filter | Removed (%) | Significant before filter | Significant after filter | Significant calls lost (%) |
+|:--------------------------|---------:|---------:|--------:|---------:|---------:|----------:|
+| SH-SY5Y (GSE296712) | 118,664 | 90,143 | 24.0 | 7,854 | 5,282 | 32.7 |
+| iPSC colonies (GSE230647) | 392,236 | 302,415 | 22.9 | 15,512 | 10,055 | 35.2 |
+| iPSC-derived motor neurons (GSE77702) | 49,392 | 28,463 | 42.4 | 1,465 | 443 | 69.8 |
+| Mouse striatum (GSE27394) | 23,000 | 4,969 | 78.4 | 644 | 157 | 75.6 |
+| C2C12 (GSE171714) | 225,016 | 184,869 | 17.8 | 5,468 | 3,140 | 42.6 |
+| NSC34 (GSE171714) | 338,017 | 273,077 | 19.2 | 8,142 | 4,599 | 43.5 |
+
+*Note.* Significant: FDR < 0.05 and |ΔPSI| ≥ 0.10. After the filter, Benjamini–Hochberg q values were recomputed within the retained events (Methods 2.3).
+
+<!-- /table:1 -->
+
+**Table 2.** Robust splicing events in the primary SH-SY5Y model among the twelve SOCE-machinery genes examined event by event (Methods 2.3), with bootstrap confidence intervals; all four are skipped-exon events. *CBARP* was not among the twelve; its events are in Supplementary Table S3.
+
+<!-- table:2 -->
+
+| Gene | Exon, GRCh38 (strand) | Length (bp) | Reading frame | ΔPSI | FDR | Bootstrap 95% CI | PSI, knockdown replicates | PSI, control replicates | Mean reads per sample | Minimum reads in a sample |
+|:--------------|:-------------------------------------------|:------------|-----------------:|-----------:|-----------------:|-----------------:|:-------------------|-------------------:|------------:|-------------:|
+| *STIMATE* | chr3:52,895,878–52,895,955 (−) | 78 | Preserved | +0.244 | 9.0 × 10⁻⁷ | +0.095 to +0.368 | 0.359; 0.427; 0.157 | 0.138; 0.024; 0.048 | 21.7 | 14 |
+| *ORAI3* | chr16:30,953,185–30,953,460 (+) | 276 | Preserved | −0.269 | 0.010 | −0.404 to −0.107 | 0.465; 0.671; 0.346 | 0.778; 0.778; 0.733 | 39.7 | 8 |
+| *STIM2* | chr4:27,021,494–27,021,612 (+) | 119 | Disrupted | −0.120 | < 1 × 10⁻¹⁶ | −0.165 to −0.064 | 0.125; 0.021; 0.053 | 0.192; 0.184; 0.184 | 24.7 | 9 |
+| *STIM1* | chr11:4,088,702–4,088,738 (+) | 37 | Disrupted | +0.145 | 4.0 × 10⁻⁴ | −0.002 to +0.293 | 0.088; 0.345; 0.226 | 0.172; 0.000; 0.053 | 25.5 | 9 |
+
+*Note.* SH-SY5Y, 0 versus 75 ng/mL doxycycline, three libraries per group. ΔPSI is knockdown minus control from rMATS junction counts; the confidence interval is a replicate-level bootstrap (10,000 resamples). Coordinates are 1-based and inclusive.
+
+<!-- /table:2 -->
+
+**Table 3.** Cryptic events recovered by annotation-free junction analysis in eleven comparisons, with RNA-binding-protein specificity controls. Positive-control recovery is not assessed in the three mouse comparisons, because the sixteen literature controls are human cryptic events that are not conserved in mouse.
+
+<!-- table:3 -->
+
+| Comparison | Permissive calls (genes) | Positive controls, permissive | High-confidence calls (genes) | Positive controls, high-confidence | Positive-control genes, high-confidence | Tier 1 genes | SOCE-machinery genes | Split-control null: calls (ratio) |
+|:------------------|----------:|---------:|----------:|---------:|:--------------------------------|:----------|:---------|:-----------|
+| SH-SY5Y 75 ng/mL | 400 (288) | 13 | 165 (113) | 13 | *ACTL6B*, *AGRN*, *ARHGAP32*, *ATG4B*, *ELAVL3*, *GPSM2*, *HDGFL2*, *KALRN*, *PFKP*, *RSF1*, *SETD5*, *STMN2*, *UNC13A* | — | — | — |
+| SH-SY5Y 25 ng/mL | 351 (264) | 13 | 122 (86) | 12 | *ACTL6B*, *AGRN*, *ARHGAP32*, *ATG4B*, *ELAVL3*, *GPSM2*, *HDGFL2*, *KALRN*, *PFKP*, *SETD5*, *STMN2*, *UNC13A* | — | — | — |
+| iPSC colonies | 1,561 (1,013) | 15 | 477 (326) | 12 | *ACTL6B*, *ARHGAP32*, *ATG4B*, *CAMK2B*, *ELAVL3*, *GPSM2*, *HDGFL2*, *KALRN*, *PFKP*, *SETD5*, *STMN2*, *UNC13A* | *CBARP*, *TRPM3* | *CBARP* | 307 (0.64) |
+| iPSC-MN, TDP-43 KD | 141 (108) | 2 | 18 (11) | 0 | — | — | — | — |
+| iPSC-MN, FUS KD | 124 (80) | 0 | 26 (15) | 0 | — | — | — | — |
+| iPSC-MN, TAF15 KD | 126 (88) | 0 | 23 (13) | 0 | — | — | — | — |
+| K562 total RNA | 330 (229) | 0 | 23 (17) | 0 | — | — | — | 50 (2.17) |
+| K562 poly(A)+ mRNA | 1,683 (1,030) | 6 | 145 (94) | 4 | *AGRN*, *ATG4B*, *HDGFL2*, *PFKP* | — | — | — |
+| C2C12 | 566 (379) | n/a | 158 (110) | n/a | n/a | — | — | — |
+| NSC34 | 643 (421) | n/a | 264 (166) | n/a | n/a | — | — | — |
+| Mouse striatum | 43 (32) | n/a | 12 (9) | n/a | n/a | — | — | 10 (0.83) |
+
+*Note.* Calls are unannotated splicing changes in the regtools junction set, with the number of genes carrying them in parentheses (Methods 2.5). Positive controls are counted among the sixteen literature cryptic genes (Supplementary Table S6); n/a, not assessed in mouse. The null column gives the high-confidence calls of the control-versus-control split and their ratio to the real calls; —, fewer than four control replicates.
+
+<!-- /table:3 -->
+
+**Table 4.** Transcript-family abundance of SOCE-related genes in SH-SY5Y: unadjusted and composition-adjusted TPM (Methods 2.10), each member's share of its family in control cells, and DESeq2 fold changes.
+
+<!-- table:4 -->
+
+| Family | Gene | TPM, control | TPM, knockdown | Adjusted TPM, control | Adjusted TPM, knockdown | Share of family, control (%) | Adjusted change (%) | log2FC | p_adj |
+|:--------------------------------------|:----------------|-----------------:|------------------:|-----------------:|------------------:|--------------------:|---------------:|-----------:|----------------:|
+| STIM (ER Ca²⁺ sensor) | ***STIM1*** | 35.46 | 50.54 | 30.95 | 57.74 | 64.0 | +86.5 | +0.929 | 4.3 × 10⁻⁴⁷ |
+|  | *STIM2* | 20.01 | 12.02 | 17.45 | 13.73 | 36.0 | −21.3 | −0.527 | 1.8 × 10⁻⁷ |
+|  | Family total | 55.47 | 62.55 | 48.40 | 71.47 | 100.0 | +47.7 | — | — |
+| ORAI (CRAC channel) | *ORAI1* | 10.60 | 11.70 | 9.25 | 13.37 | 15.2 | +44.5 | +0.433 | 2.4 × 10⁻⁴ |
+|  | ***ORAI2*** | 53.78 | 35.86 | 46.92 | 40.98 | 77.2 | −12.7 | −0.173 | 2.2 × 10⁻³ |
+|  | *ORAI3* | 5.24 | 20.06 | 4.57 | 22.92 | 7.5 | +401.4 | +2.056 | 2.3 × 10⁻⁶⁴ |
+|  | Family total | 69.62 | 67.62 | 60.75 | 77.27 | 100.0 | +27.2 | — | — |
+| SERCA (Ca²⁺ re-uptake into ER) | *ATP2A1* | 0.67 | 0.96 | 0.58 | 1.10 | 0.4 | +87.8 | +0.959 | 0.024 |
+|  | ***ATP2A2*** | 162.38 | 103.10 | 141.71 | 117.80 | 98.1 | −16.9 | −0.247 | 8.7 × 10⁻⁹ |
+|  | *ATP2A3* | 2.40 | 7.64 | 2.09 | 8.73 | 1.5 | +317.0 | +1.306 | 1.4 × 10⁻²⁹ |
+|  | Family total | 165.45 | 111.70 | 144.39 | 127.63 | 100.0 | −11.6 | — | — |
+| TRPC | ***TRPC1*** | 4.34 | 6.06 | 3.79 | 6.92 | 98.2 | +82.9 | +0.958 | 1.3 × 10⁻¹² |
+|  | *TRPC3* | 0.06 | 0.02 | 0.05 | 0.02 | 1.3 | — | −0.938 | 0.47 |
+|  | *TRPC4* | 0.00 | 0.00 | 0.00 | 0.00 | 0.0 | — | — | — |
+|  | *TRPC5* | 0.02 | 0.00 | 0.02 | 0.00 | 0.4 | — | −1.633 | 0.45 |
+|  | *TRPC6* | 0.00 | 0.00 | 0.00 | 0.00 | 0.1 | — | — | — |
+|  | Family total | 4.42 | 6.08 | 3.86 | 6.95 | 100.0 | +80.3 | — | — |
+| SOCE regulators | ***SARAF*** | 179.27 | 191.68 | 156.45 | 218.99 | 82.4 | +40.0 | +0.548 | 5.9 × 10⁻³⁷ |
+|  | *STIMATE* | 14.31 | 12.01 | 12.49 | 13.72 | 6.6 | +9.9 | −0.050 | 0.72 |
+|  | *CRACR2A* | 8.31 | 4.35 | 7.25 | 4.97 | 3.8 | −31.4 | −0.560 | 4.3 × 10⁻⁴ |
+|  | *CRACR2B* | 1.18 | 1.55 | 1.03 | 1.77 | 0.5 | +72.0 | +0.925 | 0.017 |
+|  | *CBARP* | 14.57 | 6.56 | 12.73 | 7.49 | 6.7 | −41.1 | −1.254 | 3.1 × 10⁻²⁵ |
+|  | Family total | 217.64 | 216.15 | 189.95 | 246.96 | 100.0 | +30.0 | — | — |
+| Mitochondrial Ca²⁺ uptake | *MCU* | 26.79 | 8.21 | 23.39 | 9.38 | 13.5 | −59.9 | −1.041 | 2.9 × 10⁻²³ |
+|  | *MICU1* | 70.93 | 50.30 | 61.91 | 57.47 | 35.7 | −7.2 | −0.069 | 0.41 |
+|  | *MICU2* | 29.50 | 12.21 | 25.72 | 13.95 | 14.8 | −45.8 | −0.566 | 6.9 × 10⁻⁷ |
+|  | *MICU3* | 3.20 | 2.97 | 2.79 | 3.40 | 1.6 | +21.6 | +0.565 | 0.028 |
+|  | *MCUR1* | 49.95 | 35.18 | 43.58 | 40.17 | 25.1 | −7.8 | +0.044 | 0.62 |
+|  | *MCUB* | 18.28 | 4.69 | 15.96 | 5.36 | 9.2 | −66.4 | −1.655 | 1.5 × 10⁻³⁰ |
+|  | Family total | 198.64 | 113.57 | 173.34 | 129.73 | 100.0 | −25.2 | — | — |
+| PMCA (Ca²⁺ extrusion) | ***ATP2B1*** | 20.26 | 18.77 | 17.70 | 21.45 | 59.0 | +21.2 | +0.290 | 2.8 × 10⁻⁵ |
+|  | *ATP2B2* | 2.79 | 6.54 | 2.43 | 7.48 | 8.1 | +207.3 | +1.346 | 8.6 × 10⁻³⁹ |
+|  | *ATP2B3* | 0.31 | 0.97 | 0.27 | 1.11 | 0.9 | +306.6 | +2.584 | 2.2 × 10⁻²⁴ |
+|  | *ATP2B4* | 10.99 | 9.21 | 9.58 | 10.52 | 32.0 | +9.8 | +0.308 | 5.0 × 10⁻⁶ |
+|  | Family total | 34.34 | 35.49 | 29.99 | 40.56 | 100.0 | +35.2 | — | — |
+
+*Note.* TPM, mean of three libraries per group; adjusted TPM, after per-library median-of-ratios scaling for library composition (Methods 2.10). Share, percentage of the family total in control cells; bold, dominant member (> 50%). log2FC and p_adj from DESeq2 on the gene-level Salmon counts; —, not computed.
+
+<!-- /table:4 -->
+
+**Table 5.** Cross-disease comparison of *TRPC1*, *SARAF* and *CBARP*.
+
+<!-- table:5 -->
+
+| Cohort | Region | n, case/control | *TRPC1* δ (q) | *SARAF* δ (q) | *CBARP* δ (q) |
+|:----------------------|:------------------------|:----------|----------------:|----------------:|----------------:|
+| ALS (NYGC, GSE153960) | Cerebellum | 158/38 | **+0.538 (1.5 × 10⁻⁶)** | **+0.599 (2.3 × 10⁻⁷)** | **−0.544 (1.2 × 10⁻⁶)** |
+|  | Frontal cortex | 154/56 | **+0.486 (4.3 × 10⁻⁷)** | **+0.525 (6.1 × 10⁻⁸)** | **−0.511 (1.2 × 10⁻⁷)** |
+|  | Motor cortex (lateral) | 82/18 | **+0.511 (8.8 × 10⁻³)** | **+0.415 (0.025)** | **−0.509 (8.9 × 10⁻³)** |
+|  | Motor cortex (medial) | 81/19 | **+0.465 (0.013)** | **+0.402 (0.027)** | **−0.523 (8.0 × 10⁻³)** |
+|  | Occipital cortex | 45/11 | +0.176 (0.67) | +0.277 (0.51) | −0.160 (0.70) |
+|  | Temporal cortex | 25/24 | **+0.447 (0.038)** | **+0.503 (0.025)** | **−0.633 (0.019)** |
+|  | Hippocampus | 29/11 | **+0.699 (2.1 × 10⁻³)** | **+0.956 (1.9 × 10⁻⁴)** | **−0.636 (5.0 × 10⁻³)** |
+|  | Spinal cord (cervical) | 155/41 | +0.058 (0.63) | **+0.479 (1.1 × 10⁻⁵)** | **−0.461 (2.4 × 10⁻⁵)** |
+|  | Spinal cord (lumbar) | 140/43 | +0.112 (0.33) | **+0.499 (3.9 × 10⁻⁶)** | **−0.455 (2.5 × 10⁻⁵)** |
+|  | Spinal cord (thoracic) | 43/10 | −0.321 (0.49) | +0.102 (0.88) | −0.172 (0.77) |
+| Other neurological disorders (NYGC, same controls) | Cerebellum | 49/38 | **−0.407 (1.0 × 10⁻²)** | −0.061 (0.76) | −0.088 (0.64) |
+|  | Frontal cortex | 45/56 | **−0.717 (6.5 × 10⁻⁸)** | **−0.437 (5.3 × 10⁻⁴)** | +0.094 (0.49) |
+|  | Temporal cortex | 35/24 | **−0.571 (2.5 × 10⁻³)** | **−0.500 (6.6 × 10⁻³)** | −0.283 (0.12) |
+| Alzheimer's disease (GSE125583) | Fusiform gyrus | 219/70 | **−0.447 (1.6 × 10⁻⁷)** | — | — |
+| Parkinson's disease (GSE68719) | BA9 | 29/44 | **−0.677 (1.8 × 10⁻⁴)** | — | — |
+| Multiple sclerosis (GSE123496) | Corpus callosum | 5/5 | −0.520 (0.42) | −0.200 (0.73) | +0.760 (0.16) |
+|  | Frontal cortex | 5/5 | −0.040 (1.0) | +0.040 (1.0) | −0.360 (1.0) |
+|  | Hippocampus | 5/5 | −0.440 (1.0) | −0.280 (1.0) | +0.040 (1.0) |
+|  | Internal capsule | 5/5 | +0.200 (0.78) | +0.120 (0.84) | −0.520 (0.54) |
+|  | Parietal cortex | 5/5 | −0.280 (0.89) | −0.040 (1.0) | −0.200 (0.89) |
+|  | Five regions pooled | 25/25 | −0.226 (0.49) | −0.075 (0.88) | −0.043 (0.88) |
+| Multiple sclerosis (GSE138614) | Normal-appearing white matter | 21/25 | −0.482 (0.10) | −0.166 (0.74) | +0.051 (0.82) |
+|  | Lesions | 52/25 | **−0.594 (1.3 × 10⁻⁴)** | −0.138 (0.52) | +0.327 (0.050) |
+|  | All samples, averaged per donor | 10/5 | **−0.840 (0.038)** | −0.120 (0.77) | +0.120 (0.77) |
+
+*Note.* δ, Cliff's delta, case minus control, with the Benjamini–Hochberg q value in parentheses; bold, q < 0.05; —, not tested. n counts samples, or donors in the donor-level row. The NYGC comparisons of each region share its non-neurological controls.
+
+<!-- /table:5 -->

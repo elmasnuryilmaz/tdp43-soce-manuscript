@@ -1,69 +1,69 @@
 cohort,group,region,gene,n_case,n_control,log2FC,cliffs_delta,q_value
-ALS (NYGC GSE153960),ALS,Cerebellum,TRPC1,158.0,38.0,0.456,0.538,1.49e-06
-ALS (NYGC GSE153960),ALS,Cerebellum,SARAF,158.0,38.0,0.808,0.599,2.35e-07
-ALS (NYGC GSE153960),ALS,Cerebellum,CBARP,158.0,38.0,-0.509,-0.544,1.19e-06
-ALS (NYGC GSE153960),ALS,Frontal cortex,TRPC1,154.0,56.0,0.287,0.486,4.27e-07
-ALS (NYGC GSE153960),ALS,Frontal cortex,SARAF,154.0,56.0,0.567,0.525,6.13e-08
-ALS (NYGC GSE153960),ALS,Frontal cortex,CBARP,154.0,56.0,-0.506,-0.511,1.21e-07
-ALS (NYGC GSE153960),ALS,Motor cortex (lateral),TRPC1,82.0,18.0,0.4,0.511,0.00881
-ALS (NYGC GSE153960),ALS,Motor cortex (lateral),SARAF,82.0,18.0,0.733,0.415,0.0247
-ALS (NYGC GSE153960),ALS,Motor cortex (lateral),CBARP,82.0,18.0,-0.491,-0.509,0.00894
-ALS (NYGC GSE153960),ALS,Motor cortex (medial),TRPC1,81.0,19.0,0.346,0.465,0.0132
-ALS (NYGC GSE153960),ALS,Motor cortex (medial),SARAF,81.0,19.0,0.547,0.402,0.0271
-ALS (NYGC GSE153960),ALS,Motor cortex (medial),CBARP,81.0,19.0,-0.683,-0.523,0.00797
-ALS (NYGC GSE153960),ALS,Occipital cortex,TRPC1,45.0,11.0,0.191,0.176,0.666
-ALS (NYGC GSE153960),ALS,Occipital cortex,SARAF,45.0,11.0,0.656,0.277,0.51
-ALS (NYGC GSE153960),ALS,Occipital cortex,CBARP,45.0,11.0,0.01,-0.16,0.698
-ALS (NYGC GSE153960),ALS,Temporal cortex,TRPC1,25.0,24.0,0.259,0.447,0.038
-ALS (NYGC GSE153960),ALS,Temporal cortex,SARAF,25.0,24.0,0.402,0.503,0.0255
-ALS (NYGC GSE153960),ALS,Temporal cortex,CBARP,25.0,24.0,-0.831,-0.633,0.0189
-ALS (NYGC GSE153960),ALS,Hippocampus,TRPC1,29.0,11.0,0.376,0.699,0.00207
-ALS (NYGC GSE153960),ALS,Hippocampus,SARAF,29.0,11.0,1.215,0.956,0.000195
-ALS (NYGC GSE153960),ALS,Hippocampus,CBARP,29.0,11.0,-0.894,-0.636,0.00495
-ALS (NYGC GSE153960),ALS,Spinal cord (cervical),TRPC1,155.0,41.0,0.075,0.058,0.628
-ALS (NYGC GSE153960),ALS,Spinal cord (cervical),SARAF,155.0,41.0,0.429,0.479,1.11e-05
-ALS (NYGC GSE153960),ALS,Spinal cord (cervical),CBARP,155.0,41.0,-0.438,-0.461,2.4e-05
-ALS (NYGC GSE153960),ALS,Spinal cord (lumbar),TRPC1,140.0,43.0,0.057,0.112,0.327
-ALS (NYGC GSE153960),ALS,Spinal cord (lumbar),SARAF,140.0,43.0,0.42,0.499,3.87e-06
-ALS (NYGC GSE153960),ALS,Spinal cord (lumbar),CBARP,140.0,43.0,-0.572,-0.455,2.54e-05
-ALS (NYGC GSE153960),ALS,Spinal cord (thoracic),TRPC1,43.0,10.0,-0.117,-0.321,0.491
-ALS (NYGC GSE153960),ALS,Spinal cord (thoracic),SARAF,43.0,10.0,-0.008,0.102,0.877
-ALS (NYGC GSE153960),ALS,Spinal cord (thoracic),CBARP,43.0,10.0,-0.3,-0.172,0.765
-"Other neurological disorders (NYGC, same controls)",ONd,Cerebellum,TRPC1,,,-0.245,-0.407,0.00996
-"Other neurological disorders (NYGC, same controls)",ONd,Cerebellum,SARAF,,,0.01,-0.061,0.756
-"Other neurological disorders (NYGC, same controls)",ONd,Cerebellum,CBARP,,,-0.169,-0.088,0.639
-"Other neurological disorders (NYGC, same controls)",ONd,Frontal cortex,TRPC1,,,-0.444,-0.717,6.47e-08
-"Other neurological disorders (NYGC, same controls)",ONd,Frontal cortex,SARAF,,,-0.309,-0.437,0.000533
-"Other neurological disorders (NYGC, same controls)",ONd,Frontal cortex,CBARP,,,0.102,0.094,0.489
-"Other neurological disorders (NYGC, same controls)",ONd,Temporal cortex,TRPC1,,,-0.281,-0.571,0.00252
-"Other neurological disorders (NYGC, same controls)",ONd,Temporal cortex,SARAF,,,-0.385,-0.5,0.00656
-"Other neurological disorders (NYGC, same controls)",ONd,Temporal cortex,CBARP,,,-0.252,-0.283,0.121
-Alzheimer's disease (GSE125583),AD,Fusiform gyrus,TRPC1,219.0,70.0,-0.476,-0.447,1.61e-07
-Parkinson's disease (GSE68719),PD,BA9,TRPC1,29.0,44.0,-0.57,-0.677,0.00018
-GSE123496,MS,Corpus callosum,TRPC1,5.0,5.0,-0.321,-0.52,0.42
-GSE123496,MS,Corpus callosum,SARAF,5.0,5.0,-0.1812,-0.2,0.734
-GSE123496,MS,Corpus callosum,CBARP,5.0,5.0,0.4875,0.76,0.157
-GSE123496,MS,Frontal cortex,TRPC1,5.0,5.0,-0.2141,-0.04,1.0
-GSE123496,MS,Frontal cortex,SARAF,5.0,5.0,0.1581,0.04,1.0
-GSE123496,MS,Frontal cortex,CBARP,5.0,5.0,-0.2959,-0.36,1.0
-GSE123496,MS,Hippocampus,TRPC1,5.0,5.0,-0.8936,-0.44,1.0
-GSE123496,MS,Hippocampus,SARAF,5.0,5.0,-0.1385,-0.28,1.0
-GSE123496,MS,Hippocampus,CBARP,5.0,5.0,-0.0447,0.04,1.0
-GSE123496,MS,Internal capsule,TRPC1,5.0,5.0,-0.0055,0.2,0.783
-GSE123496,MS,Internal capsule,SARAF,5.0,5.0,0.06,0.12,0.841
-GSE123496,MS,Internal capsule,CBARP,5.0,5.0,-0.3594,-0.52,0.54
-GSE123496,MS,Parietal cortex,TRPC1,5.0,5.0,-0.9218,-0.28,0.894
-GSE123496,MS,Parietal cortex,SARAF,5.0,5.0,-0.3375,-0.04,1.0
-GSE123496,MS,Parietal cortex,CBARP,5.0,5.0,-0.4045,-0.2,0.894
-GSE123496,MS,All five regions pooled (centred within region),TRPC1,25.0,25.0,-0.321,-0.226,0.494
-GSE123496,MS,All five regions pooled (centred within region),SARAF,25.0,25.0,-0.1239,-0.075,0.883
-GSE123496,MS,All five regions pooled (centred within region),CBARP,25.0,25.0,-0.0589,-0.043,0.883
-GSE138614,MS,Normal-appearing white matter vs control white matter,TRPC1,21.0,25.0,-0.3419,-0.482,0.104
-GSE138614,MS,Normal-appearing white matter vs control white matter,SARAF,21.0,25.0,0.0148,-0.166,0.739
-GSE138614,MS,Normal-appearing white matter vs control white matter,CBARP,21.0,25.0,-0.12,0.051,0.817
-GSE138614,MS,MS lesions vs control white matter,TRPC1,52.0,25.0,-0.5593,-0.594,0.00013
-GSE138614,MS,MS lesions vs control white matter,SARAF,52.0,25.0,-0.0293,-0.138,0.523
-GSE138614,MS,MS lesions vs control white matter,CBARP,52.0,25.0,0.4385,0.327,0.05
-GSE138614,MS,Donor level (10 MS vs 5 control donors),TRPC1,10.0,5.0,-0.4531,-0.84,0.038
-GSE138614,MS,Donor level (10 MS vs 5 control donors),SARAF,10.0,5.0,-0.0183,-0.12,0.768
-GSE138614,MS,Donor level (10 MS vs 5 control donors),CBARP,10.0,5.0,0.1126,0.12,0.768
+ALS (NYGC GSE153960),ALS,Cerebellum,TRPC1,158,38,0.456,0.538,1.49e-06
+ALS (NYGC GSE153960),ALS,Cerebellum,SARAF,158,38,0.808,0.599,2.35e-07
+ALS (NYGC GSE153960),ALS,Cerebellum,CBARP,158,38,-0.509,-0.544,1.19e-06
+ALS (NYGC GSE153960),ALS,Frontal cortex,TRPC1,154,56,0.287,0.486,4.27e-07
+ALS (NYGC GSE153960),ALS,Frontal cortex,SARAF,154,56,0.567,0.525,6.13e-08
+ALS (NYGC GSE153960),ALS,Frontal cortex,CBARP,154,56,-0.506,-0.511,1.21e-07
+ALS (NYGC GSE153960),ALS,Motor cortex (lateral),TRPC1,82,18,0.4,0.511,0.00881
+ALS (NYGC GSE153960),ALS,Motor cortex (lateral),SARAF,82,18,0.733,0.415,0.0247
+ALS (NYGC GSE153960),ALS,Motor cortex (lateral),CBARP,82,18,-0.491,-0.509,0.00894
+ALS (NYGC GSE153960),ALS,Motor cortex (medial),TRPC1,81,19,0.346,0.465,0.0132
+ALS (NYGC GSE153960),ALS,Motor cortex (medial),SARAF,81,19,0.547,0.402,0.0271
+ALS (NYGC GSE153960),ALS,Motor cortex (medial),CBARP,81,19,-0.683,-0.523,0.00797
+ALS (NYGC GSE153960),ALS,Occipital cortex,TRPC1,45,11,0.191,0.176,0.666
+ALS (NYGC GSE153960),ALS,Occipital cortex,SARAF,45,11,0.656,0.277,0.51
+ALS (NYGC GSE153960),ALS,Occipital cortex,CBARP,45,11,0.01,-0.16,0.698
+ALS (NYGC GSE153960),ALS,Temporal cortex,TRPC1,25,24,0.259,0.447,0.038
+ALS (NYGC GSE153960),ALS,Temporal cortex,SARAF,25,24,0.402,0.503,0.0255
+ALS (NYGC GSE153960),ALS,Temporal cortex,CBARP,25,24,-0.831,-0.633,0.0189
+ALS (NYGC GSE153960),ALS,Hippocampus,TRPC1,29,11,0.376,0.699,0.00207
+ALS (NYGC GSE153960),ALS,Hippocampus,SARAF,29,11,1.215,0.956,0.000195
+ALS (NYGC GSE153960),ALS,Hippocampus,CBARP,29,11,-0.894,-0.636,0.00495
+ALS (NYGC GSE153960),ALS,Spinal cord (cervical),TRPC1,155,41,0.075,0.058,0.628
+ALS (NYGC GSE153960),ALS,Spinal cord (cervical),SARAF,155,41,0.429,0.479,1.11e-05
+ALS (NYGC GSE153960),ALS,Spinal cord (cervical),CBARP,155,41,-0.438,-0.461,2.4e-05
+ALS (NYGC GSE153960),ALS,Spinal cord (lumbar),TRPC1,140,43,0.057,0.112,0.327
+ALS (NYGC GSE153960),ALS,Spinal cord (lumbar),SARAF,140,43,0.42,0.499,3.87e-06
+ALS (NYGC GSE153960),ALS,Spinal cord (lumbar),CBARP,140,43,-0.572,-0.455,2.54e-05
+ALS (NYGC GSE153960),ALS,Spinal cord (thoracic),TRPC1,43,10,-0.117,-0.321,0.491
+ALS (NYGC GSE153960),ALS,Spinal cord (thoracic),SARAF,43,10,-0.008,0.102,0.877
+ALS (NYGC GSE153960),ALS,Spinal cord (thoracic),CBARP,43,10,-0.3,-0.172,0.765
+"Other neurological disorders (NYGC, same controls)",ONd,Cerebellum,TRPC1,49,38,-0.245,-0.407,0.00996
+"Other neurological disorders (NYGC, same controls)",ONd,Cerebellum,SARAF,49,38,0.01,-0.061,0.756
+"Other neurological disorders (NYGC, same controls)",ONd,Cerebellum,CBARP,49,38,-0.169,-0.088,0.639
+"Other neurological disorders (NYGC, same controls)",ONd,Frontal cortex,TRPC1,45,56,-0.444,-0.717,6.47e-08
+"Other neurological disorders (NYGC, same controls)",ONd,Frontal cortex,SARAF,45,56,-0.309,-0.437,0.000533
+"Other neurological disorders (NYGC, same controls)",ONd,Frontal cortex,CBARP,45,56,0.102,0.094,0.489
+"Other neurological disorders (NYGC, same controls)",ONd,Temporal cortex,TRPC1,35,24,-0.281,-0.571,0.00252
+"Other neurological disorders (NYGC, same controls)",ONd,Temporal cortex,SARAF,35,24,-0.385,-0.5,0.00656
+"Other neurological disorders (NYGC, same controls)",ONd,Temporal cortex,CBARP,35,24,-0.252,-0.283,0.121
+Alzheimer's disease (GSE125583),AD,Fusiform gyrus,TRPC1,219,70,-0.476,-0.447,1.61e-07
+Parkinson's disease (GSE68719),PD,BA9,TRPC1,29,44,-0.57,-0.677,0.00018
+GSE123496,MS,Corpus callosum,TRPC1,5,5,-0.321,-0.52,0.42
+GSE123496,MS,Corpus callosum,SARAF,5,5,-0.1812,-0.2,0.734
+GSE123496,MS,Corpus callosum,CBARP,5,5,0.4875,0.76,0.157
+GSE123496,MS,Frontal cortex,TRPC1,5,5,-0.2141,-0.04,1.0
+GSE123496,MS,Frontal cortex,SARAF,5,5,0.1581,0.04,1.0
+GSE123496,MS,Frontal cortex,CBARP,5,5,-0.2959,-0.36,1.0
+GSE123496,MS,Hippocampus,TRPC1,5,5,-0.8936,-0.44,1.0
+GSE123496,MS,Hippocampus,SARAF,5,5,-0.1385,-0.28,1.0
+GSE123496,MS,Hippocampus,CBARP,5,5,-0.0447,0.04,1.0
+GSE123496,MS,Internal capsule,TRPC1,5,5,-0.0055,0.2,0.783
+GSE123496,MS,Internal capsule,SARAF,5,5,0.06,0.12,0.841
+GSE123496,MS,Internal capsule,CBARP,5,5,-0.3594,-0.52,0.54
+GSE123496,MS,Parietal cortex,TRPC1,5,5,-0.9218,-0.28,0.894
+GSE123496,MS,Parietal cortex,SARAF,5,5,-0.3375,-0.04,1.0
+GSE123496,MS,Parietal cortex,CBARP,5,5,-0.4045,-0.2,0.894
+GSE123496,MS,All five regions pooled (centred within region),TRPC1,25,25,-0.321,-0.226,0.494
+GSE123496,MS,All five regions pooled (centred within region),SARAF,25,25,-0.1239,-0.075,0.883
+GSE123496,MS,All five regions pooled (centred within region),CBARP,25,25,-0.0589,-0.043,0.883
+GSE138614,MS,Normal-appearing white matter vs control white matter,TRPC1,21,25,-0.3419,-0.482,0.104
+GSE138614,MS,Normal-appearing white matter vs control white matter,SARAF,21,25,0.0148,-0.166,0.739
+GSE138614,MS,Normal-appearing white matter vs control white matter,CBARP,21,25,-0.12,0.051,0.817
+GSE138614,MS,MS lesions vs control white matter,TRPC1,52,25,-0.5593,-0.594,0.00013
+GSE138614,MS,MS lesions vs control white matter,SARAF,52,25,-0.0293,-0.138,0.523
+GSE138614,MS,MS lesions vs control white matter,CBARP,52,25,0.4385,0.327,0.05
+GSE138614,MS,Donor level (10 MS vs 5 control donors),TRPC1,10,5,-0.4531,-0.84,0.038
+GSE138614,MS,Donor level (10 MS vs 5 control donors),SARAF,10,5,-0.0183,-0.12,0.768
+GSE138614,MS,Donor level (10 MS vs 5 control donors),CBARP,10,5,0.1126,0.12,0.768

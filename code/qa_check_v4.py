@@ -290,7 +290,7 @@ _apa = pd.read_csv(f"{M}/07_DISK_ANALIZLERI/sonuclar/APA_corrected_full_core_sum
 _POS16b = {"STMN2", "UNC13A", "HDGFL2", "ACTL6B", "AGRN", "KALRN", "ARHGAP32", "PFKP",
            "ATG4B", "SETD5", "CAMK2B", "ELAVL3", "POLDIP3", "RSF1", "GPSM2", "SYNJ2"}
 _ex = _apa[((_apa.boot_low > 0) | (_apa.boot_high < 0)) & ~_apa.gene.str.upper().isin(_POS16b)]
-_unnamed = sorted({g for g in _ex.gene if f"*{g}*" not in TXT})
+_unnamed = sorted({g for g in _ex.gene if f"*{g}*" not in TXT.split("## References")[0]})
 close("Ca2+ units excluding zero that Section 3.5 does not name", 0, len(_unnamed), tol=0)
 out.append("    " + ("all named: " + ", ".join(sorted(set(_ex.gene)))) if not _unnamed
            else "    unnamed: " + ", ".join(_unnamed))
@@ -359,6 +359,14 @@ close("figures first cited in numerical order", 1,
 for _i in range(1, 18):
     close(f"Supplementary Table S{_i} cited in the text", 1,
           int(re.search(rf"Table S{_i}(?![0-9])", _body) is not None), tol=0)
+
+out.append("\n=== Tables 1-5 in the manuscript match tables/*.csv ===")
+import subprocess as _sp
+_r = _sp.run(["/usr/bin/python3", f"{P}/code/build_manuscript_docx.py", "--check"],
+             capture_output=True, text=True)
+close("Markdown tables regenerated from the CSV files are identical", 0, _r.returncode, tol=0)
+for _n in range(1, 6):
+    check(f"table {_n} block present", f"<!-- table:{_n} -->", True)
 
 out.append(f"\n==== {ok} passed, {bad} failed ====")
 os.makedirs(f"{P}/logs", exist_ok=True)
