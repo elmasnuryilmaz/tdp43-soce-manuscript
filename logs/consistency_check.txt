@@ -299,6 +299,14 @@ PASS  S1 Target_qPCR_rel: control group is the non-targeting shRNA control: manu
 PASS  S1 Fura2: control group is the non-targeting shRNA control: manuscript 1 vs data 1
 PASS  S1 WST1: control group is the non-targeting shRNA control: manuscript 1 vs data 1
 PASS  Methods name the comparison group: compared shTDP-43 cells with the non-targeting shRNA control
+PASS  author list: **Elmasnur Yılmaz¹, Yasemin Eraç¹\***
+PASS  absent: Kaymaz
+PASS  absent: Y.K.
+PASS  absent: Bioengineering
+PASS  absent: from a single experiment
+PASS  present: The experiment was performed three times; the values and statistics reported are those of 
+PASS  present: n = 4 wells from one of three independent experiments
+PASS  S1 README states the three WST-1 experiments: manuscript 1 vs data 1
 
 === 22 September 2026, round 3: values quoted from the supplements ===
 PASS  MS NAWM sample-level delta (-0.482): manuscript -0.482 vs data -0.482
@@ -362,4 +370,4 @@ PASS  table 3 block present: <!-- table:3 -->
 PASS  table 4 block present: <!-- table:4 -->
 PASS  table 5 block present: <!-- table:5 -->
 
-==== 324 passed, 0 failed ====
+==== 332 passed, 0 failed ====

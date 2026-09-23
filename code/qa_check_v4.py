@@ -376,6 +376,17 @@ for _sh in ["Target_qPCR_Ct", "Target_qPCR_rel", "Fura2", "WST1"]:
     close(f"S1 {_sh}: control group is the non-targeting shRNA control", 1,
           int(set(pd.read_excel(_s1, _sh).group) == {"Non-targeting shRNA control", "shTDP-43"}), tol=0)
 check("Methods name the comparison group", "compared shTDP-43 cells with the non-targeting shRNA control", True)
+# author decisions of 23 September 2026: Y. Kaymaz is not an author; the WST-1 experiment was
+# performed three times and the values reported are the four wells of one experiment
+check("author list", "**Elmasnur Yılmaz¹, Yasemin Eraç¹\\***", True)
+for _s in ["Kaymaz", "Y.K.", "Bioengineering", "from a single experiment"]:
+    check("absent", _s, False)
+for _s in ["The experiment was performed three times; the values and statistics reported are those of one experiment",
+           "n = 4 wells from one of three independent experiments"]:
+    check("present", _s, True)
+_rd = pd.read_excel(_s1, "README")
+close("S1 README states the three WST-1 experiments", 1,
+      int(_rd.astype(str).apply(lambda c: c.str.contains("performed three times")).any().any()), tol=0)
 
 out.append("\n=== 22 September 2026, round 3: values quoted from the supplements ===")
 _d16 = pd.read_csv(f"{P}/supplementary/S16b_multiple_sclerosis_donor_level.csv")

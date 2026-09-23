@@ -146,7 +146,8 @@ readme = pd.DataFrame({"sheet": ["TARDBP_qPCR", "Target_qPCR_Ct", "Target_qPCR_r
         "samples of each group come from three independent cultures. The control group is the "
         "non-targeting (scrambled) shRNA control.",
         "WST-1 viability, four wells per group, normalised to the mean of the non-targeting "
-        "(scrambled) shRNA control at the same time point.",
+        "(scrambled) shRNA control at the same time point. The experiment was performed "
+        "three times; these are the four wells of one experiment.",
         "Group means, SEM and the statistical test behind every panel of Figure 6.",
         "Primer sequences, product sizes and annealing temperatures for the RT-qPCR targets "
         "and the GAPDH reference.",
