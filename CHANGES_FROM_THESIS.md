@@ -1,11 +1,9 @@
 # Analysis revisions relative to the doctoral thesis
 
-The analyses behind this manuscript began as part of a doctoral thesis, whose code and outputs
-are in a separate repository,
-[tdp43-thesis-reproducibility](https://github.com/elmasnuryilmaz/tdp43-thesis-reproducibility).
-Five analyses were revised during preparation of the manuscript. This document records what
-changed and why, so that numbers in the two repositories can be told apart. Where they differ,
-the values in this repository are the current ones.
+The analyses behind this manuscript began as part of the first author's doctoral thesis (Ege
+University, 2026). Five analyses were revised during preparation of the manuscript. This
+document records what changed and why, so that numbers in the thesis and in this repository
+can be told apart. Where they differ, the values in this repository are the current ones.
 
 ## 1. Alternative polyadenylation: reference skips excluded from coverage
 

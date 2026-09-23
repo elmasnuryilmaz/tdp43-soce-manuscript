@@ -14,10 +14,9 @@ The current edited manuscript is `manuscript/MANUSCRIPT_v4_SUBMISSION_REVIEWED.d
 The text/package consistency report is `logs/consistency_check_reviewed.txt`.
 It checks citations and reported values but does not replace independent analysis of raw data.
 
-The analyses grew out of a doctoral thesis whose repository is separate
-([tdp43-thesis-reproducibility](https://github.com/elmasnuryilmaz/tdp43-thesis-reproducibility)).
-Five analyses were revised for the manuscript; `CHANGES_FROM_THESIS.md` sets out what changed
-and why. Where the two repositories differ, this one is current.
+The analyses grew out of the first author's doctoral thesis (Ege University, 2026). Five
+analyses were revised for the manuscript; `CHANGES_FROM_THESIS.md` sets out what changed and
+why. Where the thesis and this repository differ, this repository is current.
 
 ```
 ├── manuscript/           manuscript, Markdown and Word
