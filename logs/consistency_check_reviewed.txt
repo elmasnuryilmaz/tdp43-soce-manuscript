@@ -1,0 +1,388 @@
+=== Table 1: coverage pre-filter ===
+PASS  events removed range low: manuscript 18 vs data 18
+PASS  events removed range high: manuscript 78 vs data 78
+PASS  significant lost low: manuscript 33 vs data 33
+PASS  significant lost high: manuscript 76 vs data 76
+PASS  SH-SY5Y significant before filter: manuscript 7854 vs data 7854
+
+=== Table 2: robust SOCE events ===
+PASS  STIMATE delta_PSI: manuscript 0.244 vs data 0.244
+PASS  STIMATE CI low: manuscript 0.095 vs data 0.095
+PASS  STIMATE CI high: manuscript 0.368 vs data 0.368
+PASS  ORAI3 delta_PSI: manuscript -0.269 vs data -0.269
+PASS  ORAI3 CI low: manuscript -0.404 vs data -0.404
+PASS  ORAI3 CI high: manuscript -0.107 vs data -0.107
+PASS  STIM2 delta_PSI: manuscript -0.12 vs data -0.12
+PASS  STIM2 CI low: manuscript -0.165 vs data -0.165
+PASS  STIM2 CI high: manuscript -0.064 vs data -0.064
+PASS  STIM1 delta_PSI: manuscript 0.145 vs data 0.145
+PASS  STIM1 CI low: manuscript -0.002 vs data -0.002
+PASS  STIM1 CI high: manuscript 0.293 vs data 0.293
+PASS  STIM1 exon start 1-based: manuscript 4088702 vs data 4088702
+PASS  STIM1 exon length: manuscript 37 vs data 37
+
+=== Table 3 / S14: cryptic calls and null test ===
+PASS  SH-SY5Y high-confidence events (regtools): manuscript 165 vs data 165
+PASS  SH-SY5Y genes: manuscript 113 vs data 113
+PASS  iPSC-MN TDP-43 high-confidence events: manuscript 18 vs data 18
+PASS  iPSC-MN FUS high-confidence events: manuscript 26 vs data 26
+PASS  iPSC-MN TAF15 high-confidence events: manuscript 23 vs data 23
+PASS  iPSC-MN TDP-43 permissive positive controls: manuscript 2 vs data 2
+PASS  iPSC-MN FUS permissive positive controls: manuscript 0 vs data 0
+PASS  SH-SY5Y permissive positive controls: manuscript 13 vs data 13
+PASS  iPSC colonies permissive positive controls: manuscript 15 vs data 15
+PASS  permissive call counts, TDP-43 / FUS / TAF15: manuscript 141 vs data 141
+PASS  burden minimum: manuscript 12 vs data 12
+PASS  Table 3 mouse rows: positive controls not assessed: manuscript 3 vs data 3
+PASS  burden maximum: manuscript 477 vs data 477
+PASS  permissive null ratio iPSC colonies (Methods 2.5: 0.98 per real call): manuscript 0.98 vs data 0.98
+PASS  permissive null ratio K562 total RNA (Methods 2.5: 2.01): manuscript 2.01 vs data 2.01
+PASS  null ratio iPSC colonies: manuscript 0.64 vs data 0.64
+PASS  null ratio K562 total RNA: manuscript 2.17 vs data 2.17
+PASS  null ratio mouse striatum: manuscript 0.83 vs data 0.83
+
+=== Table 4: transcript-family abundance (TPM) ===
+PASS  ORAI2 share: manuscript 77 vs data 77
+PASS  ATP2A2 share: manuscript 98 vs data 98
+PASS  ORAI1 share: manuscript 15 vs data 15
+PASS  SARAF share: manuscript 82 vs data 82
+PASS  CBARP log2FC: manuscript -1.254 vs data -1.254
+PASS  STIM1 log2FC: manuscript 0.929 vs data 0.929
+PASS  ORAI1 log2FC: manuscript 0.433 vs data 0.433
+PASS  ATP2A3 log2FC: manuscript 1.306 vs data 1.306
+PASS  TRPC1 log2FC: manuscript 0.958 vs data 0.958
+PASS  STIM1 share: manuscript 64 vs data 64
+PASS  TRPC1 share: manuscript 98 vs data 98
+PASS  ATP2A3 share: manuscript 1.5 vs data 1.5
+PASS  ORAI2 log2FC (-0.17): manuscript -0.17 vs data -0.173
+PASS  ATP2A2 log2FC (-0.25): manuscript -0.25 vs data -0.247
+PASS  ORAI3 log2FC (2.06): manuscript 2.06 vs data 2.056
+PASS  SARAF log2FC (0.55): manuscript 0.55 vs data 0.548
+PASS  family net, adjusted, SERCA (Ca2+ re-uptake into ER): manuscript -12 vs data -12
+PASS  family net, adjusted, Mitochondrial Ca2+ uptake: manuscript -25 vs data -25
+PASS  family net, adjusted, STIM (ER Ca2+ sensor): manuscript 48 vs data 48
+PASS  family net, adjusted, ORAI (CRAC channel): manuscript 27 vs data 27
+PASS  family net, adjusted, SOCE regulators: manuscript 30 vs data 30
+PASS  ORAI3 share of ORAI pool, control (8%): manuscript 8 vs data 8
+PASS  ORAI3 share of ORAI pool, knockdown (30%): manuscript 30 vs data 30
+PASS  ORAI2 share of ORAI pool, knockdown (53%): manuscript 53 vs data 53
+PASS  median KD/control TPM ratio, unadjusted (24% lower): manuscript 24 vs data 24
+PASS  genes used for the scaling factors: manuscript 13907 vs data 13907.0
+PASS  median adjusted-minus-DESeq2 log2 difference (-0.02): manuscript -0.02 vs data -0.0212
+PASS  CHGA control TPM (1,857): manuscript 1857 vs data 1856.9
+PASS  CHGA knockdown TPM (10,675): manuscript 10675 vs data 10674.8
+
+=== Table 5 / S16: patient tissue ===
+PASS  TRPC1 significant brain regions: manuscript 6 vs data 6
+PASS  TRPC1 brain regions tested: manuscript 7 vs data 7
+PASS  TRPC1 delta min (significant): manuscript 0.447 vs data 0.447
+PASS  TRPC1 delta max (significant): manuscript 0.699 vs data 0.699
+PASS  spinal cord levels: manuscript 3 vs data 3
+PASS  thoracic cord delta: manuscript -0.321 vs data -0.321
+PASS  significant cord levels: manuscript 0 vs data 0
+PASS  MS NAWM donor-level delta: manuscript -0.771 vs data -0.771
+PASS  MS NAWM donor-level p: manuscript 0.03 vs data 0.030303
+PASS  MS myelin-adjusted donor-level delta: manuscript -0.64 vs data -0.64
+PASS  MS myelin-adjusted donor-level p: manuscript 0.055 vs data 0.055278
+
+=== S8 / S9: cryptic STMN2 in ALS tissue ===
+PASS  lumbar cord delta: manuscript 0.705 vs data 0.7051282051282052
+PASS  cervical cord delta: manuscript 0.619 vs data 0.6189189189189189
+PASS  medial motor cortex delta: manuscript 0.337 vs data 0.3370786516853932
+PASS  temporal cortex delta: manuscript 0.283 vs data 0.2826086956521739
+PASS  cerebellum delta: manuscript -0.04 vs data -0.0399682971014492
+PASS  correlations against junction marker: manuscript 110 vs data 110
+PASS  correlations in total: manuscript 231 vs data 231
+PASS  surviving correction: manuscript 8 vs data 8
+PASS  TRPC1 rho min: manuscript -0.19 vs data -0.185
+PASS  TRPC1 rho max: manuscript 0.18 vs data 0.177
+PASS  TRPC1 significant correlations: manuscript 0 vs data 0
+
+=== S11: corrected APA, both models ===
+PASS  SH-SY5Y STIM1 intron17 delta: manuscript -0.173 vs data -0.172977780794914
+PASS  SH-SY5Y STIM2 intron13 delta: manuscript -0.156 vs data -0.155710144756217
+PASS  SH-SY5Y STIM2 intron13 control index (0.96): manuscript 0.96 vs data 0.956298207249431
+PASS  STIM2 intron13 5' window contains the Table 2 STIM2 exon: manuscript 1 vs data 1
+PASS  S11: every unit has a genomic window: manuscript 0 vs data 0
+PASS  iPSC-MN units passing the depth filter: manuscript 59 vs data 59
+PASS  iPSC-MN genes: manuscript 29 vs data 29
+PASS  iPSC-MN STMN2 intron2 delta: manuscript 0.249 vs data 0.248871901453919
+PASS  iPSC-MN STMN2 intron2 index KD: manuscript 0.819 vs data 0.819049467297218
+PASS  iPSC-MN STMN2 intron2 index control: manuscript 0.57 vs data 0.570177565843299
+PASS  iPSC-MN ATP2A2 intron3 delta: manuscript -0.164 vs data -0.16399905272513
+PASS  iPSC-MN SARAF intron5 delta: manuscript 0.097 vs data 0.0968644110005561
+PASS  iPSC-MN TRPC1 intron1 delta: manuscript 0.083 vs data 0.0826744715152234
+PASS  iPSC-MN STIM2 terminal exon delta: manuscript -0.074 vs data -0.074419909502691
+PASS  C2C12 units: manuscript 74 vs data 74
+PASS  NSC34 units: manuscript 131 vs data 131
+PASS  NSC34 Saraf intron5 delta: manuscript 0.204 vs data 0.204495291613076
+PASS  C2C12 Atp2a2 intron6 delta: manuscript 0.285 vs data 0.284554222416124
+PASS  C2C12 Trpc1 intron7 delta: manuscript 0.26 vs data 0.259501452073075
+
+=== isoform-level tests quoted for CBARP ===
+PASS  CBARP IsoformSwitchAnalyzeR gene-level q (0.12): manuscript 0.12 vs data 0.116709859460621
+PASS  CBARP DRIMSeq q (0.34): manuscript 0.34 vs data 0.339345536212653
+PASS  CBARP significant switching isoforms: manuscript 0 vs data 0
+PASS  CBARP-DT IsoformSwitchAnalyzeR gene-level q (0.008): manuscript 0.008 vs data 0.0077898915668415
+
+=== S1: laboratory source data ===
+PASS  SOCE control mean: manuscript 1.542 vs data 1.542
+PASS  SOCE knockdown mean: manuscript 0.245 vs data 0.245
+PASS  ER release control mean: manuscript 0.268 vs data 0.268
+PASS  WST-1 48 h knockdown: manuscript 61.5 vs data 61.5
+PASS  WST-1 24 h knockdown: manuscript 116.8 vs data 116.8
+
+=== cross-file agreement and the corrected correction family ===
+PASS  S17 GSE138614 row count: manuscript 1 vs data 1
+PASS  S17 GSE138614 sample count: manuscript 98 vs data 98
+PASS  S3 SE coordinate completeness: manuscript 0 vs data 0
+PASS  S3 SE unique event IDs: manuscript 0 vs data 0
+PASS  S3 A5SS coordinate completeness: manuscript 0 vs data 0
+PASS  S3 A5SS unique event IDs: manuscript 0 vs data 0
+PASS  S3 A3SS coordinate completeness: manuscript 0 vs data 0
+PASS  S3 A3SS unique event IDs: manuscript 0 vs data 0
+PASS  S3 MXE coordinate completeness: manuscript 0 vs data 0
+PASS  S3 MXE unique event IDs: manuscript 0 vs data 0
+PASS  S3 RI coordinate completeness: manuscript 0 vs data 0
+PASS  S3 RI unique event IDs: manuscript 0 vs data 0
+PASS  S3 inclusion and skipping form lengths: manuscript 0 vs data 0
+PASS  MS donor-level delta: Table 5 vs S16b: manuscript -0.84 vs data -0.84
+PASS  S9 tests in the correction family: manuscript 220 vs data 220
+PASS  S9 trivial tests excluded: manuscript 11 vs data 11
+PASS  S9 excluded tests have no q value: manuscript 0 vs data 0
+PASS  S9 q, STIM1 Spinal Cord Lumbar: manuscript 0.0021 vs data 0.0021124477079655
+PASS  S9 q, ORAI1 Spinal Cord Cervical: manuscript 0.0031 vs data 0.0030875816332164
+PASS  S9 q, STMN2 Spinal Cord Cervical: manuscript 0.011 vs data 0.0113556217795629
+PASS  S9 q, ORAI1 Spinal Cord Lumbar: manuscript 0.013 vs data 0.0132932012607874
+PASS  S9 q, ATP2A2 Cortex Motor Medial: manuscript 0.015 vs data 0.015404130698704
+PASS  S9 q, GFAP Cortex Motor Medial: manuscript 0.023 vs data 0.0228045301551542
+PASS  S9 q, SNAP25 Cortex Motor Medial: manuscript 0.028 vs data 0.0282142118398403
+PASS  S9 q, SARAF Spinal Cord Lumbar: manuscript 0.049 vs data 0.0488764493568879
+
+=== published tables carry English dataset labels and the full control set ===
+PASS  S5_high_confidence_cryptic_events: untranslated dataset labels: manuscript 0 vs data 0
+PASS  S6_cryptic_positive_controls: untranslated dataset labels: manuscript 0 vs data 0
+PASS  S7_SOCE_genes_annotation_free: untranslated dataset labels: manuscript 0 vs data 0
+PASS  S6 genes all belong to the sixteen literature controls: manuscript 0 vs data 0
+PASS  S6 contains GPSM2, named in Section 3.3: manuscript 1 vs data 1
+PASS  S4 decision values are English: manuscript 0 vs data 0
+PASS  S4 panels with surviving enrichment: manuscript 2 vs data 2
+PASS  Table 3 rows = eleven comparisons: manuscript 11 vs data 11
+PASS  SH-SY5Y MAPQ-filtered positive controls: manuscript 12 vs data 12
+
+=== Section 3.2 CBARP figures and Section 3.5 completeness ===
+PASS  CBARP coverage-qualified events: manuscript 32 vs data 32
+PASS  CBARP datasets: manuscript 5 vs data 5
+PASS  CBARP |dPSI| minimum: manuscript 0.11 vs data 0.109
+PASS  CBARP |dPSI| maximum: manuscript 0.74 vs data 0.743
+PASS  CBARP |dPSI| median: manuscript 0.37 vs data 0.37
+PASS  CBARP reads minimum: manuscript 61 vs data 61
+PASS  CBARP reads maximum: manuscript 4559 vs data 4559
+PASS  CBARP reads median: manuscript 246 vs data 246.0
+PASS  CBARP events above 100 reads: manuscript 26 vs data 26
+PASS  CBARP SH-SY5Y events, all negative: manuscript 3 vs data 3
+PASS  Ca2+ units excluding zero that Section 3.5 does not name: manuscript 0 vs data 0
+    all named: ITPR1, ITPR3, MICU3, ORAI2, SARAF, STIM1, STIM2
+PASS  S10b positive-control panel p: manuscript 0.62 vs data 0.6161950274296075
+
+=== manuscript strings that must be present ===
+PASS  present: 10,926 versus 176 reads
+PASS  present: three spinal cord levels
+PASS  present: six of the seven brain regions
+PASS  present: 0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in mouse striatum
+PASS  present: interaction was −0.325 (p = 0.317, q = 0.508)
+PASS  present: chr11:4,088,702–4,088,738
+PASS  present: chr4:27,007,983–27,008,006
+PASS  present: three independent cultures
+PASS  present: 10 µM cyclopiazonic acid
+PASS  present: Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA
+PASS  present: Of the 110 correlations tested against the junction-based marker
+PASS  present: 116.8 ± 1.6% of control at 24 h
+PASS  present: Cutadapt v5.2
+PASS  present: 59 units in 29 genes passed the same depth filter
+PASS  present: from 0.570 in controls to 0.819 in knockdown (Δ = +0.249
+PASS  present: `-p --countReadPairs` for paired-end libraries
+PASS  present: 74 qualifying units in C2C12 and 131 in NSC34
+PASS  present: *SARAF* intron 5 index rises in the iPSC-derived motor neurons (+0.097) and the *Saraf* in
+PASS  present: almost as many calls as the real comparison in iPSC colonies (0.98 per real call)
+PASS  present: this check is available only for the human comparisons
+PASS  present: isoform-level testing did not detect a *CBARP* isoform switch
+PASS  present: the three mouse comparisons have no conserved control
+PASS  present: *ORAI3* went from 8% to 30% of ORAI transcripts and *ORAI2* from 77% to 53%
+PASS  present: The STIM (+48%) and SOCE-regulator (+30%) pools also rose, whereas the SERCA and mitochond
+PASS  present: the median gene expressed in both groups (mean TPM > 5) had 24% lower TPM
+PASS  present: The *STIM2* unit is not an independent observation
+PASS  present: Yoast RE, Emrich SM, Zhang X, et al.
+PASS  present: 3⁶ = 729 combinations for the three-versus-three comparisons and 2⁴ = 16
+PASS  present: applied across the 220 informative correlations
+PASS  present: Cellular metabolic activity was assessed at 24 h and 48 h
+PASS  present: 10 MS/5 control donors, 98 samples
+PASS  present: in SH-SY5Y the same unit is uninformative (0.000, interval −0.264 to +0.241)
+PASS  present: decreased at donor level across all sampled lesion types (δ = −0.840; q = 0.038)
+
+=== strings that must be gone ===
+PASS  absent: Sah P, et al.
+PASS  absent: 10,930
+PASS  absent: four spinal cord regions
+PASS  absent: p = 0.13)
+PASS  absent: log2FC = −1.746
+PASS  absent: single culture plate
+PASS  absent: not independent biological replicates
+PASS  absent: prioritized candidate
+PASS  absent: full GENCODE v47 index
+PASS  absent: Cutadapt v4.6
+PASS  absent: the mouse datasets were not analysed at all
+PASS  absent: all 3⁶ = 729 replicate combinations
+PASS  absent: their p values are therefore optimistic
+PASS  absent: applied across all 231 correlations
+PASS  absent: is not measurable in SH-SY5Y
+PASS  absent: used in the first version of this analysis
+PASS  absent: The original analysis treated eight contrasts
+PASS  absent: the correction was applied only to the primary SH-SY5Y model
+PASS  absent: require independent biological replication
+PASS  absent: Ca²⁺ imaging
+PASS  absent: isoform-level testing, to converge
+PASS  absent: each of which is a minor member
+PASS  absent: lie outside the core panel
+PASS  absent: about two-thirds as many calls
+PASS  absent: a second control moved in the expected direction
+PASS  absent: silent in SH-SY5Y
+PASS  absent: the dominant members fall
+PASS  absent: in the second junction set
+PASS  absent: in ten of the eleven comparisons
+PASS  absent: Length-corrected family summaries
+PASS  absent: (−32% and −43%
+PASS  absent: (−3% and −1%)
+PASS  absent: informative in the two neuronal models
+PASS  absent: the current transcript estimates
+PASS  absent: the positive control was informative only in the motor-neuron-like line
+PASS  absent: no longer
+PASS  absent: before the correction
+PASS  absent: The corrected analysis
+PASS  absent: the corrected analyses
+PASS  absent: corrected full-panel
+PASS  absent: Corrected APA
+PASS  absent: After correcting the APA
+PASS  absent: Our first attempt
+PASS  absent: we withdraw that inference
+PASS  absent: our own prior candidate
+PASS  absent: the original call
+PASS  absent: remained the largest
+PASS  absent: also retained positive
+PASS  absent: is not retained
+PASS  absent: Our own *TRPC1* candidate
+PASS  absent: with the control set to 1.0
+PASS  absent: normalised to the mean of the control group
+PASS  absent: BCL2
+PASS  absent: BAK1
+
+=== every figure and supplementary table is cited in the text ===
+PASS  Figure 1 cited in the text: manuscript 1 vs data 1
+PASS  Figure 2 cited in the text: manuscript 1 vs data 1
+PASS  Figure 3 cited in the text: manuscript 1 vs data 1
+PASS  Figure 4 cited in the text: manuscript 1 vs data 1
+PASS  Figure 5 cited in the text: manuscript 1 vs data 1
+PASS  Figure 6 cited in the text: manuscript 1 vs data 1
+PASS  Figure 7 cited in the text: manuscript 1 vs data 1
+PASS  Figure 8 cited in the text: manuscript 1 vs data 1
+PASS  Figure 9 cited in the text: manuscript 1 vs data 1
+PASS  figures first cited in numerical order: manuscript 1 vs data 1
+PASS  Supplementary Table S1 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S2 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S3 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S4 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S5 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S6 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S7 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S8 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S9 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S10 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S11 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S12 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S13 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S14 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S15 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S16 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S17 cited in the text: manuscript 1 vs data 1
+
+=== S1 carries the four reported targets and names the control group ===
+PASS  S1 target genes are the four reported targets: manuscript 1 vs data 1
+PASS  S1 Target_qPCR_Ct: control group is the non-targeting shRNA control: manuscript 1 vs data 1
+PASS  S1 Target_qPCR_rel: control group is the non-targeting shRNA control: manuscript 1 vs data 1
+PASS  S1 Fura2: control group is the non-targeting shRNA control: manuscript 1 vs data 1
+PASS  S1 WST1: control group is the non-targeting shRNA control: manuscript 1 vs data 1
+PASS  Methods name the comparison group: compared shTDP-43 cells with the non-targeting shRNA control
+PASS  author list: **Elmasnur Yılmaz¹, Yasemin Eraç¹\***
+PASS  affiliation: ¹ Department of Pharmacology, Faculty of Pharmacy, Ege University, İzmir, Türkiye
+PASS  thesis programme: Graduate School of Natural and Applied Sciences, Department of Biotechnology, 2026
+PASS  absent: Kaymaz
+PASS  absent: Y.K.
+PASS  absent: Bioengineering
+PASS  absent: from a single experiment
+PASS  present: The experiment was performed three times; only one experiment's four wells per group were 
+PASS  present: n = 4 wells from one of three independent experiments
+PASS  S1 README states the three WST-1 experiments: manuscript 1 vs data 1
+
+=== 22 September 2026, round 3: values quoted from the supplements ===
+PASS  MS NAWM sample-level delta (-0.482): manuscript -0.482 vs data -0.482
+PASS  MS NAWM sample-level p (0.005): manuscript 0.005 vs data 0.0054587
+PASS  MS NAWM sample-level q (0.10): manuscript 0.1 vs data 0.104
+PASS  MS raw sample-level delta (-0.562): manuscript -0.562 vs data -0.562
+PASS  MS adjusted sample-level delta (-0.418): manuscript -0.418 vs data -0.418
+PASS  MS adjusted sample-level p (0.002): manuscript 0.002 vs data 0.0019026
+PASS  STIM2.1 pooled dPSI (+0.0013): manuscript 0.0013 vs data 0.0012658225007487766
+PASS  STIM2.1 pooled CI low (-0.022): manuscript -0.022 vs data -0.02171293742028512
+PASS  STIM2.1 pooled CI high (+0.024): manuscript 0.024 vs data 0.024244582421782672
+PASS  STIM2.1 pooled p (0.914): manuscript 0.914 vs data 0.9140196486392349
+PASS  STIM2.1 exon positive in five of six datasets: manuscript 5 vs data 5
+PASS  STIM2.1 Cochran's Q (4.84): manuscript 4.84 vs data 4.835615134691267
+PASS  STIM2.1 heterogeneity p (0.44): manuscript 0.44 vs data 0.43626974679252417
+PASS  STIM2.1 I2 (0%): manuscript 0 vs data 0.0
+PASS  STIM2.1 weight carried by the mouse datasets (86%): manuscript 0.86 vs data 0.8549007360636193
+PASS  STIM2.1 human-only pooled dPSI (+0.031): manuscript 0.031 vs data 0.030856860665233875
+PASS  STIM2.1 human-only CI low (-0.030): manuscript -0.03 vs data -0.029467674351793163
+PASS  STIM2.1 human-only CI high (+0.091): manuscript 0.091 vs data 0.09118139568226091
+PASS  STIM2.1 human-only p (0.32): manuscript 0.32 vs data 0.3160693540812959
+PASS  enrichment tests: dataset-panel combinations (24): manuscript 24 vs data 24
+PASS  iPSC-MN channel/transport matched p (0.046): manuscript 0.046 vs data 0.0456
+PASS  iPSC-MN curated Ca2+ matched p (0.032): manuscript 0.032 vs data 0.032
+PASS  abstract length, words including headings (at most 350): manuscript 1 vs data 1
+PASS  present: fixed-effect inverse-variance meta-analysis
+PASS  present: the mean per-base depths of its two windows summed to at least 3
+PASS  present: GSE296712 contains no doxycycline-treated control without TDP-43 knockdown
+PASS  present: TDP-43 knockdown was confirmed at the mRNA level only
+PASS  present: rests on a single reference gene (GAPDH)
+PASS  present: derived from the doctoral thesis of Elmasnur Yılmaz
+PASS  present: tentative, motor-neuron-associated observation
+PASS  present: (δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)
+PASS  present: (δ = −0.562 → −0.418, p = 0.002) but not at donor level (δ = −0.640, p = 0.055)
+PASS  present: 375,000 per well
+PASS  present: Dharmacon TRC Lentiviral shRNA, cat. no. RHS3979
+PASS  present: 1 mM EGTA
+PASS  present: Premix WST-1, Takara Bio, cat. no. MK400
+PASS  absent: penicillin
+PASS  absent: dominant-negative
+PASS  absent: the donor-level values are the ones reported
+PASS  absent: is expressed in oligodendrocytes
+PASS  absent: log2(TDP-43 KD
+PASS  absent: the reduction held
+PASS  absent: was still reduced
+PASS  absent: summed depth of its two windows
+PASS  absent: while leaving it intact in iPSC-derived motor neurons
+PASS  absent: the *STIM2.1*/STIM2β question
+
+=== every in-text citation has a reference and every reference is cited ===
+PASS  reference list in alphabetical order: manuscript 1 vs data 1
+PASS  in-text citations without a reference entry: manuscript 0 vs data 0
+PASS  reference entries never cited in the text: manuscript 0 vs data 0
+    67 distinct citations, 67 references
+
+=== Tables 1-5 in the manuscript match tables/*.csv ===
+PASS  Markdown tables regenerated from the CSV files are identical: manuscript 0 vs data 0
+PASS  table 1 block present: <!-- table:1 -->
+PASS  table 2 block present: <!-- table:2 -->
+PASS  table 3 block present: <!-- table:3 -->
+PASS  table 4 block present: <!-- table:4 -->
+PASS  table 5 block present: <!-- table:5 -->
+
+==== 347 passed, 0 failed ====

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""v3 — automated consistency check between MANUSCRIPT_v4_SUBMISSION.md and the package files.
+"""Automated consistency check between the reviewed manuscript and the package files.
 
 Every check re-reads the number from the file that produced it and compares it with the
-string in the manuscript. Writes 09_YAYIN_PAKETI/logs/consistency_check.txt
+string in the manuscript. Writes 09_YAYIN_PAKETI/logs/consistency_check_reviewed.txt
 """
 import io, os, re
 import numpy as np
@@ -11,7 +11,7 @@ import pandas as pd
 
 M = "/Users/elmas/Desktop/MAKALE"
 P = f"{M}/09_YAYIN_PAKETI"
-TXT = io.open(f"{P}/manuscript/MANUSCRIPT_v4_SUBMISSION.md", encoding="utf-8").read()
+TXT = io.open(f"{P}/manuscript/MANUSCRIPT_v4_SUBMISSION_REVIEWED.md", encoding="utf-8").read()
 out, ok, bad = [], 0, 0
 
 
@@ -218,10 +218,33 @@ x = x.set_index(x.measurement + " | " + x.group)
 close("SOCE control mean", 1.542, x.loc["SOCE delta F340/F380 | Non-targeting shRNA control", "mean"])
 close("SOCE knockdown mean", 0.245, x.loc["SOCE delta F340/F380 | shTDP-43", "mean"])
 close("ER release control mean", 0.268, x.loc["ER Ca2+ release delta F340/F380 | Non-targeting shRNA control", "mean"])
-close("WST-1 48 h knockdown", 61.5, x.loc["WST-1 viability 48 h | shTDP-43", "mean"], tol=0.05)
-close("WST-1 24 h knockdown", 116.8, x.loc["WST-1 viability 24 h | shTDP-43", "mean"], tol=0.05)
+close("WST-1 48 h knockdown", 61.5, x.loc["WST-1 signal 48 h | shTDP-43", "mean"], tol=0.05)
+close("WST-1 24 h knockdown", 116.8, x.loc["WST-1 signal 24 h | shTDP-43", "mean"], tol=0.05)
 
 out.append("\n=== cross-file agreement and the corrected correction family ===")
+# Verify the accession inventory against the sample count stated in the manuscript.
+_s17 = pd.read_csv(f"{P}/supplementary/S17_dataset_accessions.csv")
+_ms_design = _s17.loc[_s17.accession == "GSE138614", "design"]
+close("S17 GSE138614 row count", 1, len(_ms_design), tol=0)
+close("S17 GSE138614 sample count", 98,
+      int(re.search(r"(\d+) samples", _ms_design.iloc[0]).group(1)) if len(_ms_design) else -1, tol=0)
+_s3 = pd.read_csv(f"{P}/supplementary/S3_rMATS_significant_events.csv.gz", compression="gzip")
+_event_coords = {
+    "SE": ["exonStart_0base", "exonEnd", "upstreamES", "upstreamEE", "downstreamES", "downstreamEE"],
+    "A5SS": ["longExonStart_0base", "longExonEnd", "shortES", "shortEE", "flankingES", "flankingEE"],
+    "A3SS": ["longExonStart_0base", "longExonEnd", "shortES", "shortEE", "flankingES", "flankingEE"],
+    "MXE": ["1stExonStart_0base", "1stExonEnd", "2ndExonStart_0base", "2ndExonEnd",
+            "upstreamES", "upstreamEE", "downstreamES", "downstreamEE"],
+    "RI": ["riExonStart_0base", "riExonEnd", "upstreamES", "upstreamEE", "downstreamES", "downstreamEE"],
+}
+for _ev, _coords in _event_coords.items():
+    _rows = _s3[_s3.event_class == _ev]
+    close(f"S3 {_ev} coordinate completeness", 0, int(_rows[_coords].isna().sum().sum()), tol=0)
+    close(f"S3 {_ev} unique event IDs", 0,
+          int(_rows.duplicated(["dataset", "model", "ID"]).sum()), tol=0)
+close("S3 inclusion and skipping form lengths", 0,
+      int((_s3.IncFormLen.isna() | _s3.SkipFormLen.isna() |
+           (_s3.IncFormLen <= 0) | (_s3.SkipFormLen <= 0)).sum()), tol=0)
 # the same GSE138614 donor-level test appears in Table 5 and in S16b; the two pipelines
 # must share the low-expression filter, or the per-sample median centring shifts the delta
 _t5 = pd.read_csv(f"{P}/tables/Table5_cross_disease_comparison.csv")
@@ -322,7 +345,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of the sev
           "Yoast RE, Emrich SM, Zhang X, et al.",
           "3\u2076 = 729 combinations for the three-versus-three comparisons and 2\u2074 = 16",
           "applied across the 220 informative correlations",
-          "Viability was measured at 24 h and 48 h",
+          "Cellular metabolic activity was assessed at 24 h and 48 h",
           "10 MS/5 control donors, 98 samples",
           "in SH-SY5Y the same unit is uninformative (0.000, interval \u22120.264 to +0.241)",
           "decreased at donor level across all sampled lesion types (\u03b4 = \u22120.840; q = 0.038)"]:
@@ -386,7 +409,7 @@ check("affiliation", "¹ Department of Pharmacology, Faculty of Pharmacy, Ege Un
 check("thesis programme", "Graduate School of Natural and Applied Sciences, Department of Biotechnology, 2026", True)
 for _s in ["Kaymaz", "Y.K.", "Bioengineering", "from a single experiment"]:
     check("absent", _s, False)
-for _s in ["The experiment was performed three times; the values and statistics reported are those of one experiment",
+for _s in ["The experiment was performed three times; only one experiment's four wells per group were available",
            "n = 4 wells from one of three independent experiments"]:
     check("present", _s, True)
 _rd = pd.read_excel(_s1, "README")
@@ -500,8 +523,8 @@ for _n in range(1, 6):
 
 out.append(f"\n==== {ok} passed, {bad} failed ====")
 os.makedirs(f"{P}/logs", exist_ok=True)
-io.open(f"{P}/logs/consistency_check.txt", "w", encoding="utf-8").write("\n".join(out))
+io.open(f"{P}/logs/consistency_check_reviewed.txt", "w", encoding="utf-8").write("\n".join(out))
 print("\n".join(out[-3:]))
-print("report:", f"{P}/logs/consistency_check.txt")
+print("report:", f"{P}/logs/consistency_check_reviewed.txt")
 if bad:
     print("\n".join([l for l in out if l.startswith("FAIL")]))

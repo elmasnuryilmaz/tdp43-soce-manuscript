@@ -1,5 +1,6 @@
 # internal working files, not part of the published package
 qa/
+PUBLICATION_AUDIT_*.md
 *.pyc
 __pycache__/
 .DS_Store

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""v3 — S17: accession list and sample-to-group assignment for every dataset analysed."""
+"""v3 — S17: accession list, run-level knockdown groups and patient-cohort group definitions."""
 import pandas as pd
 SUP = "/Users/elmas/Desktop/MAKALE/09_YAYIN_PAKETI/supplementary"
 rows = [
@@ -47,7 +47,7 @@ rows = [
  ("comparison cohort", "Alzheimer's disease", "GSE125583", "human", "fusiform gyrus", "gene level", "219 / 70", "AD", "control"),
  ("comparison cohort", "Parkinson's disease", "GSE68719", "human", "BA9", "gene level", "29 / 44", "PD", "control"),
  ("comparison cohort", "Multiple sclerosis", "GSE138614", "human", "white matter, by lesion type", "gene level",
-  "10 MS / 5 control donors, 97 samples", "MS", "control"),
+  "10 MS / 5 control donors, 98 samples", "MS", "control"),
  ("comparison cohort", "Multiple sclerosis", "GSE123496", "human", "five brain regions", "gene level",
   "5 / 5 donors", "MS", "control"),
 ]

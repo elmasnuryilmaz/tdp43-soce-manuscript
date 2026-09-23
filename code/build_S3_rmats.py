@@ -4,7 +4,8 @@
 
 The complete rMATS output is 23 GB and is deposited separately; this file contains
 every event with FDR < 0.05 and |dPSI| >= 0.10 together with the raw junction counts,
-so the coverage pre-filter of Section 2.3 can be reproduced from it.
+so the read support of reported events can be inspected. Recomputing FDR after the
+coverage pre-filter requires the complete tested-event output.
 """
 import os
 import numpy as np, pandas as pd
@@ -24,8 +25,11 @@ for kind in ("JC", "JCEC"):
 A = pd.concat(out, ignore_index=True)
 A["dataset"] = A.dataset.map(lambda x: DS.get(x, x))
 A["passes_coverage_filter"] = (A.mean_reads_per_sample >= 10) & (A.min_informative_reads >= 5)
-cols = ["dataset", "model", "eventType", "geneSymbol", "GeneID", "chr", "strand",
+cols = ["dataset", "model", "eventType", "ID", "geneSymbol", "GeneID", "chr", "strand",
         "exonStart_0base", "exonEnd", "upstreamES", "upstreamEE", "downstreamES", "downstreamEE",
+        "longExonStart_0base", "longExonEnd", "shortES", "shortEE", "flankingES", "flankingEE",
+        "1stExonStart_0base", "1stExonEnd", "2ndExonStart_0base", "2ndExonEnd",
+        "riExonStart_0base", "riExonEnd", "IncFormLen", "SkipFormLen",
         "IJC_SAMPLE_1", "SJC_SAMPLE_1", "IJC_SAMPLE_2", "SJC_SAMPLE_2",
         "IncLevel1", "IncLevel2", "IncLevelDifference", "PValue", "FDR",
         "mean_reads_per_sample", "min_informative_reads", "passes_coverage_filter"]

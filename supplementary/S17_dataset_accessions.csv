@@ -14,5 +14,5 @@ NMD interaction,"i3Neurons, TDP-43 x NMD inhibition",GSE307054 / PRJNA1235234,hu
 patient tissue,NYGC ALS Consortium / Target ALS,GSE153960 / SRP270799 (recount3),human,"post-mortem, 10 regions",junction and gene level,"1,641 samples after metadata filtering",ALS spectrum MND,non-neurological control
 comparison cohort,Alzheimer's disease,GSE125583,human,fusiform gyrus,gene level,219 / 70,AD,control
 comparison cohort,Parkinson's disease,GSE68719,human,BA9,gene level,29 / 44,PD,control
-comparison cohort,Multiple sclerosis,GSE138614,human,"white matter, by lesion type",gene level,"10 MS / 5 control donors, 97 samples",MS,control
+comparison cohort,Multiple sclerosis,GSE138614,human,"white matter, by lesion type",gene level,"10 MS / 5 control donors, 98 samples",MS,control
 comparison cohort,Multiple sclerosis,GSE123496,human,five brain regions,gene level,5 / 5 donors,MS,control

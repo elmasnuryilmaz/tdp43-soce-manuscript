@@ -2,7 +2,7 @@
 
 No new sequencing data were generated for this study. Every dataset analysed is public.
 `supplementary/S17_dataset_accessions.csv` lists each one with its design, library type and
-sample-to-group assignment; the table below is the short version.
+run-level group assignment for knockdown experiments and group definitions for patient cohorts; the table below is the short version.
 
 ## RNA-seq datasets
 
@@ -38,10 +38,11 @@ sample-to-group assignment; the table below is the short version.
 - FASTQ and BAM files (public; re-download with the accessions above).
 - Reference genome, annotation and aligner indexes.
 - The complete rMATS output (23 GB). `supplementary/S3_rMATS_significant_events.csv.gz`
-  contains every event meeting the manuscript thresholds together with its raw junction
-  counts, which is enough to reproduce the coverage pre-filter of Section 2.3.
+  contains every event meeting the manuscript thresholds together with its event coordinates,
+  form lengths and raw junction counts. Recomputing the pre-filtered FDR across all tested
+  events requires the complete rMATS output.
 - Laboratory raw instrument files. The values behind every panel of Figure 6 — Ct values,
-  per-replicate relative expression, Fura-2 amplitudes, WST-1 absorbance ratios, primers and
+  per-replicate relative expression, Fura-2 amplitudes, normalised WST-1 signal values, primers and
   the thermal profile — are in `supplementary/S1_laboratory_source_data.xlsx`.
 
 ## Paths

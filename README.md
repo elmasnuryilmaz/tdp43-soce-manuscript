@@ -9,10 +9,10 @@ calcium-regulatory RNA profiles in SH-SY5Y cells*.
 *Every value in this summary is read from the files in this repository by
 `code/fig_graphical_abstract.py`; it is not a figure of the manuscript.*
 
-Every number in the manuscript is produced by the scripts in `code/` from the files in this
-repository, and the agreement between the text and the data is verified automatically
-(`logs/consistency_check.txt`, 324 checks, including a cross-check that every in-text
-citation has a reference entry and every reference is cited).
+The current edited manuscript is `manuscript/MANUSCRIPT_v4_SUBMISSION_REVIEWED.docx`
+(with matching `.md`); `MANUSCRIPT_v4_SUBMISSION.docx` is retained as the original.
+The text/package consistency report is `logs/consistency_check_reviewed.txt`.
+It checks citations and reported values but does not replace independent analysis of raw data.
 
 The analyses grew out of a doctoral thesis whose repository is separate
 ([tdp43-thesis-reproducibility](https://github.com/elmasnuryilmaz/tdp43-thesis-reproducibility)).
@@ -54,7 +54,7 @@ Figure numbers are **not** burned into the images; the file name carries the num
 |---|---|
 | `S1_laboratory_source_data.xlsx` | raw Ct, relative expression, Fura-2 and WST-1 values per replicate, primers, thermal profile, summary statistics |
 | `S2_calcium_gene_panels.csv` | the four cumulative Ca²⁺ panels |
-| `S3_rMATS_significant_events.csv.gz` | every rMATS event at FDR < 0.05 and \|ΔPSI\| ≥ 0.10, JC and JCEC, six datasets, with raw junction counts |
+| `S3_rMATS_significant_events.csv.gz` | every rMATS event at FDR < 0.05 and \|ΔPSI\| ≥ 0.10, JC and JCEC, six datasets, with event coordinates, form lengths and raw junction counts |
 | `S4_matched_permutation_enrichment.csv` | enrichment against the covariate-matched null |
 | `S5_high_confidence_cryptic_events.csv` | high-confidence unannotated splicing changes, all comparisons |
 | `S6_cryptic_positive_controls.csv`, `S6b_positive_control_matrix.csv` | positive-control recovery in the human comparisons (the controls are not conserved in mouse) |
@@ -68,7 +68,7 @@ Figure numbers are **not** burned into the images; the file name carries the num
 | `S14_control_vs_control_null_test.csv` | split-control null test: permissive definition and three stricter tiers |
 | `S15_STIM2.1_exon_six_datasets.csv` | STIM2.1 meta-analysis |
 | `S16_multiple_sclerosis_both_cohorts.csv`, `S16b_multiple_sclerosis_donor_level.csv` | MS analysis; the donor-level re-analysis is new in v4 |
-| `S17_dataset_accessions.csv` | every accession with design, library type and sample-to-group assignment |
+| `S17_dataset_accessions.csv` | every accession with design, library type, run-level groups for knockdown experiments and group definitions for patient cohorts |
 
 A thesis-era supplementary table listing "cryptic-junction-positive and NMD-sensitive genes"
 is not part of this set: it was built from the superseded eight-contrast NMD statistics
@@ -88,7 +88,7 @@ is not part of this set: it was built from the superseded eight-contrast NMD sta
 /usr/bin/python3 code/build_S17_datasets.py # S17
 /usr/local/bin/Rscript  code/deseq_full.R   # DESeq2 on the complete transcript map
 /usr/bin/python3 code/ms_donor_level.py     # donor-level MS analysis
-/usr/bin/python3 code/build_manuscript_docx.py  # manuscript .docx: Tables 1-5, line numbers (pandoc)
+/usr/bin/python3 code/build_manuscript_docx.py  # regenerates the original baseline manuscript, not the reviewed copy
 /usr/bin/python3 code/qa_check_v4.py        # consistency check
 ```
 
@@ -103,3 +103,9 @@ working roots used in this study and must be pointed at local copies first. The 
 coverage and FRASER steps read the aligned BAM files, which are not redistributed here;
 `DATA_AVAILABILITY.md` gives the accessions and the alignment parameters needed to rebuild
 them.
+
+## Licence
+
+Code (`code/`): MIT licence, see `LICENSE`. Data, figures, tables and supplementary files:
+CC BY 4.0, see `LICENSE-DATA.md`. The manuscript files are shared for transparency and are not
+licensed for reuse until the article is published.

@@ -1,0 +1,578 @@
+[
+  {
+    "doi": "10.1074/jbc.M115.704940",
+    "overlap": 0.95,
+    "title": "Store-operated Ca2+ Entry-associated Regulatory factor (SARAF) Plays an Important Role in the Regulation of Arachidonate-regulated Ca2+ (ARC) Channels",
+    "year": 2016,
+    "journal": "Journal of Biological Chemistry",
+    "line": "Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA. Store-operated Ca²⁺ entry-associated regulatory factor (SARAF) plays an important role in the regulation of arachidonate-regulated Ca²⁺ (ARC) channels. *J Biol Chem*. 2016;291:6982–6988. doi:10.1074/jbc.M115.704940",
+    "error": null
+  },
+  {
+    "doi": "10.1016/j.ceca.2007.01.013",
+    "overlap": 1.0,
+    "title": "TRPC1: The link between functionally distinct store-operated calcium channels",
+    "year": 2007,
+    "journal": "Cell Calcium",
+    "line": "Ambudkar IS, Ong HL, Liu X, Bandyopadhyay BC, Cheng KT. TRPC1: the link between functionally distinct store-operated calcium channels. *Cell Calcium*. 2007;42:213–223. doi:10.1016/j.ceca.2007.01.013",
+    "error": null
+  },
+  {
+    "doi": "10.1016/j.bbrc.2006.10.093",
+    "overlap": 1.0,
+    "title": "TDP-43 is a component of ubiquitin-positive tau-negative inclusions in frontotemporal lobar degeneration and amyotrophic lateral sclerosis",
+    "year": 2006,
+    "journal": "Biochemical and Biophysical Research Communications",
+    "line": "Arai T, Hasegawa M, Akiyama H, et al. TDP-43 is a component of ubiquitin-positive tau-negative inclusions in frontotemporal lobar degeneration and amyotrophic lateral sclerosis. *Biochem Biophys Res Commun*. 2006;351:602–611. doi:10.1016/j.bbrc.2006.10.093",
+    "error": null
+  },
+  {
+    "doi": "10.1126/science.abq5622",
+    "overlap": 1.0,
+    "title": "Mechanism of\n                    STMN2\n                    cryptic splice-polyadenylation and its correction for TDP-43 proteinopathies",
+    "year": 2023,
+    "journal": "Science",
+    "line": "Baughn MW, Melamed Z, López-Erauskin J, et al. Mechanism of STMN2 cryptic splice-polyadenylation and its correction for TDP-43 proteinopathies. *Science*. 2023;379:1140–1149. doi:10.1126/science.abq5622",
+    "error": null
+  },
+  {
+    "doi": "10.1083/jcb.201304101",
+    "overlap": 0.909,
+    "title": "BARP suppresses voltage-gated calcium channel activity and Ca2+-evoked exocytosis",
+    "year": 2014,
+    "journal": "Journal of Cell Biology",
+    "line": "Béguin P, Nagashima K, Mahalakshmi RN, et al. BARP suppresses voltage-gated calcium channel activity and Ca²⁺-evoked exocytosis. *J Cell Biol*. 2014;205:233–249. doi:10.1083/jcb.201304101",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s41586-022-04436-3",
+    "overlap": 1.0,
+    "title": "TDP-43 loss and ALS-risk SNPs drive mis-splicing and depletion of UNC13A",
+    "year": 2022,
+    "journal": "Nature",
+    "line": "Brown AL, Wilkins OG, Keuss MJ, et al. TDP-43 loss and ALS-risk SNPs drive mis-splicing and depletion of UNC13A. *Nature*. 2022;603:131–137. doi:10.1038/s41586-022-04436-3",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s41593-025-02050-w",
+    "overlap": 1.0,
+    "title": "TDP-43 loss induces cryptic polyadenylation in ALS/FTD",
+    "year": 2025,
+    "journal": "Nature Neuroscience",
+    "line": "Bryce-Smith S, Brown AL, Chien MZYJ, et al. TDP-43 loss induces cryptic polyadenylation in ALS/FTD. *Nat Neurosci*. 2025;28:2190–2200. doi:10.1038/s41593-025-02050-w",
+    "error": null
+  },
+  {
+    "doi": "10.1037/0033-2909.114.3.494",
+    "overlap": 1.0,
+    "title": "Dominance statistics: Ordinal analyses to answer ordinal questions.",
+    "year": 1993,
+    "journal": "Psychological Bulletin",
+    "line": "Cliff N. Dominance statistics: ordinal analyses to answer ordinal questions. *Psychol Bull*. 1993;114:494–509. doi:10.1037/0033-2909.114.3.494",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s41467-023-37266-6",
+    "overlap": 1.0,
+    "title": "Integrated analysis of genomic and transcriptomic data for the discovery of splice-associated variants in cancer",
+    "year": 2023,
+    "journal": "Nature Communications",
+    "line": "Cotto KC, Feng YY, Ramu A, et al. Integrated analysis of genomic and transcriptomic data for the discovery of splice-associated variants in cancer. *Nat Commun*. 2023;14:1589. doi:10.1038/s41467-023-37266-6",
+    "error": null
+  },
+  {
+    "doi": "10.1093/gigascience/giab008",
+    "overlap": 1.0,
+    "title": "Twelve years of SAMtools and BCFtools",
+    "year": 2021,
+    "journal": "GigaScience",
+    "line": "Danecek P, Bonfield JK, Liddle J, et al. Twelve years of SAMtools and BCFtools. *Gigascience*. 2021;10:giab008. doi:10.1093/gigascience/giab008",
+    "error": null
+  },
+  {
+    "doi": "10.1186/s12920-016-0164-y",
+    "overlap": 1.0,
+    "title": "Integrative analyses of proteomics and RNA transcriptomics implicate mitochondrial processes, protein folding pathways and GWAS loci in Parkinson disease",
+    "year": 2015,
+    "journal": "BMC Medical Genomics",
+    "line": "Dumitriu A, Golji J, Labadorf AT, et al. Integrative analyses of proteomics and RNA transcriptomics implicate mitochondrial processes, protein folding pathways and GWAS loci in Parkinson disease. *BMC Med Genomics*. 2016;9:5. doi:10.1186/s12920-016-0164-y",
+    "error": null
+  },
+  {
+    "doi": "10.1186/s40478-019-0855-7",
+    "overlap": 1.0,
+    "title": "Molecular signature of different lesion types in the brain white matter of patients with progressive multiple sclerosis",
+    "year": 2019,
+    "journal": "Acta Neuropathologica Communications",
+    "line": "Elkjaer ML, Frisch T, Reynolds R, et al. Molecular signature of different lesion types in the brain white matter of patients with progressive multiple sclerosis. *Acta Neuropathol Commun*. 2019;7:205. doi:10.1186/s40478-019-0855-7",
+    "error": null
+  },
+  {
+    "doi": "10.1093/bioinformatics/btw354",
+    "overlap": 1.0,
+    "title": "MultiQC: summarize analysis results for multiple tools and samples in a single report",
+    "year": 2016,
+    "journal": "Bioinformatics",
+    "line": "Ewels P, Magnusson M, Lundin S, Käller M. MultiQC: summarize analysis results for multiple tools and samples in a single report. *Bioinformatics*. 2016;32:3047–3048. doi:10.1093/bioinformatics/btw354",
+    "error": null
+  },
+  {
+    "doi": "10.1093/nar/gky955",
+    "overlap": 1.0,
+    "title": "GENCODE reference annotation for the human and mouse genomes",
+    "year": 2018,
+    "journal": "Nucleic Acids Research",
+    "line": "Frankish A, Diekhans M, Ferreira A-M, et al. GENCODE reference annotation for the human and mouse genomes. *Nucleic Acids Res*. 2019;47:D766–D773. doi:10.1093/nar/gky955",
+    "error": null
+  },
+  {
+    "doi": "10.1016/j.ceca.2009.12.002",
+    "overlap": 1.0,
+    "title": "Calcium dysregulation in amyotrophic lateral sclerosis",
+    "year": 2010,
+    "journal": "Cell Calcium",
+    "line": "Grosskreutz J, Van Den Bosch L, Keller BU. Calcium dysregulation in amyotrophic lateral sclerosis. *Cell Calcium*. 2010;47:165–174. doi:10.1016/j.ceca.2009.12.002",
+    "error": null
+  },
+  {
+    "doi": "10.1073/pnas.1101664108",
+    "overlap": 0.947,
+    "title": "Stoichiometric requirements for trapping and gating of Ca\n                    2+\n                    release-activated Ca\n                    2+\n                    (CRAC) channels by stromal interaction molecule 1 (STIM1)",
+    "year": 2011,
+    "journal": "Proceedings of the National Academy of Sciences",
+    "line": "Hoover PJ, Lewis RS. Stoichiometric requirements for trapping and gating of Ca²⁺ release-activated Ca²⁺ (CRAC) channels by stromal interaction molecule 1 (STIM1). *Proc Natl Acad Sci USA*. 2011;108:13299–13304. doi:10.1073/pnas.1101664108",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s41586-024-07042-7",
+    "overlap": 1.0,
+    "title": "A model of human neural networks reveals NPTX2 pathology in ALS and FTLD",
+    "year": 2024,
+    "journal": "Nature",
+    "line": "Hruska-Plochan M, Wiersma VI, Betz KM, et al. A model of human neural networks reveals NPTX2 pathology in ALS and FTLD. *Nature*. 2024;626:1073–1083. doi:10.1038/s41586-024-07042-7",
+    "error": null
+  },
+  {
+    "doi": "10.1038/ncb3234",
+    "overlap": 0.923,
+    "title": "Proteomic mapping of ER–PM junctions identifies STIMATE as a regulator of Ca2+ influx",
+    "year": 2015,
+    "journal": "Nature Cell Biology",
+    "line": "Jing J, He L, Sun A, et al. Proteomic mapping of ER–PM junctions identifies STIMATE as a regulator of Ca²⁺ influx. *Nat Cell Biol*. 2015;17:1339–1347. doi:10.1038/ncb3234",
+    "error": null
+  },
+  {
+    "doi": "10.1038/ncomms12143",
+    "overlap": 1.0,
+    "title": "Distinct and shared functions of ALS-associated proteins TDP-43, FUS and TAF15 revealed by multisystem analyses",
+    "year": 2016,
+    "journal": "Nature Communications",
+    "line": "Kapeli K, Pratt GA, Vu AQ, et al. Distinct and shared functions of ALS-associated proteins TDP-43, FUS and TAF15 revealed by multisystem analyses. *Nat Commun*. 2016;7:12143. doi:10.1038/ncomms12143",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s41587-019-0201-4",
+    "overlap": 1.0,
+    "title": "Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype",
+    "year": 2019,
+    "journal": "Nature Biotechnology",
+    "line": "Kim D, Paggi JM, Park C, Bennett C, Salzberg SL. Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype. *Nat Biotechnol*. 2019;37:907–915. doi:10.1038/s41587-019-0201-4",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s41593-018-0300-4",
+    "overlap": 1.0,
+    "title": "ALS-implicated protein TDP-43 sustains levels of STMN2, a mediator of motor neuron growth and repair",
+    "year": 2019,
+    "journal": "Nature Neuroscience",
+    "line": "Klim JR, Williams LA, Limone F, et al. ALS-implicated protein TDP-43 sustains levels of STMN2, a mediator of motor neuron growth and repair. *Nat Neurosci*. 2019;22:167–179. doi:10.1038/s41593-018-0300-4",
+    "error": null
+  },
+  {
+    "doi": "10.1161/CIRCULATIONAHA.118.037968",
+    "overlap": 1.0,
+    "title": "MCUB Regulates the Molecular Composition of the Mitochondrial Calcium Uniporter Channel to Limit Mitochondrial Calcium Overload During Stress",
+    "year": 2019,
+    "journal": "Circulation",
+    "line": "Lambert JP, Luongo TS, Tomar D, et al. MCUB regulates the molecular composition of the mitochondrial calcium uniporter channel to limit mitochondrial calcium overload during stress. *Circulation*. 2019;140:1720–1733. doi:10.1161/CIRCULATIONAHA.118.037968",
+    "error": null
+  },
+  {
+    "doi": "10.1093/nar/gku864",
+    "overlap": 1.0,
+    "title": "svaseq: removing batch effects and other unwanted noise from sequencing data",
+    "year": 2014,
+    "journal": "Nucleic Acids Research",
+    "line": "Leek JT. svaseq: removing batch effects and other unwanted noise from sequencing data. *Nucleic Acids Res*. 2014;42:e161. doi:10.1093/nar/gku864",
+    "error": null
+  },
+  {
+    "doi": "10.1093/nar/gkq1019",
+    "overlap": 1.0,
+    "title": "The Sequence Read Archive",
+    "year": 2010,
+    "journal": "Nucleic Acids Research",
+    "line": "Leinonen R, Sugawara H, Shumway M; International Nucleotide Sequence Database Collaboration. The Sequence Read Archive. *Nucleic Acids Res*. 2011;39:D19–D21. doi:10.1093/nar/gkq1019",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s41588-017-0004-9",
+    "overlap": 1.0,
+    "title": "Annotation-free quantification of RNA splicing using LeafCutter",
+    "year": 2017,
+    "journal": "Nature Genetics",
+    "line": "Li YI, Knowles DA, Humphrey J, et al. Annotation-free quantification of RNA splicing using LeafCutter. *Nat Genet*. 2018;50:151–158. doi:10.1038/s41588-017-0004-9",
+    "error": null
+  },
+  {
+    "doi": "10.1093/bioinformatics/btt656",
+    "overlap": 1.0,
+    "title": "featureCounts: an efficient general purpose program for assigning sequence reads to genomic features",
+    "year": 2013,
+    "journal": "Bioinformatics",
+    "line": "Liao Y, Smyth GK, Shi W. featureCounts: an efficient general purpose program for assigning sequence reads to genomic features. *Bioinformatics*. 2014;30:923–930. doi:10.1093/bioinformatics/btt656",
+    "error": null
+  },
+  {
+    "doi": "10.1126/science.aab0983",
+    "overlap": 1.0,
+    "title": "TDP-43 repression of nonconserved cryptic exons is compromised in ALS-FTD",
+    "year": 2015,
+    "journal": "Science",
+    "line": "Ling JP, Pletnikova O, Troncoso JC, Wong PC. TDP-43 repression of nonconserved cryptic exons is compromised in ALS-FTD. *Science*. 2015;349:650–655. doi:10.1126/science.aab0983",
+    "error": null
+  },
+  {
+    "doi": "10.1016/j.neuron.2013.07.033",
+    "overlap": 1.0,
+    "title": "Converging Mechanisms in ALS and FTD: Disrupted RNA and Protein Homeostasis",
+    "year": 2013,
+    "journal": "Neuron",
+    "line": "Ling S-C, Polymenidou M, Cleveland DW. Converging mechanisms in ALS and FTD: disrupted RNA and protein homeostasis. *Neuron*. 2013;79:416–438. doi:10.1016/j.neuron.2013.07.033",
+    "error": null
+  },
+  {
+    "doi": "10.1006/meth.2001.1262",
+    "overlap": 1.0,
+    "title": "Analysis of Relative Gene Expression Data Using Real-Time Quantitative PCR and the 2−ΔΔCT Method",
+    "year": 2001,
+    "journal": "Methods",
+    "line": "Livak KJ, Schmittgen TD. Analysis of relative gene expression data using real-time quantitative PCR and the 2^−ΔΔCt^ method. *Methods*. 2001;25:402–408. doi:10.1006/meth.2001.1262",
+    "error": null
+  },
+  {
+    "doi": "10.1186/s13059-014-0550-8",
+    "overlap": 1.0,
+    "title": "Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2",
+    "year": 2014,
+    "journal": "Genome Biology",
+    "line": "Love MI, Huber W, Anders S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. *Genome Biol*. 2014;15:550. doi:10.1186/s13059-014-0550-8",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s41586-022-04424-7",
+    "overlap": 1.0,
+    "title": "TDP-43 represses cryptic exon inclusion in the FTD–ALS gene UNC13A",
+    "year": 2022,
+    "journal": "Nature",
+    "line": "Ma XR, Prudencio M, Koike Y, et al. TDP-43 represses cryptic exon inclusion in the FTD–ALS gene UNC13A. *Nature*. 2022;603:124–130. doi:10.1038/s41586-022-04424-7",
+    "error": null
+  },
+  {
+    "doi": "10.14806/ej.17.1.200",
+    "overlap": 1.0,
+    "title": "Cutadapt removes adapter sequences from high-throughput sequencing reads",
+    "year": 2011,
+    "journal": "EMBnet.journal",
+    "line": "Martin M. Cutadapt removes adapter sequences from high-throughput sequencing reads. *EMBnet J*. 2011;17:10–12. doi:10.14806/ej.17.1.200",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s41593-018-0293-z",
+    "overlap": 1.0,
+    "title": "Premature polyadenylation-mediated loss of stathmin-2 is a hallmark of TDP-43-dependent neurodegeneration",
+    "year": 2019,
+    "journal": "Nature Neuroscience",
+    "line": "Melamed Z, López-Erauskin J, Baughn MW, et al. Premature polyadenylation-mediated loss of stathmin-2 is a hallmark of TDP-43-dependent neurodegeneration. *Nat Neurosci*. 2019;22:180–190. doi:10.1038/s41593-018-0293-z",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s41467-020-20573-7",
+    "overlap": 1.0,
+    "title": "Detection of aberrant splicing events in RNA-seq data using FRASER",
+    "year": 2021,
+    "journal": "Nature Communications",
+    "line": "Mertes C, Scheller IF, Yépez VA, et al. Detection of aberrant splicing events in RNA-seq data using FRASER. *Nat Commun*. 2021;12:529. doi:10.1038/s41467-020-20573-7",
+    "error": null
+  },
+  {
+    "doi": "10.1038/ncomms7899",
+    "overlap": 1.0,
+    "title": "A STIM2 splice variant negatively regulates store-operated calcium entry",
+    "year": 2015,
+    "journal": "Nature Communications",
+    "line": "Miederer AM, Alansary D, Schwär G, et al. A STIM2 splice variant negatively regulates store-operated calcium entry. *Nat Commun*. 2015;6:6899. doi:10.1038/ncomms7899",
+    "error": null
+  },
+  {
+    "doi": "10.1016/j.celrep.2015.02.034",
+    "overlap": 1.0,
+    "title": "Tetracyclines Disturb Mitochondrial Function across Eukaryotic Models: A Call for Caution in Biomedical Research",
+    "year": 2015,
+    "journal": "Cell Reports",
+    "line": "Moullan N, Mouchiroud L, Wang X, et al. Tetracyclines disturb mitochondrial function across eukaryotic models: a call for caution in biomedical research. *Cell Rep*. 2015;10:1681–1691. doi:10.1016/j.celrep.2015.02.034",
+    "error": null
+  },
+  {
+    "doi": "10.1093/brain/awz099",
+    "overlap": 1.0,
+    "title": "Limbic-predominant age-related TDP-43 encephalopathy (LATE): consensus working group report",
+    "year": 2019,
+    "journal": "Brain",
+    "line": "Nelson PT, Dickson DW, Trojanowski JQ, et al. Limbic-predominant age-related TDP-43 encephalopathy (LATE): consensus working group report. *Brain*. 2019;142:1503–1527. doi:10.1093/brain/awz099",
+    "error": null
+  },
+  {
+    "doi": "10.1126/science.1134108",
+    "overlap": 1.0,
+    "title": "Ubiquitinated TDP-43 in Frontotemporal Lobar Degeneration and Amyotrophic Lateral Sclerosis",
+    "year": 2006,
+    "journal": "Science",
+    "line": "Neumann M, Sampathu DM, Kwong LK, et al. Ubiquitinated TDP-43 in frontotemporal lobar degeneration and amyotrophic lateral sclerosis. *Science*. 2006;314:130–133. doi:10.1126/science.1134108",
+    "error": null
+  },
+  {
+    "doi": "10.12688/f1000research.8900.2",
+    "overlap": 1.0,
+    "title": "DRIMSeq: a Dirichlet-multinomial framework for multivariate count outcomes in genomics",
+    "year": 2016,
+    "journal": "F1000Research",
+    "line": "Nowicka M, Robinson MD. DRIMSeq: a Dirichlet-multinomial framework for multivariate count outcomes in genomics. *F1000Res*. 2016;5:1356. doi:10.12688/f1000research.8900.2",
+    "error": null
+  },
+  {
+    "doi": "10.1523/JNEUROSCI.4424-10.2011",
+    "overlap": 1.0,
+    "title": "Modulation of Canonical Transient Receptor Potential Channel 1 in the Proliferation of Oligodendrocyte Precursor Cells by the Golli Products of the Myelin Basic Protein Gene",
+    "year": 2011,
+    "journal": "The Journal of Neuroscience",
+    "line": "Paez PM, Fulton D, Spreuer V, Handley V, Campagnoni AT. Modulation of canonical transient receptor potential channel 1 in the proliferation of oligodendrocyte precursor cells by the golli products of the myelin basic protein gene. *J Neurosci*. 2011;31:3625–3637. doi:10.1523/JNEUROSCI.4424-10.2011",
+    "error": null
+  },
+  {
+    "doi": "10.1016/j.cell.2012.01.055",
+    "overlap": 1.0,
+    "title": "SARAF Inactivates the Store Operated Calcium Entry Machinery to Prevent Excess Calcium Refilling",
+    "year": 2012,
+    "journal": "Cell",
+    "line": "Palty R, Raveh A, Kaminsky I, Meller R, Reuveny E. SARAF inactivates the store operated calcium entry machinery to prevent excess calcium refilling. *Cell*. 2012;149:425–438. doi:10.1016/j.cell.2012.01.055",
+    "error": null
+  },
+  {
+    "doi": "10.1038/nmeth.4197",
+    "overlap": 1.0,
+    "title": "Salmon provides fast and bias-aware quantification of transcript expression",
+    "year": 2017,
+    "journal": "Nature Methods",
+    "line": "Patro R, Duggal G, Love MI, Irizarry RA, Kingsford C. Salmon provides fast and bias-aware quantification of transcript expression. *Nat Methods*. 2017;14:417–419. doi:10.1038/nmeth.4197",
+    "error": null
+  },
+  {
+    "doi": "10.1038/nn.2779",
+    "overlap": 1.0,
+    "title": "Long pre-mRNA depletion and RNA missplicing contribute to neuronal vulnerability from loss of TDP-43",
+    "year": 2011,
+    "journal": "Nature Neuroscience",
+    "line": "Polymenidou M, Lagier-Tourenne C, Hutt KR, et al. Long pre-mRNA depletion and RNA missplicing contribute to neuronal vulnerability from loss of TDP-43. *Nat Neurosci*. 2011;14:459–468. doi:10.1038/nn.2779",
+    "error": null
+  },
+  {
+    "doi": "10.1152/physrev.00020.2014",
+    "overlap": 1.0,
+    "title": "Store-Operated Calcium Channels",
+    "year": 2015,
+    "journal": "Physiological Reviews",
+    "line": "Prakriya M, Lewis RS. Store-operated calcium channels. *Physiol Rev*. 2015;95:1383–1436. doi:10.1152/physrev.00020.2014",
+    "error": null
+  },
+  {
+    "doi": "10.1172/JCI139741",
+    "overlap": 1.0,
+    "title": "Truncated stathmin-2 is a marker of TDP-43 pathology in frontotemporal dementia",
+    "year": 2020,
+    "journal": "Journal of Clinical Investigation",
+    "line": "Prudencio M, Humphrey J, Pickles S, et al. Truncated stathmin-2 is a marker of TDP-43 pathology in frontotemporal dementia. *J Clin Invest*. 2020;130:6080–6092. doi:10.1172/JCI139741",
+    "error": null
+  },
+  {
+    "doi": "10.1124/mi.10.4.4",
+    "overlap": 1.0,
+    "title": "Pharmacology of Store-operated Calcium Channels",
+    "year": 2010,
+    "journal": "Molecular Interventions",
+    "line": "Putney JW. Pharmacology of store-operated calcium channels. *Mol Interv*. 2010;10:209–218. doi:10.1124/mi.10.4.4",
+    "error": null
+  },
+  {
+    "doi": "10.1083/jcb.201412060",
+    "overlap": 1.0,
+    "title": "Alternative splicing converts STIM2 from an activator to an inhibitor of store-operated calcium channels",
+    "year": 2015,
+    "journal": "Journal of Cell Biology",
+    "line": "Rana A, Yen M, Sadaghiani AM, et al. Alternative splicing converts STIM2 from an activator to an inhibitor of store-operated calcium channels. *J Cell Biol*. 2015;209:653–670. doi:10.1083/jcb.201412060",
+    "error": null
+  },
+  {
+    "doi": "10.1016/j.vph.2009.04.001",
+    "overlap": 0.96,
+    "title": "Post-transcriptional silencing of TRPC1 ion channel gene by RNA interference upregulates TRPC6 expression and store-operated Ca2+ entry in A7r5 vascular smooth muscle cells",
+    "year": 2009,
+    "journal": "Vascular Pharmacology",
+    "line": "Selli Ç, Eraç Y, Kosova B, Tosun M. Post-transcriptional silencing of TRPC1 ion channel gene by RNA interference upregulates TRPC6 expression and store-operated Ca²⁺ entry in A7r5 vascular smooth muscle cells. *Vascul Pharmacol*. 2009;51:96–100. doi:10.1016/j.vph.2009.04.001",
+    "error": null
+  },
+  {
+    "doi": "10.1172/JCI61332",
+    "overlap": 1.0,
+    "title": "Neurotoxin-induced ER stress in mouse dopaminergic neurons involves downregulation of TRPC1 and inhibition of AKT/mTOR signaling",
+    "year": 2012,
+    "journal": "Journal of Clinical Investigation",
+    "line": "Selvaraj S, Sun Y, Watt JA, et al. Neurotoxin-induced ER stress in mouse dopaminergic neurons involves downregulation of TRPC1 and inhibition of AKT/mTOR signaling. *J Clin Invest*. 2012;122:1354–1367. doi:10.1172/JCI61332",
+    "error": null
+  },
+  {
+    "doi": "10.1073/pnas.1419161111",
+    "overlap": 1.0,
+    "title": "rMATS: Robust and flexible detection of differential alternative splicing from replicate RNA-Seq data",
+    "year": 2014,
+    "journal": "Proceedings of the National Academy of Sciences",
+    "line": "Shen S, Park JW, Lu Z-x, et al. rMATS: robust and flexible detection of differential alternative splicing from replicate RNA-Seq data. *Proc Natl Acad Sci USA*. 2014;111:E5593–E5601. doi:10.1073/pnas.1419161111",
+    "error": null
+  },
+  {
+    "doi": "10.1101/2025.06.28.661837",
+    "overlap": 1.0,
+    "title": "Inhibition of nonsense-mediated decay in TDP-43 deficient neurons reveals novel cryptic exons",
+    "year": 2025,
+    "journal": "",
+    "line": "Sinha IR, Ye Y, Li Y, et al. Inhibition of nonsense-mediated decay in TDP-43 deficient neurons reveals novel cryptic exons. *bioRxiv* [preprint]. 2025. doi:10.1101/2025.06.28.661837",
+    "error": null
+  },
+  {
+    "doi": "10.1016/j.celrep.2020.107843",
+    "overlap": 1.0,
+    "title": "Alzheimer’s Patient Microglia Exhibit Enhanced Aging and Unique Transcriptional Activation",
+    "year": 2020,
+    "journal": "Cell Reports",
+    "line": "Srinivasan K, Friedman BA, Etxeberria A, et al. Alzheimer's patient microglia exhibit enhanced aging and unique transcriptional activation. *Cell Rep*. 2020;31:107843. doi:10.1016/j.celrep.2020.107843",
+    "error": null
+  },
+  {
+    "doi": "10.1038/ncomms4996",
+    "overlap": 1.0,
+    "title": "ER–mitochondria associations are regulated by the VAPB–PTPIP51 interaction and are disrupted by ALS/FTD-associated TDP-43",
+    "year": 2014,
+    "journal": "Nature Communications",
+    "line": "Stoica R, De Vos KJ, Paillusson S, et al. ER–mitochondria associations are regulated by the VAPB–PTPIP51 interaction and are disrupted by ALS/FTD-associated TDP-43. *Nat Commun*. 2014;5:3996. doi:10.1038/ncomms4996",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s42003-022-03253-8",
+    "overlap": 1.0,
+    "title": "Cell environment shapes TDP-43 function with implications in neuronal and muscle disease",
+    "year": 2022,
+    "journal": "Communications Biology",
+    "line": "Šušnjar U, Škrabar N, Brown AL, et al. Cell environment shapes TDP-43 function with implications in neuronal and muscle disease. *Commun Biol*. 2022;5:314. doi:10.1038/s42003-022-03253-8",
+    "error": null
+  },
+  {
+    "doi": "10.1186/s13059-018-1417-1",
+    "overlap": 1.0,
+    "title": "SUPPA2: fast, accurate, and uncertainty-aware differential splicing analysis across multiple conditions",
+    "year": 2018,
+    "journal": "Genome Biology",
+    "line": "Trincado JL, Entizne JC, Hysenaj G, et al. SUPPA2: fast, accurate, and uncertainty-aware differential splicing analysis across multiple conditions. *Genome Biol*. 2018;19:40. doi:10.1186/s13059-018-1417-1",
+    "error": null
+  },
+  {
+    "doi": "10.1038/ncomms14714",
+    "overlap": 1.0,
+    "title": "ORAI2 modulates store-operated calcium entry and T cell-mediated immunity",
+    "year": 2017,
+    "journal": "Nature Communications",
+    "line": "Vaeth M, Yang J, Yamashita M, et al. ORAI2 modulates store-operated calcium entry and T cell-mediated immunity. *Nat Commun*. 2017;8:14714. doi:10.1038/ncomms14714",
+    "error": null
+  },
+  {
+    "doi": "10.1186/s13059-017-1277-0",
+    "overlap": 1.0,
+    "title": "stageR: a general stage-wise method for controlling the gene-level false discovery rate in differential expression and differential transcript usage",
+    "year": 2017,
+    "journal": "Genome Biology",
+    "line": "Van den Berge K, Soneson C, Robinson MD, Clement L. stageR: a general stage-wise method for controlling the gene-level false discovery rate in differential expression and differential transcript usage. *Genome Biol*. 2017;18:151. doi:10.1186/s13059-017-1277-0",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s41586-020-2077-3",
+    "overlap": 1.0,
+    "title": "A large-scale binding and functional map of human RNA-binding proteins",
+    "year": 2020,
+    "journal": "Nature",
+    "line": "Van Nostrand EL, Freese P, Pratt GA, et al. A large-scale binding and functional map of human RNA-binding proteins. *Nature*. 2020;583:711–719. doi:10.1038/s41586-020-2077-3",
+    "error": null
+  },
+  {
+    "doi": "10.7554/eLife.11752",
+    "overlap": 1.0,
+    "title": "A new view of transcriptome complexity and regulation through the lens of local splicing variations",
+    "year": 2016,
+    "journal": "eLife",
+    "line": "Vaquero-Garcia J, Barrera A, Gazzara MR, et al. A new view of transcriptome complexity and regulation through the lens of local splicing variations. *eLife*. 2016;5:e11752. doi:10.7554/eLife.11752",
+    "error": null
+  },
+  {
+    "doi": "10.1093/bioinformatics/btz247",
+    "overlap": 1.0,
+    "title": "IsoformSwitchAnalyzeR: analysis of changes in genome-wide patterns of alternative splicing and its functional consequences",
+    "year": 2019,
+    "journal": "Bioinformatics",
+    "line": "Vitting-Seerup K, Sandelin A. IsoformSwitchAnalyzeR: analysis of changes in genome-wide patterns of alternative splicing and its functional consequences. *Bioinformatics*. 2019;35:4469–4471. doi:10.1093/bioinformatics/btz247",
+    "error": null
+  },
+  {
+    "doi": "10.1073/pnas.1821306116",
+    "overlap": 1.0,
+    "title": "Gene expression in oligodendrocytes during remyelination reveals cholesterol homeostasis as a therapeutic target in multiple sclerosis",
+    "year": 2019,
+    "journal": "Proceedings of the National Academy of Sciences",
+    "line": "Voskuhl RR, Itoh N, Tassoni A, et al. Gene expression in oligodendrocytes during remyelination reveals cholesterol homeostasis as a therapeutic target in multiple sclerosis. *Proc Natl Acad Sci USA*. 2019;116:10130–10139. doi:10.1073/pnas.1821306116",
+    "error": null
+  },
+  {
+    "doi": "10.1186/s13059-021-02533-6",
+    "overlap": 1.0,
+    "title": "recount3: summaries and queries for large-scale RNA-seq expression and splicing",
+    "year": 2021,
+    "journal": "Genome Biology",
+    "line": "Wilks C, Zheng SC, Chen FY, et al. recount3: summaries and queries for large-scale RNA-seq expression and splicing. *Genome Biol*. 2021;22:323. doi:10.1186/s13059-021-02533-6",
+    "error": null
+  },
+  {
+    "doi": "10.1038/ncomms6274",
+    "overlap": 1.0,
+    "title": "Dynamic analyses of alternative polyadenylation from RNA-seq reveal a 3′-UTR landscape across seven tumour types",
+    "year": 2014,
+    "journal": "Nature Communications",
+    "line": "Xia Z, Donehower LA, Cooper TA, et al. Dynamic analyses of alternative polyadenylation from RNA-seq reveal a 3′-UTR landscape across seven tumour types. *Nat Commun*. 2014;5:5274. doi:10.1038/ncomms6274",
+    "error": null
+  },
+  {
+    "doi": "10.1038/s41467-020-16232-6",
+    "overlap": 0.909,
+    "title": "The native ORAI channel trio underlies the diversity of Ca2+ signaling events",
+    "year": 2020,
+    "journal": "Nature Communications",
+    "line": "Yoast RE, Emrich SM, Zhang X, et al. The native ORAI channel trio underlies the diversity of Ca²⁺ signaling events. *Nat Commun*. 2020;11:2444. doi:10.1038/s41467-020-16232-6",
+    "error": null
+  }
+]

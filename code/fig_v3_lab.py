@@ -5,7 +5,7 @@
 Source data (all from the thesis laboratory records):
   A  TARDBP RT-qPCR            SHSY5Y_TDP43_qPCR_Ct_Data.xlsx, sheet TARDBP_Knockdown_Ct
   B  target-gene RT-qPCR       10_GRAPHPAD_PRISM_DOSYALARI/01_tez_sekil_kaynaklari/sekil_4.17_4.18_qPCR.pzfx
-  C  WST-1 viability           .../sekil_4.21_wst1.pzfx
+  C  WST-1 metabolic activity  .../sekil_4.21_wst1.pzfx
   D  representative Fura-2 traces, relabelled in English with the confirmed 10 uM CPA
      concentration (09_YAYIN_PAKETI/source_data/representative_Fura2_traces_relabelled.png)
   E  Fura-2 ER release / SOCE  .../sekil_4.20_fura2.pzfx
@@ -132,13 +132,11 @@ for i, (lab, tab) in enumerate([("24 h", ws["WST_1_24h"]), ("48 h", ws["WST_1_48
     ax.errorbar(i + w/2, k.mean(), yerr=sem(k), color="#222", capsize=3, lw=1.1)
     ax.scatter(np.full(4, i - w/2) + np.linspace(-.09, .09, 4), c, s=16, color="#222", zorder=3)
     ax.scatter(np.full(4, i + w/2) + np.linspace(-.09, .09, 4), k, s=16, color="#222", zorder=3)
-    p = stats.ttest_ind(c, k).pvalue
-    ax.text(i, max(c.mean(), k.mean()) + 7, stars(p), ha="center", fontsize=10)
 ax.axhline(100, color="#999", lw=.8, ls="--")
 ax.set_xticks([0, 1]); ax.set_xticklabels(["24 h", "48 h"], fontsize=9)
-ax.set_ylabel("viability (% of non-targeting control)")
+ax.set_ylabel("WST-1 signal (% of non-targeting control)")
 ax.set_ylim(0, 145)
-ax.set_title("C · WST-1 viability (n = 4 wells)", loc="left")
+ax.set_title("C · WST-1 signal (n = 4 wells)", loc="left")
 
 # ------------------------------------------------- D: representative traces
 ax = fig.add_subplot(gs[1, 0:2])
@@ -186,7 +184,7 @@ for g in genes:
 for lab, tab in [("24 h", ws["WST_1_24h"]), ("48 h", ws["WST_1_48h"])]:
     c = np.array(tab["Control"]); k = np.array(tab["shTDP-43"])
     print(f"C  WST-1 {lab}: control {c.mean():.1f}+-{sem(c):.1f}  KD {k.mean():.1f}+-{sem(k):.1f}  "
-          f"p = {stats.ttest_ind(c,k).pvalue:.3g}")
+          "(descriptive; wells from one experiment)")
 for lab, tab in pairs:
     c = np.array(tab["Control"]); k = np.array(tab["TDP-43 KD"])
     print(f"E  {lab:18s} control {c.mean():.3f}+-{sem(c):.3f}  KD {k.mean():.3f}+-{sem(k):.3f}  "
