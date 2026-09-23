@@ -11,6 +11,8 @@
    on a new page and every table sits in its own section, Tables 2-5 in landscape; table text
    and table notes are 9 pt; tables get top and bottom rules; column widths are written in
    DXA on the grid and on every cell.
+4. Submission layout: text double-spaced (tables, their captions and notes single-spaced),
+   continuous line numbers in the main-text section, page numbers in the footer.
 
 Usage:  /usr/bin/python3 code/build_manuscript_docx.py [--check]
         --check only reports whether the tables in the Markdown are up to date.
@@ -82,7 +84,8 @@ def table1():
     head = ["Dataset", "Events tested", "Events after filter", "Removed (%)",
             "Significant before filter", "Significant after filter", "Significant calls lost (%)"]
     note = ("*Note.* Significant: FDR < 0.05 and |ΔPSI| ≥ 0.10. After the filter, "
-            "Benjamini–Hochberg q values were recomputed within the retained events (Methods 2.3).")
+            "Benjamini–Hochberg q values were recomputed within the retained events (Methods 2.3). "
+            "FDR, false discovery rate; PSI, percent spliced in.")
     return md_table(head, rows, "lrrrrrr", [26, 9, 9, 8, 9, 9, 10]), note
 
 
@@ -104,7 +107,8 @@ def table2():
             "Mean reads per sample", "Minimum reads in a sample"]
     note = ("*Note.* SH-SY5Y, 0 versus 75 ng/mL doxycycline, three libraries per group. ΔPSI is "
             "knockdown minus control from rMATS junction counts; the confidence interval is a "
-            "replicate-level bootstrap (10,000 resamples). Coordinates are 1-based and inclusive.")
+            "replicate-level bootstrap (10,000 resamples). Coordinates are 1-based and inclusive. "
+            "CI, confidence interval; FDR, false discovery rate; PSI, percent spliced in.")
     return md_table(head, rows, "lllrrrrlrrr", [14, 43, 12, 17, 11, 17, 17, 19, 19, 12, 13]), note
 
 
@@ -145,7 +149,7 @@ def table3():
             "counted among the sixteen literature cryptic genes (Supplementary Table S6); n/a, not "
             "assessed in mouse. The null column gives the high-confidence calls of the "
             "control-versus-control split and their ratio to the real calls; —, fewer than four "
-            "control replicates.")
+            "control replicates. iPSC-MN, iPSC-derived motor neurons; KD, knockdown.")
     return md_table(head, rows, "lrrrrllll", [18, 10, 9, 10, 9, 32, 10, 9, 11]), note
 
 
@@ -166,10 +170,12 @@ def table4():
     head = ["Family", "Gene", "TPM, control", "TPM, knockdown", "Adjusted TPM, control",
             "Adjusted TPM, knockdown", "Share of family, control (%)", "Adjusted change (%)",
             "log2FC", "p_adj"]
-    note = ("*Note.* TPM, mean of three libraries per group; adjusted TPM, after per-library "
-            "median-of-ratios scaling for library composition (Methods 2.10). Share, percentage of "
-            "the family total in control cells; bold, dominant member (> 50%). log2FC and p_adj "
-            "from DESeq2 on the gene-level Salmon counts; —, not computed.")
+    # two lines at most: a third pushes the note of this full-page table onto its own page
+    note = ("*Note.* TPM (transcripts per million), mean of three libraries per group; adjusted "
+            "TPM, after per-library median-of-ratios scaling for library composition (Methods "
+            "2.10). Share, percentage of the family total in control cells; bold, dominant member "
+            "(> 50%). log2FC and p_adj from DESeq2 on the gene-level Salmon counts; —, not "
+            "computed; CRAC, Ca²⁺ release-activated Ca²⁺.")
     return md_table(head, rows, "llrrrrrrrr", [38, 16, 17, 18, 17, 18, 20, 15, 11, 16]), note
 
 
@@ -204,7 +210,7 @@ def table5():
     note = ("*Note.* δ, Cliff's delta, case minus control, with the Benjamini–Hochberg q value in "
             "parentheses; bold, q < 0.05; —, not tested. n counts samples, or donors in the "
             "donor-level row. The NYGC comparisons of each region share its non-neurological "
-            "controls.")
+            "controls. BA9, Brodmann area 9; NYGC, New York Genome Center.")
     return md_table(head, rows, "lllrrr", [22, 24, 10, 16, 16, 16]), note
 
 
@@ -233,14 +239,35 @@ def write_markdown(text):
 
 
 # ------------------------------------------------------------------ Word post-processing
-def sect_pr(orient):
+FOOTER_ID = "rIdPageNumberFooter"
+FOOTER = ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+          '<w:ftr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" '
+          'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+          '<w:p><w:pPr><w:suppressLineNumbers />'
+          '<w:spacing w:before="0" w:after="0" w:line="240" w:lineRule="auto" />'
+          '<w:jc w:val="center" /></w:pPr>'
+          '<w:r><w:fldChar w:fldCharType="begin" /></w:r>'
+          '<w:r><w:instrText xml:space="preserve"> PAGE </w:instrText></w:r>'
+          '<w:r><w:fldChar w:fldCharType="separate" /></w:r>'
+          '<w:r><w:t>1</w:t></w:r>'
+          '<w:r><w:fldChar w:fldCharType="end" /></w:r></w:p></w:ftr>')
+SINGLE = 'w:line="240" w:lineRule="auto"'
+# Word numbers lines per section, LibreOffice for the whole document; paragraphs outside the
+# main text say so explicitly, so both number the main text only
+NOLN = "<w:suppressLineNumbers />"
+
+
+def sect_pr(orient, line_numbers=False):
     w, h = (PAGE_W, PAGE_H) if orient == "portrait" else (PAGE_H, PAGE_W)
     o = ' w:orient="landscape"' if orient == "landscape" else ""
-    return ('<w:sectPr><w:footnotePr><w:numRestart w:val="eachSect" /></w:footnotePr>'
+    ln = ('<w:lnNumType w:countBy="1" w:distance="283" w:restart="continuous" />'
+          if line_numbers else "")
+    return (f'<w:sectPr><w:footerReference w:type="default" r:id="{FOOTER_ID}" />'
+            '<w:footnotePr><w:numRestart w:val="eachSect" /></w:footnotePr>'
             '<w:type w:val="nextPage" />'
             f'<w:pgSz w:w="{w}" w:h="{h}"{o} />'
             f'<w:pgMar w:top="{MARGIN}" w:right="{MARGIN}" w:bottom="{MARGIN}" w:left="{MARGIN}" '
-            'w:header="708" w:footer="708" w:gutter="0" /></w:sectPr>')
+            f'w:header="708" w:footer="708" w:gutter="0" />{ln}</w:sectPr>')
 
 
 def add_to_ppr(par, xml, last=True):
@@ -282,7 +309,7 @@ def format_table(tbl, width):
                       m.group(0))
     tbl = re.sub(r"<w:tr>.*?</w:tr>", row, tbl, flags=re.S)
     tbl = tbl.replace('<w:pStyle w:val="Compact" />',
-                      '<w:pStyle w:val="Compact" /><w:spacing w:before="0" w:after="0" />')
+                      f'<w:pStyle w:val="Compact" />{NOLN}<w:spacing w:before="0" w:after="0" {SINGLE} />')
     # the paragraph mark sets the height of an empty cell, so it is 9 pt as well
     tbl = tbl.replace("</w:pPr>", '<w:rPr><w:sz w:val="18" /><w:szCs w:val="18" /></w:rPr></w:pPr>')
     return size_runs(tbl)
@@ -299,7 +326,11 @@ def postprocess(docx):
     assert h, "Tables heading not found"
     ps = x.rfind("<w:p>", 0, h.start())
     pe = x.index("</w:p>", ps) + len("</w:p>")
-    x = x[:ps] + add_to_ppr(x[ps:pe], sect_pr("portrait")) + x[pe:]
+    x = x[:ps] + add_to_ppr(x[ps:pe], sect_pr("portrait", line_numbers=True)) + x[pe:]
+    hs = x.index("<w:p>", ps + 1)                  # the "Tables" heading itself
+    he = x.index("</w:p>", hs) + len("</w:p>")
+    assert ">Tables</w:t>" in x[hs:he]
+    x = x[:hs] + add_to_ppr(x[hs:he], NOLN, last=False) + x[he:]
 
     tables = list(re.finditer(r"<w:tbl>.*?</w:tbl>", x, re.S))
     assert len(tables) == 5, f"expected 5 tables, found {len(tables)}"
@@ -309,7 +340,7 @@ def postprocess(docx):
         # note paragraph after the table: 9 pt, and it closes the table's section
         ns = x.index("<w:p>", m.end())
         ne = x.index("</w:p>", ns) + len("</w:p>")
-        note = add_to_ppr(size_runs(x[ns:ne]), '<w:spacing w:before="120" w:after="0" />',
+        note = add_to_ppr(size_runs(x[ns:ne]), f'{NOLN}<w:spacing w:before="120" w:after="0" {SINGLE} />',
                           last=False)
         if n < 5:
             note = add_to_ppr(note, sect_pr(orient))
@@ -320,13 +351,36 @@ def postprocess(docx):
         ce = x.index("</w:p>", cs) + len("</w:p>")
         cap = x[cs:ce]
         assert f">Table {n}.</w:t>" in cap, f"caption of Table {n} not found before it"
-        cap = add_to_ppr(cap, '<w:keepNext /><w:spacing w:before="0" w:after="120" />', last=False)
+        cap = add_to_ppr(cap, f'<w:keepNext />{NOLN}<w:spacing w:before="0" w:after="120" {SINGLE} />',
+                         last=False)
         x = x[:cs] + cap + x[ce:]
 
     # the final section (Table 5)
     x = re.sub(r"<w:sectPr>(?:(?!<w:sectPr>).)*?</w:sectPr>\s*</w:body>",
                sect_pr(ORIENT[5]) + "</w:body>", x, count=1, flags=re.S)
     files["word/document.xml"] = x.encode("utf-8")
+
+    # double spacing is the document default; tables, captions and notes set single spacing
+    st = files["word/styles.xml"].decode("utf-8")
+    st, n = re.subn(r"(<w:pPrDefault>\s*<w:pPr>\s*<w:spacing )([^>]*?)\s*/>",
+                    lambda m: m.group(1) + m.group(2) + ' w:line="480" w:lineRule="auto" />',
+                    st, count=1)
+    assert n == 1, "default paragraph spacing not found"
+    files["word/styles.xml"] = st.encode("utf-8")
+
+    # page numbers: one footer part, referenced from every section
+    assert "word/footer1.xml" not in files
+    files["word/footer1.xml"] = FOOTER.encode("utf-8")
+    rel = files["word/_rels/document.xml.rels"].decode("utf-8")
+    files["word/_rels/document.xml.rels"] = rel.replace(
+        "</Relationships>",
+        '<Relationship Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/'
+        f'footer" Id="{FOOTER_ID}" Target="footer1.xml" /></Relationships>').encode("utf-8")
+    ct = files["[Content_Types].xml"].decode("utf-8")
+    files["[Content_Types].xml"] = ct.replace(
+        "</Types>",
+        '<Override PartName="/word/footer1.xml" ContentType="application/'
+        'vnd.openxmlformats-officedocument.wordprocessingml.footer+xml" /></Types>').encode("utf-8")
     tmp = docx + ".tmp"
     with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as z:
         for n, b in files.items():

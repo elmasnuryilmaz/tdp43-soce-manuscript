@@ -300,6 +300,60 @@ PASS  S1 Fura2: control group is the non-targeting shRNA control: manuscript 1 v
 PASS  S1 WST1: control group is the non-targeting shRNA control: manuscript 1 vs data 1
 PASS  Methods name the comparison group: compared shTDP-43 cells with the non-targeting shRNA control
 
+=== 22 September 2026, round 3: values quoted from the supplements ===
+PASS  MS NAWM sample-level delta (-0.482): manuscript -0.482 vs data -0.482
+PASS  MS NAWM sample-level p (0.005): manuscript 0.005 vs data 0.0054587
+PASS  MS NAWM sample-level q (0.10): manuscript 0.1 vs data 0.104
+PASS  MS raw sample-level delta (-0.562): manuscript -0.562 vs data -0.562
+PASS  MS adjusted sample-level delta (-0.418): manuscript -0.418 vs data -0.418
+PASS  MS adjusted sample-level p (0.002): manuscript 0.002 vs data 0.0019026
+PASS  STIM2.1 pooled dPSI (+0.0013): manuscript 0.0013 vs data 0.0012658225007487766
+PASS  STIM2.1 pooled CI low (-0.022): manuscript -0.022 vs data -0.02171293742028512
+PASS  STIM2.1 pooled CI high (+0.024): manuscript 0.024 vs data 0.024244582421782672
+PASS  STIM2.1 pooled p (0.914): manuscript 0.914 vs data 0.9140196486392349
+PASS  STIM2.1 exon positive in five of six datasets: manuscript 5 vs data 5
+PASS  STIM2.1 Cochran's Q (4.84): manuscript 4.84 vs data 4.835615134691267
+PASS  STIM2.1 heterogeneity p (0.44): manuscript 0.44 vs data 0.43626974679252417
+PASS  STIM2.1 I2 (0%): manuscript 0 vs data 0.0
+PASS  STIM2.1 weight carried by the mouse datasets (86%): manuscript 0.86 vs data 0.8549007360636193
+PASS  STIM2.1 human-only pooled dPSI (+0.031): manuscript 0.031 vs data 0.030856860665233875
+PASS  STIM2.1 human-only CI low (-0.030): manuscript -0.03 vs data -0.029467674351793163
+PASS  STIM2.1 human-only CI high (+0.091): manuscript 0.091 vs data 0.09118139568226091
+PASS  STIM2.1 human-only p (0.32): manuscript 0.32 vs data 0.3160693540812959
+PASS  enrichment tests: dataset-panel combinations (24): manuscript 24 vs data 24
+PASS  iPSC-MN channel/transport matched p (0.046): manuscript 0.046 vs data 0.0456
+PASS  iPSC-MN curated Ca2+ matched p (0.032): manuscript 0.032 vs data 0.032
+PASS  abstract length, words including headings (at most 350): manuscript 1 vs data 1
+PASS  present: fixed-effect inverse-variance meta-analysis
+PASS  present: the mean per-base depths of its two windows summed to at least 3
+PASS  present: GSE296712 contains no doxycycline-treated control without TDP-43 knockdown
+PASS  present: TDP-43 knockdown was confirmed at the mRNA level only
+PASS  present: rests on a single reference gene (GAPDH)
+PASS  present: derived from the doctoral thesis of Elmasnur Yılmaz
+PASS  present: tentative, motor-neuron-associated observation
+PASS  present: (δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)
+PASS  present: (δ = −0.562 → −0.418, p = 0.002) but not at donor level (δ = −0.640, p = 0.055)
+PASS  present: 375,000 per well
+PASS  present: Dharmacon TRC Lentiviral shRNA, cat. no. RHS3979
+PASS  present: 1 mM EGTA
+PASS  present: Premix WST-1, Takara Bio, cat. no. MK400
+PASS  absent: penicillin
+PASS  absent: dominant-negative
+PASS  absent: the donor-level values are the ones reported
+PASS  absent: is expressed in oligodendrocytes
+PASS  absent: log2(TDP-43 KD
+PASS  absent: the reduction held
+PASS  absent: was still reduced
+PASS  absent: summed depth of its two windows
+PASS  absent: while leaving it intact in iPSC-derived motor neurons
+PASS  absent: the *STIM2.1*/STIM2β question
+
+=== every in-text citation has a reference and every reference is cited ===
+PASS  reference list in alphabetical order: manuscript 1 vs data 1
+PASS  in-text citations without a reference entry: manuscript 0 vs data 0
+PASS  reference entries never cited in the text: manuscript 0 vs data 0
+    67 distinct citations, 67 references
+
 === Tables 1-5 in the manuscript match tables/*.csv ===
 PASS  Markdown tables regenerated from the CSV files are identical: manuscript 0 vs data 0
 PASS  table 1 block present: <!-- table:1 -->
@@ -308,4 +362,4 @@ PASS  table 3 block present: <!-- table:3 -->
 PASS  table 4 block present: <!-- table:4 -->
 PASS  table 5 block present: <!-- table:5 -->
 
-==== 275 passed, 0 failed ====
+==== 324 passed, 0 failed ====

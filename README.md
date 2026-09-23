@@ -11,7 +11,8 @@ calcium-regulatory RNA profiles in SH-SY5Y cells*.
 
 Every number in the manuscript is produced by the scripts in `code/` from the files in this
 repository, and the agreement between the text and the data is verified automatically
-(`logs/consistency_check.txt`, 275 checks).
+(`logs/consistency_check.txt`, 324 checks, including a cross-check that every in-text
+citation has a reference entry and every reference is cited).
 
 The analyses grew out of a doctoral thesis whose repository is separate
 ([tdp43-thesis-reproducibility](https://github.com/elmasnuryilmaz/tdp43-thesis-reproducibility)).
@@ -87,14 +88,15 @@ is not part of this set: it was built from the superseded eight-contrast NMD sta
 /usr/bin/python3 code/build_S17_datasets.py # S17
 /usr/local/bin/Rscript  code/deseq_full.R   # DESeq2 on the complete transcript map
 /usr/bin/python3 code/ms_donor_level.py     # donor-level MS analysis
-/usr/bin/python3 code/build_manuscript_docx.py  # manuscript .docx with Tables 1-5 (pandoc)
+/usr/bin/python3 code/build_manuscript_docx.py  # manuscript .docx: Tables 1-5, line numbers (pandoc)
 /usr/bin/python3 code/qa_check_v4.py        # consistency check
 ```
 
 ## Requirements
 
 Python 3.9 with the packages in `requirements.txt`; R 4.3 with DESeq2, FRASER, sva and
-data.table; the command-line tools and versions in `environment.yml`.
+data.table, and R 4.4 for the isoform-usage packages (IsoformSwitchAnalyzeR, DRIMSeq,
+stageR); the command-line tools and versions in `environment.yml`.
 
 Two notes for anyone re-running the pipeline. The scripts carry absolute paths to the two
 working roots used in this study and must be pointed at local copies first. The junction,

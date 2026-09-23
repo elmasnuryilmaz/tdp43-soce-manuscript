@@ -1,12 +1,12 @@
 comparison,permissive_events,permissive_genes,positive_controls_permissive,high_confidence_events,genes,positive_controls_high_confidence,positive_control_genes_high_confidence,Tier1_genes,SOCE_machinery_genes,null_calls_high_confidence,null_to_real_ratio
 C2C12,566,379,n/a (mouse),158,110,n/a (mouse),n/a (mouse),—,—,,
-Mouse striatum,43,32,n/a (mouse),12,9,n/a (mouse),n/a (mouse),—,—,10.0,0.83
+Mouse striatum,43,32,n/a (mouse),12,9,n/a (mouse),n/a (mouse),—,—,10,0.83
 K562 poly(A)+ mRNA,1683,1030,6,145,94,4,"AGRN,ATG4B,HDGFL2,PFKP",—,—,,
-K562 total RNA,330,229,0,23,17,0,—,—,—,50.0,2.17
+K562 total RNA,330,229,0,23,17,0,—,—,—,50,2.17
 NSC34,643,421,n/a (mouse),264,166,n/a (mouse),n/a (mouse),—,—,,
 SH-SY5Y 75 ng/mL,400,288,13,165,113,13,"ACTL6B,AGRN,ARHGAP32,ATG4B,ELAVL3,GPSM2,HDGFL2,KALRN,PFKP,RSF1,SETD5,STMN2,UNC13A",—,—,,
 SH-SY5Y 25 ng/mL,351,264,13,122,86,12,"ACTL6B,AGRN,ARHGAP32,ATG4B,ELAVL3,GPSM2,HDGFL2,KALRN,PFKP,SETD5,STMN2,UNC13A",—,—,,
 "iPSC-MN, TDP-43 KD",141,108,2,18,11,0,—,—,—,,
 "iPSC-MN, FUS KD",124,80,0,26,15,0,—,—,—,,
 "iPSC-MN, TAF15 KD",126,88,0,23,13,0,—,—,—,,
-iPSC colonies,1561,1013,15,477,326,12,"ACTL6B,ARHGAP32,ATG4B,CAMK2B,ELAVL3,GPSM2,HDGFL2,KALRN,PFKP,SETD5,STMN2,UNC13A","CBARP,TRPM3",CBARP,307.0,0.64
+iPSC colonies,1561,1013,15,477,326,12,"ACTL6B,ARHGAP32,ATG4B,CAMK2B,ELAVL3,GPSM2,HDGFL2,KALRN,PFKP,SETD5,STMN2,UNC13A","CBARP,TRPM3",CBARP,307,0.64

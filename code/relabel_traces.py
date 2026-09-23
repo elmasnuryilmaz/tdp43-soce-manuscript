@@ -18,7 +18,7 @@ JOBS = [
     ((225, 80, 300, 165), None, None, None),          # panel letter A
     ((1635, 15, 1715, 95), None, None, None),          # panel letter B
     ((680, 170, 940, 255), "Non-targeting shRNA", BOLD, 58),
-    ((2315, 105, 2435, 175), "TDP-43 KD", BOLD, 58),
+    ((2315, 105, 2435, 175), "shTDP-43", BOLD, 58),
     ((790, 360, 1025, 430), "CPA (10 µM)", REG, 42),
     ((2390, 320, 2625, 390), "CPA (10 µM)", REG, 42),
     ((710, 1220, 905, 1285), "Time (s)", BOLD, 46),

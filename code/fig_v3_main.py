@@ -162,7 +162,8 @@ ax.set_xlabel("true ΔPSI"); ax.set_ylabel("detection power")
 ax.set_ylim(0, 1.02)
 ax.set_title("Detection power in a 3 + 3 design\nthe TRPC1 event sat at ~10 reads per sample",
              loc="left")
-ax.legend(fontsize=7.5, frameon=False, loc="upper left")
+# lower right: the upper left holds the "80% power" label
+ax.legend(fontsize=7.5, frameon=False, loc="lower right")
 fig.savefig(os.path.join(FIG, "Figure1_detection_power.png"))
 fig.savefig(os.path.join(FIG, "Figure1_detection_power.pdf"))
 plt.close(fig)

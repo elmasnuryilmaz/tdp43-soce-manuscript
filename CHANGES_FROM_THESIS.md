@@ -59,11 +59,12 @@ the RT-qPCR measurement. Results: `tables/Table4_transcript_family_abundance.csv
 Several samples in GSE138614 come from the same donor and had been treated as independent. Each
 test was repeated after averaging within donors.
 
-Effect: the reduction of *TRPC1* in normal-appearing white matter holds at donor level
-(δ = −0.771, p = 0.030, seven multiple sclerosis donors versus five controls), while the
-myelin- and glia-adjusted comparison becomes borderline (δ = −0.640, p = 0.055). Both are
-reported at donor level in the manuscript. Results:
-`supplementary/S16b_multiple_sclerosis_donor_level.csv`.
+Effect: in normal-appearing white matter the reduction of *TRPC1* is δ = −0.482 at sample
+level (p = 0.005, q = 0.10 after Benjamini–Hochberg correction) and δ = −0.771 at donor level
+(uncorrected p = 0.030, seven multiple sclerosis donors versus five controls). The myelin- and
+glia-adjusted comparison stays significant at sample level (δ = −0.418, p = 0.002) but not at
+donor level (δ = −0.640, p = 0.055). The manuscript reports both levels and treats the donor
+level as primary. Results: `supplementary/S16b_multiple_sclerosis_donor_level.csv`.
 
 ## 5. The *TRPC1* exon-skipping event is withdrawn as a finding
 

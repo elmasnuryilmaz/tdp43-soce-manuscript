@@ -377,6 +377,103 @@ for _sh in ["Target_qPCR_Ct", "Target_qPCR_rel", "Fura2", "WST1"]:
           int(set(pd.read_excel(_s1, _sh).group) == {"Non-targeting shRNA control", "shTDP-43"}), tol=0)
 check("Methods name the comparison group", "compared shTDP-43 cells with the non-targeting shRNA control", True)
 
+out.append("\n=== 22 September 2026, round 3: values quoted from the supplements ===")
+_d16 = pd.read_csv(f"{P}/supplementary/S16b_multiple_sclerosis_donor_level.csv")
+_r = lambda comp, unit: _d16[(_d16.comparison == comp) & (_d16.gene == "TRPC1") & (_d16.unit == unit)].iloc[0]
+close("MS NAWM sample-level delta (-0.482)", -0.482, _r("NAWM vs control WM", "sample").cliffs_delta)
+close("MS NAWM sample-level p (0.005)", 0.005, _r("NAWM vs control WM", "sample").p, tol=0.0006)
+_t5n = t5[(t5.gene == "TRPC1") & t5.region.str.startswith("Normal-appearing")]
+close("MS NAWM sample-level q (0.10)", 0.10, float(_t5n.q_value.iloc[0]), tol=0.005)
+close("MS raw sample-level delta (-0.562)", -0.562, _r("MS vs control, raw TRPC1", "sample").cliffs_delta)
+close("MS adjusted sample-level delta (-0.418)", -0.418,
+      _r("MS vs control, myelin+glia-adjusted TRPC1", "sample").cliffs_delta)
+close("MS adjusted sample-level p (0.002)", 0.002,
+      _r("MS vs control, myelin+glia-adjusted TRPC1", "sample").p, tol=0.0006)
+# STIM2.1 exon: fixed-effect inverse-variance meta-analysis of the six rMATS estimates (S15)
+_s15 = pd.read_csv(f"{P}/supplementary/S15_STIM2.1_exon_six_datasets.csv")
+_w = 1 / _s15.variance
+_est = float((_w * _s15.delta_PSI).sum() / _w.sum())
+_se = float(np.sqrt(1 / _w.sum()))
+from math import erf, sqrt
+_pm = 2 * (1 - 0.5 * (1 + erf(abs(_est / _se) / sqrt(2))))
+close("STIM2.1 pooled dPSI (+0.0013)", 0.0013, _est, tol=0.00006)
+close("STIM2.1 pooled CI low (-0.022)", -0.022, _est - 1.96 * _se, tol=0.0006)
+close("STIM2.1 pooled CI high (+0.024)", 0.024, _est + 1.96 * _se, tol=0.0006)
+close("STIM2.1 pooled p (0.914)", 0.914, _pm, tol=0.0006)
+close("STIM2.1 exon positive in five of six datasets", 5, int((_s15.delta_PSI > 0).sum()), tol=0)
+from scipy import stats as _st
+_Q = float((_w * (_s15.delta_PSI - _est) ** 2).sum())
+close("STIM2.1 Cochran's Q (4.84)", 4.84, _Q, tol=0.006)
+close("STIM2.1 heterogeneity p (0.44)", 0.44, float(_st.chi2.sf(_Q, len(_s15) - 1)), tol=0.006)
+close("STIM2.1 I2 (0%)", 0, max(0.0, (_Q - (len(_s15) - 1)) / _Q), tol=0)
+close("STIM2.1 weight carried by the mouse datasets (86%)", 0.86,
+      float(_w[_s15.species == "mouse"].sum() / _w.sum()), tol=0.006)
+_h = _s15[_s15.species == "human"]
+_wh = 1 / _h.variance
+_eh = float((_wh * _h.delta_PSI).sum() / _wh.sum())
+_sh = float(np.sqrt(1 / _wh.sum()))
+close("STIM2.1 human-only pooled dPSI (+0.031)", 0.031, _eh, tol=0.0006)
+close("STIM2.1 human-only CI low (-0.030)", -0.030, _eh - 1.96 * _sh, tol=0.0006)
+close("STIM2.1 human-only CI high (+0.091)", 0.091, _eh + 1.96 * _sh, tol=0.0006)
+close("STIM2.1 human-only p (0.32)", 0.32, float(2 * _st.norm.sf(abs(_eh / _sh))), tol=0.006)
+close("enrichment tests: dataset-panel combinations (24)", 24, len(_s4), tol=0)
+_mn4 = _s4[_s4.dataset == "GSE77702_iPSC_MN"].set_index("panel").p_matched_permutation
+close("iPSC-MN channel/transport matched p (0.046)", 0.046, _mn4["Tier2_Channel_Release_Transport_117"], tol=0.0006)
+close("iPSC-MN curated Ca2+ matched p (0.032)", 0.032, _mn4["Tier3_Curated_Calcium_Handling_258"], tol=0.0006)
+_abs = TXT.split("## Abstract")[1].split("**Keywords:**")[0]
+close("abstract length, words including headings (at most 350)", 1,
+      int(len(re.sub(r"[*]", "", _abs).split()) <= 350), tol=0)
+for s_ in ["fixed-effect inverse-variance meta-analysis",
+           "the mean per-base depths of its two windows summed to at least 3",
+           "GSE296712 contains no doxycycline-treated control without TDP-43 knockdown",
+           "TDP-43 knockdown was confirmed at the mRNA level only",
+           "rests on a single reference gene (GAPDH)",
+           "derived from the doctoral thesis of Elmasnur Yılmaz",
+           "tentative, motor-neuron-associated observation",
+           "(δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)",
+           "(δ = −0.562 → −0.418, p = 0.002) but not at donor level (δ = −0.640, p = 0.055)",
+           "375,000 per well", "Dharmacon TRC Lentiviral shRNA, cat. no. RHS3979",
+           "1 mM EGTA", "Premix WST-1, Takara Bio, cat. no. MK400"]:
+    check("present", s_, True)
+for s_ in ["penicillin", "dominant-negative", "the donor-level values are the ones reported",
+           "is expressed in oligodendrocytes", "log2(TDP-43 KD", "the reduction held",
+           "was still reduced", "summed depth of its two windows",
+           "while leaving it intact in iPSC-derived motor neurons",
+           "the *STIM2.1*/STIM2β question"]:
+    check("absent", s_, False)
+
+out.append("\n=== every in-text citation has a reference and every reference is cited ===")
+import unicodedata as _ud
+_refs_txt = TXT.split("## References")[1].split("## Declarations")[0]
+_refs = [r.strip() for r in _refs_txt.strip().split("\n\n") if r.strip()]
+_key = lambda t: "".join(c for c in _ud.normalize("NFKD", t) if not _ud.combining(c)).lower()
+close("reference list in alphabetical order", 1, int([_key(r) for r in _refs] == sorted(_key(r) for r in _refs)), tol=0)
+_ref_keys = set()
+for _r_ in _refs:
+    # the first author ends where the initials begin (initials may be non-ASCII, e.g. "Selli Ç")
+    _m = re.match(r"(.+?) [A-Z\u00c0-\u017d][A-Z\u00c0-\u017d\-]*[,.]", _r_)
+    _y = re.search(r"\b((?:19|20)\d\d)[;.]", _r_)
+    if _m and _y:
+        _ref_keys.add((_m.group(1).split(";")[0].strip(), _y.group(1)))
+_cites = set()
+_NAME = r"(?:Van den |Van |De )?[A-ZÀ-Ž][\w’'\-]+"
+for _g in re.findall(r"\(([^()]*\d{4}[^()]*)\)", _body):
+    for _piece in _g.split(";"):
+        _m = re.match(rf"^\s*(?:.*, )?({_NAME})(?: et al\.| and {_NAME})?, ((?:19|20)\d\d)\s*$", _piece)
+        if _m:
+            _cites.add((_m.group(1), _m.group(2)))
+for _m in re.finditer(rf"({_NAME})(?: et al\.| and {_NAME})? \(((?:19|20)\d\d)\)", _body):
+    _cites.add((_m.group(1), _m.group(2)))
+_missing = sorted(c for c in _cites if c not in _ref_keys)
+_uncited = sorted(r for r in _ref_keys if r not in _cites)
+close("in-text citations without a reference entry", 0, len(_missing), tol=0)
+close("reference entries never cited in the text", 0, len(_uncited), tol=0)
+if _missing:
+    out.append("    missing: " + "; ".join(f"{a} {b}" for a, b in _missing))
+if _uncited:
+    out.append("    uncited: " + "; ".join(f"{a} {b}" for a, b in _uncited))
+out.append(f"    {len(_cites)} distinct citations, {len(_refs)} references")
+
 out.append("\n=== Tables 1-5 in the manuscript match tables/*.csv ===")
 import subprocess as _sp
 _r = _sp.run(["/usr/bin/python3", f"{P}/code/build_manuscript_docx.py", "--check"],

@@ -87,6 +87,10 @@ s["CI_includes_zero"] = s.CI_includes_zero.astype(str).str.strip().str.lower().m
     {"evet": "yes", "hayir": "no", "true": "yes", "false": "no"}).fillna("")
 s["dataset"] = "SH-SY5Y (GSE296712)"
 s["start_1based"] = s["start"] + 1
+# coordinates and counts are whole numbers that the source table stores as floats
+for c in ["start_1based", "end", "exon_bp", "amino_acids", "min_informative_reads"]:
+    assert (s[c].dropna() % 1 == 0).all(), c
+    s[c] = s[c].astype("Int64")
 w(s[["dataset", "gene", "event_class", "chrom", "start_1based", "end", "strand", "exon_bp",
      "reading_frame", "amino_acids", "delta_PSI", "FDR", "CI95_low", "CI95_high",
      "CI_includes_zero", "PSI_knockdown", "PSI_control", "mean_reads_per_sample",
@@ -112,7 +116,8 @@ hc["permissive_genes"] = [perm.get(d, (np.nan,) * 3)[1] for d in hc.comparison]
 hc["positive_controls_permissive"] = [perm.get(d, (np.nan,) * 3)[2] for d in hc.comparison]
 null = pd.read_csv(f"{D}/tablolar/S15_kriptik_esik_kalibrasyonu.tsv", sep="\t")
 null = null[null.kademe == "K2"].set_index("veri_seti")
-hc["null_calls_high_confidence"] = [null.bos_olay.get(d, np.nan) for d in hc.comparison]
+hc["null_calls_high_confidence"] = pd.array([null.bos_olay.get(d, np.nan) for d in hc.comparison],
+                                           dtype="Float64").astype("Int64")
 hc["null_to_real_ratio"] = [null.yanlis_pozitif_orani.get(d, np.nan) for d in hc.comparison]
 hc["comparison"] = hc.comparison.map(lambda x: DSET.get(x, x))
 # The sixteen literature controls are human cryptic events; the STMN2 and UNC13A events are

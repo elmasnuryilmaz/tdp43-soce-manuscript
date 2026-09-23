@@ -166,9 +166,10 @@ for yy, v in zip(y, vals):
 ax.set_yticks(y); ax.set_yticklabels(labs, fontsize=7.5)
 ax.set_xlabel("positive-control genes recovered (of 16)")
 ax.set_xlim(0, 18.5)
+# FUS and TAF15 knockdown recover no control, so their bars have zero length and are
+# identified by their axis labels rather than by a legend key
 ax.legend(handles=[Patch(color=KD_C, label="TDP-43 KD (primary model)"),
-                   Patch(color=CT_C, label="TDP-43 KD (other)"),
-                   Patch(color="#8e44ad", label="FUS / TAF15 KD")],
+                   Patch(color=CT_C, label="TDP-43 KD (other)")],
           frameon=False, fontsize=7, loc="lower right")
 ax.set_title("A · Positive-control recovery, human comparisons\n(permissive definition)", loc="left")
 
@@ -186,7 +187,7 @@ ax.axvline(0, color="#666", lw=.8)
 ax.set_xlabel("Δ coverage index (knockdown − control)")
 ax.legend(handles=[Patch(color=ACC, label="intronic polyadenylation index"),
                    Patch(color="#8e44ad", label="distal 3′UTR usage index")],
-          frameon=True, framealpha=0.92, edgecolor="none", fontsize=7, loc="lower right")
+          frameon=True, framealpha=0.92, edgecolor="none", fontsize=7, loc="upper left")
 ax.set_title("B · Coverage-based APA indices, SH-SY5Y\n(Ca²⁺ genes and positive controls)", loc="left")
 
 ax = axes[2]
@@ -213,8 +214,9 @@ if len(st) == 2:
             ax.plot([xs[1] + 0.08], [0.0], "o", ms=10, mfc="white", mec=KD_C,
                     mew=1.8, zorder=5)
             ax.annotate("measured zero", xy=(xs[1] + 0.08, 0.0),
-                        xytext=(-6, 14), textcoords="offset points",
-                        fontsize=7, color=KD_C, ha="right")
+                        xytext=(10, 0), textcoords="offset points",
+                        fontsize=7, color=KD_C, ha="left", va="center")
+    ax.set_xlim(-0.2, 1.55)                  # room for the label right of the open circle
     ax.set_xticks([0.04, 1.04]); ax.set_xticklabels(["intron 5′ end", "intron 3′ end"])
     ax.set_ylabel("mean coverage depth")
     ax.legend(frameon=False, fontsize=8)
