@@ -16,7 +16,7 @@ from importlib.machinery import SourceFileLoader
 
 core = SourceFileLoader("core", "/Users/elmas/Desktop/MAKALE/04_KOD/01_rmats_core.py").load_module()
 TAB = os.path.join(core.OUT, "03_TABLOLAR")
-FIG = "/Users/elmas/Desktop/MAKALE/10_NEUROCHEMISTRY_INTERNATIONAL/figures/redesign_work"
+FIG = "/Users/elmas/Desktop/MAKALE/11_NEUROCHEMISTRY_INTERNATIONAL_FIGURE_REVISION/figures/redesign_work"
 os.makedirs(FIG, exist_ok=True)
 
 plt.rcParams.update({
@@ -27,7 +27,7 @@ plt.rcParams.update({
     "xtick.major.size": 3, "ytick.major.size": 3,
     "axes.spines.top": False, "axes.spines.right": False,
     "figure.dpi": 150, "savefig.dpi": 300,
-    "pdf.fonttype": 42, "ps.fonttype": 42,
+    "pdf.fonttype": 42, "ps.fonttype": 42, "svg.fonttype": "none",
     "mathtext.fontset": "custom", "mathtext.rm": "Arial",
     "mathtext.it": "Arial:italic", "mathtext.bf": "Arial:bold",
     "savefig.facecolor": "white", "figure.facecolor": "white",
@@ -103,6 +103,7 @@ ax.set_title("C  Leave-one-out sensitivity", loc="left")
 
 fig.savefig(os.path.join(FIG, "Figure2_TRPC1_robustness.png"))
 fig.savefig(os.path.join(FIG, "Figure2_TRPC1_robustness.pdf"))
+fig.savefig(os.path.join(FIG, "Figure2_TRPC1_robustness.svg"))
 plt.close(fig)
 print("Figure 2 (TRPC1 robustness) written")
 
@@ -164,6 +165,7 @@ ax.set_title("Detection power in a 3 + 3 design", loc="left")
 ax.legend(fontsize=7.5, frameon=False, loc="lower right")
 fig.savefig(os.path.join(FIG, "Figure1_detection_power.png"))
 fig.savefig(os.path.join(FIG, "Figure1_detection_power.pdf"))
+fig.savefig(os.path.join(FIG, "Figure1_detection_power.svg"))
 plt.close(fig)
 print("Figure 1 (detection power) written")
 

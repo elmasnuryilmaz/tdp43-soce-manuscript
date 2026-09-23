@@ -45,7 +45,9 @@ why. Where the thesis and this repository differ, this repository is current.
 | `main/Figure3_ALS_expression` | ALS brain/spinal-cord tissue expression |
 | `supplementary/Supplementary_Figure_S1`–`S8` | splicing, read-support checks, cryptic controls, NMD, APA and additional tissue comparisons |
 
-All current panels are separate PDF files for submission, with PNG previews. The
+All current panels are separate PDF files for submission, with 300-dpi PNG previews
+and SVG source graphics. Elsevier lists PDF as an accepted vector artwork format;
+the PNG and SVG variants are provided for preview, editing and reuse. The
 laboratory did not measure splicing; those analyses are supplementary. The
 Ca²⁺ plots show individual culture measurements and mean ± SEM; no time trace
 was added. WST-1 was measured at 48 h in four wells per group in one experiment.

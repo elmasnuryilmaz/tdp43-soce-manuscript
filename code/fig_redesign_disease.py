@@ -12,7 +12,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 O = "/Users/elmas/Desktop/MAKALE/06_MS_ANALIZI"
-FIG = "/Users/elmas/Desktop/MAKALE/10_NEUROCHEMISTRY_INTERNATIONAL/figures/redesign_work"
+FIG = "/Users/elmas/Desktop/MAKALE/11_NEUROCHEMISTRY_INTERNATIONAL_FIGURE_REVISION/figures/redesign_work"
 os.makedirs(FIG, exist_ok=True)
 plt.rcParams.update({
     "font.family": "Arial", "font.size": 8,
@@ -22,7 +22,7 @@ plt.rcParams.update({
     "xtick.major.size": 3, "ytick.major.size": 3,
     "axes.spines.top": False, "axes.spines.right": False,
     "figure.dpi": 150, "savefig.dpi": 300,
-    "pdf.fonttype": 42, "ps.fonttype": 42,
+    "pdf.fonttype": 42, "ps.fonttype": 42, "svg.fonttype": "none",
     "mathtext.fontset": "custom", "mathtext.rm": "Arial",
     "mathtext.it": "Arial:italic", "mathtext.bf": "Arial:bold",
     "savefig.facecolor": "white", "figure.facecolor": "white",
@@ -109,4 +109,5 @@ ax.text(1.0, -0.075, "* Benjamini–Hochberg q < 0.05   ·   † uncorrected p <
 
 fig.savefig(os.path.join(FIG, "Figure8_TRPC1_disease_direction.png"))
 fig.savefig(os.path.join(FIG, "Figure8_TRPC1_disease_direction.pdf"))
+fig.savefig(os.path.join(FIG, "Figure8_TRPC1_disease_direction.svg"))
 print("Figure 8 ->", FIG)

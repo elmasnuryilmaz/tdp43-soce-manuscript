@@ -22,7 +22,7 @@ plt.rcParams.update({
     "xtick.labelsize": 7.5, "ytick.labelsize": 7.5,
     "axes.spines.top": False, "axes.spines.right": False,
     "axes.linewidth": .7, "xtick.major.width": .7, "ytick.major.width": .7,
-    "pdf.fonttype": 42, "ps.fonttype": 42,
+    "pdf.fonttype": 42, "ps.fonttype": 42, "svg.fonttype": "none",
     "mathtext.fontset": "custom", "mathtext.rm": "Arial",
     "mathtext.it": "Arial:italic", "mathtext.bf": "Arial:bold",
     "savefig.dpi": 300, "figure.facecolor": "white", "savefig.facecolor": "white",
@@ -30,6 +30,7 @@ plt.rcParams.update({
 def save(fig, stem):
     fig.savefig(OUT / f"{stem}.pdf")
     fig.savefig(OUT / f"{stem}.png")
+    fig.savefig(OUT / f"{stem}.svg")
     plt.close(fig)
 
 # S4. Working cryptic-junction positive controls, cumulative Ca-gene panels,

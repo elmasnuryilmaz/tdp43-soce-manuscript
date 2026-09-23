@@ -12,7 +12,7 @@ BLUE,ORANGE="#0072B2","#D55E00"
 plt.rcParams.update({"font.family":"Arial","font.size":8,"axes.labelsize":8,
  "axes.titlesize":9,"axes.titleweight":"bold","xtick.labelsize":7.5,
  "ytick.labelsize":7.5,"axes.spines.top":False,"axes.spines.right":False,
- "pdf.fonttype":42,"ps.fonttype":42,"savefig.dpi":300,
+ "pdf.fonttype":42,"ps.fonttype":42,"svg.fonttype":"none","savefig.dpi":300,
  "mathtext.fontset":"custom","mathtext.rm":"Arial","mathtext.it":"Arial:italic",
  "mathtext.bf":"Arial:bold","figure.facecolor":"white","savefig.facecolor":"white"})
 t=pd.read_csv(PKG/"tables"/"Table2_robust_SOCE_splicing_events.csv").set_index("gene")
@@ -33,4 +33,5 @@ for label,ax,g in zip("ABCD",axes.flat,order):
          transform=ax.transAxes,ha="right",va="top",fontsize=7.5,color="black")
 fig.savefig(OUT/"Supplementary_Figure_S3_splicing_replicates.pdf")
 fig.savefig(OUT/"Supplementary_Figure_S3_splicing_replicates.png")
+fig.savefig(OUT/"Supplementary_Figure_S3_splicing_replicates.svg")
 print("S3 written")

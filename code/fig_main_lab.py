@@ -32,7 +32,7 @@ plt.rcParams.update({
     "xtick.major.size": 3, "ytick.major.size": 3,
     "axes.spines.top": False, "axes.spines.right": False,
     "figure.dpi": 150, "savefig.dpi": 300,
-    "pdf.fonttype": 42, "ps.fonttype": 42,
+    "pdf.fonttype": 42, "ps.fonttype": 42, "svg.fonttype": "none",
     "mathtext.fontset": "custom", "mathtext.rm": "Arial",
     "mathtext.it": "Arial:italic", "mathtext.bf": "Arial:bold",
     "savefig.facecolor": "white", "figure.facecolor": "white",
@@ -170,10 +170,11 @@ for label, tab, slot, panel, ylim in [
 
 fig.savefig(os.path.join(FIG, "Figure1_functional_consequences.png"))
 fig.savefig(os.path.join(FIG, "Figure1_functional_consequences.pdf"))
+fig.savefig(os.path.join(FIG, "Figure1_functional_consequences.svg"))
 plt.close(fig)
 
 # ---------------------------------------------------------------- stat report
-print("Figure 6 written ->", FIG)
+print("Figure 1 written ->", FIG)
 print(f"A  one-way ANOVA on log2 relative expression: F = {F:.1f}, p = {p_anova:.3g}")
 print(f"   TARDBP: untransduced {un.mean():.3f}, non-targeting {nt.mean():.3f}, "
       f"shTDP-43 {kd.mean():.4f}  ->  -{100*(1-kd.mean()/nt.mean()):.1f}% / "
