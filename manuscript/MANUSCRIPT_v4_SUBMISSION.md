@@ -438,7 +438,7 @@ Yoast RE, Emrich SM, Zhang X, et al. The native ORAI channel trio underlies the 
 
 **Funding.** This work was supported by the Ege University Scientific Research Projects Coordination Unit (BAP), project 31901. E.Y. was supported by the Council of Higher Education (YÖK) 100/2000 PhD Scholarship Programme (priority area: Molecular Pharmacology and Drug Research) and by the TÜBİTAK BİDEB 2211-A National PhD Scholarship Programme. The funders had no role in study design, data collection and analysis, the decision to publish, or the preparation of the manuscript.
 
-**Author contributions.** E.Y. performed the laboratory experiments, carried out the computational analyses, prepared the figures and wrote the first draft. Y.E. conceived and designed the study, provided the Fura-2 Ca²⁺ measurement methodology and the laboratory resources, secured the funding (Ege University BAP project 31901), supervised the experimental and computational work, contributed to the interpretation of the results and critically revised the manuscript. Both authors read and approved the final manuscript.
+**Author contributions (CRediT).** Elmasnur Yılmaz: Investigation, Formal analysis, Software, Visualization, Writing – original draft. Yasemin Eraç: Conceptualization, Methodology, Resources, Funding acquisition, Supervision, Writing – review & editing. Both authors read and approved the final manuscript.
 
 **Conflicts of interest.** The authors declare no competing interests.
 
