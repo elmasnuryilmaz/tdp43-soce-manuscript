@@ -215,5 +215,5 @@ for j,proxy in enumerate(proxies):
     ax.set_title(f"{'B' if j==0 else 'C'}  {proxy}",loc="left")
 cb=fig.colorbar(im,ax=fig.axes[1:3],fraction=.025,pad=.025,ticks=[-1,0,1])
 cb.set_label("Spearman ρ")
-save(fig,"Supplementary_Figure_S8_STMN2_proxies")
+save(fig,"Supplementary_Figure_S8_STMN2_expression_vs_cryptic_PSI")
 print("S4, S5, S6, S8 written")
