@@ -379,6 +379,11 @@ check("Methods name the comparison group", "compared shTDP-43 cells with the non
 # author decisions of 23 September 2026: Y. Kaymaz is not an author; the WST-1 experiment was
 # performed three times and the values reported are the four wells of one experiment
 check("author list", "**Elmasnur Yılmaz¹, Yasemin Eraç¹\\***", True)
+# confirmed by the author on 23 September 2026: the affiliation is Pharmacology (the thesis
+# belongs to the Biotechnology PhD programme, as the acknowledgement says), and the SH-SY5Y
+# medium contained no antibiotic ("penicillin" is among the forbidden strings above)
+check("affiliation", "¹ Department of Pharmacology, Faculty of Pharmacy, Ege University, İzmir, Türkiye", True)
+check("thesis programme", "Graduate School of Natural and Applied Sciences, Department of Biotechnology, 2026", True)
 for _s in ["Kaymaz", "Y.K.", "Bioengineering", "from a single experiment"]:
     check("absent", _s, False)
 for _s in ["The experiment was performed three times; the values and statistics reported are those of one experiment",

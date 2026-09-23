@@ -300,6 +300,8 @@ PASS  S1 Fura2: control group is the non-targeting shRNA control: manuscript 1 v
 PASS  S1 WST1: control group is the non-targeting shRNA control: manuscript 1 vs data 1
 PASS  Methods name the comparison group: compared shTDP-43 cells with the non-targeting shRNA control
 PASS  author list: **Elmasnur Yılmaz¹, Yasemin Eraç¹\***
+PASS  affiliation: ¹ Department of Pharmacology, Faculty of Pharmacy, Ege University, İzmir, Türkiye
+PASS  thesis programme: Graduate School of Natural and Applied Sciences, Department of Biotechnology, 2026
 PASS  absent: Kaymaz
 PASS  absent: Y.K.
 PASS  absent: Bioengineering
@@ -370,4 +372,4 @@ PASS  table 3 block present: <!-- table:3 -->
 PASS  table 4 block present: <!-- table:4 -->
 PASS  table 5 block present: <!-- table:5 -->
 
-==== 332 passed, 0 failed ====
+==== 334 passed, 0 failed ====
