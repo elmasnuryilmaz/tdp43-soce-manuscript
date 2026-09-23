@@ -41,7 +41,7 @@ run-level group assignment for knockdown experiments and group definitions for p
   contains every event meeting the manuscript thresholds together with its event coordinates,
   form lengths and raw junction counts. Recomputing the pre-filtered FDR across all tested
   events requires the complete rMATS output.
-- Laboratory raw instrument files. The values behind every panel of Figure 6 — Ct values,
+- Laboratory raw instrument files. The values behind every laboratory panel of current Figure 1 — Ct values,
   per-replicate relative expression, Fura-2 amplitudes, normalised WST-1 signal values, primers and
   the thermal profile — are in `supplementary/S1_laboratory_source_data.xlsx`.
 

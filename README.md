@@ -9,10 +9,14 @@ calcium-regulatory RNA profiles in SH-SY5Y cells*.
 *Every value in this summary is read from the files in this repository by
 `code/fig_graphical_abstract.py`; it is not a figure of the manuscript.*
 
-The current edited manuscript is `manuscript/MANUSCRIPT_v4_SUBMISSION_REVIEWED.docx`
-(with matching `.md`); `MANUSCRIPT_v4_SUBMISSION.docx` is retained as the original.
-The text/package consistency report is `logs/consistency_check_reviewed.txt`.
-It checks citations and reported values but does not replace independent analysis of raw data.
+The current edited manuscript is `manuscript/MANUSCRIPT_NEUROCHEMISTRY_INTERNATIONAL_FINAL.docx`
+(with matching `.md`). It has three main figures in `figures/main/` and eight
+supplementary figures in `figures/supplementary/`. Editable supplementary figure
+legends are in `supplementary/Supplementary_Figure_Legends.docx`; the NCI
+highlights are in `highlights_Neurochemistry_International.docx`.
+The earlier nine-figure manuscript (`MANUSCRIPT_v4_SUBMISSION_REVIEWED`) and
+its `figures/Figure1`–`Figure9` files remain as a historical version. The original
+`MANUSCRIPT_v4_SUBMISSION.docx` is also retained.
 
 The analyses grew out of the first author's doctoral thesis (Ege University, 2026). Five
 analyses were revised for the manuscript; `CHANGES_FROM_THESIS.md` sets out what changed and
@@ -20,7 +24,9 @@ why. Where the thesis and this repository differ, this repository is current.
 
 ```
 ├── manuscript/           manuscript, Markdown and Word
-├── figures/              Figures 1–9, PNG (300 dpi) and PDF
+├── figures/main/         current Figures 1–3, PNG (300 dpi) and PDF
+├── figures/supplementary/ current Supplementary Figures S1–S8
+├── figures/Figure1–9    historical nine-figure layout
 ├── tables/               Tables 1–5, CSV (typeset in the manuscript by code/build_manuscript_docx.py)
 ├── supplementary/        Supplementary Tables S1–S17
 ├── source_data/          intermediate data behind Tables 4–5 and Figures 6–8
@@ -30,7 +36,21 @@ why. Where the thesis and this repository differ, this repository is current.
 └── DATA_AVAILABILITY.md  accessions and externally hosted resources
 ```
 
-## Figures
+## Current figures
+
+| File | Purpose |
+|---|---|
+| `main/Figure1_functional_consequences` | laboratory RT-qPCR, 48-h WST-1, ER release and SOCE |
+| `main/Figure2_transcript_profile` | independent public SH-SY5Y transcript context |
+| `main/Figure3_ALS_expression` | ALS brain/spinal-cord tissue expression |
+| `supplementary/Supplementary_Figure_S1`–`S8` | splicing, read-support checks, cryptic controls, NMD, APA and additional tissue comparisons |
+
+All current panels are separate PDF files for submission, with PNG previews. The
+laboratory did not measure splicing; those analyses are supplementary. The
+Ca²⁺ plots show individual culture measurements and mean ± SEM; no time trace
+was added. WST-1 was measured at 48 h in four wells per group in one experiment.
+
+## Historical figures
 
 | File | Manuscript | Content |
 |---|---|---|
@@ -74,6 +94,16 @@ is not part of this set: it was built from the superseded eight-contrast NMD sta
 (`CHANGES_FROM_THESIS.md`, section 2), under which no gene passes genome-wide FDR.
 
 ## How to reproduce
+
+For the current figure set, the main scripts are
+`code/fig_main_lab.py`, `code/fig_main_transcript_disease.py`,
+`code/fig_supp_splicing.py` and `code/fig_supp_rna_processing.py`.
+The retained S1 and S2 figures are drawn by `code/fig_redesign_main.py`; S7
+is drawn by `code/fig_redesign_disease.py`. `code/build_manuscript_docx_final.py` builds
+the current manuscript. These scripts still use the original workstation paths;
+see the note under Requirements before rerunning them elsewhere.
+
+The commands below rebuild the historical nine-figure version and its tables.
 
 ```bash
 /usr/bin/python3 code/build_family_abundance.py  # Table 4 source: composition-adjusted TPM
