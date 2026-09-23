@@ -219,7 +219,6 @@ close("SOCE control mean", 1.542, x.loc["SOCE delta F340/F380 | Non-targeting sh
 close("SOCE knockdown mean", 0.245, x.loc["SOCE delta F340/F380 | shTDP-43", "mean"])
 close("ER release control mean", 0.268, x.loc["ER Ca2+ release delta F340/F380 | Non-targeting shRNA control", "mean"])
 close("WST-1 48 h knockdown", 61.5, x.loc["WST-1 viability 48 h | shTDP-43", "mean"], tol=0.05)
-close("WST-1 24 h knockdown", 116.8, x.loc["WST-1 viability 24 h | shTDP-43", "mean"], tol=0.05)
 
 out.append("\n=== cross-file agreement and the corrected correction family ===")
 # the same GSE138614 donor-level test appears in Table 5 and in S16b; the two pipelines
@@ -305,7 +304,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of the sev
           "chr4:27,007,983–27,008,006", "three independent cultures", "10 µM cyclopiazonic acid",
           "Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA",
           "Of the 110 correlations tested against the junction-based marker",
-          "116.8 ± 1.6% of control at 24 h", "Cutadapt v5.2",
+          "Viability at 48 h was 61.5 ± 0.8% of control", "Cutadapt v5.2",
           "59 units in 29 genes passed the same depth filter",
           "from 0.570 in controls to 0.819 in knockdown (Δ = +0.249",
           "`-p --countReadPairs` for paired-end libraries",
@@ -322,7 +321,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of the sev
           "Yoast RE, Emrich SM, Zhang X, et al.",
           "3\u2076 = 729 combinations for the three-versus-three comparisons and 2\u2074 = 16",
           "applied across the 220 informative correlations",
-          "Viability was measured at 24 h and 48 h",
+          "Viability was measured 48 h after seeding",
           "10 MS/5 control donors, 98 samples",
           "in SH-SY5Y the same unit is uninformative (0.000, interval \u22120.264 to +0.241)",
           "decreased at donor level across all sampled lesion types (\u03b4 = \u22120.840; q = 0.038)"]:
@@ -384,7 +383,10 @@ check("author list", "**Elmasnur Yılmaz¹, Yasemin Eraç¹\\***", True)
 # medium contained no antibiotic ("penicillin" is among the forbidden strings above)
 check("affiliation", "¹ Department of Pharmacology, Faculty of Pharmacy, Ege University, İzmir, Türkiye", True)
 check("thesis programme", "Graduate School of Natural and Applied Sciences, Department of Biotechnology, 2026", True)
-for _s in ["Kaymaz", "Y.K.", "Bioengineering", "from a single experiment"]:
+# WST-1 is reported at 48 h only, as in the thesis
+close("S1 WST1 sheet holds the 48 h time point only", 1,
+      int(set(pd.read_excel(_s1, "WST1").time) == {"48 h"}), tol=0)
+for _s in ["Kaymaz", "Y.K.", "Bioengineering", "from a single experiment", "116.8", "24 h and 48 h"]:
     check("absent", _s, False)
 for _s in ["The experiment was performed three times; the values and statistics reported are those of one experiment",
            "n = 4 wells from one of three independent experiments"]:

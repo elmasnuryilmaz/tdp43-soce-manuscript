@@ -8,7 +8,7 @@ Sheets
   Target_qPCR_Ct    raw Ct for the four SOCE-associated targets (n = 4 per group)
   Target_qPCR_rel   relative expression per replicate (the values plotted in Figure 6B)
   Fura2             per-replicate ER release and SOCE amplitudes (n = 3)
-  WST1              per-well viability at 24 h and 48 h (n = 4)
+  WST1              per-well viability at 48 h (n = 4), the time point the thesis reports
   Summary_stats     group means, SEM and the test used for every panel of Figure 6
 """
 import os
@@ -84,7 +84,7 @@ for tab, lab in [("ER_Ca2_release", "ER Ca2+ release"), ("SOCE", "SOCE")]:
 fura = pd.DataFrame(fura)
 
 wst = []
-for tab, lab in [("WST_1_24h", "24 h"), ("WST_1_48h", "48 h")]:
+for tab, lab in [("WST_1_48h", "48 h")]:
     for grp, vals in ws[tab].items():
         for i, v in enumerate(vals, 1):
             wst.append(dict(time=lab, group=(NT if grp == "Control" else "shTDP-43"),
@@ -112,8 +112,8 @@ for g in ["TRPC1", "STIM1", "ORAI1", "ATP2A3"]:
     rows.append(dict(panel="6B", measurement=f"{g} relative mRNA", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 3), SEM=round(sem(k), 3),
                      test="two-tailed Student's t-test", p_value=f"{p:.3g}"))
-# Figure 6: C = WST-1, D = representative traces (no statistics), E = Fura-2 group data
-for tab, lab in [("WST_1_24h", "24 h"), ("WST_1_48h", "48 h")]:
+# Figure 6: C = WST-1 (48 h), D = representative traces (no statistics), E = Fura-2 group data
+for tab, lab in [("WST_1_48h", "48 h")]:
     c = np.array(ws[tab]["Control"]); k = np.array(ws[tab]["shTDP-43"])
     p = stats.ttest_ind(c, k).pvalue
     rows.append(dict(panel="6C", measurement=f"WST-1 viability {lab}", group=NT,
@@ -145,9 +145,9 @@ readme = pd.DataFrame({"sheet": ["TARDBP_qPCR", "Target_qPCR_Ct", "Target_qPCR_r
         "of 1.5 mM CaCl2. Both as delta(F340/F380) versus the preceding baseline. The three "
         "samples of each group come from three independent cultures. The control group is the "
         "non-targeting (scrambled) shRNA control.",
-        "WST-1 viability, four wells per group, normalised to the mean of the non-targeting "
-        "(scrambled) shRNA control at the same time point. The experiment was performed "
-        "three times; these are the four wells of one experiment.",
+        "WST-1 viability 48 h after seeding, four wells per group, normalised to the mean of "
+        "the non-targeting (scrambled) shRNA control. The experiment was performed three "
+        "times; these are the four wells of one experiment.",
         "Group means, SEM and the statistical test behind every panel of Figure 6.",
         "Primer sequences, product sizes and annealing temperatures for the RT-qPCR targets "
         "and the GAPDH reference.",

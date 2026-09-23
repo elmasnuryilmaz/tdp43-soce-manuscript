@@ -130,7 +130,6 @@ PASS  SOCE control mean: manuscript 1.542 vs data 1.542
 PASS  SOCE knockdown mean: manuscript 0.245 vs data 0.245
 PASS  ER release control mean: manuscript 0.268 vs data 0.268
 PASS  WST-1 48 h knockdown: manuscript 61.5 vs data 61.5
-PASS  WST-1 24 h knockdown: manuscript 116.8 vs data 116.8
 
 === cross-file agreement and the corrected correction family ===
 PASS  MS donor-level delta: Table 5 vs S16b: manuscript -0.84 vs data -0.84
@@ -184,7 +183,7 @@ PASS  present: three independent cultures
 PASS  present: 10 µM cyclopiazonic acid
 PASS  present: Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA
 PASS  present: Of the 110 correlations tested against the junction-based marker
-PASS  present: 116.8 ± 1.6% of control at 24 h
+PASS  present: Viability at 48 h was 61.5 ± 0.8% of control
 PASS  present: Cutadapt v5.2
 PASS  present: 59 units in 29 genes passed the same depth filter
 PASS  present: from 0.570 in controls to 0.819 in knockdown (Δ = +0.249
@@ -202,7 +201,7 @@ PASS  present: The *STIM2* unit is not an independent observation
 PASS  present: Yoast RE, Emrich SM, Zhang X, et al.
 PASS  present: 3⁶ = 729 combinations for the three-versus-three comparisons and 2⁴ = 16
 PASS  present: applied across the 220 informative correlations
-PASS  present: Viability was measured at 24 h and 48 h
+PASS  present: Viability was measured 48 h after seeding
 PASS  present: 10 MS/5 control donors, 98 samples
 PASS  present: in SH-SY5Y the same unit is uninformative (0.000, interval −0.264 to +0.241)
 PASS  present: decreased at donor level across all sampled lesion types (δ = −0.840; q = 0.038)
@@ -302,10 +301,13 @@ PASS  Methods name the comparison group: compared shTDP-43 cells with the non-ta
 PASS  author list: **Elmasnur Yılmaz¹, Yasemin Eraç¹\***
 PASS  affiliation: ¹ Department of Pharmacology, Faculty of Pharmacy, Ege University, İzmir, Türkiye
 PASS  thesis programme: Graduate School of Natural and Applied Sciences, Department of Biotechnology, 2026
+PASS  S1 WST1 sheet holds the 48 h time point only: manuscript 1 vs data 1
 PASS  absent: Kaymaz
 PASS  absent: Y.K.
 PASS  absent: Bioengineering
 PASS  absent: from a single experiment
+PASS  absent: 116.8
+PASS  absent: 24 h and 48 h
 PASS  present: The experiment was performed three times; the values and statistics reported are those of 
 PASS  present: n = 4 wells from one of three independent experiments
 PASS  S1 README states the three WST-1 experiments: manuscript 1 vs data 1
@@ -372,4 +374,4 @@ PASS  table 3 block present: <!-- table:3 -->
 PASS  table 4 block present: <!-- table:4 -->
 PASS  table 5 block present: <!-- table:5 -->
 
-==== 334 passed, 0 failed ====
+==== 336 passed, 0 failed ====

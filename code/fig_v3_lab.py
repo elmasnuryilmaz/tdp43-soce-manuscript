@@ -5,7 +5,8 @@
 Source data (all from the thesis laboratory records):
   A  TARDBP RT-qPCR            SHSY5Y_TDP43_qPCR_Ct_Data.xlsx, sheet TARDBP_Knockdown_Ct
   B  target-gene RT-qPCR       10_GRAPHPAD_PRISM_DOSYALARI/01_tez_sekil_kaynaklari/sekil_4.17_4.18_qPCR.pzfx
-  C  WST-1 viability           .../sekil_4.21_wst1.pzfx
+  C  WST-1 viability, 48 h     .../sekil_4.21_wst1.pzfx (the thesis reports the 48 h
+     time point only; the 24 h table of the same file is not used)
   D  representative Fura-2 traces, relabelled in English with the confirmed 10 uM CPA
      concentration (09_YAYIN_PAKETI/source_data/representative_Fura2_traces_relabelled.png)
   E  Fura-2 ER release / SOCE  .../sekil_4.20_fura2.pzfx
@@ -124,21 +125,20 @@ ax.set_title("B · SOCE-associated target mRNAs", loc="left")
 
 # ------------------------------------------------------------------ C: WST-1
 ax = fig.add_subplot(gs[0, 2])
-for i, (lab, tab) in enumerate([("24 h", ws["WST_1_24h"]), ("48 h", ws["WST_1_48h"])]):
-    c = np.array(tab["Control"]); k = np.array(tab["shTDP-43"])
-    ax.bar(i - w/2, c.mean(), w, color=CT_C, alpha=.85)
-    ax.bar(i + w/2, k.mean(), w, color=KD_C, alpha=.85)
-    ax.errorbar(i - w/2, c.mean(), yerr=sem(c), color="#222", capsize=3, lw=1.1)
-    ax.errorbar(i + w/2, k.mean(), yerr=sem(k), color="#222", capsize=3, lw=1.1)
-    ax.scatter(np.full(4, i - w/2) + np.linspace(-.09, .09, 4), c, s=16, color="#222", zorder=3)
-    ax.scatter(np.full(4, i + w/2) + np.linspace(-.09, .09, 4), k, s=16, color="#222", zorder=3)
-    p = stats.ttest_ind(c, k).pvalue
-    ax.text(i, max(c.mean(), k.mean()) + 7, stars(p), ha="center", fontsize=10)
+c = np.array(ws["WST_1_48h"]["Control"]); k = np.array(ws["WST_1_48h"]["shTDP-43"])
+for i, (v, col) in enumerate([(c, CT_C), (k, KD_C)]):
+    ax.bar(i, v.mean(), 0.6, color=col, alpha=.85)
+    ax.errorbar(i, v.mean(), yerr=sem(v), color="#222", capsize=4, lw=1.2)
+    ax.scatter(np.full(len(v), i) + np.linspace(-.13, .13, len(v)), v, s=22,
+               color="#222", zorder=3)
+p = stats.ttest_ind(c, k).pvalue
+ax.plot([0, 0, 1, 1], [113, 117, 117, 113], lw=1, color="#222")
+ax.text(0.5, 118, stars(p), ha="center", fontsize=10)
 ax.axhline(100, color="#999", lw=.8, ls="--")
-ax.set_xticks([0, 1]); ax.set_xticklabels(["24 h", "48 h"], fontsize=9)
+ax.set_xticks([0, 1]); ax.set_xticklabels(["Non-targeting\nshRNA", "shTDP-43"], fontsize=8)
 ax.set_ylabel("viability (% of non-targeting control)")
-ax.set_ylim(0, 145)
-ax.set_title("C · WST-1 viability (n = 4 wells)", loc="left")
+ax.set_ylim(0, 135)
+ax.set_title("C · WST-1 viability at 48 h (n = 4 wells)", loc="left")
 
 # ------------------------------------------------- D: representative traces
 ax = fig.add_subplot(gs[1, 0:2])
@@ -183,7 +183,7 @@ for g in genes:
     c = np.array(qp[g]["Control"]); k = np.array(qp[g]["shTDP-43"])
     print(f"B  {g:7s} {k.mean()/c.mean():.2f}x  p = {stats.ttest_ind(c,k).pvalue:.3g}  "
           f"(mean+-SEM {k.mean():.2f}+-{sem(k):.2f})")
-for lab, tab in [("24 h", ws["WST_1_24h"]), ("48 h", ws["WST_1_48h"])]:
+for lab, tab in [("48 h", ws["WST_1_48h"])]:
     c = np.array(tab["Control"]); k = np.array(tab["shTDP-43"])
     print(f"C  WST-1 {lab}: control {c.mean():.1f}+-{sem(c):.1f}  KD {k.mean():.1f}+-{sem(k):.1f}  "
           f"p = {stats.ttest_ind(c,k).pvalue:.3g}")
