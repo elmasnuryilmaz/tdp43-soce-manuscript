@@ -130,7 +130,6 @@ PASS  SOCE control mean: manuscript 1.542 vs data 1.542
 PASS  SOCE knockdown mean: manuscript 0.245 vs data 0.245
 PASS  ER release control mean: manuscript 0.268 vs data 0.268
 PASS  WST-1 48 h knockdown: manuscript 61.5 vs data 61.5
-PASS  WST-1 24 h knockdown: manuscript 116.8 vs data 116.8
 
 === cross-file agreement and the corrected correction family ===
 PASS  S17 GSE138614 row count: manuscript 1 vs data 1
@@ -188,16 +187,15 @@ PASS  S10b positive-control panel p: manuscript 0.62 vs data 0.6161950274296075
 === manuscript strings that must be present ===
 PASS  present: 10,926 versus 176 reads
 PASS  present: three spinal cord levels
-PASS  present: six of the seven brain regions
+PASS  present: six of seven regions
 PASS  present: 0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in mouse striatum
 PASS  present: interaction was −0.325 (p = 0.317, q = 0.508)
 PASS  present: chr11:4,088,702–4,088,738
 PASS  present: chr4:27,007,983–27,008,006
-PASS  present: three independent cultures
+PASS  present: three measurements per group
 PASS  present: 10 µM cyclopiazonic acid
 PASS  present: Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA
-PASS  present: Of the 110 correlations tested against the junction-based marker
-PASS  present: 116.8 ± 1.6% of control at 24 h
+PASS  present: Of the 110 correlations with the junction-based marker
 PASS  present: Cutadapt v5.2
 PASS  present: 59 units in 29 genes passed the same depth filter
 PASS  present: from 0.570 in controls to 0.819 in knockdown (Δ = +0.249
@@ -214,8 +212,8 @@ PASS  present: the median gene expressed in both groups (mean TPM > 5) had 24% l
 PASS  present: The *STIM2* unit is not an independent observation
 PASS  present: Yoast RE, Emrich SM, Zhang X, et al.
 PASS  present: 3⁶ = 729 combinations for the three-versus-three comparisons and 2⁴ = 16
-PASS  present: applied across the 220 informative correlations
-PASS  present: Cellular metabolic activity was assessed at 24 h and 48 h
+PASS  present: applied to 220 informative correlations
+PASS  present: cellular metabolic activity was assessed 48 h after seeding
 PASS  present: 10 MS/5 control donors, 98 samples
 PASS  present: in SH-SY5Y the same unit is uninformative (0.000, interval −0.264 to +0.241)
 PASS  present: decreased at donor level across all sampled lesion types (δ = −0.840; q = 0.038)
@@ -281,11 +279,6 @@ PASS  Figure 1 cited in the text: manuscript 1 vs data 1
 PASS  Figure 2 cited in the text: manuscript 1 vs data 1
 PASS  Figure 3 cited in the text: manuscript 1 vs data 1
 PASS  Figure 4 cited in the text: manuscript 1 vs data 1
-PASS  Figure 5 cited in the text: manuscript 1 vs data 1
-PASS  Figure 6 cited in the text: manuscript 1 vs data 1
-PASS  Figure 7 cited in the text: manuscript 1 vs data 1
-PASS  Figure 8 cited in the text: manuscript 1 vs data 1
-PASS  Figure 9 cited in the text: manuscript 1 vs data 1
 PASS  figures first cited in numerical order: manuscript 1 vs data 1
 PASS  Supplementary Table S1 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S2 cited in the text: manuscript 1 vs data 1
@@ -312,16 +305,16 @@ PASS  S1 Target_qPCR_rel: control group is the non-targeting shRNA control: manu
 PASS  S1 Fura2: control group is the non-targeting shRNA control: manuscript 1 vs data 1
 PASS  S1 WST1: control group is the non-targeting shRNA control: manuscript 1 vs data 1
 PASS  Methods name the comparison group: compared shTDP-43 cells with the non-targeting shRNA control
-PASS  author list: **Elmasnur Yılmaz¹, Yasemin Eraç¹\***
-PASS  affiliation: ¹ Department of Pharmacology, Faculty of Pharmacy, Ege University, İzmir, Türkiye
+PASS  author list: **Elmasnur Yılmazᵃ, Yasemin Eraçᵃ,\***
+PASS  affiliation: ᵃ Department of Pharmacology, Faculty of Pharmacy, Ege University
 PASS  thesis programme: Graduate School of Natural and Applied Sciences, Department of Biotechnology, 2026
 PASS  absent: Kaymaz
 PASS  absent: Y.K.
 PASS  absent: Bioengineering
-PASS  absent: from a single experiment
-PASS  present: The experiment was performed three times; only one experiment's four wells per group were 
-PASS  present: n = 4 wells from one of three independent experiments
-PASS  S1 README states the three WST-1 experiments: manuscript 1 vs data 1
+PASS  absent: performed three times
+PASS  present: four wells per group from one experiment
+PASS  present: three measurements per group
+PASS  S1 README omits unsupported WST-1 experiments: manuscript 0 vs data 0
 
 === 22 September 2026, round 3: values quoted from the supplements ===
 PASS  MS NAWM sample-level delta (-0.482): manuscript -0.482 vs data -0.482
@@ -349,13 +342,10 @@ PASS  iPSC-MN curated Ca2+ matched p (0.032): manuscript 0.032 vs data 0.032
 PASS  abstract length, words including headings (at most 350): manuscript 1 vs data 1
 PASS  present: fixed-effect inverse-variance meta-analysis
 PASS  present: the mean per-base depths of its two windows summed to at least 3
-PASS  present: GSE296712 contains no doxycycline-treated control without TDP-43 knockdown
-PASS  present: TDP-43 knockdown was confirmed at the mRNA level only
-PASS  present: rests on a single reference gene (GAPDH)
 PASS  present: derived from the doctoral thesis of Elmasnur Yılmaz
 PASS  present: tentative, motor-neuron-associated observation
 PASS  present: (δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)
-PASS  present: (δ = −0.562 → −0.418, p = 0.002) but not at donor level (δ = −0.640, p = 0.055)
+PASS  present: attenuated the unadjusted difference from δ = −0.562 to an adjusted effect of δ = −0.418 (
 PASS  present: 375,000 per well
 PASS  present: Dharmacon TRC Lentiviral shRNA, cat. no. RHS3979
 PASS  present: 1 mM EGTA
@@ -375,14 +365,14 @@ PASS  absent: the *STIM2.1*/STIM2β question
 PASS  reference list in alphabetical order: manuscript 1 vs data 1
 PASS  in-text citations without a reference entry: manuscript 0 vs data 0
 PASS  reference entries never cited in the text: manuscript 0 vs data 0
-    67 distinct citations, 67 references
+    72 distinct citations, 72 references
 
 === Tables 1-5 in the manuscript match tables/*.csv ===
 PASS  Markdown tables regenerated from the CSV files are identical: manuscript 0 vs data 0
-PASS  table 1 block present: <!-- table:1 -->
-PASS  table 2 block present: <!-- table:2 -->
-PASS  table 3 block present: <!-- table:3 -->
-PASS  table 4 block present: <!-- table:4 -->
-PASS  table 5 block present: <!-- table:5 -->
+PASS  table 1 present: Table 1.
+PASS  table 2 present: Table 2.
+PASS  table 3 present: Table 3.
+PASS  table 4 present: Table 4.
+PASS  table 5 present: Table 5.
 
-==== 347 passed, 0 failed ====
+==== 337 passed, 0 failed ====

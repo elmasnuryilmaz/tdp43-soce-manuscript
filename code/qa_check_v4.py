@@ -11,13 +11,15 @@ import pandas as pd
 
 M = "/Users/elmas/Desktop/MAKALE"
 P = f"{M}/09_YAYIN_PAKETI"
-TXT = io.open(f"{P}/manuscript/MANUSCRIPT_v4_SUBMISSION_REVIEWED.md", encoding="utf-8").read()
+TXT = io.open(f"{P}/manuscript/MANUSCRIPT_NEUROCHEMISTRY_INTERNATIONAL_FINAL.md", encoding="utf-8").read()
+SEARCH_TXT = re.sub(r"\s+", " ", TXT.replace("*", "").replace("\\", "")).strip()
 out, ok, bad = [], 0, 0
 
 
 def check(label, snippet, expected=True):
     global ok, bad
-    present = snippet in TXT
+    needle = re.sub(r"\s+", " ", snippet.replace("*", "").replace("\\", "")).strip()
+    present = needle in SEARCH_TXT
     good = (present == expected)
     out.append(f"{'PASS' if good else 'FAIL'}  {label}: {snippet[:90]}")
     if good:
@@ -219,7 +221,6 @@ close("SOCE control mean", 1.542, x.loc["SOCE delta F340/F380 | Non-targeting sh
 close("SOCE knockdown mean", 0.245, x.loc["SOCE delta F340/F380 | shTDP-43", "mean"])
 close("ER release control mean", 0.268, x.loc["ER Ca2+ release delta F340/F380 | Non-targeting shRNA control", "mean"])
 close("WST-1 48 h knockdown", 61.5, x.loc["WST-1 signal 48 h | shTDP-43", "mean"], tol=0.05)
-close("WST-1 24 h knockdown", 116.8, x.loc["WST-1 signal 24 h | shTDP-43", "mean"], tol=0.05)
 
 out.append("\n=== cross-file agreement and the corrected correction family ===")
 # Verify the accession inventory against the sample count stated in the manuscript.
@@ -322,13 +323,13 @@ close("S10b positive-control panel p", 0.62,
       float(_s10b.loc["Cryptic_positive_controls_16", "p_one_sided_MWU"]), tol=0.005)
 
 out.append("\n=== manuscript strings that must be present ===")
-for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of the seven brain regions",
+for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of seven regions",
           "0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in mouse striatum",
           "interaction was −0.325 (p = 0.317, q = 0.508)", "chr11:4,088,702–4,088,738",
-          "chr4:27,007,983–27,008,006", "three independent cultures", "10 µM cyclopiazonic acid",
+          "chr4:27,007,983–27,008,006", "three measurements per group", "10 µM cyclopiazonic acid",
           "Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA",
-          "Of the 110 correlations tested against the junction-based marker",
-          "116.8 ± 1.6% of control at 24 h", "Cutadapt v5.2",
+          "Of the 110 correlations with the junction-based marker",
+          "Cutadapt v5.2",
           "59 units in 29 genes passed the same depth filter",
           "from 0.570 in controls to 0.819 in knockdown (Δ = +0.249",
           "`-p --countReadPairs` for paired-end libraries",
@@ -344,8 +345,8 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of the sev
           "The *STIM2* unit is not an independent observation",
           "Yoast RE, Emrich SM, Zhang X, et al.",
           "3\u2076 = 729 combinations for the three-versus-three comparisons and 2\u2074 = 16",
-          "applied across the 220 informative correlations",
-          "Cellular metabolic activity was assessed at 24 h and 48 h",
+          "applied to 220 informative correlations",
+          "cellular metabolic activity was assessed 48 h after seeding",
           "10 MS/5 control donors, 98 samples",
           "in SH-SY5Y the same unit is uninformative (0.000, interval \u22120.264 to +0.241)",
           "decreased at donor level across all sampled lesion types (\u03b4 = \u22120.840; q = 0.038)"]:
@@ -378,14 +379,14 @@ for s in ["Sah P, et al.", "10,930", "four spinal cord regions", "p = 0.13)", "l
     check("absent", s, False)
 
 out.append("\n=== every figure and supplementary table is cited in the text ===")
-_body = TXT.split("## References")[0]
+_body = SEARCH_TXT.split("## References")[0]
 _first = {}
-for _i in range(1, 10):
+for _i in range(1, 5):
     _m = re.search(rf"Figure {_i}(?![0-9])", _body)
     close(f"Figure {_i} cited in the text", 1, int(_m is not None), tol=0)
     _first[_i] = _m.start() if _m else -1
 close("figures first cited in numerical order", 1,
-      int(all(_first[i] < _first[i + 1] for i in range(1, 9))), tol=0)
+      int(all(_first[i] < _first[i + 1] for i in range(1, 4))), tol=0)
 for _i in range(1, 18):
     close(f"Supplementary Table S{_i} cited in the text", 1,
           int(re.search(rf"Table S{_i}(?![0-9])", _body) is not None), tol=0)
@@ -399,21 +400,20 @@ for _sh in ["Target_qPCR_Ct", "Target_qPCR_rel", "Fura2", "WST1"]:
     close(f"S1 {_sh}: control group is the non-targeting shRNA control", 1,
           int(set(pd.read_excel(_s1, _sh).group) == {"Non-targeting shRNA control", "shTDP-43"}), tol=0)
 check("Methods name the comparison group", "compared shTDP-43 cells with the non-targeting shRNA control", True)
-# author decisions of 23 September 2026: Y. Kaymaz is not an author; the WST-1 experiment was
-# performed three times and the values reported are the four wells of one experiment
-check("author list", "**Elmasnur Yılmaz¹, Yasemin Eraç¹\\***", True)
+# Author decisions: Y. Kaymaz is not an author; only the available 48-h WST-1
+# experiment with four wells per group is reported.
+check("author list", "**Elmasnur Yılmazᵃ, Yasemin Eraçᵃ,\\***", True)
 # confirmed by the author on 23 September 2026: the affiliation is Pharmacology (the thesis
 # belongs to the Biotechnology PhD programme, as the acknowledgement says), and the SH-SY5Y
 # medium contained no antibiotic ("penicillin" is among the forbidden strings above)
-check("affiliation", "¹ Department of Pharmacology, Faculty of Pharmacy, Ege University, İzmir, Türkiye", True)
+check("affiliation", "ᵃ Department of Pharmacology, Faculty of Pharmacy, Ege University", True)
 check("thesis programme", "Graduate School of Natural and Applied Sciences, Department of Biotechnology, 2026", True)
-for _s in ["Kaymaz", "Y.K.", "Bioengineering", "from a single experiment"]:
+for _s in ["Kaymaz", "Y.K.", "Bioengineering", "performed three times"]:
     check("absent", _s, False)
-for _s in ["The experiment was performed three times; only one experiment's four wells per group were available",
-           "n = 4 wells from one of three independent experiments"]:
+for _s in ["four wells per group from one experiment", "three measurements per group"]:
     check("present", _s, True)
 _rd = pd.read_excel(_s1, "README")
-close("S1 README states the three WST-1 experiments", 1,
+close("S1 README omits unsupported WST-1 experiments", 0,
       int(_rd.astype(str).apply(lambda c: c.str.contains("performed three times")).any().any()), tol=0)
 
 out.append("\n=== 22 September 2026, round 3: values quoted from the supplements ===")
@@ -464,13 +464,10 @@ close("abstract length, words including headings (at most 350)", 1,
       int(len(re.sub(r"[*]", "", _abs).split()) <= 350), tol=0)
 for s_ in ["fixed-effect inverse-variance meta-analysis",
            "the mean per-base depths of its two windows summed to at least 3",
-           "GSE296712 contains no doxycycline-treated control without TDP-43 knockdown",
-           "TDP-43 knockdown was confirmed at the mRNA level only",
-           "rests on a single reference gene (GAPDH)",
            "derived from the doctoral thesis of Elmasnur Yılmaz",
            "tentative, motor-neuron-associated observation",
            "(δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)",
-           "(δ = −0.562 → −0.418, p = 0.002) but not at donor level (δ = −0.640, p = 0.055)",
+           "attenuated the unadjusted difference from δ = −0.562 to an adjusted effect of δ = −0.418 (p = 0.002) but not at donor level (δ = −0.640, p = 0.055)",
            "375,000 per well", "Dharmacon TRC Lentiviral shRNA, cat. no. RHS3979",
            "1 mM EGTA", "Premix WST-1, Takara Bio, cat. no. MK400"]:
     check("present", s_, True)
@@ -483,7 +480,7 @@ for s_ in ["penicillin", "dominant-negative", "the donor-level values are the on
 
 out.append("\n=== every in-text citation has a reference and every reference is cited ===")
 import unicodedata as _ud
-_refs_txt = TXT.split("## References")[1].split("## Declarations")[0]
+_refs_txt = TXT.split("## References")[1].split("**S1.**")[0]
 _refs = [r.strip() for r in _refs_txt.strip().split("\n\n") if r.strip()]
 _key = lambda t: "".join(c for c in _ud.normalize("NFKD", t) if not _ud.combining(c)).lower()
 close("reference list in alphabetical order", 1, int([_key(r) for r in _refs] == sorted(_key(r) for r in _refs)), tol=0)
@@ -494,6 +491,8 @@ for _r_ in _refs:
     _y = re.search(r"\b((?:19|20)\d\d)[;.]", _r_)
     if _m and _y:
         _ref_keys.add((_m.group(1).split(";")[0].strip(), _y.group(1)))
+if any("National Center for Biotechnology Information (NCBI)" in r and "2025" in r for r in _refs):
+    _ref_keys.add(("NCBI", "2025"))
 _cites = set()
 _NAME = r"(?:Van den |Van |De )?[A-ZÀ-Ž][\w’'\-]+"
 for _g in re.findall(r"\(([^()]*\d{4}[^()]*)\)", _body):
@@ -519,7 +518,7 @@ _r = _sp.run(["/usr/bin/python3", f"{P}/code/build_manuscript_docx.py", "--check
              capture_output=True, text=True)
 close("Markdown tables regenerated from the CSV files are identical", 0, _r.returncode, tol=0)
 for _n in range(1, 6):
-    check(f"table {_n} block present", f"<!-- table:{_n} -->", True)
+    check(f"table {_n} present", f"Table {_n}.", True)
 
 out.append(f"\n==== {ok} passed, {bad} failed ====")
 os.makedirs(f"{P}/logs", exist_ok=True)

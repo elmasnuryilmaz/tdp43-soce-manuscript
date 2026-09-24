@@ -6,10 +6,10 @@ Sheets
   README            what each sheet contains and how the values were produced
   TARDBP_qPCR       raw Ct, dCt, ddCt and 2^-ddCt for the three groups (n = 4)
   Target_qPCR_Ct    raw Ct for the four SOCE-associated targets (n = 4 per group)
-  Target_qPCR_rel   relative expression per replicate (the values plotted in Figure 6B)
+  Target_qPCR_rel   relative expression per replicate (the values plotted in Figure 1B)
   Fura2             per-replicate ER release and SOCE amplitudes (n = 3)
-  WST1              per-well metabolic signal at 24 h and 48 h (n = 4)
-  Summary_stats     group means, SEM and the test used for every panel of Figure 6
+  WST1              per-well metabolic signal at 48 h (n = 4)
+  Summary_stats     group means, SEM and tests used for Figures 1 and 2
 """
 import os
 import xml.etree.ElementTree as ET
@@ -84,7 +84,7 @@ for tab, lab in [("ER_Ca2_release", "ER Ca2+ release"), ("SOCE", "SOCE")]:
 fura = pd.DataFrame(fura)
 
 wst = []
-for tab, lab in [("WST_1_24h", "24 h"), ("WST_1_48h", "48 h")]:
+for tab, lab in [("WST_1_48h", "48 h")]:
     for grp, vals in ws[tab].items():
         for i, v in enumerate(vals, 1):
             wst.append(dict(time=lab, group=(NT if grp == "Control" else "shTDP-43"),
@@ -95,39 +95,52 @@ wst = pd.DataFrame(wst)
 rows = []
 for g in ["Untransduced control", "Non-targeting shRNA control", "shTDP-43"]:
     v = td.loc[td.group == g, "rel_expression"].astype(float).values
-    rows.append(dict(panel="6A", measurement="TARDBP relative expression", group=g,
+    rows.append(dict(panel="1A", measurement="TARDBP relative expression", group=g,
                      n=len(v), mean=round(v.mean(), 4), SEM=round(sem(v), 4), test="", p_value=""))
 un = td.loc[td.group == "Untransduced control", "rel_expression"].astype(float).values
 nt = td.loc[td.group == "Non-targeting shRNA control", "rel_expression"].astype(float).values
 kd = td.loc[td.group == "shTDP-43", "rel_expression"].astype(float).values
 F, pa = stats.f_oneway(np.log2(un), np.log2(nt), np.log2(kd))
-rows.append(dict(panel="6A", measurement="TARDBP silencing", group="shTDP-43 vs controls",
+rows.append(dict(panel="1A", measurement="TARDBP silencing", group="shTDP-43 vs controls",
                  n=4, mean=round(100 * (1 - kd.mean() / nt.mean()), 1), SEM="",
                  test="one-way ANOVA on log2 values, Tukey post hoc", p_value=f"{pa:.3g}"))
-for g in ["TRPC1", "STIM1", "ORAI1", "ATP2A3"]:
+genes = ["TRPC1", "STIM1", "ORAI1", "ATP2A3"]
+raw_p = {}
+for g in genes:
     c = np.array(qp[g]["Control"]); k = np.array(qp[g]["shTDP-43"])
-    p = stats.ttest_ind(c, k).pvalue
-    rows.append(dict(panel="6B", measurement=f"{g} relative mRNA", group=NT,
+    raw_p[g] = stats.ttest_ind(c, k).pvalue
+order = sorted(raw_p, key=raw_p.get)
+holm = {}
+running = 0.0
+for rank, g in enumerate(order):
+    running = max(running, raw_p[g] * (len(genes) - rank))
+    holm[g] = min(1.0, running)
+for g in genes:
+    c = np.array(qp[g]["Control"]); k = np.array(qp[g]["shTDP-43"])
+    rows.append(dict(panel="1B", measurement=f"{g} relative mRNA", group=NT,
                      n=len(c), mean=round(c.mean(), 3), SEM=round(sem(c), 3), test="", p_value=""))
-    rows.append(dict(panel="6B", measurement=f"{g} relative mRNA", group="shTDP-43",
+    rows.append(dict(panel="1B", measurement=f"{g} relative mRNA", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 3), SEM=round(sem(k), 3),
-                     test="two-tailed Student's t-test", p_value=f"{p:.3g}"))
-# Figure 6: C = WST-1, D = representative traces (no statistics), E = Fura-2 group data
-for tab, lab in [("WST_1_24h", "24 h"), ("WST_1_48h", "48 h")]:
+                     test="two-tailed Student's t-test; Holm-adjusted across four targets",
+                     p_value=f"{holm[g]:.6g}"))
+# Figure 1C is WST-1; Figure 2C-D are Fura-2 group amplitudes.
+for tab, lab in [("WST_1_48h", "48 h")]:
     c = np.array(ws[tab]["Control"]); k = np.array(ws[tab]["shTDP-43"])
-    rows.append(dict(panel="6C", measurement=f"WST-1 signal {lab}", group=NT,
+    rows.append(dict(panel="1C", measurement=f"WST-1 signal {lab}", group=NT,
                      n=len(c), mean=round(c.mean(), 1), SEM=round(sem(c), 1), test="", p_value=""))
-    rows.append(dict(panel="6C", measurement=f"WST-1 signal {lab}", group="shTDP-43",
+    rows.append(dict(panel="1C", measurement=f"WST-1 signal {lab}", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 1), SEM=round(sem(k), 1),
                      test="descriptive only; four wells from one experiment", p_value=""))
-for tab, lab in [("ER_Ca2_release", "ER Ca2+ release"), ("SOCE", "SOCE")]:
+for tab, lab, panel in [("ER_Ca2_release", "ER Ca2+ release", "2C"),
+                        ("SOCE", "SOCE", "2D")]:
     c = np.array(fu[tab]["Control"]); k = np.array(fu[tab]["TDP-43 KD"])
     p = stats.ttest_ind(c, k).pvalue
-    rows.append(dict(panel="6E", measurement=f"{lab} delta F340/F380", group=NT,
+    rows.append(dict(panel=panel, measurement=f"{lab} delta F340/F380", group=NT,
                      n=len(c), mean=round(c.mean(), 3), SEM=round(sem(c), 3), test="", p_value=""))
-    rows.append(dict(panel="6E", measurement=f"{lab} delta F340/F380", group="shTDP-43",
+    rows.append(dict(panel=panel, measurement=f"{lab} delta F340/F380", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 3), SEM=round(sem(k), 3),
-                     test="two-tailed Student's t-test", p_value=f"{p:.4f}"))
+                     test="two-tailed Student's t-test; three measurements per group",
+                     p_value=f"{p:.8g}"))
 summ = pd.DataFrame(rows)
 
 readme = pd.DataFrame({"sheet": ["TARDBP_qPCR", "Target_qPCR_Ct", "Target_qPCR_rel",
@@ -138,17 +151,15 @@ readme = pd.DataFrame({"sheet": ["TARDBP_qPCR", "Target_qPCR_Ct", "Target_qPCR_r
         "Raw Ct values for the four SOCE-associated targets and GAPDH in shTDP-43 cells and "
         "the non-targeting (scrambled) shRNA control, four biological replicates per group, "
         "same RNA set; experiment window 03.06-10.07.2026.",
-        "Relative expression per replicate (2^-ddCt) for the four targets plotted in Figure 6B.",
+        "Relative expression per replicate (2^-ddCt) for the four targets plotted in Figure 1B.",
         "Fura-2/AM measurements. ER Ca2+ release is the rise in F340/F380 after 10 uM "
         "cyclopiazonic acid in Ca2+-free HBS with EGTA; SOCE is the rise after re-addition "
-        "of 1.5 mM CaCl2. Both as delta(F340/F380) versus the preceding baseline. The three "
-        "samples of each group come from three independent cultures. The control group is the "
+        "of 1.5 mM CaCl2. Both as delta(F340/F380) versus the preceding baseline. There are three measurements per group. The control group is the "
         "non-targeting (scrambled) shRNA control.",
         "WST-1 metabolic signal (not a direct cell count or viability measure), four wells "
         "per group, normalised to the mean of the non-targeting (scrambled) shRNA control "
-        "at the same time point. The experiment was performed three times; these are the "
-        "four wells of one experiment.",
-        "Group means, SEM and the statistical test behind every panel of Figure 6.",
+        "at the same time point. The available source data comprise four wells per group from one experiment.",
+        "Group means, SEM and the statistical test behind Figures 1 and 2.",
         "Primer sequences, product sizes and annealing temperatures for the RT-qPCR targets "
         "and the GAPDH reference.",
         "Thermal cycling profile of the RT-qPCR reactions."]})

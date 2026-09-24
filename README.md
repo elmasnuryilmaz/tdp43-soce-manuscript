@@ -1,4 +1,4 @@
-# TDP-43 knockdown and store-operated Ca²⁺ entry — analysis repository
+# TDP-43 knockdown and store-operated Ca²⁺ entry: analysis repository
 
 Code, figures, tables, supplementary files and source data for the manuscript
 *TDP-43 knockdown is associated with reduced store-operated Ca²⁺ entry and altered
@@ -10,10 +10,10 @@ calcium-regulatory RNA profiles in SH-SY5Y cells*.
 `code/fig_graphical_abstract.py`; it is not a figure of the manuscript.*
 
 The current edited manuscript is `manuscript/MANUSCRIPT_NEUROCHEMISTRY_INTERNATIONAL_FINAL.docx`
-(with matching `.md`). It has three main figures in `figures/main/` and eight
-supplementary figures in `figures/supplementary/`. Editable supplementary figure
-legends are in `supplementary/Supplementary_Figure_Legends.docx`; the NCI
-highlights are in `highlights_Neurochemistry_International.docx`.
+(with matching `.md`). It has four main figures in `figures/main/` and eight
+supplementary figures in `figures/supplementary/`. The complete editable supplement is
+`supplementary/SUPPLEMENTARY_MATERIAL.docx`; the NCI highlights are in
+`highlights_Neurochemistry_International.docx`.
 The earlier nine-figure manuscript (`MANUSCRIPT_v4_SUBMISSION_REVIEWED`) and
 its `figures/Figure1`–`Figure9` files remain as a historical version. The original
 `MANUSCRIPT_v4_SUBMISSION.docx` is also retained.
@@ -24,7 +24,7 @@ why. Where the thesis and this repository differ, this repository is current.
 
 ```
 ├── manuscript/           manuscript, Markdown and Word
-├── figures/main/         current Figures 1–3, PNG (300 dpi) and PDF
+├── figures/main/         current Figures 1–4, PNG (300 dpi) and editable SVG
 ├── figures/supplementary/ current Supplementary Figures S1–S8
 ├── figures/Figure1–9    historical nine-figure layout
 ├── tables/               Tables 1–5, CSV (typeset in the manuscript by code/build_manuscript_docx.py)
@@ -40,17 +40,18 @@ why. Where the thesis and this repository differ, this repository is current.
 
 | File | Purpose |
 |---|---|
-| `main/Figure1_functional_consequences` | laboratory RT-qPCR, 48-h WST-1, ER release and SOCE |
-| `main/Figure2_transcript_profile` | independent public SH-SY5Y transcript context |
-| `main/Figure3_ALS_expression` | ALS brain/spinal-cord tissue expression |
+| `main/Figure1_functional_consequences` | laboratory RT-qPCR and 48-h WST-1 |
+| `main/Figure2_calcium_responses` | original representative Fura-2 traces with ER-release and Ca²⁺-readdition amplitudes |
+| `main/Figure3_transcript_profile` | independent public SH-SY5Y transcript context |
+| `main/Figure4_ALS_expression` | ALS brain/spinal-cord tissue expression |
 | `supplementary/Supplementary_Figure_S1`–`S8` | splicing, read-support checks, cryptic controls, NMD, APA and additional tissue comparisons |
 
-All current panels are separate PDF files for submission, with 300-dpi PNG previews
-and SVG source graphics. Elsevier lists PDF as an accepted vector artwork format;
-the PNG and SVG variants are provided for preview, editing and reuse. The
-laboratory did not measure splicing; those analyses are supplementary. The
-Ca²⁺ plots show individual culture measurements and mean ± SEM; no time trace
-was added. WST-1 was measured at 48 h in four wells per group in one experiment.
+All current main figures are provided as 300-dpi PNG files and editable SVG masters.
+The laboratory did not measure splicing; those analyses are supplementary. Figure 2
+retains the original representative Fura-2 traces and pairs them with the measured
+ER-release and Ca²⁺-readdition amplitudes. The lower panels show all three measurements
+per group and mean ± SEM; the source workbook reports the two-tailed Student’s t-tests.
+WST-1 was measured at 48 h in four wells per group from one experiment.
 
 ## Historical figures
 
@@ -65,7 +66,7 @@ was added. WST-1 was measured at 48 h in four wells per group in one experiment.
 | `Figure7_transcript_family_abundance` | Figure 7 | family abundance, TPM adjusted for library composition |
 | `Figure8_TRPC1_disease_direction` | Figure 8 | TRPC1 across five diseases (all regions, donor-level MS) |
 | `Figure9_NYGC_cryptic_STMN2` | Figure 9 | junction-level cryptic STMN2 in ALS tissue |
-| `graphical_abstract` | — | repository summary, not part of the manuscript |
+| `graphical_abstract` | NA | repository summary, not part of the manuscript |
 
 Figure numbers are **not** burned into the images; the file name carries the number.
 
@@ -97,13 +98,14 @@ is not part of this set: it was built from the superseded eight-contrast NMD sta
 
 ## How to reproduce
 
-For the current figure set, the main scripts are
-`code/fig_main_lab.py`, `code/fig_main_transcript_disease.py`,
-`code/fig_supp_splicing.py` and `code/fig_supp_rna_processing.py`.
-The retained S1 and S2 figures are drawn by `code/fig_redesign_main.py`; S7
-is drawn by `code/fig_redesign_disease.py`. `code/build_manuscript_docx_final.py` builds
-the current manuscript. These scripts still use the original workstation paths;
-see the note under Requirements before rerunning them elsewhere.
+For the current figure set, the laboratory source values are read by
+`code/fig_main_lab.py` and `code/build_source_data.py`; the representative Fura-2
+traces come from the original Prism export and are not numerically redrawn.
+`code/fig_main_transcript_disease.py`, `code/fig_supp_splicing.py` and
+`code/fig_supp_rna_processing.py` generate the RNA figures. The retained S1 and S2
+figures are drawn by `code/fig_redesign_main.py`; S7 is drawn by
+`code/fig_redesign_disease.py`. These scripts still use the original workstation
+paths; see the note under Requirements before rerunning them elsewhere.
 
 The commands below rebuild the historical nine-figure version and its tables.
 
