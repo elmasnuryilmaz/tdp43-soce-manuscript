@@ -15,7 +15,7 @@ plt.rcParams.update({"font.family":"Arial","font.size":8,"axes.labelsize":8,
  "pdf.fonttype":42,"ps.fonttype":42,"svg.fonttype":"none","savefig.dpi":300,
  "mathtext.fontset":"custom","mathtext.rm":"Arial","mathtext.it":"Arial:italic",
  "mathtext.bf":"Arial:bold","figure.facecolor":"white","savefig.facecolor":"white"})
-t=pd.read_csv(PKG/"tables"/"Table2_robust_SOCE_splicing_events.csv").set_index("gene")
+t=pd.read_csv(PKG/"tables"/"Table3_robust_SOCE_splicing_events.csv").set_index("gene")
 order=["STIMATE","ORAI3","STIM2","STIM1"]
 fig,axes=plt.subplots(2,2,figsize=(7.1,6.0),layout="constrained")
 for label,ax,g in zip("ABCD",axes.flat,order):

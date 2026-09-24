@@ -7,9 +7,9 @@ Sheets
   TARDBP_qPCR       raw Ct, dCt, ddCt and 2^-ddCt for the three groups (n = 4)
   Target_qPCR_Ct    raw Ct for the four SOCE-associated targets (n = 4 per group)
   Target_qPCR_rel   relative expression per replicate (the values plotted in Figure 1B)
-  Fura2             per-replicate ER release and SOCE amplitudes (n = 3)
+  Fura2             ER release and Ca2+ readdition amplitudes (n = 3)
   WST1              per-well metabolic signal at 48 h (n = 4)
-  Summary_stats     group means, SEM and tests used for Figures 1 and 2
+  Summary_stats     group means and SEM for Figures 1 and 2; Figure 1 tests
 """
 import os
 import xml.etree.ElementTree as ET
@@ -134,13 +134,11 @@ for tab, lab in [("WST_1_48h", "48 h")]:
 for tab, lab, panel in [("ER_Ca2_release", "ER Ca2+ release", "2C"),
                         ("SOCE", "SOCE", "2D")]:
     c = np.array(fu[tab]["Control"]); k = np.array(fu[tab]["TDP-43 KD"])
-    p = stats.ttest_ind(c, k).pvalue
     rows.append(dict(panel=panel, measurement=f"{lab} delta F340/F380", group=NT,
                      n=len(c), mean=round(c.mean(), 3), SEM=round(sem(c), 3), test="", p_value=""))
     rows.append(dict(panel=panel, measurement=f"{lab} delta F340/F380", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 3), SEM=round(sem(k), 3),
-                     test="two-tailed Student's t-test; n = 3",
-                     p_value=f"{p:.8g}"))
+                     test="descriptive; n = 3", p_value=""))
 summ = pd.DataFrame(rows)
 
 readme = pd.DataFrame({"sheet": ["TARDBP_qPCR", "Target_qPCR_Ct", "Target_qPCR_rel",
@@ -154,8 +152,12 @@ readme = pd.DataFrame({"sheet": ["TARDBP_qPCR", "Target_qPCR_Ct", "Target_qPCR_r
         "Relative expression per replicate (2^-ddCt) for the four targets plotted in Figure 1B.",
         "Fura-2/AM measurements. ER Ca2+ release is the rise in F340/F380 after 10 uM "
         "cyclopiazonic acid in Ca2+-free HBS with EGTA; SOCE is the rise after re-addition "
-        "of 1.5 mM CaCl2. Both as delta(F340/F380) versus the preceding baseline (n = 3). The control group is the "
-        "non-targeting (scrambled) shRNA control.",
+        "of nominally 1.5 mM CaCl2. Both are peak delta(F340/F380) versus the preceding baseline (n = 3, descriptive). "
+        "The control group is the non-targeting (scrambled) shRNA control. The original Prism amplitude "
+        "table is sekil_4.20_fura2.pzfx. Figure 2A-B uses unredrawn graphs exported from the original "
+        "trace project Elmas_130626_Ca2_Trase_Grafikleri.pzf; original ratio/time tables are supplied "
+        "separately. Only the CPA annotation was corrected to the author-confirmed 10 uM; trace data "
+        "and axes were unchanged.",
         "WST-1 metabolic signal at 48 h (n = 4; not a direct cell count or viability measure), normalised to the mean of the non-targeting (scrambled) shRNA control.",
         "Group means, SEM and the statistical test behind Figures 1 and 2.",
         "Primer sequences, product sizes and annealing temperatures for the RT-qPCR targets "

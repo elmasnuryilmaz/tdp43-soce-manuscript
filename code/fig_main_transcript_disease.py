@@ -32,7 +32,7 @@ def save(fig, stem):
     plt.close(fig)
 
 # Figure 2: adjusted TPM and DESeq2 gene-level change from six public libraries.
-t = pd.read_csv(PKG / "tables" / "Table4_transcript_family_abundance.csv").set_index("Gene")
+t = pd.read_csv(PKG / "tables" / "Table1_transcript_family_abundance.csv").set_index("Gene")
 groups = [
     ["ORAI2", "ORAI1", "ORAI3"],
     ["STIM1", "STIM2"],

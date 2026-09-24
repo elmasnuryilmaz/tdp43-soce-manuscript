@@ -12,13 +12,13 @@ import pandas as pd
 M = "/Users/elmas/Desktop/MAKALE"
 P = f"{M}/09_YAYIN_PAKETI"
 TXT = io.open(f"{P}/manuscript/MANUSCRIPT_NEUROCHEMISTRY_INTERNATIONAL_FINAL.md", encoding="utf-8").read()
-SEARCH_TXT = re.sub(r"\s+", " ", TXT.replace("*", "").replace("\\", "")).strip()
+SEARCH_TXT = re.sub(r"\s+", " ", TXT.replace("*", "").replace("\\", "").replace("--", "–").replace("'", "’")).strip()
 out, ok, bad = [], 0, 0
 
 
 def check(label, snippet, expected=True):
     global ok, bad
-    needle = re.sub(r"\s+", " ", snippet.replace("*", "").replace("\\", "")).strip()
+    needle = re.sub(r"\s+", " ", snippet.replace("*", "").replace("\\", "").replace("--", "–").replace("'", "’")).strip()
     present = needle in SEARCH_TXT
     good = (present == expected)
     out.append(f"{'PASS' if good else 'FAIL'}  {label}: {snippet[:90]}")
@@ -38,8 +38,8 @@ def close(label, a, b, tol=0.005):
         bad += 1
 
 
-out.append("=== Table 1: coverage pre-filter ===")
-t1 = pd.read_csv(f"{P}/tables/Table1_coverage_prefilter.csv")
+out.append("=== Table 2: coverage pre-filter ===")
+t1 = pd.read_csv(f"{P}/tables/Table2_coverage_prefilter.csv")
 close("events removed range low", 18, round(t1.events_removed_pct.min()), tol=0.6)
 close("events removed range high", 78, round(t1.events_removed_pct.max()), tol=0.6)
 close("significant lost low", 33, round(t1.significant_lost_pct.min()), tol=0.6)
@@ -47,8 +47,8 @@ close("significant lost high", 76, round(t1.significant_lost_pct.max()), tol=0.6
 close("SH-SY5Y significant before filter", 7854,
       int(t1.loc[t1.dataset.str.startswith("SH-SY5Y"), "significant_before_filter"].iloc[0]), tol=0)
 
-out.append("\n=== Table 2: robust SOCE events ===")
-t2 = pd.read_csv(f"{P}/tables/Table2_robust_SOCE_splicing_events.csv").set_index("gene")
+out.append("\n=== Table 3: robust SOCE events ===")
+t2 = pd.read_csv(f"{P}/tables/Table3_robust_SOCE_splicing_events.csv").set_index("gene")
 for g, d, lo, hi in [("STIMATE", 0.244, 0.095, 0.368), ("ORAI3", -0.269, -0.404, -0.107),
                      ("STIM2", -0.120, -0.165, -0.064), ("STIM1", 0.145, -0.002, 0.293)]:
     close(f"{g} delta_PSI", d, t2.loc[g, "delta_PSI"])
@@ -57,8 +57,8 @@ for g, d, lo, hi in [("STIMATE", 0.244, 0.095, 0.368), ("ORAI3", -0.269, -0.404,
 close("STIM1 exon start 1-based", 4088702, int(t2.loc["STIM1", "start_1based"]), tol=0)
 close("STIM1 exon length", 37, int(t2.loc["STIM1", "exon_bp"]), tol=0)
 
-out.append("\n=== Table 3 / S14: cryptic calls and null test ===")
-t3 = pd.read_csv(f"{P}/tables/Table3_cryptic_events_eleven_comparisons.csv").set_index("comparison")
+out.append("\n=== Table 4 / S14: cryptic calls and null test ===")
+t3 = pd.read_csv(f"{P}/tables/Table4_cryptic_events_eleven_comparisons.csv").set_index("comparison")
 close("SH-SY5Y high-confidence events (regtools)", 165,
       int(t3.loc["SH-SY5Y 75 ng/mL", "high_confidence_events"]), tol=0)
 close("SH-SY5Y genes", 113, int(t3.loc["SH-SY5Y 75 ng/mL", "genes"]), tol=0)
@@ -77,7 +77,7 @@ close("permissive call counts, TDP-43 / FUS / TAF15", 141,
       int(t3.loc["iPSC-MN, TDP-43 KD", "permissive_events"]), tol=0)
 close("burden minimum", 12, int(t3.high_confidence_events.min()), tol=0)
 _mouse = t3.loc[["C2C12", "NSC34", "Mouse striatum"]]
-close("Table 3 mouse rows: positive controls not assessed", 3,
+close("Table 4 mouse rows: positive controls not assessed", 3,
       int((_mouse.positive_controls_high_confidence == "n/a (mouse)").sum()), tol=0)
 close("burden maximum", 477, int(t3.high_confidence_events.max()), tol=0)
 s14 = pd.read_csv(f"{P}/supplementary/S14_control_vs_control_null_test.csv")
@@ -91,8 +91,8 @@ close("null ratio iPSC colonies", 0.64, s14.loc["iPSC colonies", "null_to_real_r
 close("null ratio K562 total RNA", 2.17, s14.loc["K562 total RNA", "null_to_real_ratio"])
 close("null ratio mouse striatum", 0.83, s14.loc["Mouse striatum", "null_to_real_ratio"])
 
-out.append("\n=== Table 4: transcript-family abundance (TPM) ===")
-t4 = pd.read_csv(f"{P}/tables/Table4_transcript_family_abundance.csv")
+out.append("\n=== Table 1: transcript-family abundance (TPM) ===")
+t4 = pd.read_csv(f"{P}/tables/Table1_transcript_family_abundance.csv")
 g = t4[t4.Gene != "FAMILY TOTAL"].set_index("Gene")
 close("ORAI2 share", 77, round(g.loc["ORAI2", "share_of_family_control_pct"]), tol=0.6)
 close("ATP2A2 share", 98, round(g.loc["ATP2A2", "share_of_family_control_pct"]), tol=0.6)
@@ -178,8 +178,8 @@ close("SH-SY5Y STIM1 intron17 delta", -0.173, sh.loc[("STIM1", "intron17"), "del
 close("SH-SY5Y STIM2 intron13 delta", -0.156, sh.loc[("STIM2", "intron13"), "delta"])
 close("SH-SY5Y STIM2 intron13 control index (0.96)", 0.96, sh.loc[("STIM2", "intron13"), "index_control"], tol=0.005)
 _w = [int(v) for v in sh.loc[("STIM2", "intron13"), "window_5prime_or_proximal"].split("-")]
-_t2 = pd.read_csv(f"{P}/tables/Table2_robust_SOCE_splicing_events.csv").set_index("gene")
-close("STIM2 intron13 5' window contains the Table 2 STIM2 exon", 1,
+_t2 = pd.read_csv(f"{P}/tables/Table3_robust_SOCE_splicing_events.csv").set_index("gene")
+close("STIM2 intron13 5' window contains the Table 3 STIM2 exon", 1,
       int(_w[0] <= int(_t2.loc["STIM2", "start_1based"]) and int(_t2.loc["STIM2", "end"]) <= _w[1]), tol=0)
 close("S11: every unit has a genomic window", 0, int(s11.window_5prime_or_proximal.isna().sum()), tol=0)
 mn = s11[s11.dataset.str.startswith("iPSC-MN")]
@@ -286,8 +286,8 @@ _s4 = pd.read_csv(f"{P}/supplementary/S4_matched_permutation_enrichment.csv")
 close("S4 decision values are English", 0,
       len(set(_s4.decision) - {"enrichment", "no enrichment"}), tol=0)
 close("S4 panels with surviving enrichment", 2, int((_s4.decision == "enrichment").sum()), tol=0)
-_t3 = pd.read_csv(f"{P}/tables/Table3_cryptic_events_eleven_comparisons.csv")
-close("Table 3 rows = eleven comparisons", 11, len(_t3), tol=0)
+_t3 = pd.read_csv(f"{P}/tables/Table4_cryptic_events_eleven_comparisons.csv")
+close("Table 4 rows = eleven comparisons", 11, len(_t3), tol=0)
 _mq = _s6[_s6.comparison == "SH-SY5Y 75 ng/mL (MAPQ-filtered set)"]
 close("SH-SY5Y MAPQ-filtered positive controls", 12, _mq.gene.nunique(), tol=0)
 
@@ -314,7 +314,7 @@ _apa = pd.read_csv(f"{M}/07_DISK_ANALIZLERI/sonuclar/APA_corrected_full_core_sum
 _POS16b = {"STMN2", "UNC13A", "HDGFL2", "ACTL6B", "AGRN", "KALRN", "ARHGAP32", "PFKP",
            "ATG4B", "SETD5", "CAMK2B", "ELAVL3", "POLDIP3", "RSF1", "GPSM2", "SYNJ2"}
 _ex = _apa[((_apa.boot_low > 0) | (_apa.boot_high < 0)) & ~_apa.gene.str.upper().isin(_POS16b)]
-_unnamed = sorted({g for g in _ex.gene if f"*{g}*" not in TXT.split("## References")[0]})
+_unnamed = sorted({g for g in _ex.gene if f"*{g}*" not in TXT.split("## **References**")[0]})
 close("Ca2+ units excluding zero that Section 3.5 does not name", 0, len(_unnamed), tol=0)
 out.append("    " + ("all named: " + ", ".join(sorted(set(_ex.gene)))) if not _unnamed
            else "    unnamed: " + ", ".join(_unnamed))
@@ -346,7 +346,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of seven r
           "Yoast RE, Emrich SM, Zhang X, et al.",
           "3\u2076 = 729 combinations for the three-versus-three comparisons and 2\u2074 = 16",
           "Total *STMN2* expression was therefore not used as a specific indicator",
-          "cellular metabolic activity was assessed 48 h after seeding",
+          "Cellular metabolic activity was assessed 48 h after seeding",
           "10 MS/5 control donors, 98 samples",
           "in SH-SY5Y the same unit is uninformative (0.000, interval \u22120.264 to +0.241)",
           "decreased at donor level across all sampled lesion types (\u03b4 = \u22120.840; q = 0.038)"]:
@@ -463,7 +463,7 @@ close("enrichment tests: dataset-panel combinations (24)", 24, len(_s4), tol=0)
 _mn4 = _s4[_s4.dataset == "GSE77702_iPSC_MN"].set_index("panel").p_matched_permutation
 close("iPSC-MN channel/transport matched p (0.046)", 0.046, _mn4["Tier2_Channel_Release_Transport_117"], tol=0.0006)
 close("iPSC-MN curated Ca2+ matched p (0.032)", 0.032, _mn4["Tier3_Curated_Calcium_Handling_258"], tol=0.0006)
-_abs = TXT.split("## Abstract")[1].split("**Keywords:**")[0]
+_abs = TXT.split("## **Abstract**")[1].split("**Keywords:**")[0]
 close("abstract length, words including headings (at most 350)", 1,
       int(len(re.sub(r"[*]", "", _abs).split()) <= 350), tol=0)
 for s_ in ["fixed-effect inverse-variance meta-analysis",
@@ -471,7 +471,7 @@ for s_ in ["fixed-effect inverse-variance meta-analysis",
            "derived from the doctoral thesis of Elmasnur Yılmaz",
            "tentative, motor-neuron-associated observation",
            "(δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)",
-           "attenuated the unadjusted difference from δ = −0.562 to an adjusted effect of δ = −0.418 (p = 0.002) but not at donor level (δ = −0.640, p = 0.055)",
+           "attenuated the unadjusted difference from δ = −0.562 to Cliff’s δ of −0.418 on the residuals (p = 0.002) but not at donor level (δ = −0.640, p = 0.055)",
            "375,000 per well", "Dharmacon TRC Lentiviral shRNA, cat. no. RHS3979",
            "1 mM EGTA", "Premix WST-1, Takara Bio, cat. no. MK400"]:
     check("present", s_, True)
@@ -484,7 +484,7 @@ for s_ in ["penicillin", "dominant-negative", "the donor-level values are the on
 
 out.append("\n=== every in-text citation has a reference and every reference is cited ===")
 import unicodedata as _ud
-_refs_txt = TXT.split("## References")[1].split("**S1.**")[0]
+_refs_txt = TXT.split("## **References**")[1].split("**S1.**")[0]
 _refs = [r.strip() for r in _refs_txt.strip().split("\n\n") if r.strip()]
 _key = lambda t: "".join(c for c in _ud.normalize("NFKD", t) if not _ud.combining(c)).lower()
 close("reference list in alphabetical order", 1, int([_key(r) for r in _refs] == sorted(_key(r) for r in _refs)), tol=0)

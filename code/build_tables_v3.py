@@ -68,7 +68,7 @@ t["dataset"] = t.dataset.replace({"GSE230647_iPSC_koloni": "iPSC colonies (GSE23
 t["significant_lost_pct"] = (100 * (1 - t.significant_after_filter / t.significant_before_filter)).round(1)
 t = t[["dataset", "events_tested", "events_after_filter", "events_removed_pct",
        "significant_before_filter", "significant_after_filter", "significant_lost_pct"]]
-w(t, f"{TAB}/Table1_coverage_prefilter.csv")
+w(t, f"{TAB}/Table2_coverage_prefilter.csv")
 
 # ------------------------------------------------------------------- Table 2
 s = pd.read_csv(f"{M}/03_TABLOLAR/SOCE_izoform_SAGLAM_olaylar.tsv", sep="\t")
@@ -94,7 +94,7 @@ for c in ["start_1based", "end", "exon_bp", "amino_acids", "min_informative_read
 w(s[["dataset", "gene", "event_class", "chrom", "start_1based", "end", "strand", "exon_bp",
      "reading_frame", "amino_acids", "delta_PSI", "FDR", "CI95_low", "CI95_high",
      "CI_includes_zero", "PSI_knockdown", "PSI_control", "mean_reads_per_sample",
-     "min_informative_reads"]], f"{TAB}/Table2_robust_SOCE_splicing_events.csv")
+     "min_informative_reads"]], f"{TAB}/Table3_robust_SOCE_splicing_events.csv")
 
 # ------------------------------------------------------------------- Table 3
 hc = pd.read_csv(f"{D}/tablolar/S13_yuksek_guven_kriptik_ozet.tsv", sep="\t")
@@ -134,11 +134,11 @@ hc = hc[["comparison", "permissive_events", "permissive_genes", "positive_contro
          "high_confidence_events", "genes", "positive_controls_high_confidence",
          "positive_control_genes_high_confidence", "Tier1_genes", "SOCE_machinery_genes",
          "null_calls_high_confidence", "null_to_real_ratio"]]
-w(hc, f"{TAB}/Table3_cryptic_events_eleven_comparisons.csv")
+w(hc, f"{TAB}/Table4_cryptic_events_eleven_comparisons.csv")
 
 # ------------------------------------------------------------------- Table 4
 t4 = pd.read_csv(f"{M}/03_TABLOLAR/v3/Table4_family_TPM.csv")
-w(t4, f"{TAB}/Table4_transcript_family_abundance.csv")
+w(t4, f"{TAB}/Table1_transcript_family_abundance.csv")
 
 # ------------------------------------------------------------------- Table 5
 rows = []

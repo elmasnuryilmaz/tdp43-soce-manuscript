@@ -49,7 +49,7 @@ that adjustment the ORAI pool rises by 27% and shifts towards ORAI3, rather than
 Effect on the genes discussed in the manuscript: *STIM1* log2FC 0.803 → 0.929, *TRPC1*
 0.967 → 0.958, *ATP2A3* 1.202 → 1.306, *CBARP* −1.746 → −1.254, and *ORAI1* becomes
 significant (0.364, not significant → 0.433, q = 2.4 × 10⁻⁴), which strengthens agreement with
-the RT-qPCR measurement. Results: `tables/Table4_transcript_family_abundance.csv`,
+the RT-qPCR measurement. Results: `tables/Table1_transcript_family_abundance.csv`,
 `source_data/DESeq2_ctrl_vs_75_fullmap.csv`.
 
 ## 4. Multiple sclerosis cohort: donor as the unit of inference

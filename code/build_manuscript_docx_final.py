@@ -73,7 +73,7 @@ def md_table(header, rows, align, widths):
 
 # ------------------------------------------------------------------ the five tables
 def table1():
-    t = pd.read_csv(f"{TAB}/Table1_coverage_prefilter.csv").set_index("dataset")
+    t = pd.read_csv(f"{TAB}/Table2_coverage_prefilter.csv").set_index("dataset")
     order = ["SH-SY5Y (GSE296712)", "iPSC colonies (GSE230647)",
              "iPSC-derived motor neurons (GSE77702)", "Mouse striatum (GSE27394)",
              "C2C12 (GSE171714)", "NSC34 (GSE171714)"]
@@ -90,7 +90,7 @@ def table1():
 
 
 def table2():
-    t = pd.read_csv(f"{TAB}/Table2_robust_SOCE_splicing_events.csv").set_index("gene")
+    t = pd.read_csv(f"{TAB}/Table3_robust_SOCE_splicing_events.csv").set_index("gene")
     rows = []
     for g in ["STIMATE", "ORAI3", "STIM2", "STIM1"]:
         r = t.loc[g]
@@ -113,7 +113,7 @@ def table2():
 
 
 def table3():
-    t = pd.read_csv(f"{TAB}/Table3_cryptic_events_eleven_comparisons.csv").set_index("comparison")
+    t = pd.read_csv(f"{TAB}/Table4_cryptic_events_eleven_comparisons.csv").set_index("comparison")
     order = ["SH-SY5Y 75 ng/mL", "SH-SY5Y 25 ng/mL", "iPSC colonies", "iPSC-MN, TDP-43 KD",
              "iPSC-MN, FUS KD", "iPSC-MN, TAF15 KD", "K562 total RNA", "K562 poly(A)+ mRNA",
              "C2C12", "NSC34", "Mouse striatum"]
@@ -154,7 +154,7 @@ def table3():
 
 
 def table4():
-    t = pd.read_csv(f"{TAB}/Table4_transcript_family_abundance.csv")
+    t = pd.read_csv(f"{TAB}/Table1_transcript_family_abundance.csv")
     rows, last = [], None
     for _, r in t.iterrows():
         fam = str(r.Family).replace("Ca2+", "Ca²⁺")

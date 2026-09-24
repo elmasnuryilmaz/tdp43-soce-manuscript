@@ -5,7 +5,7 @@
 Every value is read from the analysis outputs, not typed in:
   A  TARDBP knockdown and the Fura-2 SOCE amplitude   supplementary/S1_laboratory_source_data.xlsx
   B  RT-qPCR fold changes                              same workbook
-  C  change in transcript-family composition           tables/Table4_transcript_family_abundance.csv
+  C  change in transcript-family composition           tables/Table1_transcript_family_abundance.csv
      (TPM adjusted for library composition)
   D  direction of TRPC1 across five diseases           tables/Table5_cross_disease_comparison.csv
 """
@@ -40,7 +40,7 @@ rel = pd.read_excel(f"{P}/supplementary/S1_laboratory_source_data.xlsx", sheet_n
 folds = {g: rel[(rel.gene == g) & (rel.group == "shTDP-43")].rel_expression.mean()
          / rel[(rel.gene == g) & (rel.group == NT)].rel_expression.mean()
          for g in ["TRPC1", "STIM1", "ORAI1", "ATP2A3"]}
-t4 = pd.read_csv(f"{P}/tables/Table4_transcript_family_abundance.csv")
+t4 = pd.read_csv(f"{P}/tables/Table1_transcript_family_abundance.csv")
 t4 = t4[t4.Gene != "FAMILY TOTAL"].set_index("Gene")
 t5 = pd.read_csv(f"{P}/tables/Table5_cross_disease_comparison.csv")
 t5 = t5[t5.gene == "TRPC1"]

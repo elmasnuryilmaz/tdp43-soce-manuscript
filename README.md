@@ -27,7 +27,7 @@ why. Where the thesis and this repository differ, this repository is current.
 ├── figures/main/         current Figures 1–4, PNG (300 dpi) and editable SVG
 ├── figures/supplementary/ current Supplementary Figures S1–S8
 ├── figures/Figure1–9    historical nine-figure layout
-├── tables/               Tables 1–5, CSV (typeset in the manuscript by code/build_manuscript_docx.py)
+├── tables/               Tables 1–5, CSV in the current manuscript order
 ├── supplementary/        Supplementary Tables S1–S17
 ├── source_data/          intermediate data behind Tables 4–5 and Figures 6–8
 ├── code/                 analysis and figure scripts
@@ -49,7 +49,7 @@ why. Where the thesis and this repository differ, this repository is current.
 All current main figures are provided as 300-dpi PNG files and editable SVG masters.
 The laboratory did not measure splicing; those analyses are supplementary. Figure 2
 retains the original representative Fura-2 traces and pairs them with the measured
-ER-release and Ca²⁺-readdition amplitudes. The lower panels show individual values (n = 3) and mean ± SEM; the source workbook reports the two-tailed Student’s t-tests.
+ER-release and Ca²⁺-readdition amplitudes. The lower panels show individual values (n = 3) and mean ± SEM; the source workbook reports these comparisons descriptively.
 WST-1 was measured at 48 h (n = 4).
 
 ## Historical figures

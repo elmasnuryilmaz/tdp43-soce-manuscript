@@ -1,11 +1,11 @@
-=== Table 1: coverage pre-filter ===
+=== Table 2: coverage pre-filter ===
 PASS  events removed range low: manuscript 18 vs data 18
 PASS  events removed range high: manuscript 78 vs data 78
 PASS  significant lost low: manuscript 33 vs data 33
 PASS  significant lost high: manuscript 76 vs data 76
 PASS  SH-SY5Y significant before filter: manuscript 7854 vs data 7854
 
-=== Table 2: robust SOCE events ===
+=== Table 3: robust SOCE events ===
 PASS  STIMATE delta_PSI: manuscript 0.244 vs data 0.244
 PASS  STIMATE CI low: manuscript 0.095 vs data 0.095
 PASS  STIMATE CI high: manuscript 0.368 vs data 0.368
@@ -21,7 +21,7 @@ PASS  STIM1 CI high: manuscript 0.293 vs data 0.293
 PASS  STIM1 exon start 1-based: manuscript 4088702 vs data 4088702
 PASS  STIM1 exon length: manuscript 37 vs data 37
 
-=== Table 3 / S14: cryptic calls and null test ===
+=== Table 4 / S14: cryptic calls and null test ===
 PASS  SH-SY5Y high-confidence events (regtools): manuscript 165 vs data 165
 PASS  SH-SY5Y genes: manuscript 113 vs data 113
 PASS  iPSC-MN TDP-43 high-confidence events: manuscript 18 vs data 18
@@ -33,7 +33,7 @@ PASS  SH-SY5Y permissive positive controls: manuscript 13 vs data 13
 PASS  iPSC colonies permissive positive controls: manuscript 15 vs data 15
 PASS  permissive call counts, TDP-43 / FUS / TAF15: manuscript 141 vs data 141
 PASS  burden minimum: manuscript 12 vs data 12
-PASS  Table 3 mouse rows: positive controls not assessed: manuscript 3 vs data 3
+PASS  Table 4 mouse rows: positive controls not assessed: manuscript 3 vs data 3
 PASS  burden maximum: manuscript 477 vs data 477
 PASS  permissive null ratio iPSC colonies (Methods 2.5: 0.98 per real call): manuscript 0.98 vs data 0.98
 PASS  permissive null ratio K562 total RNA (Methods 2.5: 2.01): manuscript 2.01 vs data 2.01
@@ -41,7 +41,7 @@ PASS  null ratio iPSC colonies: manuscript 0.64 vs data 0.64
 PASS  null ratio K562 total RNA: manuscript 2.17 vs data 2.17
 PASS  null ratio mouse striatum: manuscript 0.83 vs data 0.83
 
-=== Table 4: transcript-family abundance (TPM) ===
+=== Table 1: transcript-family abundance (TPM) ===
 PASS  ORAI2 share: manuscript 77 vs data 77
 PASS  ATP2A2 share: manuscript 98 vs data 98
 PASS  ORAI1 share: manuscript 15 vs data 15
@@ -102,7 +102,7 @@ PASS  TRPC1 significant correlations: manuscript 0 vs data 0
 PASS  SH-SY5Y STIM1 intron17 delta: manuscript -0.173 vs data -0.172977780794914
 PASS  SH-SY5Y STIM2 intron13 delta: manuscript -0.156 vs data -0.155710144756217
 PASS  SH-SY5Y STIM2 intron13 control index (0.96): manuscript 0.96 vs data 0.956298207249431
-PASS  STIM2 intron13 5' window contains the Table 2 STIM2 exon: manuscript 1 vs data 1
+PASS  STIM2 intron13 5' window contains the Table 3 STIM2 exon: manuscript 1 vs data 1
 PASS  S11: every unit has a genomic window: manuscript 0 vs data 0
 PASS  iPSC-MN units passing the depth filter: manuscript 59 vs data 59
 PASS  iPSC-MN genes: manuscript 29 vs data 29
@@ -166,7 +166,7 @@ PASS  S6 genes all belong to the sixteen literature controls: manuscript 0 vs da
 PASS  S6 contains GPSM2, named in Section 3.3: manuscript 1 vs data 1
 PASS  S4 decision values are English: manuscript 0 vs data 0
 PASS  S4 panels with surviving enrichment: manuscript 2 vs data 2
-PASS  Table 3 rows = eleven comparisons: manuscript 11 vs data 11
+PASS  Table 4 rows = eleven comparisons: manuscript 11 vs data 11
 PASS  SH-SY5Y MAPQ-filtered positive controls: manuscript 12 vs data 12
 
 === Section 3.2 CBARP figures and Section 3.5 completeness ===
@@ -213,7 +213,7 @@ PASS  present: The *STIM2* unit is not an independent observation
 PASS  present: Yoast RE, Emrich SM, Zhang X, et al.
 PASS  present: 3⁶ = 729 combinations for the three-versus-three comparisons and 2⁴ = 16
 PASS  present: Total *STMN2* expression was therefore not used as a specific indicator
-PASS  present: cellular metabolic activity was assessed 48 h after seeding
+PASS  present: Cellular metabolic activity was assessed 48 h after seeding
 PASS  present: 10 MS/5 control donors, 98 samples
 PASS  present: in SH-SY5Y the same unit is uninformative (0.000, interval −0.264 to +0.241)
 PASS  present: decreased at donor level across all sampled lesion types (δ = −0.840; q = 0.038)
@@ -345,7 +345,7 @@ PASS  present: the mean per-base depths of its two windows summed to at least 3
 PASS  present: derived from the doctoral thesis of Elmasnur Yılmaz
 PASS  present: tentative, motor-neuron-associated observation
 PASS  present: (δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)
-PASS  present: attenuated the unadjusted difference from δ = −0.562 to an adjusted effect of δ = −0.418 (
+PASS  present: attenuated the unadjusted difference from δ = −0.562 to Cliff’s δ of −0.418 on the residua
 PASS  present: 375,000 per well
 PASS  present: Dharmacon TRC Lentiviral shRNA, cat. no. RHS3979
 PASS  present: 1 mM EGTA
