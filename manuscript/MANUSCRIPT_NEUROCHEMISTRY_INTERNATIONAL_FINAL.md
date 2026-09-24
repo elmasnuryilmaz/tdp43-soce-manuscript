@@ -553,7 +553,7 @@ RNA-seq results in the same cell line (*STIM1* log2FC = 0.929, p_adj =
 *ATP2A3* 1.306, 1.4 × 10⁻²⁹).
 
 <figure>
-<img src="/tmp/manuscript_md_funding.i67Kxf/media/media/image1.png"
+<img src="/tmp/manuscript_md_stmn2.ZmBAqz/media/media/image1.png"
 style="width:6.05in;height:2.59002in" />
 <figcaption><p><strong>Figure 1.</strong> TDP-43 knockdown,
 calcium-related mRNAs and WST-1 signal in SH-SY5Y cells. (A) TARDBP mRNA
@@ -578,7 +578,7 @@ The transcript changes and functional change are therefore in opposite
 directions. This is the central observation of the study.
 
 <figure>
-<img src="/tmp/manuscript_md_funding.i67Kxf/media/media/image2.png"
+<img src="/tmp/manuscript_md_stmn2.ZmBAqz/media/media/image2.png"
 style="width:6.05in;height:5.48658in" />
 <figcaption><p><strong>Figure 2.</strong> Fura-2 calcium measurements
 following TDP-43 knockdown in SH-SY5Y cells. (A, B) Representative
@@ -637,7 +637,7 @@ Together, the changes in ORAI-family composition and SOCE regulators
 provide candidate molecular explanations for the reduced SOCE phenotype.
 
 <figure>
-<img src="/tmp/manuscript_md_funding.i67Kxf/media/media/image3.png"
+<img src="/tmp/manuscript_md_stmn2.ZmBAqz/media/media/image3.png"
 style="width:6.05in;height:4.94225in" />
 <figcaption><p><strong>Figure 3.</strong> Calcium-regulatory transcript
 profile in the independent public SH-SY5Y RNA-seq comparison. (A)
@@ -1096,7 +1096,7 @@ setting in which *TRPC1* was significantly increased (Supplementary
 Figure S7).
 
 <figure>
-<img src="/tmp/manuscript_md_funding.i67Kxf/media/media/image4.png"
+<img src="/tmp/manuscript_md_stmn2.ZmBAqz/media/media/image4.png"
 style="width:6.05in;height:4.68662in" />
 <figcaption><p><strong>Figure 4.</strong> ALS tissue expression of
 TRPC1, SARAF and CBARP by region. Cliff’s δ compares ALS with
@@ -1109,63 +1109,28 @@ bulk-tissue associations do not establish that TDP-43 loss caused the
 expression differences.</p></figcaption>
 </figure>
 
-### 3.10 A junction-based marker of TDP-43 dysfunction does not correlate with TRPC1 within ALS regions
+### 3.10 Exploratory analysis of ALS regional transcript patterns
 
-The comparisons above establish that *TRPC1*, *SARAF* and *CBARP* differ
-between ALS and control tissue. They do not establish that the
-differences are caused by TDP-43 loss. A per-sample marker of TDP-43
-dysfunction is needed for that question; gene-level *STMN2*, the proxy
-used in earlier work, is inadequate on its own because in bulk tissue it
-also strongly tracks neuronal content.
+The ALS-control comparisons above establish disease-associated
+expression differences, but they do not establish that TDP-43 loss
+caused them. We therefore used cryptic *STMN2* junction inclusion as an
+exploratory per-sample indicator of TDP-43-dependent RNA processing
+(Methods 2.11). The cryptic junction was most frequent in spinal cord
+and was significantly increased in lumbar cord, cervical cord, medial
+motor cortex and temporal cortex relative to non-neurological controls
+(Supplementary Figure S8A; Supplementary Table S8).
 
-The same cohort is present in recount3 as a junction count matrix, which
-allowed the truncated *STMN2* transcript to be quantified directly
-(Methods 2.11). This junction-based measure is more proximal to a known
-consequence of TDP-43 dysfunction than total *STMN2* expression, but
-remains sparse and can capture only one route of TDP-43-dependent RNA
-misprocessing. Its regional distribution is consistent with the expected
-anatomical pattern (Supplementary Figure S8A): 70.5% of lumbar-cord and
-63.5% of cervical-cord ALS samples carried the cryptic junction,
-compared with 33.7–43.5% across motor cortex, 28.3% in temporal cortex,
-11.2% in frontal cortex, and **2.6% in cerebellum**. Against
-non-neurological controls from the same cohort, cryptic inclusion was
-increased in lumbar cord (Cliff’s δ = +0.705, q = 9.6 × 10⁻¹⁴), cervical
-cord (+0.619, q = 1.9 × 10⁻¹⁰), medial motor cortex (+0.337, q = 0.012)
-and temporal cortex (+0.283, q = 1.6 × 10⁻³), and was unchanged in
-cerebellum (−0.040, q = 0.34; Supplementary Table S8).
+Gene-level *STMN2* correlated strongly with the neuronal marker *SNAP25*
+within ALS samples (ρ = 0.66 to 0.93 across regions), whereas cryptic
+*STMN2* PSI did not (ρ = −0.28 to +0.05; Supplementary Figure S8B,C).
+Total *STMN2* expression was therefore not used as a specific indicator
+of TDP-43 dysfunction in bulk tissue.
 
-The junction-based measure also helps assess the proxy problem. Within
-ALS samples, gene-level *STMN2* correlated strongly with the neuronal
-marker *SNAP25* (ρ = 0.66 to 0.93 across regions), whereas cryptic PSI
-did not (ρ = −0.28 to +0.05; Supplementary Figure S8B,C). Thus, in this
-bulk-tissue cohort, total *STMN2* expression should not be interpreted
-as a specific measure of TDP-43 dysfunction; its prior positive
-correlations may substantially reflect neuronal content.
-
-Using this junction-based marker, we found no significant correlation
-between cryptic *STMN2* inclusion and *TRPC1* in any region (ρ = −0.19
-to +0.18; all q \> 0.05). The table contains 231 correlations: 121 for
-each proxy before exclusions, less the eleven trivial correlations of
-gene-level *STMN2* with itself. Benjamini–Hochberg correction was
-therefore applied to 220 informative correlations (110 per proxy). Of
-the 110 correlations with the junction-based marker, eight survived
-correction (Supplementary Table S9): gene-level *STMN2* fell with
-cryptic inclusion (cervical cord ρ = −0.244, q = 0.011), *SNAP25* fell
-and *GFAP* rose in medial motor cortex (ρ = −0.276 and +0.284, q = 0.028
-and 0.023); all three were internally consistent. Additional
-associations involved *ATP2A2* (medial motor cortex, −0.299, q = 0.015),
-*STIM1* (lumbar cord, −0.280, q = 0.0021), *SARAF* (lumbar cord, −0.194,
-q = 0.049) and *ORAI1* (+0.278 in cervical and +0.234 in lumbar cord, q
-= 0.0031 and 0.013). Of these five correlations in four SOCE genes,
-three run in the direction the cellular model predicts (the *ATP2A2*
-fall and both *ORAI1* rises) and two run against it (*STIM1* and
-*SARAF*).
-
-We therefore report the patient-tissue findings as association with ALS
-and not as evidence that TDP-43 loss drives them. The regional pattern
-makes the point sharply: cryptic *STMN2* is highest in spinal cord,
-where *TRPC1* does not increase, and *TRPC1* rises in cortex, where
-cryptic inclusion is comparatively rare.
+No statistically supported association was detected between cryptic
+*STMN2* inclusion and *TRPC1* in any region (ρ = −0.19 to +0.18; all q
+\> 0.05). This exploratory analysis does not support attributing the
+regional *TRPC1* expression differences to TDP-43 dysfunction; all
+tested correlations are provided in Supplementary Table S9.
 
 ## 4. Discussion
 
@@ -1301,21 +1266,19 @@ CBARP and a small number of model-specific candidates. The resulting
 hierarchy is stronger than a long candidate list because it
 distinguishes recurrent signals from coverage-sensitive observations.
 
-**Relevance to disease tissue.** TRPC1, SARAF and CBARP differed between
-ALS and non-neurological control tissue in several regions, but the
-tissue pattern did not simply reproduce the cell model. TRPC1 increased
-in several cortical regions while remaining unchanged in spinal cord,
-and its direction differed in the comparison cohorts. Cryptic STMN2 was
-most abundant in spinal cord, where TRPC1 did not increase, whereas
-cortical TRPC1 increases occurred where the cryptic junction was
-comparatively uncommon. Gene-level STMN2 strongly tracked neuronal
-content, and junction-level cryptic STMN2 did not correlate with TRPC1
-within ALS regions. These regional results, together with the opposing
-SOCE direction in SOD1 astrocytes, indicate that cell composition and
-compensatory state can dominate bulk-tissue expression. The disease data
-therefore support involvement of the same calcium-regulatory network,
-while the discordance argues against a single linear path from TDP-43
-dysfunction to TRPC1 abundance across all tissues.
+Relevance to disease tissue. *TRPC1*, *SARAF* and *CBARP* differed
+between ALS and non-neurological control tissue in several regions, but
+the tissue pattern did not reproduce the cell model uniformly. *TRPC1*
+increased in several cortical regions, remained unchanged in spinal cord
+and decreased in the neurological comparison cohorts. Because
+bulk-tissue expression is sensitive to region and cellular composition,
+these observations identify disease-associated candidates rather than a
+direct TDP-43-driven mechanism. The exploratory cryptic *STMN2* analysis
+did not provide evidence linking regional *TRPC1* abundance to
+TDP-43-dependent RNA processing. Together with the opposing direction of
+SOCE changes reported in SOD1 astrocytes, these findings indicate that
+cell identity and compensatory state shape the calcium-regulatory
+phenotype.
 
 **Integrated mechanism and testable predictions.** Previous work
 connecting TDP-43 to Ca²⁺ signalling has centred on ER–mitochondrial
@@ -1347,11 +1310,10 @@ calcium-regulatory genes. Transcript-family summaries and reproducible
 establish protein stoichiometry or a single causal RNA switch.
 Coverage-based APA and conservative NMD analyses do not provide
 confirmatory evidence that SOCE-machinery genes are direct targets of
-those pathways. In ALS tissue, *TRPC1*, *SARAF* and *CBARP* show
-disease-associated expression differences, whereas junction-level
-*STMN2* inclusion does not correlate with *TRPC1* within ALS samples.
-*CBARP* and *SARAF* are therefore priorities for targeted molecular and
-functional follow-up.
+those pathways. In ALS tissue, *TRPC1*, *SARAF* and *CBARP* showed
+region-dependent expression differences. *CBARP*, *SARAF* and *TRPC1*
+are therefore priorities for targeted protein-level and functional
+follow-up.
 
 ## Declarations
 

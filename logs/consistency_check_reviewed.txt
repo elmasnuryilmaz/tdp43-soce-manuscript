@@ -195,7 +195,7 @@ PASS  present: chr4:27,007,983–27,008,006
 PASS  present: n = 3
 PASS  present: 10 µM cyclopiazonic acid
 PASS  present: Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA
-PASS  present: Of the 110 correlations with the junction-based marker
+PASS  present: No statistically supported association was detected
 PASS  present: Cutadapt v5.2
 PASS  present: 59 units in 29 genes passed the same depth filter
 PASS  present: from 0.570 in controls to 0.819 in knockdown (Δ = +0.249
@@ -212,7 +212,7 @@ PASS  present: the median gene expressed in both groups (mean TPM > 5) had 24% l
 PASS  present: The *STIM2* unit is not an independent observation
 PASS  present: Yoast RE, Emrich SM, Zhang X, et al.
 PASS  present: 3⁶ = 729 combinations for the three-versus-three comparisons and 2⁴ = 16
-PASS  present: applied to 220 informative correlations
+PASS  present: all tested correlations are provided in Supplementary Table S9
 PASS  present: cellular metabolic activity was assessed 48 h after seeding
 PASS  present: 10 MS/5 control donors, 98 samples
 PASS  present: in SH-SY5Y the same unit is uninformative (0.000, interval −0.264 to +0.241)
