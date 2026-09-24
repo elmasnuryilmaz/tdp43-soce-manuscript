@@ -192,7 +192,7 @@ PASS  present: 0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in m
 PASS  present: interaction was −0.325 (p = 0.317, q = 0.508)
 PASS  present: chr11:4,088,702–4,088,738
 PASS  present: chr4:27,007,983–27,008,006
-PASS  present: three measurements per group
+PASS  present: n = 3
 PASS  present: 10 µM cyclopiazonic acid
 PASS  present: Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA
 PASS  present: Of the 110 correlations with the junction-based marker
@@ -312,8 +312,8 @@ PASS  absent: Kaymaz
 PASS  absent: Y.K.
 PASS  absent: Bioengineering
 PASS  absent: performed three times
-PASS  present: four wells per group from one experiment
-PASS  present: three measurements per group
+PASS  present: n = 4
+PASS  present: n = 3
 PASS  S1 README omits unsupported WST-1 experiments: manuscript 0 vs data 0
 
 === 22 September 2026, round 3: values quoted from the supplements ===

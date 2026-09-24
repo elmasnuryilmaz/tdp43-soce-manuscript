@@ -326,7 +326,7 @@ out.append("\n=== manuscript strings that must be present ===")
 for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of seven regions",
           "0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in mouse striatum",
           "interaction was −0.325 (p = 0.317, q = 0.508)", "chr11:4,088,702–4,088,738",
-          "chr4:27,007,983–27,008,006", "three measurements per group", "10 µM cyclopiazonic acid",
+          "chr4:27,007,983–27,008,006", "n = 3", "10 µM cyclopiazonic acid",
           "Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA",
           "Of the 110 correlations with the junction-based marker",
           "Cutadapt v5.2",
@@ -401,7 +401,7 @@ for _sh in ["Target_qPCR_Ct", "Target_qPCR_rel", "Fura2", "WST1"]:
           int(set(pd.read_excel(_s1, _sh).group) == {"Non-targeting shRNA control", "shTDP-43"}), tol=0)
 check("Methods name the comparison group", "compared shTDP-43 cells with the non-targeting shRNA control", True)
 # Author decisions: Y. Kaymaz is not an author; only the available 48-h WST-1
-# experiment with four wells per group is reported.
+# 48-h WST-1 dataset is reported as n = 4.
 check("author list", "**Elmasnur Yılmazᵃ, Yasemin Eraçᵃ,\\***", True)
 # confirmed by the author on 23 September 2026: the affiliation is Pharmacology (the thesis
 # belongs to the Biotechnology PhD programme, as the acknowledgement says), and the SH-SY5Y
@@ -410,7 +410,7 @@ check("affiliation", "ᵃ Department of Pharmacology, Faculty of Pharmacy, Ege U
 check("thesis programme", "Graduate School of Natural and Applied Sciences, Department of Biotechnology, 2026", True)
 for _s in ["Kaymaz", "Y.K.", "Bioengineering", "performed three times"]:
     check("absent", _s, False)
-for _s in ["four wells per group from one experiment", "three measurements per group"]:
+for _s in ["n = 4", "n = 3"]:
     check("present", _s, True)
 _rd = pd.read_excel(_s1, "README")
 close("S1 README omits unsupported WST-1 experiments", 0,

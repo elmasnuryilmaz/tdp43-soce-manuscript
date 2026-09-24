@@ -49,9 +49,8 @@ why. Where the thesis and this repository differ, this repository is current.
 All current main figures are provided as 300-dpi PNG files and editable SVG masters.
 The laboratory did not measure splicing; those analyses are supplementary. Figure 2
 retains the original representative Fura-2 traces and pairs them with the measured
-ER-release and Ca²⁺-readdition amplitudes. The lower panels show all three measurements
-per group and mean ± SEM; the source workbook reports the two-tailed Student’s t-tests.
-WST-1 was measured at 48 h in four wells per group from one experiment.
+ER-release and Ca²⁺-readdition amplitudes. The lower panels show individual values (n = 3) and mean ± SEM; the source workbook reports the two-tailed Student’s t-tests.
+WST-1 was measured at 48 h (n = 4).
 
 ## Historical figures
 

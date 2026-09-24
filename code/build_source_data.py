@@ -139,26 +139,24 @@ for tab, lab, panel in [("ER_Ca2_release", "ER Ca2+ release", "2C"),
                      n=len(c), mean=round(c.mean(), 3), SEM=round(sem(c), 3), test="", p_value=""))
     rows.append(dict(panel=panel, measurement=f"{lab} delta F340/F380", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 3), SEM=round(sem(k), 3),
-                     test="two-tailed Student's t-test; three measurements per group",
+                     test="two-tailed Student's t-test; n = 3",
                      p_value=f"{p:.8g}"))
 summ = pd.DataFrame(rows)
 
 readme = pd.DataFrame({"sheet": ["TARDBP_qPCR", "Target_qPCR_Ct", "Target_qPCR_rel",
                                  "Fura2", "WST1", "Summary_stats", "Primers", "Thermal_profile"],
     "content": [
-        "RT-qPCR of TARDBP in three groups, four biological replicates each; raw Ct for "
+        "RT-qPCR of TARDBP in three groups (n = 4 each); raw Ct for "
         "TARDBP and GAPDH, dCt, ddCt and 2^-ddCt. Experiment dates 14.04-21.05.2026.",
         "Raw Ct values for the four SOCE-associated targets and GAPDH in shTDP-43 cells and "
-        "the non-targeting (scrambled) shRNA control, four biological replicates per group, "
+        "the non-targeting (scrambled) shRNA control, n = 4, "
         "same RNA set; experiment window 03.06-10.07.2026.",
         "Relative expression per replicate (2^-ddCt) for the four targets plotted in Figure 1B.",
         "Fura-2/AM measurements. ER Ca2+ release is the rise in F340/F380 after 10 uM "
         "cyclopiazonic acid in Ca2+-free HBS with EGTA; SOCE is the rise after re-addition "
-        "of 1.5 mM CaCl2. Both as delta(F340/F380) versus the preceding baseline. There are three measurements per group. The control group is the "
+        "of 1.5 mM CaCl2. Both as delta(F340/F380) versus the preceding baseline (n = 3). The control group is the "
         "non-targeting (scrambled) shRNA control.",
-        "WST-1 metabolic signal (not a direct cell count or viability measure), four wells "
-        "per group, normalised to the mean of the non-targeting (scrambled) shRNA control "
-        "at the same time point. The available source data comprise four wells per group from one experiment.",
+        "WST-1 metabolic signal at 48 h (n = 4; not a direct cell count or viability measure), normalised to the mean of the non-targeting (scrambled) shRNA control.",
         "Group means, SEM and the statistical test behind Figures 1 and 2.",
         "Primer sequences, product sizes and annealing temperatures for the RT-qPCR targets "
         "and the GAPDH reference.",

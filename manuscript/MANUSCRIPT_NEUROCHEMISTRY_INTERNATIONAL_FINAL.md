@@ -15,10 +15,9 @@ its relationship to store-operated Ca²⁺ entry (SOCE) is unclear. After
 shRNA-mediated TARDBP depletion in SH-SY5Y cells, TRPC1, STIM1, ORAI1
 and ATP2A3 mRNAs increased 1.7- to 3.2-fold, while the Fura-2 SOCE
 response fell from 1.542 ± 0.282 to 0.245 ± 0.083 Δ(F340/F380) (p =
-0.0115; three measurements per group). The ER Ca²⁺ release comparison
-was inconclusive (p = 0.299). At 48 h, the WST-1 signal was 38.5% lower
-in four wells per group from one experiment. We reanalysed six public
-TDP-43-depletion RNA-seq comparisons (38 libraries) for
+0.0115; n = 3). The ER Ca²⁺ release comparison was inconclusive (p =
+0.299). At 48 h, the WST-1 signal was 38.5% lower (n = 4). We reanalysed
+six public TDP-43-depletion RNA-seq comparisons (38 libraries) for
 calcium-regulatory expression and splicing, screened eleven comparisons
 for unannotated junction changes, and assessed alternative
 polyadenylation and nonsense-mediated decay. CBARP was the most
@@ -481,11 +480,11 @@ plate with no-template and no-reverse-transcriptase controls, and
 specificity was checked from a single melt-curve peak. Relative
 expression was calculated by the 2<sup>−ΔΔCt</sup> method (Livak and
 Schmittgen, 2001), with non-transduced cells as the calibrator for
-TARDBP and the non-targeting shRNA control for the target genes (n = 4
-biological replicates per group; TARDBP knockdown and the target genes
-were measured on separate RNA sets, 14 April – 21 May and 3 June – 10
-July 2026). Primer sequences, product sizes, annealing temperatures and
-the thermal cycling profile are given in Supplementary Table S1.
+TARDBP and the non-targeting shRNA control for the target genes (n = 4;
+TARDBP knockdown and the target genes were measured on separate RNA
+sets, 14 April – 21 May and 3 June – 10 July 2026). Primer sequences,
+product sizes, annealing temperatures and the thermal cycling profile
+are given in Supplementary Table S1.
 
 ### 2.14 Cytosolic Ca²⁺ measurement
 
@@ -509,8 +508,7 @@ rise in F340/F380 was recorded as ER Ca²⁺ release. CaCl₂ was then added
 to a final concentration of 1.5 mM and the subsequent rise was recorded
 as store-operated Ca²⁺ entry (SOCE), following the established
 depletion–readdition paradigm. Both phases were quantified as
-Δ(F340/F380) relative to the respective preceding baseline (three
-measurements per group).
+Δ(F340/F380) relative to the respective preceding baseline (n = 3).
 
 ### 2.15 WST-1 assay
 
@@ -522,8 +520,8 @@ for 3 h at 37 °C, and absorbance was read at 450 nm against a 620 nm
 reference on a Varioskan Flash reader (Thermo Scientific). The
 absorbance of cell-free wells containing medium and reagent was
 subtracted, and values were normalised to the mean of the non-targeting
-shRNA control. The available 48-h source data comprise four wells per
-group from one experiment; values are reported as mean ± SEM.
+shRNA control. For the available 48-h data, n = 4; values are reported
+as mean ± SEM.
 
 ### 2.16 Statistics
 
@@ -560,22 +558,21 @@ style="width:6.05in;height:2.59002in" />
 <figcaption><p><strong>Figure 1.</strong> TDP-43 knockdown,
 calcium-related mRNAs and WST-1 signal in SH-SY5Y cells. (A) TARDBP mRNA
 in untransduced cells (“No virus”), non-targeting shRNA controls and
-shTDP-43 cells (n = 4 biological replicates per group; one-way ANOVA on
-log2 values with Tukey’s test; **** p &lt; 0.0001 for the indicated
-pair). (B) Relative mRNA of TRPC1, STIM1, ORAI1 and ATP2A3 (n = 4
-biological replicates per group; two-tailed t-tests with Holm adjustment
-across the four targets). (C) WST-1 metabolic signal at 48 h (four wells
-per group from one experiment; descriptive summary only). Bars represent
-means ± SEM; dots are individual measurements.</p></figcaption>
+shTDP-43 cells (n = 4; one-way ANOVA on log2 values with Tukey’s test;
+**** p &lt; 0.0001 for the indicated pair). (B) Relative mRNA of TRPC1,
+STIM1, ORAI1 and ATP2A3 (n = 4; two-tailed t-tests with Holm adjustment
+across the four targets). (C) WST-1 metabolic signal at 48 h (n = 4;
+descriptive summary only). Bars represent means ± SEM; dots are
+individual measurements.</p></figcaption>
 </figure>
 
 Functionally, however, the SOCE response fell markedly (Figure 2). The
 ER Ca²⁺-release means were 0.268 ± 0.042 and 0.180 ± 0.061 Δ(F340/F380)
 in the control and shTDP-43 groups, respectively (p = 0.299; two-tailed
 Student’s t-test). The readdition-response means were 1.542 ± 0.282 and
-0.245 ± 0.083, respectively (p = 0.0115; two-tailed Student’s t-test;
-three measurements per group). At 48 h, the WST-1 signal was 61.5 ± 0.8%
-of control, a 38.5% decrease (four wells per group, one experiment).
+0.245 ± 0.083, respectively (p = 0.0115; two-tailed Student’s t-test; n
+= 3). At 48 h, the WST-1 signal was 61.5 ± 0.8% of control, a 38.5%
+decrease (n = 4).
 
 The direction of the transcript changes and the direction of the
 functional response are therefore opposite. This is the central
@@ -589,9 +586,9 @@ following TDP-43 knockdown in SH-SY5Y cells. (A, B) Representative
 traces from non-targeting shRNA control and shTDP-43 cells. CPA (10 µM)
 and CaCl₂ (1.5 mM) additions are indicated. (C) ER Ca²⁺ release after
 CPA (p = 0.299). (D) Ca²⁺ readdition response (p = 0.0115). Panels C and
-D show individual measurements and mean ± SEM (three measurements per
-group; two-tailed Student’s t-tests). The traces illustrate individual
-recordings; group amplitudes were calculated from the original Prism
+D show individual measurements and mean ± SEM (n = 3; two-tailed
+Student’s t-tests). The traces illustrate individual recordings; group
+amplitudes were calculated from the original Prism
 measurements.</p></figcaption>
 </figure>
 
@@ -984,10 +981,9 @@ small shifts: the largest were *ATP2A2* intron 3 (−0.164) and, below
 0.10, *SARAF* intron 5 (+0.097), *TRPC1* intron 1 (+0.083) and the
 *STIM2* terminal exon (−0.074). The SH-SY5Y *STIM1* intron 17 unit did
 not reach the depth filter in this shallower dataset (*STIM2* intron 13
-gave −0.024, interval spanning zero). This comparison has only two
-replicates per group, so the enumerated bootstrap has sixteen draws and
-its intervals are coarse; the point estimates, not the intervals, carry
-the information.
+gave −0.024, interval spanning zero). For this comparison, n = 2, so the
+enumerated bootstrap has sixteen draws and its intervals are coarse; the
+point estimates, not the intervals, carry the information.
 
 The two mouse lines gave 74 qualifying units in C2C12 and 131 in NSC34.
 Neither has a positive control for this assay: the *STMN2* cryptic
