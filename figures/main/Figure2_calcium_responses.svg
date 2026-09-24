@@ -397,7 +397,7 @@
 </g>
 <text xml:space="preserve" transform="matrix(1.0267 0 -0 1.0267 330.42878 306.4373)" font-size="9" font-family="Arial" font-weight="bold"><tspan y="-.60175" x="0 6.4995119 9 11.500488 18">D  Ca</tspan></text>
 <text xml:space="preserve" transform="matrix(1.0267 0 -0 1.0267 330.42878 306.4373)" font-size="6.3" font-family="DejaVu Sans"><tspan y="-4.31875" x="23.091504 28.327149">2+</tspan></text>
-<text xml:space="preserve" transform="matrix(1.0267 0 -0 1.0267 330.42878 306.4373)" font-size="9" font-family="Arial" font-weight="bold"><tspan y="-.6017499" x="35.079347 37.579835 41.082277 46.087648 51.093019 56.590578 62.088136 64.58862 67.58569 70.08618 75.58374 81.0813 83.58179 87.08423 92.0896 97.09497 102.59253 108.09009 113.58765 118.59302"> readdition response</tspan></text>
+<text xml:space="preserve" transform="matrix(1.0267 0 -0 1.0267 330.42878 306.4373)" font-size="9" font-family="Arial" font-weight="bold"><tspan y="-.6017499" x="35.079347"> readdition amplitude</tspan></text>
 <g clip-path="url(#clip_35)">
 <path transform="matrix(1.0267,0,0,-1.0267,12,521.6742)" stroke-width=".9" stroke-linecap="square" stroke-linejoin="round" fill="none" stroke="#222222" d="M371.0385 155.10852"/>
 </g>

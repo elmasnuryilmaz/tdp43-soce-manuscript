@@ -13,16 +13,16 @@ Türkiye
 TDP-43 loss is implicated in amyotrophic lateral sclerosis (ALS), but
 its relationship to store-operated Ca²⁺ entry (SOCE) is unclear. After
 shRNA-mediated TARDBP depletion in SH-SY5Y cells, TRPC1, STIM1, ORAI1
-and ATP2A3 mRNAs increased 1.7- to 3.2-fold, while the Fura-2 SOCE
-response fell from 1.542 ± 0.282 to 0.245 ± 0.083 Δ(F340/F380) (p =
-0.0115; n = 3). The ER Ca²⁺ release comparison was inconclusive (p =
-0.299). At 48 h, the WST-1 signal was 38.5% lower (n = 4). We reanalysed
-six public TDP-43-depletion RNA-seq comparisons (38 libraries) for
-calcium-regulatory expression and splicing, screened eleven comparisons
-for unannotated junction changes, and assessed alternative
-polyadenylation and nonsense-mediated decay. CBARP was the most
-reproducible splicing candidate across species, whereas STIM2, STIMATE
-and ORAI3 events were supported in the primary RNA-seq model. No
+and ATP2A3 mRNAs increased 1.7- to 3.2-fold, while the Fura-2-measured
+SOCE amplitude decreased from 1.542 ± 0.282 to 0.245 ± 0.083
+Δ(F340/F380) (p = 0.0115; n = 3). The ER Ca²⁺ release comparison was
+inconclusive (p = 0.299). At 48 h, the WST-1 signal was 38.5% lower (n =
+4). We reanalysed six public TDP-43-depletion RNA-seq comparisons (38
+libraries) for calcium-regulatory expression and splicing, screened
+eleven comparisons for unannotated junction changes, and assessed
+alternative polyadenylation and nonsense-mediated decay. CBARP was the
+most reproducible splicing candidate across species, whereas STIM2,
+STIMATE and ORAI3 events were supported in the primary RNA-seq model. No
 confirmed RNA-processing event in the core SOCE machinery explained the
 functional change. In ALS brain, TRPC1 and SARAF increased and CBARP
 decreased in six of seven regions, but these tissue associations could
@@ -553,7 +553,7 @@ RNA-seq results in the same cell line (*STIM1* log2FC = 0.929, p_adj =
 *ATP2A3* 1.306, 1.4 × 10⁻²⁹).
 
 <figure>
-<img src="../figures/main/Figure1_functional_consequences.png"
+<img src="/tmp/manuscript_md_soce2.L3cbG4/media/media/image1.png"
 style="width:6.05in;height:2.59002in" />
 <figcaption><p><strong>Figure 1.</strong> TDP-43 knockdown,
 calcium-related mRNAs and WST-1 signal in SH-SY5Y cells. (A) TARDBP mRNA
@@ -566,27 +566,26 @@ descriptive summary only). Bars represent means ± SEM; dots are
 individual measurements.</p></figcaption>
 </figure>
 
-Functionally, however, the SOCE response fell markedly (Figure 2). The
-ER Ca²⁺-release means were 0.268 ± 0.042 and 0.180 ± 0.061 Δ(F340/F380)
-in the control and shTDP-43 groups, respectively (p = 0.299; two-tailed
-Student’s t-test). The readdition-response means were 1.542 ± 0.282 and
-0.245 ± 0.083, respectively (p = 0.0115; two-tailed Student’s t-test; n
-= 3). At 48 h, the WST-1 signal was 61.5 ± 0.8% of control, a 38.5%
-decrease (n = 4).
+Functionally, however, the SOCE amplitude decreased markedly (Figure 2).
+The ER Ca²⁺-release means were 0.268 ± 0.042 and 0.180 ± 0.061
+Δ(F340/F380) in the control and shTDP-43 groups, respectively (p =
+0.299; two-tailed Student’s t-test). The Ca²⁺-readdition amplitudes were
+1.542 ± 0.282 and 0.245 ± 0.083, respectively (p = 0.0115; two-tailed
+Student’s t-test; n = 3). At 48 h, the WST-1 signal was 61.5 ± 0.8% of
+control, a 38.5% decrease (n = 4).
 
-The direction of the transcript changes and the direction of the
-functional response are therefore opposite. This is the central
-observation of the study.
+The transcript changes and functional change are therefore in opposite
+directions. This is the central observation of the study.
 
 <figure>
-<img src="../figures/main/Figure2_calcium_responses.png"
+<img src="/tmp/manuscript_md_soce2.L3cbG4/media/media/image2.png"
 style="width:6.05in;height:5.48658in" />
-<figcaption><p><strong>Figure 2.</strong> Fura-2 calcium responses
+<figcaption><p><strong>Figure 2.</strong> Fura-2 calcium measurements
 following TDP-43 knockdown in SH-SY5Y cells. (A, B) Representative
 traces from non-targeting shRNA control and shTDP-43 cells. CPA (10 µM)
 and CaCl₂ (1.5 mM) additions are indicated. (C) ER Ca²⁺ release after
-CPA (p = 0.299). (D) Ca²⁺ readdition response (p = 0.0115). Panels C and
-D show individual measurements and mean ± SEM (n = 3; two-tailed
+CPA (p = 0.299). (D) Ca²⁺-readdition amplitude (p = 0.0115). Panels C
+and D show individual measurements and mean ± SEM (n = 3; two-tailed
 Student’s t-tests). The traces illustrate individual recordings; group
 amplitudes were calculated from the original Prism
 measurements.</p></figcaption>
@@ -638,7 +637,7 @@ Together, the changes in ORAI-family composition and SOCE regulators
 provide candidate molecular explanations for the reduced SOCE phenotype.
 
 <figure>
-<img src="../figures/main/Figure3_transcript_profile.png"
+<img src="/tmp/manuscript_md_soce2.L3cbG4/media/media/image3.png"
 style="width:6.05in;height:4.94225in" />
 <figcaption><p><strong>Figure 3.</strong> Calcium-regulatory transcript
 profile in the independent public SH-SY5Y RNA-seq comparison. (A)
@@ -1097,7 +1096,7 @@ setting in which *TRPC1* was significantly increased (Supplementary
 Figure S7).
 
 <figure>
-<img src="../figures/main/Figure4_ALS_expression.png"
+<img src="/tmp/manuscript_md_soce2.L3cbG4/media/media/image4.png"
 style="width:6.05in;height:4.68662in" />
 <figcaption><p><strong>Figure 4.</strong> ALS tissue expression of
 TRPC1, SARAF and CBARP by region. Cliff’s δ compares ALS with
@@ -1170,11 +1169,11 @@ cryptic inclusion is comparatively rare.
 
 ## 4. Discussion
 
-This study identifies a marked reduction in the Fura-2 Ca²⁺ readdition
-response after TDP-43 knockdown and connects that functional phenotype
-to coordinated changes in calcium-regulatory transcripts. The central
-feature is a mismatch between abundance and function: the adjusted STIM
-and ORAI transcript pools increased, yet the readdition response fell by
+This study identifies a marked reduction in Fura-2-measured SOCE after
+TDP-43 knockdown and connects that functional phenotype to coordinated
+changes in calcium-regulatory transcripts. The central feature is a
+mismatch between abundance and function: the adjusted STIM and ORAI
+transcript pools increased, yet the SOCE amplitude decreased by
 approximately 84%. The data therefore do not support simple loss of the
 core SOCE machinery. They instead point to altered channel composition,
 feedback inhibition, ER refilling and cellular bioenergetics as
@@ -1184,35 +1183,35 @@ were selective and context dependent. This combination defines a
 multilayered calcium-homeostasis phenotype rather than uniform
 suppression of one channel or one RNA-processing event.
 
-**Architecture of the functional phenotype.** The ER-release mean fell
-from 0.268 to 0.180 Δ(F340/F380), while the subsequent readdition
-response showed a much larger proportional decrease. A smaller
+**Architecture of the functional phenotype.** The ER-release mean
+decreased from 0.268 to 0.180 Δ(F340/F380), while the subsequent SOCE
+amplitude showed a much larger proportional decrease. A smaller
 releasable store may therefore contribute, but it is unlikely to account
-on its own for the magnitude of the readdition phenotype. The transcript
-data identify two mechanistic layers that could act together. First,
-ATP2A2, which dominates the SERCA family in these cells, decreased
-modestly and could reduce the efficiency of ER refilling. Second, the
-ORAI family shifted sharply: ORAI3 rose from 8% to 30% of ORAI
-transcripts, ORAI2 fell from 77% to 53%, and SARAF increased. Channel
-output depends on the relative abundance, assembly and localization of
-STIM and ORAI proteins rather than their summed RNA abundance; even the
-STIM1:ORAI1 protein ratio can change CRAC-channel trapping and gating
-(Hoover and Lewis, 2011). The discordance between a larger transcript
-pool and lower entry therefore favours a composition or regulatory
-mechanism over simple transcript insufficiency.
+on its own for the magnitude of the SOCE decrease. The transcript data
+identify two mechanistic layers that could act together. First, ATP2A2,
+which dominates the SERCA family in these cells, decreased modestly and
+could reduce the efficiency of ER refilling. Second, the ORAI family
+shifted sharply: ORAI3 rose from 8% to 30% of ORAI transcripts, ORAI2
+decreased from 77% to 53%, and SARAF increased. Channel output depends
+on the relative abundance, assembly and localization of STIM and ORAI
+proteins rather than their summed RNA abundance; even the STIM1:ORAI1
+protein ratio can change CRAC-channel trapping and gating (Hoover and
+Lewis, 2011). The discordance between a larger transcript pool and lower
+entry therefore favours a composition or regulatory mechanism over
+simple transcript insufficiency.
 
 **Channel composition and neural context.** SARAF promotes slow
 Ca²⁺-dependent inactivation, while ORAI2 and ORAI3 can modify
 ORAI1-mediated channel kinetics and restrain entry in heteromeric
 settings (Palty et al., 2012; Vaeth et al., 2017; Yoast et al., 2020).
 The fivefold ORAI3 increase and higher SARAF are consequently plausible
-contributors to a shorter or smaller readdition response, whereas the
-ORAI2 decrease predicts an effect in the opposite direction. ORAI3
-should not, however, be treated as intrinsically inhibitory: in primary
-astrocytes, STIM1 together with ORAI1 and ORAI3 mediates most SOCE, with
-additional contributions from ORAI2 and TRPC1 (Kwon et al., 2017). SARAF
-also regulates calcium entry in SH-SY5Y cells (Albarran et al., 2016).
-These comparisons make the observed transcript pattern mechanistically
+contributors to a smaller SOCE amplitude, whereas the ORAI2 decrease
+predicts an effect in the opposite direction. ORAI3 should not, however,
+be treated as intrinsically inhibitory: in primary astrocytes, STIM1
+together with ORAI1 and ORAI3 mediates most SOCE, with additional
+contributions from ORAI2 and TRPC1 (Kwon et al., 2017). SARAF also
+regulates calcium entry in SH-SY5Y cells (Albarran et al., 2016). These
+comparisons make the observed transcript pattern mechanistically
 informative without assigning the phenotype to one component: the likely
 variable is the assembled channel and its feedback kinetics in this
 cellular background.
@@ -1230,29 +1229,28 @@ entry failure and ER-store depletion can all disturb calcium signalling
 through different routes. Genetic lesion, cell identity, differentiation
 state and compensatory timing are therefore likely to determine the
 direction of the measured phenotype. The present result establishes a
-TDP-43 loss-associated response in SH-SY5Y cells and complements, rather
-than reproduces, the SOD1 astrocyte phenotype.
+reduction in SOCE associated with TDP-43 loss in SH-SY5Y cells and
+complements, rather than reproduces, the SOD1 astrocyte phenotype.
 
 **Metabolic and organelle coupling.** The 48-h WST-1 signal was 38.5%
-lower after knockdown. The approximately 84% reduction in the Ca²⁺
-readdition response was more than twice this proportional change,
-arguing against simple scaling of the calcium phenotype by the WST-1
-signal, although the assays were performed in separate preparations.
-This agrees with evidence that TARDBP silencing reduces metabolic
-activity, cell growth, oxygen consumption and ATP production in human
-iPSC-derived motor neurons and other human cells (Ceron-Codorniu et al.,
-2024). The mitochondrial-uptake transcript pool also fell by
-approximately 25%, mainly through MCU, MICU2 and MCUB. These proteins
-have distinct effects on uniporter composition and stress-induced
-mitochondrial Ca²⁺ loading, so their combined RNA decrease cannot be
-translated directly into flux (Lambert et al., 2019). It nevertheless
-links the WST-1 phenotype to a broader bioenergetic and
-calcium-buffering response. Reduced ATP supply could impair
-SERCA-dependent store refilling, while altered mitochondrial uptake
-could change local cytosolic Ca²⁺ clearance near ER and plasma-membrane
-junctions. This provides a mechanistic route by which cell state, ER
-release and readdition can decline together without requiring every
-change to arise from the same channel subunit.
+lower after knockdown. The approximately 84% reduction in SOCE amplitude
+was more than twice this proportional change, arguing against simple
+scaling of the calcium phenotype by the WST-1 signal, although the
+assays were performed in separate preparations. This agrees with
+evidence that TARDBP silencing reduces metabolic activity, cell growth,
+oxygen consumption and ATP production in human iPSC-derived motor
+neurons and other human cells (Ceron-Codorniu et al., 2024). The
+mitochondrial-uptake transcript pool also fell by approximately 25%,
+mainly through MCU, MICU2 and MCUB. These proteins have distinct effects
+on uniporter composition and stress-induced mitochondrial Ca²⁺ loading,
+so their combined RNA decrease cannot be translated directly into flux
+(Lambert et al., 2019). It nevertheless links the WST-1 phenotype to a
+broader bioenergetic and calcium-buffering response. Reduced ATP supply
+could impair SERCA-dependent store refilling, while altered
+mitochondrial uptake could change local cytosolic Ca²⁺ clearance near ER
+and plasma-membrane junctions. This provides a mechanistic route by
+which cell state, ER release and readdition can decline together without
+requiring every change to arise from the same channel subunit.
 
 **RNA-processing specificity.** The annotation-free analysis recovered
 established TDP-43-dependent cryptic targets, including the STMN2 and
