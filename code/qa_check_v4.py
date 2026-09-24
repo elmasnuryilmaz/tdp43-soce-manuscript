@@ -328,7 +328,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of seven r
           "interaction was −0.325 (p = 0.317, q = 0.508)", "chr11:4,088,702–4,088,738",
           "chr4:27,007,983–27,008,006", "n = 3", "10 µM cyclopiazonic acid",
           "Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA",
-          "No statistically supported association was detected",
+          "cryptic junction was most frequent in spinal cord",
           "Cutadapt v5.2",
           "59 units in 29 genes passed the same depth filter",
           "from 0.570 in controls to 0.819 in knockdown (Δ = +0.249",
@@ -345,7 +345,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of seven r
           "The *STIM2* unit is not an independent observation",
           "Yoast RE, Emrich SM, Zhang X, et al.",
           "3\u2076 = 729 combinations for the three-versus-three comparisons and 2\u2074 = 16",
-          "all tested correlations are provided in Supplementary Table S9",
+          "Total *STMN2* expression was therefore not used as a specific indicator",
           "cellular metabolic activity was assessed 48 h after seeding",
           "10 MS/5 control donors, 98 samples",
           "in SH-SY5Y the same unit is uninformative (0.000, interval \u22120.264 to +0.241)",
@@ -388,8 +388,12 @@ for _i in range(1, 5):
 close("figures first cited in numerical order", 1,
       int(all(_first[i] < _first[i + 1] for i in range(1, 4))), tol=0)
 for _i in range(1, 18):
-    close(f"Supplementary Table S{_i} cited in the text", 1,
-          int(re.search(rf"Table S{_i}(?![0-9])", _body) is not None), tol=0)
+    if _i == 9:
+        close("Supplementary Table S9 not promoted in the main text", 0,
+              int(re.search(r"Table S9(?![0-9])", _body) is not None), tol=0)
+    else:
+        close(f"Supplementary Table S{_i} cited in the text", 1,
+              int(re.search(rf"Table S{_i}(?![0-9])", _body) is not None), tol=0)
 
 out.append("\n=== S1 carries the four reported targets and names the control group ===")
 _s1 = pd.ExcelFile(f"{P}/supplementary/S1_laboratory_source_data.xlsx")

@@ -553,7 +553,7 @@ RNA-seq results in the same cell line (*STIM1* log2FC = 0.929, p_adj =
 *ATP2A3* 1.306, 1.4 × 10⁻²⁹).
 
 <figure>
-<img src="/tmp/manuscript_md_stmn2.ZmBAqz/media/media/image1.png"
+<img src="/tmp/manuscript_md_nonull.DYahga/media/media/image1.png"
 style="width:6.05in;height:2.59002in" />
 <figcaption><p><strong>Figure 1.</strong> TDP-43 knockdown,
 calcium-related mRNAs and WST-1 signal in SH-SY5Y cells. (A) TARDBP mRNA
@@ -578,7 +578,7 @@ The transcript changes and functional change are therefore in opposite
 directions. This is the central observation of the study.
 
 <figure>
-<img src="/tmp/manuscript_md_stmn2.ZmBAqz/media/media/image2.png"
+<img src="/tmp/manuscript_md_nonull.DYahga/media/media/image2.png"
 style="width:6.05in;height:5.48658in" />
 <figcaption><p><strong>Figure 2.</strong> Fura-2 calcium measurements
 following TDP-43 knockdown in SH-SY5Y cells. (A, B) Representative
@@ -637,7 +637,7 @@ Together, the changes in ORAI-family composition and SOCE regulators
 provide candidate molecular explanations for the reduced SOCE phenotype.
 
 <figure>
-<img src="/tmp/manuscript_md_stmn2.ZmBAqz/media/media/image3.png"
+<img src="/tmp/manuscript_md_nonull.DYahga/media/media/image3.png"
 style="width:6.05in;height:4.94225in" />
 <figcaption><p><strong>Figure 3.</strong> Calcium-regulatory transcript
 profile in the independent public SH-SY5Y RNA-seq comparison. (A)
@@ -1096,7 +1096,7 @@ setting in which *TRPC1* was significantly increased (Supplementary
 Figure S7).
 
 <figure>
-<img src="/tmp/manuscript_md_stmn2.ZmBAqz/media/media/image4.png"
+<img src="/tmp/manuscript_md_nonull.DYahga/media/media/image4.png"
 style="width:6.05in;height:4.68662in" />
 <figcaption><p><strong>Figure 4.</strong> ALS tissue expression of
 TRPC1, SARAF and CBARP by region. Cliff’s δ compares ALS with
@@ -1125,12 +1125,6 @@ within ALS samples (ρ = 0.66 to 0.93 across regions), whereas cryptic
 *STMN2* PSI did not (ρ = −0.28 to +0.05; Supplementary Figure S8B,C).
 Total *STMN2* expression was therefore not used as a specific indicator
 of TDP-43 dysfunction in bulk tissue.
-
-No statistically supported association was detected between cryptic
-*STMN2* inclusion and *TRPC1* in any region (ρ = −0.19 to +0.18; all q
-\> 0.05). This exploratory analysis does not support attributing the
-regional *TRPC1* expression differences to TDP-43 dysfunction; all
-tested correlations are provided in Supplementary Table S9.
 
 ## 4. Discussion
 
@@ -1273,9 +1267,7 @@ increased in several cortical regions, remained unchanged in spinal cord
 and decreased in the neurological comparison cohorts. Because
 bulk-tissue expression is sensitive to region and cellular composition,
 these observations identify disease-associated candidates rather than a
-direct TDP-43-driven mechanism. The exploratory cryptic *STMN2* analysis
-did not provide evidence linking regional *TRPC1* abundance to
-TDP-43-dependent RNA processing. Together with the opposing direction of
+direct TDP-43-driven mechanism. Together with the opposing direction of
 SOCE changes reported in SOD1 astrocytes, these findings indicate that
 cell identity and compensatory state shape the calcium-regulatory
 phenotype.
