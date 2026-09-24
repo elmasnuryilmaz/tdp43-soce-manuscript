@@ -553,7 +553,7 @@ RNA-seq results in the same cell line (*STIM1* log2FC = 0.929, p_adj =
 *ATP2A3* 1.306, 1.4 × 10⁻²⁹).
 
 <figure>
-<img src="/tmp/manuscript_md_soce2.L3cbG4/media/media/image1.png"
+<img src="/tmp/manuscript_md_funding.i67Kxf/media/media/image1.png"
 style="width:6.05in;height:2.59002in" />
 <figcaption><p><strong>Figure 1.</strong> TDP-43 knockdown,
 calcium-related mRNAs and WST-1 signal in SH-SY5Y cells. (A) TARDBP mRNA
@@ -578,7 +578,7 @@ The transcript changes and functional change are therefore in opposite
 directions. This is the central observation of the study.
 
 <figure>
-<img src="/tmp/manuscript_md_soce2.L3cbG4/media/media/image2.png"
+<img src="/tmp/manuscript_md_funding.i67Kxf/media/media/image2.png"
 style="width:6.05in;height:5.48658in" />
 <figcaption><p><strong>Figure 2.</strong> Fura-2 calcium measurements
 following TDP-43 knockdown in SH-SY5Y cells. (A, B) Representative
@@ -637,7 +637,7 @@ Together, the changes in ORAI-family composition and SOCE regulators
 provide candidate molecular explanations for the reduced SOCE phenotype.
 
 <figure>
-<img src="/tmp/manuscript_md_soce2.L3cbG4/media/media/image3.png"
+<img src="/tmp/manuscript_md_funding.i67Kxf/media/media/image3.png"
 style="width:6.05in;height:4.94225in" />
 <figcaption><p><strong>Figure 3.</strong> Calcium-regulatory transcript
 profile in the independent public SH-SY5Y RNA-seq comparison. (A)
@@ -1096,7 +1096,7 @@ setting in which *TRPC1* was significantly increased (Supplementary
 Figure S7).
 
 <figure>
-<img src="/tmp/manuscript_md_soce2.L3cbG4/media/media/image4.png"
+<img src="/tmp/manuscript_md_funding.i67Kxf/media/media/image4.png"
 style="width:6.05in;height:4.68662in" />
 <figcaption><p><strong>Figure 4.</strong> ALS tissue expression of
 TRPC1, SARAF and CBARP by region. Cliff’s δ compares ALS with
@@ -1363,12 +1363,7 @@ human participants or animals. Lentiviral work was carried out under the
 institutional biosafety rules of Ege University.
 
 **Funding.** This work was supported by the Ege University Scientific
-Research Projects Coordination Unit (BAP), project 31901. E.Y. was
-supported by the Council of Higher Education (YÖK) 100/2000 PhD
-Scholarship Programme (priority area: Molecular Pharmacology and Drug
-Research) and by the TÜBİTAK BİDEB 2211-A National PhD Scholarship
-Programme. The funders had no role in study design, data collection and
-analysis, the decision to publish, or the preparation of the manuscript.
+Research Projects Coordination Unit (BAP), project 31901.
 
 **Author contributions (CRediT).** Elmasnur Yılmaz: Investigation,
 Formal analysis, Software, Visualization, Writing – original draft.
