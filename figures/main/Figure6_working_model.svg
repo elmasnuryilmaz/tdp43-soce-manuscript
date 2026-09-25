@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="508.824pt" height="262.71pt" viewBox="0 0 508.824 262.71" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-09-25T09:52:29.471775</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 262.71
+L 508.824 262.71
+L 508.824 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 188.957952 73.9125
+L 319.866048 73.9125
+Q 328.7916 73.9125 328.7916 69.417
+L 328.7916 23.463
+Q 328.7916 18.9675 319.866048 18.9675
+L 188.957952 18.9675
+Q 180.0324 18.9675 180.0324 23.463
+L 180.0324 69.417
+Q 180.0324 73.9125 188.957952 73.9125
+z
+" clip-path="url(#pcd82ecb1a7)" style="fill: #ffffff; stroke: #0072b2; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 15.405552 148.8375
+L 151.272288 148.8375
+Q 160.19784 148.8375 160.19784 144.342
+L 160.19784 93.393
+Q 160.19784 88.8975 151.272288 88.8975
+L 15.405552 88.8975
+Q 6.48 88.8975 6.48 93.393
+L 6.48 144.342
+Q 6.48 148.8375 15.405552 148.8375
+z
+" clip-path="url(#pcd82ecb1a7)" style="fill: #ffffff; stroke: #0072b2; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 357.551712 148.8375
+L 493.418448 148.8375
+Q 502.344 148.8375 502.344 144.342
+L 502.344 93.393
+Q 502.344 88.8975 493.418448 88.8975
+L 357.551712 88.8975
+Q 348.62616 88.8975 348.62616 93.393
+L 348.62616 144.342
+Q 348.62616 148.8375 357.551712 148.8375
+z
+" clip-path="url(#pcd82ecb1a7)" style="fill: #ffffff; stroke: #0072b2; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 212.802885 69.406055
+Q 165.155309 81.405295 118.591916 93.131501
+" clip-path="url(#pcd82ecb1a7)" style="fill: none; stroke: #0072b2; stroke-linecap: round"/>
+    <path d="M 122.959224 94.094114
+L 118.591916 93.131501
+L 121.982391 90.215222
+z
+" clip-path="url(#pcd82ecb1a7)" style="fill: #0072b2; stroke: #0072b2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 296.021115 69.406055
+Q 343.668691 81.405295 390.232084 93.131501
+" clip-path="url(#pcd82ecb1a7)" style="fill: none; stroke: #0072b2; stroke-linecap: round"/>
+    <path d="M 386.841609 90.215222
+L 390.232084 93.131501
+L 385.864776 94.094114
+z
+" clip-path="url(#pcd82ecb1a7)" style="fill: #0072b2; stroke: #0072b2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 15.405552 236.25
+L 151.272288 236.25
+Q 160.19784 236.25 160.19784 231.7545
+L 160.19784 180.8055
+Q 160.19784 176.31 151.272288 176.31
+L 15.405552 176.31
+Q 6.48 176.31 6.48 180.8055
+L 6.48 231.7545
+Q 6.48 236.25 15.405552 236.25
+z
+" clip-path="url(#pcd82ecb1a7)" style="fill: #ffffff; stroke: #e69f00; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 188.957952 236.25
+L 319.866048 236.25
+Q 328.7916 236.25 328.7916 231.7545
+L 328.7916 180.8055
+Q 328.7916 176.31 319.866048 176.31
+L 188.957952 176.31
+Q 180.0324 176.31 180.0324 180.8055
+L 180.0324 231.7545
+Q 180.0324 236.25 188.957952 236.25
+z
+" clip-path="url(#pcd82ecb1a7)" style="fill: #ffffff; stroke: #e69f00; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 357.551712 236.25
+L 493.418448 236.25
+Q 502.344 236.25 502.344 231.7545
+L 502.344 180.8055
+Q 502.344 176.31 493.418448 176.31
+L 357.551712 176.31
+Q 348.62616 176.31 348.62616 180.8055
+L 348.62616 231.7545
+Q 348.62616 236.25 357.551712 236.25
+z
+" clip-path="url(#pcd82ecb1a7)" style="fill: #ffffff; stroke: #e69f00; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Arial'; text-anchor: start" x="16.39728" y="18.027246" transform="rotate(-0 16.39728 18.027246)">Laboratory observations</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Arial'; text-anchor: middle" x="254.412" y="39.519234" transform="rotate(-0 254.412 39.519234)">Laboratory shRNA</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 7.4px; font-family: 'Arial'; text-anchor: middle" x="254.412" y="57.346039" transform="rotate(-0 254.412 57.346039)">TARDBP mRNA ↓</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Arial'; text-anchor: middle" x="83.33892" y="110.947734" transform="rotate(-0 83.33892 110.947734)">Target-gene qPCR</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 7.4px; font-family: 'Arial'; text-anchor: middle" x="83.33892" y="130.774635" transform="rotate(-0 83.33892 130.774635)">TRPC1 / STIM1 / ORAI1 ↑</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Arial'; text-anchor: middle" x="425.48508" y="110.947812" transform="rotate(-0 425.48508 110.947812)">Fura-2 readdition</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 7.4px; font-family: 'Arial'; text-anchor: middle" x="425.48508" y="130.772539" transform="rotate(-0 425.48508 130.772539)">Ca2+ amplitude ↓</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Arial'; text-anchor: start" x="16.39728" y="167.877246" transform="rotate(-0 16.39728 167.877246)">Public RNA-seq context and testable mechanisms</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Arial'; text-anchor: middle" x="83.33892" y="198.360234" transform="rotate(-0 83.33892 198.360234)">ER refilling</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 7.4px; font-family: 'Arial'; text-anchor: middle" x="83.33892" y="218.184967" transform="rotate(-0 83.33892 218.184967)">ATP2A2 ↓ / bioenergetics</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Arial'; text-anchor: middle" x="254.412" y="198.360234" transform="rotate(-0 254.412 198.360234)">Channel regulation</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 7.4px; font-family: 'Arial'; text-anchor: middle" x="254.412" y="218.187135" transform="rotate(-0 254.412 218.187135)">ORAI3 share ↑ / SARAF ↑</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Arial'; text-anchor: middle" x="425.48508" y="198.360234" transform="rotate(-0 425.48508 198.360234)">Parallel pathway</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 7.4px; font-family: 'Arial'; text-anchor: middle" x="425.48508" y="218.184967" transform="rotate(-0 425.48508 218.184967)">CBARP splicing / CaV</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pcd82ecb1a7">
+   <rect x="6.48" y="6.48" width="495.864" height="249.75"/>
+  </clipPath>
+ </defs>
+</svg>

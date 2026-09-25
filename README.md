@@ -10,7 +10,7 @@ calcium-regulatory RNA profiles in SH-SY5Y cells*.
 `code/fig_graphical_abstract.py`; it is not a figure of the manuscript.*
 
 The current edited manuscript is `manuscript/MANUSCRIPT_NEUROCHEMISTRY_INTERNATIONAL_FINAL.docx`
-(with matching `.md`). It has four main figures in `figures/main/` and eight
+(with matching `.md`). It has six main figures in `figures/main/` and eight
 supplementary figures in `figures/supplementary/`. The complete editable supplement is
 `supplementary/SUPPLEMENTARY_MATERIAL.docx`; the NCI highlights are in
 `highlights_Neurochemistry_International.docx`.
@@ -24,7 +24,7 @@ why. Where the thesis and this repository differ, this repository is current.
 
 ```
 ├── manuscript/           manuscript, Markdown and Word
-├── figures/main/         current Figures 1–4, PNG (300 dpi) and editable SVG
+├── figures/main/         current Figures 1–6, PNG (300 dpi or higher) and editable SVG
 ├── figures/supplementary/ current Supplementary Figures S1–S8
 ├── figures/Figure1–9    historical nine-figure layout
 ├── tables/               Tables 1–5, CSV in the current manuscript order
@@ -44,10 +44,13 @@ why. Where the thesis and this repository differ, this repository is current.
 | `main/Figure2_calcium_responses` | original representative Fura-2 traces with ER-release and Ca²⁺-readdition amplitudes |
 | `main/Figure3_transcript_profile` | independent public SH-SY5Y transcript context |
 | `main/Figure4_ALS_expression` | ALS brain/spinal-cord tissue expression |
+| `main/Figure5_CBARP_splicing` | source-table-based CBARP exon inclusion and cross-model events |
+| `main/Figure6_working_model` | conceptual model distinguishing measurements from hypotheses |
 | `supplementary/Supplementary_Figure_S1`–`S8` | splicing, read-support checks, cryptic controls, NMD, APA and additional tissue comparisons |
 
-All current main figures are provided as 300-dpi PNG files and editable SVG masters.
-The laboratory did not measure splicing; those analyses are supplementary. Figure 2
+All current main figures are provided as publication-resolution PNG files and editable SVG masters.
+The laboratory did not measure splicing; Figure 5 uses the public RNA-seq event table.
+Figure 2
 retains the original representative Fura-2 traces and pairs them with the measured
 ER-release and Ca²⁺-readdition amplitudes. The lower panels show individual values (n = 3) and mean ± SEM; the source workbook reports these comparisons descriptively.
 WST-1 was measured at 48 h (n = 4).

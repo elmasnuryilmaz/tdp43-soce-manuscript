@@ -187,7 +187,7 @@ PASS  S10b positive-control panel p: manuscript 0.62 vs data 0.6161950274296075
 === manuscript strings that must be present ===
 PASS  present: 10,926 versus 176 reads
 PASS  present: three spinal cord levels
-PASS  present: six of seven regions
+PASS  present: six brain regions
 PASS  present: 0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in mouse striatum
 PASS  present: interaction was −0.325 (p = 0.317, q = 0.508)
 PASS  present: chr11:4,088,702–4,088,738
@@ -202,7 +202,7 @@ PASS  present: from 0.570 in controls to 0.819 in knockdown (Δ = +0.249
 PASS  present: `-p --countReadPairs` for paired-end libraries
 PASS  present: 74 qualifying units in C2C12 and 131 in NSC34
 PASS  present: *SARAF* intron 5 index rises in the iPSC-derived motor neurons (+0.097) and the *Saraf* in
-PASS  present: almost as many calls as the real comparison in iPSC colonies (0.98 per real call)
+PASS  present: null-to-real call ratios were 0.98 in iPSC colonies and 2.01 in K562 total RNA
 PASS  present: this check is available only for the human comparisons
 PASS  present: isoform-level testing did not detect a *CBARP* isoform switch
 PASS  present: the three mouse comparisons have no conserved control
@@ -329,7 +329,7 @@ PASS  STIM2.1 pooled CI high (+0.024): manuscript 0.024 vs data 0.02424458242178
 PASS  STIM2.1 pooled p (0.914): manuscript 0.914 vs data 0.9140196486392349
 PASS  STIM2.1 exon positive in five of six datasets: manuscript 5 vs data 5
 PASS  STIM2.1 Cochran's Q (4.84): manuscript 4.84 vs data 4.835615134691267
-PASS  STIM2.1 heterogeneity p (0.44): manuscript 0.44 vs data 0.43626974679252417
+PASS  STIM2.1 heterogeneity p (0.44): manuscript 0.44 vs data 0.4362697467925243
 PASS  STIM2.1 I2 (0%): manuscript 0 vs data 0.0
 PASS  STIM2.1 weight carried by the mouse datasets (86%): manuscript 0.86 vs data 0.8549007360636193
 PASS  STIM2.1 human-only pooled dPSI (+0.031): manuscript 0.031 vs data 0.030856860665233875

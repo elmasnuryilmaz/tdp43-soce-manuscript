@@ -323,7 +323,7 @@ close("S10b positive-control panel p", 0.62,
       float(_s10b.loc["Cryptic_positive_controls_16", "p_one_sided_MWU"]), tol=0.005)
 
 out.append("\n=== manuscript strings that must be present ===")
-for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of seven regions",
+for s in ["10,926 versus 176 reads", "three spinal cord levels", "six brain regions",
           "0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in mouse striatum",
           "interaction was −0.325 (p = 0.317, q = 0.508)", "chr11:4,088,702–4,088,738",
           "chr4:27,007,983–27,008,006", "n = 3", "10 µM cyclopiazonic acid",
@@ -335,7 +335,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six of seven r
           "`-p --countReadPairs` for paired-end libraries",
           "74 qualifying units in C2C12 and 131 in NSC34",
           "*SARAF* intron 5 index rises in the iPSC-derived motor neurons (+0.097) and the *Saraf* intron 5 index in NSC34 (+0.204)",
-          "almost as many calls as the real comparison in iPSC colonies (0.98 per real call)",
+          "null-to-real call ratios were 0.98 in iPSC colonies and 2.01 in K562 total RNA",
           "this check is available only for the human comparisons",
           "isoform-level testing did not detect a *CBARP* isoform switch",
           "the three mouse comparisons have no conserved control",
