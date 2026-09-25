@@ -13,16 +13,17 @@ Türkiye
 TDP-43 loss is implicated in amyotrophic lateral sclerosis (ALS), but
 its relationship to store-operated Ca²⁺ entry (SOCE) is unclear. After
 shRNA-mediated TARDBP depletion in SH-SY5Y cells, TRPC1, STIM1, ORAI1
-and ATP2A3 mRNAs increased 1.7- to 3.2-fold, while the Fura-2-measured
-SOCE amplitude decreased from 1.542 ± 0.282 to 0.245 ± 0.083
-Δ(F340/F380) (n = 3). ER Ca²⁺ release amplitudes were 0.268 and 0.180
-Δ(F340/F380), respectively. At 48 h, the WST-1 signal was 38.5% lower (n
-= 4). We reanalysed six public TDP-43-depletion RNA-seq comparisons (38
-libraries) for calcium-regulatory expression and splicing, screened
-eleven comparisons for unannotated junction changes, and assessed
-alternative polyadenylation and nonsense-mediated decay. CBARP was the
-most reproducible splicing candidate across species, whereas STIM2,
-STIMATE and ORAI3 events were supported in the primary RNA-seq model. No
+and ATP2A3 mRNAs increased 1.7- to 3.2-fold, while the Fura-2
+Ca²⁺-readdition amplitudes averaged 1.542 and 0.245 Δ(F340/F380) in
+control and shTDP-43 cells, respectively (n = 3). ER Ca²⁺ release
+amplitudes were 0.268 and 0.180 Δ(F340/F380), respectively. At 48 h, the
+WST-1 signal was 38.5% lower (n = 4). We reanalysed six public
+TDP-43-depletion RNA-seq comparisons (38 libraries) for
+calcium-regulatory expression and splicing, screened eleven comparisons
+for unannotated junction changes, and assessed alternative
+polyadenylation and nonsense-mediated decay. CBARP was the most
+reproducible splicing candidate across species, whereas STIM2, STIMATE
+and ORAI3 events were supported in the primary RNA-seq model. No
 confirmed RNA-processing event in the core SOCE machinery explained the
 functional change. In ALS brain, TRPC1 and SARAF increased and CBARP
 decreased in six of seven regions, but these tissue associations could
@@ -501,28 +502,28 @@ Ct was 19.49 in non-targeting shRNA controls and 19.50 in shTDP-43 cells
 
 ### **2.14 Cytosolic Ca²⁺ measurement**
 
-Non-targeting shRNA control and shTDP-43 cells were measured 72 h after
-transduction; before completion of the day-5 selection used for RNA
-collection in parallel cultures. Cells were seeded in 24-well plates at
-40,000 cells per well. Cells were loaded with 5 µM Fura-2/AM
-(Invitrogen, F1221) and 0.02% Pluronic F-127 (Invitrogen, P3000MP) in
-HEPES-buffered saline (HBS) containing 1% bovine serum albumin (BSA) for
-60 min at 25 °C in the dark and washed three times for 15 min in 1%
-BSA/HBS. HBS contained 135 mM NaCl, 5.9 mM KCl, 1.2 mM MgCl₂, 1.5 mM
-CaCl₂, 11.6 mM HEPES, 5 mM NaHCO₃ and 11.5 mM D-glucose (pH 7.3).
-Cytosolic free Ca²⁺ was followed spectrofluorometrically as the
-F340/F380 ratio (excitation 340 and 380 nm, emission 510 nm; Grynkiewicz
-et al., 1985) on a cuvette-based QM8/2005 spectrofluorometer (Photon
-Technology International) with peristaltic perfusion, following the
-protocol of Selli et al. (2009). Loaded cells were transferred to
-Ca²⁺-free HBS containing 1 mM EGTA; SERCA was then inhibited with 10 µM
-cyclopiazonic acid (Sigma-Aldrich, cat. no. C1530) and the transient
-rise in F340/F380 was recorded as ER Ca²⁺ release. CaCl₂ was then
-introduced at a nominal concentration of 1.5 mM and the subsequent rise
-was recorded as store-operated Ca²⁺ entry (SOCE), following the
-established depletion--readdition paradigm. Peak amplitudes in both
-phases were quantified as Δ(F340/F380) relative to the respective
-preceding baseline (n = 3).
+Fura-2 recordings from non-targeting shRNA control and shTDP-43 cells
+were obtained 72 h after transduction, while puromycin selection was
+still in progress. RNA was collected from parallel cultures on day 5,
+after selection. Cells were seeded in 24-well plates at 40,000 cells per
+well. Cells were loaded with 5 µM Fura-2/AM (Invitrogen, F1221) and
+0.02% Pluronic F-127 (Invitrogen, P3000MP) in HEPES-buffered saline
+(HBS) containing 1% bovine serum albumin (BSA) for 60 min at 25 °C in
+the dark and washed three times for 15 min in 1% BSA/HBS. HBS contained
+135 mM NaCl, 5.9 mM KCl, 1.2 mM MgCl₂, 1.5 mM CaCl₂, 11.6 mM HEPES, 5 mM
+NaHCO₃ and 11.5 mM D-glucose (pH 7.3). Cytosolic free Ca²⁺ was followed
+spectrofluorometrically as the F340/F380 ratio (excitation 340 and 380
+nm, emission 510 nm; Grynkiewicz et al., 1985) on a cuvette-based
+QM8/2005 spectrofluorometer (Photon Technology International) with
+peristaltic perfusion, following the protocol of Selli et al. (2009).
+Loaded cells were transferred to Ca²⁺-free HBS containing 1 mM EGTA;
+SERCA was then inhibited with 10 µM cyclopiazonic acid (Sigma-Aldrich,
+cat. no. C1530) and the transient rise in F340/F380 was recorded as ER
+Ca²⁺ release. CaCl₂ was then introduced at a nominal concentration of
+1.5 mM and the subsequent rise was recorded as store-operated Ca²⁺ entry
+(SOCE), following the established depletion--readdition paradigm. Peak
+amplitudes in both phases were quantified as Δ(F340/F380) relative to
+the respective preceding baseline (n = 3).
 
 The Fura-2 ratio records net cytosolic Ca²⁺ accumulation; the
 measurement does not isolate membrane influx from extrusion or ER
@@ -538,8 +539,8 @@ the WST-1 assay (Premix WST-1, Takara Bio, cat. no. MK400); at 48 h, 10
 against a 620 nm reference on a Varioskan Flash reader (Thermo
 Scientific). The absorbance of cell-free wells containing medium and
 reagent was subtracted, and values were normalised to the mean of the
-non-targeting shRNA control. For the available 48-h data, n = 4; values
-are reported as mean ± SEM.
+non-targeting shRNA control. At 48 h, n = 4 wells per group; values are
+reported as mean ± SEM. No direct cell-count normalisation was applied.
 
 ### **2.16 Statistics**
 
@@ -549,9 +550,8 @@ relative expression with Tukey's multiple comparison test. The four
 target-gene RT-qPCR comparisons used two-tailed Student's t-tests with
 Holm adjustment across the four targets (GraphPad Prism 10). Fura-2
 amplitudes (n = 3) and WST-1 well signals (n = 4) were summarised
-descriptively; n denotes measurements within one experiment.
-Significance was set at adjusted p \< 0.05 for the four-target RT-qPCR
-family.
+descriptively. Significance was set at adjusted p \< 0.05 for the
+four-target RT-qPCR family.
 
 ## **3. Results**
 
@@ -1164,14 +1164,14 @@ RNA-processing event.
 **Architecture of the functional phenotype.** The ER-release mean
 decreased from 0.268 to 0.180 Δ(F340/F380), while the subsequent SOCE
 amplitude showed a much larger proportional decrease. A smaller
-releasable store may therefore contribute, but it is unlikely to account
-on its own for the magnitude of the SOCE decrease. The transcript data
+releasable store may contribute to the reduced readdition amplitude;
+these data do not quantify its contribution. The transcript data
 identify two mechanistic layers that could act together. First, ATP2A2,
 which dominates the SERCA family in these cells, decreased modestly and
 could reduce the efficiency of ER refilling. Second, the ORAI family
 shifted sharply: ORAI3 rose from 8% to 30% of ORAI transcripts, ORAI2
 decreased from 77% to 53%, and SARAF increased. Channel output depends
-on the relative abundance, assembly and localization of STIM and ORAI
+on the relative abundance, assembly and localisation of STIM and ORAI
 proteins rather than their summed RNA abundance; even the STIM1:ORAI1
 protein ratio can change CRAC-channel trapping and gating (Hoover and
 Lewis, 2011). A rise in these transcripts could also be compensatory
@@ -1220,24 +1220,25 @@ Ca²⁺-readdition response in SH-SY5Y cells complements, rather than
 reproduces, the SOD1 astrocyte phenotype.
 
 **Metabolic and organelle coupling.** The 48-h WST-1 signal was 38.5%
-lower after knockdown. The approximately 84% reduction in SOCE amplitude
-was more than twice this proportional change, arguing against simple
-scaling of the calcium phenotype by the WST-1 signal, although the
-assays were performed in separate preparations. This agrees with
-evidence that TARDBP silencing reduces metabolic activity, cell growth,
-oxygen consumption and ATP production in human iPSC-derived motor
-neurons and other human cells (Ceron-Codorniu et al., 2024). The
-mitochondrial-uptake transcript pool also fell by approximately 25%,
-mainly through MCU, MICU2 and MCUB. These proteins have distinct effects
-on uniporter composition and stress-induced mitochondrial Ca²⁺ loading,
-so their combined RNA decrease cannot be translated directly into flux
-(Lambert et al., 2019). It nevertheless links the WST-1 phenotype to a
-broader bioenergetic and calcium-buffering response. Reduced ATP supply
-could impair SERCA-dependent store refilling, while altered
-mitochondrial uptake could change local cytosolic Ca²⁺ clearance near ER
-and plasma-membrane junctions. This provides a mechanistic route by
-which cell state, ER release and readdition can decline together without
-requiring every change to arise from the same channel subunit.
+lower after knockdown. The WST-1 assay measures metabolic signal rather
+than cell number. Because the assays used separate cultures and no
+cell-count normalisation was performed, the WST-1 and Fura-2 percentages
+cannot be compared as equivalent measures. The lower WST-1 signal is
+consistent with evidence that TARDBP silencing reduces metabolic
+activity, cell growth, oxygen consumption and ATP production in human
+iPSC-derived motor neurons and other human cells (Ceron-Codorniu et al.,
+2024). The mitochondrial-uptake transcript pool also fell by
+approximately 25%, mainly through MCU, MICU2 and MCUB. These proteins
+have distinct effects on uniporter composition and stress-induced
+mitochondrial Ca²⁺ loading, so their combined RNA decrease cannot be
+translated directly into flux (Lambert et al., 2019). It nevertheless
+links the WST-1 phenotype to a broader bioenergetic and
+calcium-buffering response. Reduced ATP supply could impair
+SERCA-dependent store refilling, while altered mitochondrial uptake
+could change local cytosolic Ca²⁺ clearance near ER and plasma-membrane
+junctions. This provides a mechanistic route by which cell state, ER
+release and readdition can decline together without requiring every
+change to arise from the same channel subunit.
 
 **RNA-processing specificity.** The annotation-free analysis recovered
 established TDP-43-dependent cryptic targets, including the STMN2 and
@@ -1367,8 +1368,8 @@ scripts in execution order, including the coverage, NMD,
 transcript-family and donor-level scripts used for the results reported
 here, the four Ca²⁺ gene panels, per-event count tables, junction and
 LSV tables, and the code that draws every figure. The versioned
-submission snapshot is available as GitHub release v1.0.1 at
-https://github.com/elmasnuryilmaz/tdp43-soce-manuscript/releases/tag/v1.0.1.
+submission snapshot is available as GitHub release v1.0.2 at
+https://github.com/elmasnuryilmaz/tdp43-soce-manuscript/releases/tag/v1.0.2.
 The complete 23 GB rMATS output is not redistributed; the package
 provides the thresholded event table and the scripts and public
 accessions required to regenerate it. The package downloads the two
