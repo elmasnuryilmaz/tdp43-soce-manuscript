@@ -167,7 +167,7 @@ correction, retaining events with ≥ 10 informative reads per sample on
 average and ≥ 5 informative reads in every sample, and recomputing
 Benjamini–Hochberg q-values within the filtered set. For the *TRPC1*
 event of Section 3.3, and for the events that met the thresholds and the
-coverage criteria in twelve SOCE-machinery genes (*STIM1*, *STIM2*,
+coverage criteria in the twelve core entry components (*STIM1*, *STIM2*,
 *STIMATE*, *SARAF*, *CRACR2A*, *CRACR2B*, *ORAI1–3*, *TRPC1*, *ATP2A2*
 and *ATP2A3*), we further computed (i) per-replicate PSI from raw
 inclusion and skipping junction counts (IJC/SJC), (ii) replicate-level
@@ -347,7 +347,8 @@ set of nineteen genes: *STIM1*, *STIM2*, *ORAI1–3*, *TRPC1*, *SARAF*,
 *STIMATE*, *CBARP*, *CRACR2A*, *CRACR2B*, *SELENOK*, *ATP2A1–3*, *MCU*,
 *MCUB*, *MICU1* and *MICU2*; the core SOCE/TRP panel is Tier 1. CBARP
 was included in this fixed panel for the subsequent cross-dataset event
-ranking.
+ranking. The twelve genes examined event by event in Section 2.3 are a
+subset of these nineteen and are called the core entry components.
 
 Enrichment of significant splicing events within panels was tested both
 by hypergeometric test against all testable genes and against a
@@ -571,16 +572,16 @@ set at p \< 0.05, Holm-adjusted for the four-target RT-qPCR family.
 
 Lentiviral shRNA reduced TARDBP mRNA by 94.4% relative to the
 non-targeting shRNA control and 94.8% relative to non-transduced cells
-(one-way ANOVA with Tukey’s test, p \< 0.0001, n = 4).
+(one-way ANOVA with Tukey’s test, p \< 0.0001, n = 4; Figure 1A).
 
 Relative to the non-targeting shRNA control, mRNA levels of four
 SOCE-associated targets increased: *TRPC1* ≈ 1.8-fold (Holm-adjusted p =
 0.00091), *STIM1* ≈ 1.9-fold (adjusted p = 0.0011), *ORAI1* ≈ 1.7-fold
 (adjusted p = 0.0011) and *ATP2A3*/SERCA3 ≈ 3.2-fold (adjusted p =
-0.00038; n = 4, two-tailed t-tests). All four directions matched the
-RNA-seq results in the same cell line (*STIM1* log2FC = 0.929, p_adj =
-4.3 × 10⁻⁴⁷; *TRPC1* 0.958, 1.3 × 10⁻¹²; *ORAI1* 0.433, 2.4 × 10⁻⁴;
-*ATP2A3* 1.306, 1.4 × 10⁻²⁹).
+0.00038; n = 4, two-tailed t-tests; Figure 1B). All four directions
+matched the RNA-seq results in the same cell line (*STIM1* log2FC =
+0.929, p_adj = 4.3 × 10⁻⁴⁷; *TRPC1* 0.958, 1.3 × 10⁻¹²; *ORAI1* 0.433,
+2.4 × 10⁻⁴; *ATP2A3* 1.306, 1.4 × 10⁻²⁹).
 
 <figure>
 <img src="../figures/main/Figure1_functional_consequences.png" style="width:6.05in;height:2.59002in" />
@@ -610,7 +611,7 @@ every shTDP-43 culture had a lower ratio than every control culture
 account for most of the decrease. Plotted on common axes, the two
 representative recordings had similar baselines before readdition
 (Figure 2E). At 48 h, the WST-1 signal was 61.5 ± 0.8% of control, a
-38.5% decrease (n = 4 wells; descriptive).
+38.5% decrease (n = 4 wells; descriptive; Figure 1C).
 
 The transcript changes and functional change are therefore in opposite
 directions. This is the central observation of the study.
@@ -752,7 +753,7 @@ S2).
 
 ### **3.4 Robust splicing changes concentrate in SOCE regulators**
 
-Applying the robustness criteria to the twelve SOCE-machinery genes
+Applying the robustness criteria to the twelve core entry components
 examined event by event (Methods 2.3) identified three events with
 adequate coverage and bootstrap intervals excluding zero: STIMATE, ORAI3
 and STIM2 (Table 3; Figure 4A).
@@ -781,14 +782,14 @@ the other four datasets are positive. The sign follows how each event is
 defined, and none of the three SH-SY5Y events contrasts the canonical
 exon 4–exon 5 junction with its alternative. Coverage and split reads
 from the alignments show the change directly (Supplementary Figure S3).
-In both human models the canonical junction nearly disappeared after
-knockdown, and exon 4 was instead joined to an annotated alternative 3′
-splice site 197 nucleotides upstream of the exon 5 acceptor. This
-junction carried 17% of exon-4 donor reads in SH-SY5Y controls and 86%
-after knockdown, and 1% and 78% in iPSC colonies (Figure 4C). The mouse
-loci were not compared at junction level. *CBARP* also showed the
-largest expression change of any SOCE regulator in SH-SY5Y (log2FC =
-−1.254; p_adj = 3.1 × 10⁻²⁵).
+In the two human models compared at junction level the canonical
+junction nearly disappeared after knockdown, and exon 4 was instead
+joined to an annotated alternative 3′ splice site 197 nucleotides
+upstream of the exon 5 acceptor. This junction carried 17% of exon-4
+donor reads in SH-SY5Y controls and 86% after knockdown, and 1% and 78%
+in iPSC colonies (Figure 4C). The mouse loci were not compared at
+junction level. *CBARP* also showed the largest expression change of any
+SOCE regulator in SH-SY5Y (log2FC = −1.254; p_adj = 3.1 × 10⁻²⁵).
 
 LeafCutter, which does not use the reference annotation to define
 events, independently called *CBARP* (p_adj = 0.0133) and *STIM2* (p_adj
@@ -799,20 +800,19 @@ same candidates.
 <figure>
 <img src="../figures/main/Figure4_SOCE_splicing.png" style="width:6.15in;height:4.33099in" />
 <figcaption><p><strong>Figure 4.</strong> Splicing evidence in
-SOCE-related genes. (A) Per-library PSI for the four SOCE-machinery
-skipped-exon events of Table 3 in the public SH-SY5Y comparison (three
-libraries per group); lines show group means, and the text gives the
-rMATS ΔPSI with its replicate-level bootstrap 95% interval. The STIM1
-interval includes zero. (B) The 24-nucleotide SOAR exon that converts
-STIM2 into STIM2.1, measured as an rMATS event in six datasets. Squares
-are sized by inverse-variance weight, bars are 95% intervals and
-diamonds are fixed-effect pooled estimates for all six datasets and for
-the three human datasets (Supplementary Table S15). (C) CBARP: share of
-exon-4 donor reads joined to the alternative 3′ splice site at
-chr19:1,235,342 rather than to exon 5, per library, in SH-SY5Y and iPSC
-colonies. Reads were counted from the alignments with the rules of
-Methods 2.5; the full locus is shown in Supplementary Figure
-S3.</p></figcaption>
+SOCE-related genes. (A) Per-library PSI for the four skipped-exon events
+of Table 3 in the public SH-SY5Y comparison (three libraries per group);
+lines show group means, and the text gives the rMATS ΔPSI with its
+replicate-level bootstrap 95% interval. The STIM1 interval includes
+zero. (B) The 24-nucleotide SOAR exon that converts STIM2 into STIM2.1,
+measured as an rMATS event in six datasets. Squares are sized by
+inverse-variance weight, bars are 95% intervals and diamonds are
+fixed-effect pooled estimates for all six datasets and for the three
+human datasets (Supplementary Table S15). (C) CBARP: share of exon-4
+donor reads joined to the alternative 3′ splice site at chr19:1,235,342
+rather than to exon 5, per library, in SH-SY5Y and iPSC colonies. Reads
+were counted from the alignments with the rules of Methods 2.5; the full
+locus is shown in Supplementary Figure S3.</p></figcaption>
 </figure>
 
 ### **3.5 Annotation-free analysis recovers cryptic exons genome-wide but finds no high-confidence event in the SOCE machinery of the primary model**
@@ -854,10 +854,13 @@ recovered two of the sixteen positive-control genes (*STMN2* and
 too shallow for the high-confidence threshold to recover a positive
 control in any of the three comparisons (18, 26 and 23 events, none of
 them a control gene), so the within-dataset contrast rests on the
-permissive definition. In the two deeper TDP-43 comparisons the same
-permissive analysis recovered thirteen of sixteen positive controls in
-SH-SY5Y and fifteen in iPSC colonies. The background rate of the
-procedure is not specific to TDP-43; the genes it identifies are.
+permissive definition. Two controls against none is not by itself a
+significant difference (Fisher's exact test p = 0.48), so the
+specificity of the procedure rests on the deeper comparisons, in which
+the same permissive analysis recovered thirteen of sixteen positive
+controls in SH-SY5Y and fifteen in iPSC colonies. The background call
+rate is therefore not specific to TDP-43, whereas the genes the analysis
+identifies are.
 
 The null test also sets the limits of interpretation. Under the
 permissive rule, the null-to-real call ratios were 0.98 in iPSC colonies
@@ -895,11 +898,13 @@ corroborated elsewhere (below). *STIM1*, *STIM2*, *ORAI1–3*, *TRPC1*,
 *SARAF*, *STIMATE* and the SERCA and mitochondrial uptake genes carried
 none in any comparison. Permissive-tier and annotated-site events are
 detailed in Supplementary Table S7 and Figure S4B. Within the coverage,
-models and calling criteria used here, we did not detect high-confidence
-unannotated splicing changes in the store-operated entry machinery. This
-finding does not exclude lower-abundance or context-specific events, but
-it provides no support for a cryptic-splicing switch as the explanation
-for the observed SOCE phenotype.
+models and calling criteria used here, the only high-confidence
+unannotated change anywhere in the SOCE panel was the CBARP junction in
+iPSC colonies, and none of the core entry components carried one in any
+comparison. This finding does not exclude lower-abundance or
+context-specific events, but it provides no support for a
+cryptic-splicing switch as the explanation for the observed SOCE
+phenotype.
 
 What the annotation-free analysis did confirm were the annotated events.
 *CBARP showed the largest local change of any SOCE gene in SH-SY5Y, in
@@ -1036,16 +1041,20 @@ point estimates and were excluded by the pre-specified depth filter.
 The analysis therefore identifies at most one moderate candidate
 gradient in the SOCE machinery, in *STIM1*, and does not establish a
 direct APA event in any of its genes. No index change of 0.05 or more
-was found for *ORAI1–3*, *TRPC1*, *SARAF*, *STIMATE*, *CBARP* or the
+was found for *ORAI1*–3, *TRPC1*, *SARAF*, *STIMATE*, *CBARP* or the
 SERCA genes, and the two units of those genes whose intervals exclude
 zero are negligible in size (*SARAF* terminal exon −0.036, *ORAI2*
-terminal exon +0.012). Outside the SOCE machinery three units likewise
-exclude zero: the *ITPR3* terminal exon (−0.152), the *MICU3* terminal
-exon (+0.097) and the *ITPR1* terminal exon (−0.055), so the ER-release
-and mitochondrial-uptake arms show the same kind of candidate gradient
-as *STIM1* rather than being spared. Because the positive control
-responded only moderately in this model, absence of a signal should not
-be interpreted as evidence that these genes are definitively spared.
+terminal exon +0.012). Outside the SOCE machinery, three units of the
+Ca²⁺ panel likewise exclude zero: the *ITPR3* terminal exon (−0.152),
+the *MICU3* terminal exon (+0.097) and the *ITPR1* terminal exon
+(−0.055), so the ER-release and mitochondrial-uptake arms show the same
+kind of candidate gradient as *STIM1* rather than being spared. Larger
+shifts occur in the cryptic positive controls analysed alongside the
+panel, the *UNC13A* intron 2 unit most of all (−0.267), which is the
+expected behaviour of the assay in this model. Because the positive
+control responded only moderately in this model, absence of a signal
+should not be interpreted as evidence that these genes are definitively
+spared.
 
 We therefore repeated the analysis in the iPSC-derived motor neurons,
 where 59 units in 29 genes passed the same depth filter. Here the
@@ -1091,9 +1100,10 @@ In SH-SY5Y, the expanded Ca²⁺ panel showed 133 of 383 testable genes
 with at least one significant event (34.7%) against a background of
 30.7%, giving an uncorrected hypergeometric p = 0.051. Against the
 covariate-matched empirical null, however, the expected rate was 32.4%
-and the permutation p-value was 0.139 (Supplementary Table S4). The
-apparent enrichment in this model is therefore largely attributable to
-the length and expression properties of Ca²⁺ genes.
+and the permutation p-value was 0.139 (Supplementary Table S4). Against
+that null the excess is not significant, so this model provides no
+evidence of enrichment beyond the length and expression properties of
+Ca²⁺ genes.
 
 The result differed by model. In iPSC-derived motor neurons, the most
 disease-relevant system examined, enrichment survived matching for both
@@ -1142,32 +1152,33 @@ moved more strongly in the comparison group than in ALS while *TRPC1*
 fell; these markers make a simple neurodegeneration explanation less
 compelling but do not provide comprehensive cell-composition adjustment.
 
-Three independent cohorts extended this (Supplementary Figure S7).
-*TRPC1* was decreased in Alzheimer’s disease (δ = −0.447; q = 1.6 ×
-10⁻⁷, with Braak-stage correlation ρ = −0.183, p = 1.8 × 10⁻³) and in
-Parkinson’s disease (δ = −0.677; q = 1.8 × 10⁻⁴). In multiple sclerosis,
-*TRPC1* was decreased at donor level across all sampled lesion types (δ
-= −0.840; q = 0.038) and in lesions at sample level (δ = −0.594; q = 1.3
-× 10⁻⁴); in the second multiple sclerosis cohort the direction was the
-same but the study was underpowered (five regions pooled, δ = −0.226; q
-= 0.49). Because TRPC1 contributes to SOCE in oligodendrocyte precursor
-cells (Paez et al., 2011), we asked whether the decrease simply
-reflected demyelination and loss of oligodendrocyte-lineage cells. In
-normal-appearing white matter, where the myelin markers MBP (δ =
-+0.051), PLP1 (−0.074), MOG (−0.257) and MAG (−0.299) were unchanged,
-*TRPC1* was lower at sample level (δ = −0.482, p = 0.005), although not
-after Benjamini–Hochberg correction (q = 0.10). Because several samples
-come from the same donor, we repeated the test with the donor as the
-unit of inference, which gave a larger difference (seven of ten multiple
-sclerosis donors with NAWM samples versus five control donors, δ =
-−0.771, uncorrected p = 0.030). In the full GSE138614 sample-level
-comparison, regression of TRPC1 on MBP, PLP1 and GFAP attenuated the
-unadjusted difference from δ = −0.562 to Cliff’s δ of −0.418 on the
-residuals (p = 0.002) but not at donor level (δ = −0.640, p = 0.055).
-*TRPC1* was lower in every lesion type, including remyelinating and
-inactive lesions (donor-level δ = −1.000 for both). Multiple sclerosis
-showed marked astrogliosis (GFAP δ = +0.84 to +0.96), again with *TRPC1*
-falling (Supplementary Table S16).
+Three independent diseases, in four datasets, extended this
+(Supplementary Figure S7). *TRPC1* was decreased in Alzheimer’s disease
+(δ = −0.447; q = 1.6 × 10⁻⁷, with Braak-stage correlation ρ = −0.183, p
+= 1.8 × 10⁻³) and in Parkinson’s disease (δ = −0.677; q = 1.8 × 10⁻⁴).
+In multiple sclerosis, *TRPC1* was decreased at donor level across all
+sampled lesion types (δ = −0.840; q = 0.038) and in lesions at sample
+level (δ = −0.594; q = 1.3 × 10⁻⁴); in the second multiple sclerosis
+cohort the direction was the same but the study was underpowered (five
+regions pooled, δ = −0.226; q = 0.49). Because TRPC1 contributes to SOCE
+in oligodendrocyte precursor cells (Paez et al., 2011), we asked whether
+the decrease simply reflected demyelination and loss of
+oligodendrocyte-lineage cells. In normal-appearing white matter, where
+the myelin markers MBP (δ = +0.051), PLP1 (−0.074), MOG (−0.257) and MAG
+(−0.299) were unchanged, *TRPC1* was lower at sample level (δ = −0.482,
+p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10).
+Because several samples come from the same donor, we repeated the test
+with the donor as the unit of inference, which gave a larger difference
+(seven of ten multiple sclerosis donors with NAWM samples versus five
+control donors, δ = −0.771, uncorrected p = 0.030). In the full
+GSE138614 comparison, regression of TRPC1 on MBP, PLP1 and GFAP
+attenuated the difference at both levels: from δ = −0.562 to Cliff’s δ
+of −0.418 on the residuals at sample level (p = 0.002), and from δ =
+−0.840 to −0.640 at donor level, where the adjusted difference did not
+reach significance (p = 0.055). *TRPC1* was lower in every lesion type,
+including remyelinating and inactive lesions (donor-level δ = −1.000 for
+both). Multiple sclerosis showed marked astrogliosis (GFAP δ = +0.84 to
++0.96), again with *TRPC1* falling (Supplementary Table S16).
 
 Among the disease cohorts and regions surveyed here, ALS was the only
 setting in which *TRPC1* was significantly increased (Supplementary
@@ -1200,6 +1211,16 @@ within ALS samples (ρ = 0.66 to 0.93 across regions), whereas cryptic
 *STMN2* PSI did not (ρ = −0.28 to +0.05; Supplementary Figure S8B,C).
 Total *STMN2* expression was therefore not used as a specific indicator
 of TDP-43 dysfunction in bulk tissue.
+
+Within ALS samples the proxy did not track the three candidate
+transcripts. Across the ten regions, correlations of *TRPC1*, *SARAF*
+and *CBARP* with cryptic *STMN2* PSI ranged from ρ = −0.29 to +0.18, and
+only one of these thirty tests reached significance (*SARAF* in lumbar
+cord, ρ = −0.194, q = 0.049), in the direction opposite to the increase
+seen in ALS tissue. This exploratory analysis therefore does not support
+attributing the regional expression differences to TDP-43-dependent RNA
+processing; all tested correlations are provided in Supplementary Table
+S9.
 
 ## **4. Discussion**
 
@@ -1825,9 +1846,12 @@ tests over which the Benjamini–Hochberg correction was applied.
 **S10.** Nonsense-mediated decay interaction for the SOCE panel and the
 panel-level tests, four-condition analysis.
 
-**S11.** Depth-qualified intronic polyadenylation and 3′UTR usage
+**S11. Depth-qualified intronic polyadenylation and 3′UTR usage
 estimates in all four comparisons, with the genomic windows of every
-unit; these are coverage gradients, not direct poly(A)-site calls.
+unit; these are coverage gradients, not direct poly(A)-site calls. The
+candidate_gradient column marks the units with \|Δ\| ≥ 0.05 whose
+interval excludes zero; the remaining rows are the other depth-qualified
+units of the core genes and of the cryptic positive controls.**
 
 **S12.** Machine-readable version of Table 4: cryptic event counts by
 comparison, with the FUS and TAF15 knockdown controls and the null-test
@@ -1918,11 +1942,12 @@ significance, by dataset.
 Benjamini–Hochberg q values were recomputed within the retained events
 (Methods 2.3). FDR, false discovery rate; PSI, percent spliced in.
 
-**Table 3. Splicing events assessed for robustness** in the primary
-SH-SY5Y model among the twelve SOCE-machinery genes examined event by
+**Table 3. Splicing events assessed for robustness in the primary
+SH-SY5Y model among the twelve core entry components examined event by
 event (Methods 2.3), with bootstrap confidence intervals; all four are
-skipped-exon events. *CBARP* was not among the twelve; its events are in
-Supplementary Table S3.
+skipped-exon events. *CBARP* belongs to the wider nineteen-gene SOCE
+panel of Methods 2.9 but not to these twelve; its events are in
+Supplementary Table S3.**
 
 | Gene | Exon, GRCh38 (strand) | Length (bp) | Reading frame | ΔPSI | FDR | Bootstrap 95% CI | PSI, knockdown replicates | PSI, control replicates | Mean reads per sample | Minimum reads in a sample |
 |:---|:---|:---|---:|---:|---:|---:|:---|---:|---:|---:|

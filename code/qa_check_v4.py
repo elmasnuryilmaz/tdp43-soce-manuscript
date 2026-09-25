@@ -222,6 +222,44 @@ close("SOCE knockdown mean", 0.245, x.loc["SOCE delta F340/F380 | shTDP-43", "me
 close("ER release control mean", 0.268, x.loc["ER Ca2+ release delta F340/F380 | Non-targeting shRNA control", "mean"])
 close("WST-1 48 h knockdown", 61.5, x.loc["WST-1 signal 48 h | shTDP-43", "mean"], tol=0.05)
 
+import subprocess as _sp
+out.append("\n=== 25 September 2026 audit corrections ===")
+_s9 = pd.read_csv(f"{P}/supplementary/S9_cryptic_PSI_correlations_within_ALS.csv")
+_s9 = _s9[(_s9.proxy == "cryptic STMN2 PSI") & _s9.target_gene.isin(["TRPC1", "SARAF", "CBARP"])
+          & (_s9.in_correction_family == "yes")]
+close("proxy correlations, number of tests", 30, len(_s9), tol=0)
+close("proxy correlations, lowest rho", -0.29, _s9.spearman_rho.min(), tol=0.005)
+close("proxy correlations, highest rho", 0.18, _s9.spearman_rho.max(), tol=0.005)
+close("proxy correlations passing q < 0.05", 1, int((_s9.q_value < 0.05).sum()), tol=0)
+_sig = _s9[_s9.q_value < 0.05].iloc[0]
+close("the single significant proxy correlation is negative", 1, int(_sig.spearman_rho < 0), tol=0)
+check("present", "ranged from ρ = −0.29 to +0.18, and only one of these thirty tests reached significance", True)
+check("present", "(SARAF in lumbar cord, ρ = −0.194, q = 0.049)", True)
+_apa11 = pd.read_csv(f"{P}/supplementary/S11_APA_candidate_gradients.csv")
+_apa11 = _apa11[_apa11.dataset == "SH-SY5Y (GSE296712)"].set_index(["gene", "unit"])
+for _g, _u, _v in [("SARAF", "termexon", -0.036), ("ORAI2", "termexon", 0.012),
+                   ("SARAF", "intron5", 0.000)]:
+    close(f"S11 holds the {_g} {_u} value quoted in Section 3.7", _v,
+          _apa11.loc[(_g, _u), "delta"], tol=0.0005)
+close("S11 units below the candidate threshold are flagged", 1,
+      int((_apa11.candidate_gradient == "no").sum() > 0), tol=0)
+for _s in ["the twelve core entry components", "the only high-confidence unannotated change anywhere in the SOCE panel",
+           "three units of the Ca²⁺ panel likewise exclude zero",
+           "this model provides no evidence of enrichment beyond the length and expression properties",
+           "Fisher’s exact test p = 0.48", "Three independent diseases, in four datasets",
+           "In the two human models compared at junction level", "Figure 1A", "Figure 1B", "Figure 1C"]:
+    check("present", _s, True)
+for _s in ["twelve SOCE-machinery genes", "we did not detect high-confidence unannotated splicing changes in the store-operated entry machinery",
+           "largely attributable to the length and expression properties",
+           "the genes it identifies are.", "Three independent cohorts extended this"]:
+    check("absent", _s, False)
+_supp = _sp.run(["pandoc", "-t", "plain", "--wrap=none",
+                 f"{P}/supplementary/SUPPLEMENTARY_MATERIAL.docx"], capture_output=True, text=True).stdout
+close("supplementary document calls S12 the machine-readable version of Table 4", 1,
+      int("S12. Machine-readable version of Table 4" in _supp), tol=0)
+close("supplementary document describes the S11 candidate_gradient column", 1,
+      int("candidate_gradient column" in _supp), tol=0)
+
 out.append("\n=== 25 September 2026 revision: Fura-2 tests, per-culture ratio, CBARP junction ===")
 from scipy import stats as _st
 _fp = pd.read_excel(f"{P}/supplementary/S1_laboratory_source_data.xlsx", sheet_name="Fura2_per_culture")
@@ -452,13 +490,14 @@ for _i in range(1, 5):
     _first[_i] = _m.start() if _m else -1
 close("figures first cited in numerical order", 1,
       int(all(_first[i] < _first[i + 1] for i in range(1, 4))), tol=0)
+_results = _body.split("## 3. Results")[1].split("## Declarations")[0]
+_results = re.sub(r"<figcaption>.*?</figcaption>", " ", _results, flags=re.S)
+for _n in range(1, 7):
+    close(f"Figure {_n} cited in the Results or Discussion text", 1,
+          int(re.search(rf"Figure {_n}[A-E]?(?![0-9])", _results) is not None), tol=0)
 for _i in range(1, 18):
-    if _i == 9:
-        close("Supplementary Table S9 not promoted in the main text", 0,
-              int(re.search(r"Table S9(?![0-9])", _body) is not None), tol=0)
-    else:
-        close(f"Supplementary Table S{_i} cited in the text", 1,
-              int(re.search(rf"Table S{_i}(?![0-9])", _body) is not None), tol=0)
+    close(f"Supplementary Table S{_i} cited in the text", 1,
+          int(re.search(rf"Table S{_i}(?![0-9])", _body) is not None), tol=0)
 
 out.append("\n=== S1 carries the four reported targets and names the control group ===")
 _s1 = pd.ExcelFile(f"{P}/supplementary/S1_laboratory_source_data.xlsx")
@@ -536,7 +575,7 @@ for s_ in ["fixed-effect inverse-variance meta-analysis",
            "derived from the doctoral thesis of Elmasnur Yılmaz",
            "tentative, motor-neuron-associated observation",
            "(δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)",
-           "attenuated the unadjusted difference from δ = −0.562 to Cliff’s δ of −0.418 on the residuals (p = 0.002) but not at donor level (δ = −0.640, p = 0.055)",
+           "from δ = −0.562 to Cliff’s δ of −0.418 on the residuals at sample level (p = 0.002), and from δ = −0.840 to −0.640 at donor level",
            "375,000 per well", "Dharmacon TRC Lentiviral shRNA, cat. no. RHS3979",
            "1 mM EGTA", "Premix WST-1, Takara Bio, cat. no. MK400"]:
     check("present", s_, True)

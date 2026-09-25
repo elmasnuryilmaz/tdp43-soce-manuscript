@@ -285,8 +285,22 @@ s11 = s11.rename(columns={"gene": "gene", "unit": "unit", "measure": "index",
     "boot_low": "bootstrap_CI95_low", "boot_high": "bootstrap_CI95_high",
     "sample_KD": "per_sample_knockdown", "sample_CTRL": "per_sample_control"})
 s11["index"] = s11["index"].replace({"IPA_index": "intronic polyadenylation index",
-                                     "UTR_index": "distal 3'UTR usage index"})
+                                     "UTR_index": "distal 3'UTR usage index",
+                                     "UTR_distal_index": "distal 3'UTR usage index"})
 s11.insert(0, "dataset", "SH-SY5Y (GSE296712)")
+# The file above holds the candidate gradients only (|delta| >= 0.05 with an interval excluding
+# zero). Section 3.7 also quotes units below that threshold, so every depth-qualified unit of the
+# twelve core genes and of the cryptic positive controls is added here and flagged.
+_core = pd.read_csv(f"{D}/sonuclar/APA_corrected_full_core_summary.tsv", sep="\t").rename(
+    columns={"measure": "index", "index_KD": "index_knockdown", "index_CTRL": "index_control",
+             "boot_low": "bootstrap_CI95_low", "boot_high": "bootstrap_CI95_high",
+             "sample_KD": "per_sample_knockdown", "sample_CTRL": "per_sample_control"})
+_core["index"] = _core["index"].replace({"IPA_index": "intronic polyadenylation index",
+                                         "UTR_distal_index": "distal 3'UTR usage index"})
+_core.insert(0, "dataset", "SH-SY5Y (GSE296712)")
+_have = set(zip(s11.gene, s11.unit, s11["index"]))
+_core = _core[~pd.Series(list(zip(_core.gene, _core.unit, _core["index"])), index=_core.index).isin(_have)]
+s11 = pd.concat([s11, _core[[c for c in _core.columns if c in s11.columns]]], ignore_index=True)
 # datasets recomputed after the external drive became available
 extra = []
 for f in ["APA_corrected_iPSC_MN.tsv", "APA_corrected_remaining_datasets.tsv",
@@ -332,6 +346,10 @@ s11 = pd.concat([s11[_human].merge(_wh, on=["gene", "unit"], how="left"),
 s11 = s11.rename(columns={"first_window": "window_5prime_or_proximal",
                           "second_window": "window_3prime_or_distal"})
 assert s11.window_5prime_or_proximal.notna().all(), "S11 unit without genomic window"
+# a unit is a candidate gradient when |delta| >= 0.05 and its interval excludes zero
+s11.insert(s11.columns.get_loc("delta") + 1, "candidate_gradient",
+           np.where((s11.delta.abs() >= 0.05)
+                    & ((s11.bootstrap_CI95_low > 0) | (s11.bootstrap_CI95_high < 0)), "yes", "no"))
 w(s11, f"{SUP}/S11_APA_candidate_gradients.csv")
 # S12 cryptic counts (= Table 3 source, per dataset)
 w(hc, f"{SUP}/S12_cryptic_counts_by_dataset.csv")

@@ -131,6 +131,36 @@ PASS  SOCE knockdown mean: manuscript 0.245 vs data 0.245
 PASS  ER release control mean: manuscript 0.268 vs data 0.268
 PASS  WST-1 48 h knockdown: manuscript 61.5 vs data 61.5
 
+=== 25 September 2026 audit corrections ===
+PASS  proxy correlations, number of tests: manuscript 30 vs data 30
+PASS  proxy correlations, lowest rho: manuscript -0.29 vs data -0.294
+PASS  proxy correlations, highest rho: manuscript 0.18 vs data 0.177
+PASS  proxy correlations passing q < 0.05: manuscript 1 vs data 1
+PASS  the single significant proxy correlation is negative: manuscript 1 vs data 1
+PASS  present: ranged from ρ = −0.29 to +0.18, and only one of these thirty tests reached significance
+PASS  present: (SARAF in lumbar cord, ρ = −0.194, q = 0.049)
+PASS  S11 holds the SARAF termexon value quoted in Section 3.7: manuscript -0.036 vs data -0.035557851902557
+PASS  S11 holds the ORAI2 termexon value quoted in Section 3.7: manuscript 0.012 vs data 0.0122099333990824
+PASS  S11 holds the SARAF intron5 value quoted in Section 3.7: manuscript 0.0 vs data 0.0001143561787292
+PASS  S11 units below the candidate threshold are flagged: manuscript 1 vs data 1
+PASS  present: the twelve core entry components
+PASS  present: the only high-confidence unannotated change anywhere in the SOCE panel
+PASS  present: three units of the Ca²⁺ panel likewise exclude zero
+PASS  present: this model provides no evidence of enrichment beyond the length and expression properties
+PASS  present: Fisher’s exact test p = 0.48
+PASS  present: Three independent diseases, in four datasets
+PASS  present: In the two human models compared at junction level
+PASS  present: Figure 1A
+PASS  present: Figure 1B
+PASS  present: Figure 1C
+PASS  absent: twelve SOCE-machinery genes
+PASS  absent: we did not detect high-confidence unannotated splicing changes in the store-operated entry
+PASS  absent: largely attributable to the length and expression properties
+PASS  absent: the genes it identifies are.
+PASS  absent: Three independent cohorts extended this
+PASS  supplementary document calls S12 the machine-readable version of Table 4: manuscript 1 vs data 1
+PASS  supplementary document describes the S11 candidate_gradient column: manuscript 1 vs data 1
+
 === 25 September 2026 revision: Fura-2 tests, per-culture ratio, CBARP junction ===
 PASS  readdition difference (-1.30): manuscript -1.3 vs data -1.2971616666666668
 PASS  readdition 95% CI low (-2.40): manuscript -2.4 vs data -2.3995911524422695
@@ -319,6 +349,12 @@ PASS  Figure 2 cited in the text: manuscript 1 vs data 1
 PASS  Figure 3 cited in the text: manuscript 1 vs data 1
 PASS  Figure 4 cited in the text: manuscript 1 vs data 1
 PASS  figures first cited in numerical order: manuscript 1 vs data 1
+PASS  Figure 1 cited in the Results or Discussion text: manuscript 1 vs data 1
+PASS  Figure 2 cited in the Results or Discussion text: manuscript 1 vs data 1
+PASS  Figure 3 cited in the Results or Discussion text: manuscript 1 vs data 1
+PASS  Figure 4 cited in the Results or Discussion text: manuscript 1 vs data 1
+PASS  Figure 5 cited in the Results or Discussion text: manuscript 1 vs data 1
+PASS  Figure 6 cited in the Results or Discussion text: manuscript 1 vs data 1
 PASS  Supplementary Table S1 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S2 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S3 cited in the text: manuscript 1 vs data 1
@@ -327,7 +363,7 @@ PASS  Supplementary Table S5 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S6 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S7 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S8 cited in the text: manuscript 1 vs data 1
-PASS  Supplementary Table S9 not promoted in the main text: manuscript 0 vs data 0
+PASS  Supplementary Table S9 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S10 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S11 cited in the text: manuscript 1 vs data 1
 PASS  Supplementary Table S12 cited in the text: manuscript 1 vs data 1
@@ -384,7 +420,7 @@ PASS  present: the mean per-base depths of its two windows summed to at least 3
 PASS  present: derived from the doctoral thesis of Elmasnur Yılmaz
 PASS  present: tentative, motor-neuron-associated observation
 PASS  present: (δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)
-PASS  present: attenuated the unadjusted difference from δ = −0.562 to Cliff’s δ of −0.418 on the residua
+PASS  present: from δ = −0.562 to Cliff’s δ of −0.418 on the residuals at sample level (p = 0.002), and f
 PASS  present: 375,000 per well
 PASS  present: Dharmacon TRC Lentiviral shRNA, cat. no. RHS3979
 PASS  present: 1 mM EGTA
@@ -414,4 +450,4 @@ PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 374 passed, 0 failed ====
+==== 408 passed, 0 failed ====
