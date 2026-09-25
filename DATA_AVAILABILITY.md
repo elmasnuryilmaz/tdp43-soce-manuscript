@@ -54,5 +54,5 @@ must be edited before the code runs elsewhere; the intended order is in `README.
 
 ## Versioned submission snapshot
 
-The four-figure submission snapshot is released as `v1.0.0` at
-`https://github.com/elmasnuryilmaz/tdp43-soce-manuscript/releases/tag/v1.0.0`.
+The four-figure submission snapshot is released as `v1.0.1` at
+`https://github.com/elmasnuryilmaz/tdp43-soce-manuscript/releases/tag/v1.0.1`.

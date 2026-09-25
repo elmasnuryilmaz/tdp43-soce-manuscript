@@ -549,8 +549,9 @@ relative expression with Tukey's multiple comparison test. The four
 target-gene RT-qPCR comparisons used two-tailed Student's t-tests with
 Holm adjustment across the four targets (GraphPad Prism 10). Fura-2
 amplitudes (n = 3) and WST-1 well signals (n = 4) were summarised
-descriptively. Significance was set at adjusted p \< 0.05 for the
-four-target RT-qPCR family.
+descriptively; n denotes measurements within one experiment.
+Significance was set at adjusted p \< 0.05 for the four-target RT-qPCR
+family.
 
 ## **3. Results**
 
@@ -638,7 +639,9 @@ protein-complex stoichiometry.
 For STIMATE, adjusted TPM increased by 9.9% while the DESeq2 count-model
 estimate was log2FC −0.050 (p_adj = 0.72). Both changes are small; their
 opposite signs reflect different estimators and do not support a
-directional STIMATE abundance effect.
+directional STIMATE abundance effect. MCUR1 shows the same kind of sign
+difference: adjusted TPM fell by 7.8%, whereas DESeq2 log2FC was +0.044
+(p_adj = 0.62).
 
 Two of these changes point towards reduced entry. ORAI2 and ORAI3 both
 form heteromers with ORAI1 and restrain SOCE; deleting either increases
@@ -1148,14 +1151,15 @@ TDP-43 knockdown and connects that functional phenotype to coordinated
 changes in calcium-regulatory transcripts. The central feature is a
 mismatch between abundance and function: the adjusted STIM and ORAI
 transcript pools increased, yet the SOCE amplitude decreased by
-approximately 84%. The data therefore do not support simple loss of the
-core SOCE machinery. They instead point to altered channel composition,
-feedback inhibition, ER refilling and cellular bioenergetics as
-interacting determinants. Across independent datasets, canonical TDP-43
-RNA targets behaved as expected, whereas calcium-gene processing changes
-were selective and context dependent. This combination defines a
-multilayered calcium-homeostasis phenotype rather than uniform
-suppression of one channel or one RNA-processing event.
+approximately 84%. The transcript data do not show a simple loss of core
+SOCE mRNAs; they do not establish protein abundance. Channel
+composition, feedback inhibition, ER refilling and cellular
+bioenergetics remain possible interacting determinants. Across
+independent datasets, canonical TDP-43 RNA targets behaved as expected,
+whereas calcium-gene processing changes were selective and context
+dependent. This combination defines a multilayered calcium-homeostasis
+phenotype rather than uniform suppression of one channel or one
+RNA-processing event.
 
 **Architecture of the functional phenotype.** The ER-release mean
 decreased from 0.268 to 0.180 Δ(F340/F380), while the subsequent SOCE
@@ -1170,9 +1174,9 @@ decreased from 77% to 53%, and SARAF increased. Channel output depends
 on the relative abundance, assembly and localization of STIM and ORAI
 proteins rather than their summed RNA abundance; even the STIM1:ORAI1
 protein ratio can change CRAC-channel trapping and gating (Hoover and
-Lewis, 2011). The discordance between a larger transcript pool and lower
-entry therefore favours a composition or regulatory mechanism over
-simple transcript insufficiency.
+Lewis, 2011). A rise in these transcripts could also be compensatory
+after reduced Ca²⁺ signalling; the present measurements do not establish
+which change came first.
 
 Interpretation of the Fura-2 readdition signal also depends on Ca²⁺
 clearance. The adjusted PMCA transcript pool rose by 35.2% in the public
@@ -1211,9 +1215,9 @@ meaningful because astroglial hyperactive entry, neuronal-like cell
 entry failure and ER-store depletion can all disturb calcium signalling
 through different routes. Genetic lesion, cell identity, differentiation
 state and compensatory timing are therefore likely to determine the
-direction of the measured phenotype. The present result establishes a
-reduction in SOCE associated with TDP-43 loss in SH-SY5Y cells and
-complements, rather than reproduces, the SOD1 astrocyte phenotype.
+direction of the measured phenotype. The smaller store-depletion-evoked
+Ca²⁺-readdition response in SH-SY5Y cells complements, rather than
+reproduces, the SOD1 astrocyte phenotype.
 
 **Metabolic and organelle coupling.** The 48-h WST-1 signal was 38.5%
 lower after knockdown. The approximately 84% reduction in SOCE amplitude
@@ -1363,8 +1367,8 @@ scripts in execution order, including the coverage, NMD,
 transcript-family and donor-level scripts used for the results reported
 here, the four Ca²⁺ gene panels, per-event count tables, junction and
 LSV tables, and the code that draws every figure. The versioned
-submission snapshot is available as GitHub release v1.0.0 at
-https://github.com/elmasnuryilmaz/tdp43-soce-manuscript/releases/tag/v1.0.0.
+submission snapshot is available as GitHub release v1.0.1 at
+https://github.com/elmasnuryilmaz/tdp43-soce-manuscript/releases/tag/v1.0.1.
 The complete 23 GB rMATS output is not redistributed; the package
 provides the thresholded event table and the scripts and public
 accessions required to regenerate it. The package downloads the two
@@ -1862,12 +1866,11 @@ member's share of its family in control cells, and DESeq2 fold changes.
                   Family total       34.34       35.49      29.99       40.56     100.0      +35.2       NA      NA
   -----------------------------------------------------------------------------------------------------------------
 
-*Note.* TPM (transcripts per million), mean of three libraries per
-group; adjusted TPM, after per-library median-of-ratios scaling for
-library composition (Methods 2.10). Share, percentage of the family
-total in control cells; bold, dominant member (\> 50%). log2FC and p_adj
-from DESeq2 on the gene-level Salmon counts; NA, not computed; CRAC,
-Ca²⁺ release-activated Ca²⁺.
+*Note.* TPM, transcripts per million (mean of three libraries per
+group); adjusted TPM uses median-of-ratios scaling (Methods 2.10). Share
+is calculated from unrounded control values; bold, dominant member (\>
+50%). log2FC and p_adj are from DESeq2 gene-level counts; NA, not
+computed; CRAC, Ca²⁺ release-activated Ca²⁺.
 
 **Table 2.** Effect of coverage pre-filtering on event counts and
 significance, by dataset.
