@@ -41,19 +41,23 @@ why. Where the thesis and this repository differ, this repository is current.
 | File | Purpose |
 |---|---|
 | `main/Figure1_functional_consequences` | laboratory RT-qPCR and 48-h WST-1 |
-| `main/Figure2_calcium_responses` | original representative Fura-2 traces with ER-release and Ca²⁺-readdition amplitudes |
+| `main/Figure2_calcium_responses` | original representative Fura-2 traces (A, B), ER-release and Ca²⁺-readdition amplitudes (C, D) and both recordings on common axes (E) |
 | `main/Figure3_transcript_profile` | independent public SH-SY5Y transcript context |
-| `main/Figure4_ALS_expression` | ALS brain/spinal-cord tissue expression |
-| `main/Figure5_CBARP_splicing` | source-table-based CBARP exon inclusion and cross-model events |
+| `main/Figure4_SOCE_splicing` | replicate-level PSI of the SOCE-machinery events, STIM2.1 exon meta-analysis and CBARP exon-4 junction usage |
+| `main/Figure5_ALS_expression` | ALS brain/spinal-cord tissue expression |
 | `main/Figure6_working_model` | conceptual model distinguishing measurements from hypotheses |
-| `supplementary/Supplementary_Figure_S1`–`S8` | splicing, read-support checks, cryptic controls, NMD, APA and additional tissue comparisons |
+| `supplementary/Supplementary_Figure_S1`–`S8` | splicing, read-support checks, CBARP locus (S3), cryptic controls, NMD, APA and additional tissue comparisons |
 
 All current main figures are provided as publication-resolution PNG files and editable SVG masters.
-The laboratory did not measure splicing; Figure 5 uses the public RNA-seq event table.
-Figure 2
-retains the original representative Fura-2 traces and pairs them with the measured
-ER-release and Ca²⁺-readdition amplitudes. The lower panels show individual values (n = 3) and mean ± SEM; the source workbook reports these comparisons descriptively.
-WST-1 was measured at 48 h (n = 4).
+The laboratory did not measure splicing; Figure 4 and Supplementary Figure S3 use the public RNA-seq data.
+Supplementary Figure S3 is drawn from the alignments: `code/cbarp_bam_extract.py` reads the
+14 SH-SY5Y and iPSC-colony BAM files with the junction rules of Methods 2.5 and writes
+`source_data/CBARP_locus/`; `code/fig_splicing_revision.py` draws Figures 4 and 6 and S3 from it.
+Figure 2 retains the original representative Fura-2 traces and pairs them with the measured
+ER-release and Ca²⁺-readdition amplitudes. The lower panels show the three independent cultures
+per group and mean ± SEM; the two amplitudes are compared with Welch's t-test. Panel E
+(`code/fig2_common_scale_panel.py`) replots the exported ratio values of the two representative
+recordings (`source_data/fura2_traces/`) on common axes. WST-1 was measured at 48 h (n = 4 wells).
 
 ## Historical figures
 

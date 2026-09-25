@@ -14,10 +14,11 @@ TDP-43 loss is implicated in amyotrophic lateral sclerosis (ALS), but
 its relationship to store-operated Ca²⁺ entry (SOCE) is unclear. After
 shRNA-mediated TARDBP depletion in SH-SY5Y cells, TRPC1, STIM1, ORAI1
 and ATP2A3 mRNAs increased 1.7- to 3.2-fold, while the Fura-2
-Ca²⁺-readdition amplitude was approximately 84% lower after knockdown (n
-= 3). ER Ca²⁺ release amplitudes were 0.268 and 0.180 Δ(F340/F380),
-respectively. At 48 h, the WST-1 signal was 38.5% lower (n = 4). We
-reanalysed six public TDP-43-depletion RNA-seq comparisons (38
+Ca²⁺-readdition amplitude was 84% lower after knockdown (n = 3
+independent cultures; Welch’s t-test p = 0.035). ER Ca²⁺ release was 33%
+lower (p = 0.31), and readdition normalised to each culture’s own
+release remained 77% lower. At 48 h, the WST-1 signal was 38.5% lower (n
+= 4). We reanalysed six public TDP-43-depletion RNA-seq comparisons (38
 libraries) for calcium-regulatory expression and splicing, screened
 eleven comparisons for unannotated junction changes, and assessed
 alternative polyadenylation and nonsense-mediated decay. CBARP was the
@@ -242,17 +243,18 @@ null: in datasets with four control replicates, the controls were split
 2 + 2, the analysis repeated unchanged, and every call counted as a
 false positive. The permissive definition required an unannotated
 junction, ΔPSI ≥ 0.05, q \< 0.05, control PSI ≤ 0.05 and a bootstrap
-lower bound above zero (Supplementary Table S14). We therefore adopted
-an effect-based definition: a **high-confidence unannotated splicing
-change** requires a novel splice site, ΔPSI ≥ 0.20, q \< 0.05, a
-bootstrap lower bound above 0.05, at least 20 reads in the knockdown
-group, and non-zero counts in every knockdown replicate. A requirement
-of zero counts in controls was deliberately not imposed, because it
-removes genuinely cryptic exons with basal leakiness, *STMN2* among
-them. Positive-control recovery, not call count, is used throughout as
-the measure of whether an analysis worked; because the sixteen
-literature controls are human cryptic events, this check is available
-only for the human comparisons.
+lower bound above zero (Supplementary Table S14). Because this
+definition produced about as many split-control calls as real calls, or
+more (Section 3.5), we adopted an effect-based definition: a
+**high-confidence unannotated splicing change** requires a novel splice
+site, ΔPSI ≥ 0.20, q \< 0.05, a bootstrap lower bound above 0.05, at
+least 20 reads in the knockdown group, and non-zero counts in every
+knockdown replicate. A requirement of zero counts in controls was
+deliberately not imposed, because it removes genuinely cryptic exons
+with basal leakiness, *STMN2* among them. Positive-control recovery, not
+call count, is used throughout as the measure of whether an analysis
+worked; because the sixteen literature controls are human cryptic
+events, this check is available only for the human comparisons.
 
 Eleven comparisons were analysed: SH-SY5Y at 75 and at 25 ng/mL
 doxycycline, iPSC colonies, iPSC-derived motor neurons with TDP-43, FUS
@@ -402,10 +404,14 @@ group was compared against the **same** non-neurological controls as
 ALS, so that control-side confounders (RNA quality, post-mortem
 interval, collection site, library batch) are shared between the two
 comparisons; case numbers allowed this comparison in three regions. The
-public label does not identify the constituent disorders; these regions
-contained 49 cerebellar, 45 frontal-cortex and 35 temporal-cortex case
-samples (Table 5). Age, RNA integrity number and post-mortem interval
-were not included as covariates.
+public metadata do not identify the constituent disorders, which the
+NYGC provides on request; these regions contained 49 cerebellar, 45
+frontal-cortex and 35 temporal-cortex case samples (Table 5). Age, RNA
+integrity number and post-mortem interval were not included as
+covariates. Per-sample median centring removes sample-wide expression
+shifts and the shared controls equalise control-side confounders, but
+neither adjusts for case–control differences in these variables, so
+residual confounding by them cannot be excluded.
 
 Independent cohorts were analysed identically: Alzheimer’s disease
 (GSE125583, fusiform gyrus, 219 cases/70 controls; Srinivasan et al.,
@@ -496,7 +502,10 @@ profile are given in Supplementary Table S1.
 
 GAPDH was used as the sole reference gene because its mean Ct was
 essentially unchanged in the four-target RNA set: 19.49 in non-targeting
-shRNA controls and 19.50 in shTDP-43 cells (n = 4 each).
+shRNA controls and 19.50 in shTDP-43 cells (n = 4 each). Reporting
+guidelines for quantitative PCR recommend at least two validated
+reference genes; the single-reference design is therefore listed among
+the limitations.
 
 ### **2.14 Cytosolic Ca²⁺ measurement**
 
@@ -519,7 +528,8 @@ introduced at a nominal concentration of 1.5 mM and the subsequent rise
 was recorded as store-operated Ca²⁺ entry (SOCE), following the
 established depletion–readdition paradigm. Peak amplitudes in both
 phases were quantified as Δ(F340/F380) relative to the respective
-preceding baseline (n = 3).
+preceding baseline. Each group comprised three independent cultures (n =
+3), and both phases were read from the same recording of each culture.
 
 The Fura-2 ratio records net cytosolic Ca²⁺ accumulation; the
 measurement does not isolate membrane influx from extrusion or ER
@@ -535,8 +545,8 @@ the WST-1 assay (Premix WST-1, Takara Bio, cat. no. MK400); at 48 h, 10
 against a 620 nm reference on a Varioskan Flash reader (Thermo
 Scientific). The absorbance of cell-free wells containing medium and
 reagent was subtracted, and values were normalised to the mean of the
-non-targeting shRNA control. At 48 h, n = 4; values are reported as mean
-± SEM.
+non-targeting shRNA control. At 48 h, n = 4 wells per group from one of
+the three experiments performed; values are reported as mean ± SEM.
 
 ### **2.16 Statistics**
 
@@ -545,9 +555,15 @@ SEM. TARDBP knockdown was assessed by one-way ANOVA on log2-transformed
 relative expression with Tukey’s multiple comparison test. The four
 target-gene RT-qPCR comparisons used two-tailed Student’s t-tests with
 Holm adjustment across the four targets (GraphPad Prism 10). Fura-2
-amplitudes (n = 3) and 48-h WST-1 well signals (n = 4) were summarised
-descriptively, without inferential tests. Significance was set at
-adjusted p \< 0.05 for the four-target RT-qPCR family.
+amplitudes from three independent cultures per group were compared with
+Welch’s two-tailed t-test (SciPy v1.12.0), which does not assume equal
+variances, and are reported with the difference in means and its 95%
+confidence interval; these two pre-specified comparisons were not
+adjusted for multiplicity. The readdition-to-release ratio of each
+culture was summarised descriptively. The 48-h WST-1 wells (n = 4) come
+from one experiment and were summarised descriptively, because wells
+within an experiment are not independent replicates. Significance was
+set at p \< 0.05, Holm-adjusted for the four-target RT-qPCR family.
 
 ## **3. Results**
 
@@ -567,8 +583,7 @@ RNA-seq results in the same cell line (*STIM1* log2FC = 0.929, p_adj =
 *ATP2A3* 1.306, 1.4 × 10⁻²⁹).
 
 <figure>
-<img src="../figures/main/Figure1_functional_consequences.png"
-style="width:6.05in;height:2.59002in" />
+<img src="../figures/main/Figure1_functional_consequences.png" style="width:6.05in;height:2.59002in" />
 <figcaption><p><strong>Figure 1.</strong> TDP-43 knockdown,
 calcium-related mRNAs and WST-1 signal in SH-SY5Y cells. (A) TARDBP mRNA
 in untransduced cells (“No virus”), non-targeting shRNA controls and
@@ -582,28 +597,38 @@ measurements.</p></figcaption>
 </figure>
 
 The Fura-2 Ca²⁺-readdition amplitude was markedly lower in shTDP-43
-cells (Figure 2). The ER Ca²⁺-release means were 0.268 ± 0.042 and 0.180
-± 0.061 Δ(F340/F380) in the control and shTDP-43 groups, respectively.
-The readdition amplitudes were 1.542 ± 0.282 and 0.245 ± 0.083,
-respectively (n = 3). At 48 h, the WST-1 signal was 61.5 ± 0.8% of
-control, a 38.5% decrease (n = 4). These Fura-2 and WST-1 comparisons
-are descriptive.
+cells (Figure 2). The readdition amplitude fell from 1.542 ± 0.282 to
+0.245 ± 0.083 Δ(F340/F380) (mean ± SEM, n = 3 independent cultures per
+group; difference −1.30, 95% CI −2.40 to −0.19; Welch’s t-test p =
+0.035). ER Ca²⁺ release fell less and not significantly, from 0.268 ±
+0.042 to 0.180 ± 0.061 (difference −0.09, 95% CI −0.30 to +0.13; p =
+0.31). Because both phases come from the same recording, readdition was
+also expressed relative to each culture’s own release. This ratio was
+5.88 ± 1.10 in controls and 1.36 ± 0.01 after knockdown, 77% lower, and
+every shTDP-43 culture had a lower ratio than every control culture
+(Supplementary Table S1). A smaller releasable store therefore does not
+account for most of the decrease. Plotted on common axes, the two
+representative recordings had similar baselines before readdition
+(Figure 2E). At 48 h, the WST-1 signal was 61.5 ± 0.8% of control, a
+38.5% decrease (n = 4 wells; descriptive).
 
 The transcript changes and functional change are therefore in opposite
 directions. This is the central observation of the study.
 
 <figure>
-<img src="../figures/main/Figure2_calcium_responses.png"
-style="width:6.05in;height:5.48658in" />
+<img src="../figures/main/Figure2_calcium_responses.png" style="width:6.05in;height:7.435in" />
 <figcaption><p><strong>Figure 2.</strong> Fura-2 calcium measurements
 following TDP-43 knockdown in SH-SY5Y cells. (A, B) Original
 representative traces from non-targeting shRNA control and shTDP-43
 cells, shown at their native axis ranges. CPA (10 µM) and CaCl₂
 (nominally 1.5 mM) additions are indicated. (C) ER Ca²⁺ release after
-CPA. (D) Ca²⁺-readdition amplitude. Panels C and D show individual
-measurements and mean ± SEM (n = 3; descriptive). The traces illustrate
-individual recordings; group amplitudes were calculated from the
-original Prism measurements.</p></figcaption>
+CPA. (D) Ca²⁺-readdition amplitude. Panels C and D show the three
+independent cultures per group and mean ± SEM (readdition, Welch’s
+t-test p = 0.035; ER release, p = 0.31). (E) The recordings in A and B
+replotted from their exported ratio values on common axes, with time
+aligned to the steepest point of the readdition rise. The traces
+illustrate individual recordings; group amplitudes were calculated from
+the original Prism measurements.</p></figcaption>
 </figure>
 
 ### **3.2 Transcript-family abundance contextualises the discordance**
@@ -664,8 +689,7 @@ Together, the changes in ORAI-family composition and SOCE regulators
 provide candidate molecular explanations for the reduced SOCE phenotype.
 
 <figure>
-<img src="../figures/main/Figure3_transcript_profile.png"
-style="width:6.05in;height:4.94225in" />
+<img src="../figures/main/Figure3_transcript_profile.png" style="width:6.05in;height:4.94225in" />
 <figcaption><p><strong>Figure 3.</strong> Calcium-regulatory transcript
 profile in the independent public SH-SY5Y RNA-seq comparison. (A)
 Adjusted gene-level TPM in control and TDP-43-depleted libraries (three
@@ -731,9 +755,7 @@ S2).
 Applying the robustness criteria to the twelve SOCE-machinery genes
 examined event by event (Methods 2.3) identified three events with
 adequate coverage and bootstrap intervals excluding zero: STIMATE, ORAI3
-and STIM2 (Table 3, Supplementary Figure S3). A STIM1 event met the
-count and FDR criteria, but its interval included zero and is shown for
-context.
+and STIM2 (Table 3; Figure 4A).
 
 In the primary SH-SY5Y model these were *STIMATE* (ΔPSI = +0.244; FDR =
 9.0 × 10⁻⁷; 95% CI +0.095 to +0.368), *ORAI3* (−0.269; 1.0 × 10⁻²;
@@ -746,22 +768,27 @@ Isoform-level testing supported *STIM1* (DRIMSeq gene-level q = 5.49 ×
 
 *CBARP*, encoding a suppressor of voltage-gated Ca²⁺ channel activity
 and Ca²⁺-evoked exocytosis (Béguin et al., 2014), was the most
-reproducible candidate: 32 events met both the threshold and the
+reproducible candidate. Thirty-two events met both the threshold and the
 coverage criteria in five of the six datasets (iPSC colonies, mouse
 striatum, SH-SY5Y, C2C12 and NSC34) at the orthologous human chr19 and
-mouse chr10 loci, with \|ΔPSI\| from 0.11 to 0.74 (median 0.37) and 61
-to 4,559 junction reads per event (median 246; 26 of the 32 above 100
-reads; Supplementary Table S3). The event-level evidence is shown in
-Figure 5. The locus is therefore affected in every model except the
-iPSC-derived motor neurons, but the direction is not consistent across
-models: all three qualifying SH-SY5Y events show reduced inclusion of
-the rMATS-defined form, whereas the events in mouse striatum and C2C12,
-all but one of those in NSC34 and most of those in iPSC colonies are
-positive; the junction-level analysis of Section 3.5 quantifies a
-different arm of the same locus and is positive in SH-SY5Y. What
-reproduces is the involvement of the locus, not one directional switch.
-*CBARP* also showed the largest expression change of any SOCE regulator
-in SH-SY5Y (log2FC = −1.254; p_adj = 3.1 × 10⁻²⁵).
+mouse chr10 loci. Their \|ΔPSI\| ranged from 0.11 to 0.74 (median 0.37),
+with 61 to 4,559 junction reads per event (median 246; 26 of the 32
+above 100 reads; Supplementary Table S3). The locus is therefore
+affected in every model except the iPSC-derived motor neurons. The sign
+of the rMATS events varies: all three qualifying SH-SY5Y events show
+reduced inclusion of their rMATS-defined form, whereas most events in
+the other four datasets are positive. The sign follows how each event is
+defined, and none of the three SH-SY5Y events contrasts the canonical
+exon 4–exon 5 junction with its alternative. Coverage and split reads
+from the alignments show the change directly (Supplementary Figure S3).
+In both human models the canonical junction nearly disappeared after
+knockdown, and exon 4 was instead joined to an annotated alternative 3′
+splice site 197 nucleotides upstream of the exon 5 acceptor. This
+junction carried 17% of exon-4 donor reads in SH-SY5Y controls and 86%
+after knockdown, and 1% and 78% in iPSC colonies (Figure 4C). The mouse
+loci were not compared at junction level. *CBARP* also showed the
+largest expression change of any SOCE regulator in SH-SY5Y (log2FC =
+−1.254; p_adj = 3.1 × 10⁻²⁵).
 
 LeafCutter, which does not use the reference annotation to define
 events, independently called *CBARP* (p_adj = 0.0133) and *STIM2* (p_adj
@@ -770,18 +797,22 @@ bootstrap interval estimation and LeafCutter, therefore converge on the
 same candidates.
 
 <figure>
-<img src="../figures/main/Figure5_CBARP_splicing.png"
-style="width:6.15in;height:3.84215in" />
-<figcaption><p><strong>Figure 5.</strong> CBARP splicing across
-TDP-43-depletion datasets. (A) Genomic location and splice pattern of a
-representative iPSC-colony skipped-exon event, drawn from rMATS
-coordinates rather than read-coverage traces. (B) Per-library exon
-inclusion (PSI) for this event; each point represents one RNA-seq
-library. (C) Event-level ΔPSI for all 32 CBARP events meeting the
-prespecified FDR, effect-size and coverage filters in five datasets.
-Direction refers to the rMATS-defined form and varies by model; the
-evidence supports recurrent involvement of the locus, not a shared
-directional switch. Source: Supplementary Table S3.</p></figcaption>
+<img src="../figures/main/Figure4_SOCE_splicing.png" style="width:6.15in;height:4.33099in" />
+<figcaption><p><strong>Figure 4.</strong> Splicing evidence in
+SOCE-related genes. (A) Per-library PSI for the four SOCE-machinery
+skipped-exon events of Table 3 in the public SH-SY5Y comparison (three
+libraries per group); lines show group means, and the text gives the
+rMATS ΔPSI with its replicate-level bootstrap 95% interval. The STIM1
+interval includes zero. (B) The 24-nucleotide SOAR exon that converts
+STIM2 into STIM2.1, measured as an rMATS event in six datasets. Squares
+are sized by inverse-variance weight, bars are 95% intervals and
+diamonds are fixed-effect pooled estimates for all six datasets and for
+the three human datasets (Supplementary Table S15). (C) CBARP: share of
+exon-4 donor reads joined to the alternative 3′ splice site at
+chr19:1,235,342 rather than to exon 5, per library, in SH-SY5Y and iPSC
+colonies. Reads were counted from the alignments with the rules of
+Methods 2.5; the full locus is shown in Supplementary Figure
+S3.</p></figcaption>
 </figure>
 
 ### **3.5 Annotation-free analysis recovers cryptic exons genome-wide but finds no high-confidence event in the SOCE machinery of the primary model**
@@ -871,11 +902,12 @@ it provides no support for a cryptic-splicing switch as the explanation
 for the observed SOCE phenotype.
 
 What the annotation-free analysis did confirm were the annotated events.
-*CBARP* showed the largest local change of any SOCE gene in SH-SY5Y
-(ΔPSI +0.74, 95% CI +0.51 to +0.83, q = 2.7 × 10⁻¹²; +0.76, q = 5.6 ×
-10⁻¹⁷ in the regtools set), and one arm of the *CBARP* event uses a
-splice site absent from the annotation. This is the third method, after
-rMATS with `--novelSS` and LeafCutter, to converge on this locus;
+*CBARP showed the largest local change of any SOCE gene in SH-SY5Y, in
+the junction from exon 4 to the alternative 3′ splice site (ΔPSI +0.74*,
+95% CI +0.51 to +0.83, q = 2.7 × 10⁻¹²; +0.76, q = 5.6 × 10⁻¹⁷ in the
+regtools set), and one arm of the CBARP event uses a splice site absent
+from the annotation (Supplementary Figure S3). This is the third method,
+after rMATS with `--novelSS` and LeafCutter, to converge on this locus;
 isoform-level testing did not detect a *CBARP* isoform switch
 (IsoformSwitchAnalyzeR gene-level q = 0.12; DRIMSeq q = 0.34). The same
 unannotated *CBARP* splice site was recovered independently in iPSC
@@ -893,24 +925,24 @@ al., 2015; Rana et al., 2015), so increased inclusion upon TDP-43 loss
 would be a simple route to reduced entry. Measured as an rMATS event,
 inclusion of the exon was higher in knockdown in five of six datasets,
 but the fixed-effect meta-analysis estimate was negligible (pooled ΔPSI
-+0.0013, 95% CI −0.022 to +0.024; p = 0.914; Supplementary Table S15).
-The three mouse datasets carry 86% of the weight, but the human datasets
-alone give the same answer (+0.031, 95% CI −0.030 to +0.091; p = 0.32),
-and the estimates are not heterogeneous (Cochran’s Q = 4.84, 5 df, p =
-0.44; I² = 0%). At junction level, inclusion of the SOAR exon
-(chr4:27,007,983–27,008,006) was positive in direction in all five
-TDP-43 comparisons in which it was measurable, but the effect was small
-and inconsistent: ΔPSI +0.149 in SH-SY5Y at 75 ng/mL (q = 0.033, 20
-versus 3 reads), +0.116 at 25 ng/mL (q = 0.14), and +0.020 in iPSC
-colonies (q = 0.82), the best-powered comparison with 441 versus 281
-reads (Supplementary Table S13). The junction-level estimate is larger
-than the rMATS estimate for the same exon in the same libraries (+0.149
-versus +0.059; Supplementary Table S15) because the two are not the same
-quantity: rMATS combines both flanking junctions and normalises by
-effective length, whereas the junction-level PSI is the share of the
-single downstream junction among all junctions leaving that donor, which
-is the more sensitive and the noisier of the two for a lowly used exon.
-On either measure the direction is reproducible and the magnitude is too
++0.0013, 95% CI −0.022 to +0.024; p = 0.914; Figure 4B; Supplementary
+Table S15). The three mouse datasets carry 86% of the weight, but the
+human datasets alone give the same answer (+0.031, 95% CI −0.030 to
++0.091; p = 0.32), and the estimates are not heterogeneous (Cochran’s Q
+= 4.84, 5 df, p = 0.44; I² = 0%). At junction level, inclusion of the
+SOAR exon (chr4:27,007,983–27,008,006) was positive in direction in all
+five TDP-43 comparisons in which it was measurable, but the effect was
+small and inconsistent. ΔPSI was +0.149 in SH-SY5Y at 75 ng/mL (q =
+0.033, 20 versus 3 reads), +0.116 at 25 ng/mL (q = 0.14) and +0.020 in
+iPSC colonies (q = 0.82), the best-powered comparison with 441 versus
+281 reads (Supplementary Table S13). The junction-level estimate is
+larger than the rMATS estimate for the same exon in the same libraries
+(+0.149 versus +0.059; Supplementary Table S15) because the two are not
+the same quantity. rMATS combines both flanking junctions and normalises
+by effective length. The junction-level PSI is the share of the single
+downstream junction among all junctions leaving that donor, which makes
+it the more sensitive and the noisier measure for a lowly used exon. On
+either measure the direction is reproducible and the magnitude is too
 small to support an isoform switch, and the negative conclusion of the
 meta-analysis stands.
 
@@ -1079,7 +1111,7 @@ general property of TDP-43 depletion.
 ### **3.9 TRPC1, SARAF and CBARP differ across ALS and neurological comparison cohorts**
 
 We next asked whether these transcript-level changes are present in
-patient tissue (Figure 4; Table 5).
+patient tissue (Figure 5; Table 5).
 
 In the NYGC ALS cohort, *TRPC1* was increased in six of the seven brain
 regions tested (Cliff’s δ = +0.447 to +0.699, q \< 0.05), the exception
@@ -1124,7 +1156,7 @@ reflected demyelination and loss of oligodendrocyte-lineage cells. In
 normal-appearing white matter, where the myelin markers MBP (δ =
 +0.051), PLP1 (−0.074), MOG (−0.257) and MAG (−0.299) were unchanged,
 *TRPC1* was lower at sample level (δ = −0.482, p = 0.005), although not
-after Benjamini–Hochberg correction (q = 0.10); because several samples
+after Benjamini–Hochberg correction (q = 0.10). Because several samples
 come from the same donor, we repeated the test with the donor as the
 unit of inference, which gave a larger difference (seven of ten multiple
 sclerosis donors with NAWM samples versus five control donors, δ =
@@ -1142,9 +1174,8 @@ setting in which *TRPC1* was significantly increased (Supplementary
 Figure S7).
 
 <figure>
-<img src="../figures/main/Figure4_ALS_expression.png"
-style="width:6.05in;height:4.68662in" />
-<figcaption><p><strong>Figure 4.</strong> ALS tissue expression of
+<img src="../figures/main/Figure5_ALS_expression.png" style="width:6.05in;height:4.68662in" />
+<figcaption><p><strong>Figure 5.</strong> ALS tissue expression of
 TRPC1, SARAF and CBARP by region. Cliff’s δ compares ALS with
 non-neurological controls within each NYGC region (case minus control);
 positive and negative values are shown with an accessible orange and
@@ -1187,14 +1218,15 @@ dependent. This combination defines a multilayered calcium-homeostasis
 phenotype rather than uniform suppression of one channel or one
 RNA-processing event.
 
-**Architecture of the functional phenotype.** The ER-release mean
-decreased from 0.268 to 0.180 Δ(F340/F380), while the subsequent SOCE
-amplitude showed a much larger proportional decrease. The transcript
-data identify two mechanistic layers that could act together. First,
-ATP2A2, which dominates the SERCA family in these cells, decreased
-modestly and could reduce the efficiency of ER refilling. Second, the
-ORAI family shifted sharply: ORAI3 rose from 8% to 30% of ORAI
-transcripts, ORAI2 decreased from 77% to 53%, and SARAF increased.
+**Architecture of the functional phenotype.** ER release fell by 33% and
+not significantly, whereas readdition fell by 84% and remained 77% lower
+when each culture was normalised to its own release, so a smaller
+releasable store does not account for most of the SOCE decrease. The
+transcript data identify two mechanistic layers that could act together.
+First, ATP2A2, which dominates the SERCA family in these cells,
+decreased modestly and could reduce the efficiency of ER refilling.
+Second, the ORAI family shifted sharply: ORAI3 rose from 8% to 30% of
+ORAI transcripts, ORAI2 decreased from 77% to 53%, and SARAF increased.
 Channel output depends on the relative abundance, assembly and
 localisation of STIM and ORAI proteins rather than their summed RNA
 abundance; even the STIM1:ORAI1 protein ratio can change CRAC-channel
@@ -1262,12 +1294,12 @@ change to arise from the same channel subunit.
 
 **RNA-processing specificity.** The annotation-free analysis recovered
 established TDP-43-dependent cryptic targets, including the STMN2 and
-UNC13A programs described across neuronal systems (Ling et al., 2015;
+UNC13A programmes described across neuronal systems (Ling et al., 2015;
 Melamed et al., 2019; Brown et al., 2022; Ma et al., 2022). Their
 recovery, together with their absence from the corresponding FUS and
 TAF15 knockdowns, supports the biological specificity of the analysis.
 The SOCE genes did not show an equivalent universal cryptic-splicing
-program. STMN2 shifted clearly in iPSC-derived motor neurons while the
+programme. STMN2 shifted clearly in iPSC-derived motor neurons while the
 SOCE machinery changed little in the APA analysis, and the NMD
 interaction analysis yielded no genome-wide significant gene. These
 results separate two levels of TDP-43 biology: canonical loss of RNA
@@ -1279,19 +1311,19 @@ processing events and broader changes in transcript-family composition.
 recurrent RNA-processing candidate: it was affected in five of six
 datasets across two species, was independently supported by the
 annotation-free analysis and showed the largest expression change among
-the SOCE-regulatory genes (Figure 5). BARP, the CBARP product, binds
-CaVβ subunits and suppresses voltage-gated Ca²⁺ channel activity and
-Ca²⁺-evoked exocytosis (Béguin et al., 2014). This established function
-concerns voltage-gated rather than store-operated channels, but it
-suggests that TDP-43 loss may remodel more than one route of calcium
-entry and secretion. TRPC1 provides a complementary comparison: reduced
-TRPC1-dependent entry has been linked to ER stress and loss of AKT/mTOR
-survival signalling in neuronal cells (Selvaraj et al., 2012), yet the
-apparent TRPC1 splicing event in our analysis failed replicate-level
-robustness checks. CBARP is therefore prioritised by recurrent RNA
-evidence, whereas TRPC1 remains a biologically plausible effector whose
-regulation is more likely to involve abundance, assembly or cellular
-context than a reproducible splice switch.
+the SOCE-regulatory genes (Figure 4C; Supplementary Figure S3). BARP,
+the CBARP product, binds CaVβ subunits and suppresses voltage-gated Ca²⁺
+channel activity and Ca²⁺-evoked exocytosis (Béguin et al., 2014). This
+established function concerns voltage-gated rather than store-operated
+channels, but it suggests that TDP-43 loss may remodel more than one
+route of calcium entry and secretion. TRPC1 provides a complementary
+comparison: reduced TRPC1-dependent entry has been linked to ER stress
+and loss of AKT/mTOR survival signalling in neuronal cells (Selvaraj et
+al., 2012), yet the apparent TRPC1 splicing event in our analysis failed
+replicate-level robustness checks. CBARP is therefore prioritised by
+recurrent RNA evidence, whereas TRPC1 remains a biologically plausible
+effector whose regulation is more likely to involve abundance, assembly
+or cellular context than a reproducible splice switch.
 
 **STIM2, STIMATE and ORAI3.** The 24-nucleotide exon that produces the
 inhibitory STIM2.1/STIM2β isoform was higher after knockdown in five of
@@ -1343,24 +1375,33 @@ broader calcium-network mechanisms and place the functional phenotype
 within a directly testable neurochemical framework.
 
 <figure>
-<img src="../figures/main/Figure6_working_model.png"
-style="width:6.15in;height:3.17511in" />
+<img src="../figures/main/Figure6_working_model.png" style="width:6.15in;height:3.37817in" />
 <figcaption><p><strong>Figure 6.</strong> Working model of the observed
-calcium phenotype and candidate RNA changes. The laboratory Fura-2 assay
-found a smaller readdition amplitude after TARDBP knockdown in SH-SY5Y
-cells. Public knockdown RNA-seq identified changes in calcium-regulatory
-transcripts and recurrent CBARP splicing. ATP2A2, ORAI-family
-composition and SARAF are potential contributors to store filling, entry
-and feedback; CBARP is placed on a parallel voltage-gated channel
-branch. Arrows indicate hypotheses for future perturbation, not
-demonstrated causal links.</p></figcaption>
+calcium phenotype and candidate RNA changes. Blue boxes and solid arrows
+summarise what was measured in the laboratory cultures after TARDBP
+knockdown: higher TRPC1, STIM1, ORAI1 and ATP2A3 mRNA, a smaller
+Ca²⁺-readdition amplitude and a smaller, non-significant decrease in ER
+Ca²⁺ release. Orange boxes are candidate mechanisms suggested by the
+public RNA-seq data; dashed arrows mark hypotheses for future
+perturbation, not demonstrated causal links. CBARP is placed on a
+parallel voltage-gated channel branch that was not measured
+here.</p></figcaption>
 </figure>
 
 ### Limitations
 
 TARDBP depletion was verified by RT-qPCR but not at the protein level,
 and one TDP-43-targeting shRNA was used without a rescue experiment. The
-Fura-2 (n = 3) and 48-h WST-1 (n = 4) results are descriptive. The
+Fura-2 comparison rests on three independent cultures per group, and the
+readdition signal was not characterised pharmacologically, for example
+with an ORAI channel inhibitor. The WST-1 signal is reported at 48 h
+only, from four wells of one experiment; it is not a cell count and
+cannot separate fewer cells from lower metabolic activity per cell.
+RT-qPCR was normalised to a single reference gene, GAPDH, whose Ct did
+not differ between groups. In the public inducible RNA-seq comparison
+GAPDH rose (log2FC +0.61) whereas TBP and B2M were stable; a similar
+rise in the laboratory cells would have led the target increases to be
+underestimated, and two-gene normalisation would be preferable. The
 laboratory assay used undifferentiated SH-SY5Y cells, whereas the public
 SH-SY5Y RNA-seq study used an inducible model and the motor-neuron
 datasets did not include matched Ca²⁺ measurements. Cuvette Fura-2

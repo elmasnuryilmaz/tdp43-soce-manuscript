@@ -222,6 +222,71 @@ close("SOCE knockdown mean", 0.245, x.loc["SOCE delta F340/F380 | shTDP-43", "me
 close("ER release control mean", 0.268, x.loc["ER Ca2+ release delta F340/F380 | Non-targeting shRNA control", "mean"])
 close("WST-1 48 h knockdown", 61.5, x.loc["WST-1 signal 48 h | shTDP-43", "mean"], tol=0.05)
 
+out.append("\n=== 25 September 2026 revision: Fura-2 tests, per-culture ratio, CBARP junction ===")
+from scipy import stats as _st
+_fp = pd.read_excel(f"{P}/supplementary/S1_laboratory_source_data.xlsx", sheet_name="Fura2_per_culture")
+_c = _fp[_fp.group == "Non-targeting shRNA control"]; _k = _fp[_fp.group == "shTDP-43"]
+
+
+def _welch(a, b):
+    va, vb = a.var(ddof=1) / len(a), b.var(ddof=1) / len(b)
+    df = (va + vb) ** 2 / (va ** 2 / (len(a) - 1) + vb ** 2 / (len(b) - 1))
+    d = b.mean() - a.mean(); h = _st.t.ppf(0.975, df) * np.sqrt(va + vb)
+    return d, d - h, d + h, _st.ttest_ind(a, b, equal_var=False).pvalue
+
+
+_d, _lo, _hi, _p = _welch(_c.readdition.to_numpy(), _k.readdition.to_numpy())
+close("readdition difference (-1.30)", -1.30, _d, tol=0.005)
+close("readdition 95% CI low (-2.40)", -2.40, _lo, tol=0.005)
+close("readdition 95% CI high (-0.19)", -0.19, _hi, tol=0.005)
+close("readdition Welch p (0.035)", 0.035, _p, tol=0.0005)
+_d, _lo, _hi, _p = _welch(_c.ER_release.to_numpy(), _k.ER_release.to_numpy())
+close("ER release difference (-0.09)", -0.09, _d, tol=0.005)
+close("ER release 95% CI low (-0.30)", -0.30, _lo, tol=0.005)
+close("ER release 95% CI high (+0.13)", 0.13, _hi, tol=0.005)
+close("ER release Welch p (0.31)", 0.31, _p, tol=0.005)
+close("ER release decrease (33%)", 33, 100 * (1 - _k.ER_release.mean() / _c.ER_release.mean()), tol=0.5)
+close("readdition decrease (84%)", 84, 100 * (1 - _k.readdition.mean() / _c.readdition.mean()), tol=0.5)
+_rc, _rk = _c.readdition_to_release_ratio, _k.readdition_to_release_ratio
+close("ratio control mean (5.88)", 5.88, _rc.mean(), tol=0.005)
+close("ratio control SEM (1.10)", 1.10, _rc.std(ddof=1) / np.sqrt(3), tol=0.005)
+close("ratio knockdown mean (1.36)", 1.36, _rk.mean(), tol=0.005)
+close("ratio knockdown SEM (0.01)", 0.01, _rk.std(ddof=1) / np.sqrt(3), tol=0.005)
+close("ratio decrease (77%)", 77, 100 * (1 - _rk.mean() / _rc.mean()), tol=0.5)
+close("every knockdown ratio below every control ratio", 1, int(_rk.max() < _rc.min()), tol=0)
+for _s in ["n = 3 independent cultures; Welch’s t-test p = 0.035",
+           "difference −1.30, 95% CI −2.40 to −0.19; Welch’s t-test p = 0.035",
+           "difference −0.09, 95% CI −0.30 to +0.13; p = 0.31",
+           "This ratio was 5.88 ± 1.10 in controls and 1.36 ± 0.01 after knockdown, 77% lower",
+           "Each group comprised three independent cultures (n = 3)"]:
+    check("present", _s, True)
+_j = pd.read_csv(f"{P}/source_data/CBARP_locus/CBARP_junction_counts_per_library.tsv", sep="\t")
+_share = []
+for (_ds, _g, _smp), _sub in _j.groupby(["dataset", "group", "sample"]):
+    _tot = _sub.loc[_sub.end == 1235500, "count"].sum()
+    _b = _sub.loc[(_sub.start == 1235343) & (_sub.end == 1235500), "count"].sum()
+    _share.append((_ds, _g, _b / _tot))
+_share = pd.DataFrame(_share, columns=["dataset", "group", "share"]).groupby(["dataset", "group"]).share.mean()
+close("CBARP junction b share, SH-SY5Y control (17%)", 17, 100 * _share[("SH-SY5Y", "Control")], tol=0.5)
+close("CBARP junction b share, SH-SY5Y knockdown (86%)", 86, 100 * _share[("SH-SY5Y", "TDP-43 KD")], tol=0.5)
+close("CBARP junction b share, iPSC control (1%)", 1, 100 * _share[("iPSC colonies", "Control")], tol=0.5)
+close("CBARP junction b share, iPSC knockdown (78%)", 78, 100 * _share[("iPSC colonies", "TDP-43 KD")], tol=0.5)
+_sh = _j[_j.dataset == "SH-SY5Y"].groupby(["group", "start", "end"])["count"].sum()
+close("SH-SY5Y junction b reads, knockdown (LSV test: 33)", 33, _sh[("TDP-43 KD", 1235343, 1235500)], tol=0)
+close("SH-SY5Y junction b reads, control (LSV test: 26)", 26, _sh[("Control", 1235343, 1235500)], tol=0)
+close("alternative 3' site to exon 5 acceptor distance (197 nt)", 197, 1235342 - 1235146 + 1, tol=0)
+check("present", "197 nucleotides upstream of the exon 5 acceptor", True)
+check("present", "carried 17% of exon-4 donor reads in SH-SY5Y controls and 86% after knockdown, and 1% and 78% in iPSC colonies", True)
+_first = {}
+for _m in re.finditer(r"Figures? (\d)", SEARCH_TXT):
+    _first.setdefault(int(_m.group(1)), _m.start())
+close("main figures first cited in numerical order", 1,
+      int([k for k, _ in sorted(_first.items(), key=lambda kv: kv[1])] == sorted(_first)), tol=0)
+for _s in ["without inferential tests", "These Fura-2 and WST-1 comparisons are descriptive",
+           "What reproduces is the involvement of the locus", "Figure5_CBARP_splicing",
+           "UNC13A programs", "cryptic-splicing program."]:
+    check("absent", _s, False)
+
 out.append("\n=== cross-file agreement and the corrected correction family ===")
 # Verify the accession inventory against the sample count stated in the manuscript.
 _s17 = pd.read_csv(f"{P}/supplementary/S17_dataset_accessions.csv")

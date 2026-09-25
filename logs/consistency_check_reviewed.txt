@@ -131,6 +131,45 @@ PASS  SOCE knockdown mean: manuscript 0.245 vs data 0.245
 PASS  ER release control mean: manuscript 0.268 vs data 0.268
 PASS  WST-1 48 h knockdown: manuscript 61.5 vs data 61.5
 
+=== 25 September 2026 revision: Fura-2 tests, per-culture ratio, CBARP junction ===
+PASS  readdition difference (-1.30): manuscript -1.3 vs data -1.2971616666666668
+PASS  readdition 95% CI low (-2.40): manuscript -2.4 vs data -2.3995911524422695
+PASS  readdition 95% CI high (-0.19): manuscript -0.19 vs data -0.19473218089106425
+PASS  readdition Welch p (0.035): manuscript 0.035 vs data 0.035441970039664726
+PASS  ER release difference (-0.09): manuscript -0.09 vs data -0.08795433333333333
+PASS  ER release 95% CI low (-0.30): manuscript -0.3 vs data -0.3037227176360606
+PASS  ER release 95% CI high (+0.13): manuscript 0.13 vs data 0.127814050969394
+PASS  ER release Welch p (0.31): manuscript 0.31 vs data 0.30682921569214067
+PASS  ER release decrease (33%): manuscript 33 vs data 32.815148571862075
+PASS  readdition decrease (84%): manuscript 84 vs data 84.11057292240788
+PASS  ratio control mean (5.88): manuscript 5.88 vs data 5.881017301600075
+PASS  ratio control SEM (1.10): manuscript 1.1 vs data 1.1044706664356003
+PASS  ratio knockdown mean (1.36): manuscript 1.36 vs data 1.360822444055126
+PASS  ratio knockdown SEM (0.01): manuscript 0.01 vs data 0.011408623219758328
+PASS  ratio decrease (77%): manuscript 77 vs data 76.86076448568038
+PASS  every knockdown ratio below every control ratio: manuscript 1 vs data 1
+PASS  present: n = 3 independent cultures; Welch’s t-test p = 0.035
+PASS  present: difference −1.30, 95% CI −2.40 to −0.19; Welch’s t-test p = 0.035
+PASS  present: difference −0.09, 95% CI −0.30 to +0.13; p = 0.31
+PASS  present: This ratio was 5.88 ± 1.10 in controls and 1.36 ± 0.01 after knockdown, 77% lower
+PASS  present: Each group comprised three independent cultures (n = 3)
+PASS  CBARP junction b share, SH-SY5Y control (17%): manuscript 17 vs data 17.447241291634885
+PASS  CBARP junction b share, SH-SY5Y knockdown (86%): manuscript 86 vs data 86.32478632478633
+PASS  CBARP junction b share, iPSC control (1%): manuscript 1 vs data 0.9014738523810253
+PASS  CBARP junction b share, iPSC knockdown (78%): manuscript 78 vs data 77.56964272195364
+PASS  SH-SY5Y junction b reads, knockdown (LSV test: 33): manuscript 33 vs data 33
+PASS  SH-SY5Y junction b reads, control (LSV test: 26): manuscript 26 vs data 26
+PASS  alternative 3' site to exon 5 acceptor distance (197 nt): manuscript 197 vs data 197
+PASS  present: 197 nucleotides upstream of the exon 5 acceptor
+PASS  present: carried 17% of exon-4 donor reads in SH-SY5Y controls and 86% after knockdown, and 1% and 
+PASS  main figures first cited in numerical order: manuscript 1 vs data 1
+PASS  absent: without inferential tests
+PASS  absent: These Fura-2 and WST-1 comparisons are descriptive
+PASS  absent: What reproduces is the involvement of the locus
+PASS  absent: Figure5_CBARP_splicing
+PASS  absent: UNC13A programs
+PASS  absent: cryptic-splicing program.
+
 === cross-file agreement and the corrected correction family ===
 PASS  S17 GSE138614 row count: manuscript 1 vs data 1
 PASS  S17 GSE138614 sample count: manuscript 98 vs data 98
@@ -329,7 +368,7 @@ PASS  STIM2.1 pooled CI high (+0.024): manuscript 0.024 vs data 0.02424458242178
 PASS  STIM2.1 pooled p (0.914): manuscript 0.914 vs data 0.9140196486392349
 PASS  STIM2.1 exon positive in five of six datasets: manuscript 5 vs data 5
 PASS  STIM2.1 Cochran's Q (4.84): manuscript 4.84 vs data 4.835615134691267
-PASS  STIM2.1 heterogeneity p (0.44): manuscript 0.44 vs data 0.4362697467925243
+PASS  STIM2.1 heterogeneity p (0.44): manuscript 0.44 vs data 0.43626974679252417
 PASS  STIM2.1 I2 (0%): manuscript 0 vs data 0.0
 PASS  STIM2.1 weight carried by the mouse datasets (86%): manuscript 0.86 vs data 0.8549007360636193
 PASS  STIM2.1 human-only pooled dPSI (+0.031): manuscript 0.031 vs data 0.030856860665233875
@@ -375,4 +414,4 @@ PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 337 passed, 0 failed ====
+==== 374 passed, 0 failed ====
