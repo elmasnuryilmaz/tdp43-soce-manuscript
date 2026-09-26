@@ -519,14 +519,17 @@ Non-targeting shRNA control and shTDP-43 cells were prepared for
 measurement 72 h after transduction, while puromycin selection was still
 in progress; the RNA of Section 2.13 came from parallel cultures of the
 same transduction on day 5, after selection was complete. Both groups
-were seeded in 24-well plates at the same density, 40,000 cells per
-well, and the samples of a group were prepared and measured on the same
-day. Cells were loaded with 5 µM Fura-2/AM (Invitrogen, F1221) and 0.02%
-Pluronic F-127 (Invitrogen, P3000MP) in HEPES-buffered saline (HBS)
-containing 1% bovine serum albumin (BSA) for 60 min at 25 °C in the dark
-and washed three times for 15 min in 1% BSA/HBS. HBS contained 135 mM
-NaCl, 5.9 mM KCl, 1.2 mM MgCl₂, 1.5 mM CaCl₂, 11.6 mM HEPES, 5 mM NaHCO₃
-and 11.5 mM D-glucose (pH 7.3). Cytosolic free Ca²⁺ was followed
+were seeded at the same density, 40,000 cells per well, onto disinfected
+glass coverslips in 24-well plates one day before the measurement, and
+the samples of a group were prepared and measured on the same day. Cells
+were measured while still attached to the coverslip, which was mounted
+in the cuvette, so they were neither trypsinised nor measured in
+suspension. Cells were loaded with 5 µM Fura-2/AM (Invitrogen, F1221)
+and 0.02% Pluronic F-127 (Invitrogen, P3000MP) in HEPES-buffered saline
+(HBS) containing 1% bovine serum albumin (BSA) for 60 min at 25 °C in
+the dark and washed three times for 15 min in 1% BSA/HBS. HBS contained
+135 mM NaCl, 5.9 mM KCl, 1.2 mM MgCl₂, 1.5 mM CaCl₂, 11.6 mM HEPES, 5 mM
+NaHCO₃ and 11.5 mM D-glucose (pH 7.3). Cytosolic free Ca²⁺ was followed
 spectrofluorometrically as the F340/F380 ratio (excitation 340 and 380
 nm, emission 510 nm; Grynkiewicz et al., 1985) on a cuvette-based
 QM8/2005 spectrofluorometer (Photon Technology International) with

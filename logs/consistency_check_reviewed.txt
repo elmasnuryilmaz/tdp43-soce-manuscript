@@ -137,7 +137,8 @@ PASS  smallest two-sided rank-test p at 3 vs 3: manuscript 0.1 vs data 0.1
 PASS  graphical abstract quotes the Welch p value: manuscript 1 vs data 1
 PASS  graphical abstract no longer quotes the Student p value: manuscript 0 vs data 0
 PASS  present: prepared for measurement 72 h after transduction, while puromycin selection was still in p
-PASS  present: seeded in 24-well plates at the same density, 40,000 cells per well
+PASS  present: onto disinfected glass coverslips in 24-well plates one day before the measurement
+PASS  present: measured while still attached to the coverslip, which was mounted in the cuvette
 PASS  present: the smallest two-sided p value attainable by a rank or permutation test is 0.10
 PASS  present: Amplification efficiencies were not determined
 PASS  present: was not re-measured in the June and July set
@@ -469,4 +470,4 @@ PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 425 passed, 0 failed ====
+==== 426 passed, 0 failed ====

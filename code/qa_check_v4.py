@@ -234,7 +234,8 @@ _ga = io.open(f"{P}/figures/graphical_abstract.svg", encoding="utf-8").read()
 close("graphical abstract quotes the Welch p value", 1, int("p = 0.035" in _ga), tol=0)
 close("graphical abstract no longer quotes the Student p value", 0, int("0.0115" in _ga), tol=0)
 for _s in ["prepared for measurement 72 h after transduction, while puromycin selection was still in progress",
-           "seeded in 24-well plates at the same density, 40,000 cells per well",
+           "onto disinfected glass coverslips in 24-well plates one day before the measurement",
+           "measured while still attached to the coverslip, which was mounted in the cuvette",
            "the smallest two-sided p value attainable by a rank or permutation test is 0.10",
            "Amplification efficiencies were not determined",
            "was not re-measured in the June and July set",
