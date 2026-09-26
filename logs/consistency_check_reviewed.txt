@@ -278,7 +278,7 @@ PASS  present: the three mouse comparisons have no conserved control
 PASS  present: *ORAI3* went from 8% to 30% of ORAI transcripts and *ORAI2* from 77% to 53%
 PASS  present: The STIM (+48%) and SOCE-regulator (+30%) pools also rose, whereas the SERCA and mitochond
 PASS  present: the median gene expressed in both groups (mean TPM > 5) had 24% lower TPM
-PASS  present: The *STIM2* unit is not an independent observation
+PASS  present: Neither is independent of the splicing results
 PASS  present: Yoast RE, Emrich SM, Zhang X, et al.
 PASS  present: 3⁶ = 729 combinations for the three-versus-three comparisons and 2⁴ = 16
 PASS  present: Total *STMN2* expression was therefore not used as a specific indicator

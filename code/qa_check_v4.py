@@ -445,7 +445,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six brain regi
           "*ORAI3* went from 8% to 30% of ORAI transcripts and *ORAI2* from 77% to 53%",
           "The STIM (+48%) and SOCE-regulator (+30%) pools also rose, whereas the SERCA and mitochondrial-uptake pools fell (−12% and −25%)",
           "the median gene expressed in both groups (mean TPM > 5) had 24% lower TPM",
-          "The *STIM2* unit is not an independent observation",
+          "Neither is independent of the splicing results",
           "Yoast RE, Emrich SM, Zhang X, et al.",
           "3\u2076 = 729 combinations for the three-versus-three comparisons and 2\u2074 = 16",
           "Total *STMN2* expression was therefore not used as a specific indicator",
