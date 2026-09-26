@@ -130,6 +130,7 @@ PASS  SOCE control mean: manuscript 1.542 vs data 1.542
 PASS  SOCE knockdown mean: manuscript 0.245 vs data 0.245
 PASS  ER release control mean: manuscript 0.268 vs data 0.268
 PASS  WST-1 48 h knockdown: manuscript 61.5 vs data 61.5
+PASS  manuscript and DATA_AVAILABILITY name the same release: manuscript 1 vs data 1
 
 === 25 September 2026 audit corrections ===
 PASS  proxy correlations, number of tests: manuscript 30 vs data 30
@@ -450,4 +451,4 @@ PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 408 passed, 0 failed ====
+==== 409 passed, 0 failed ====

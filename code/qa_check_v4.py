@@ -223,6 +223,9 @@ close("ER release control mean", 0.268, x.loc["ER Ca2+ release delta F340/F380 |
 close("WST-1 48 h knockdown", 61.5, x.loc["WST-1 signal 48 h | shTDP-43", "mean"], tol=0.05)
 
 import subprocess as _sp
+close("manuscript and DATA_AVAILABILITY name the same release", 1,
+      int(len(set(re.findall(r"releases/tag/(v\d+\.\d+\.\d+)",
+                            TXT + io.open(f"{P}/DATA_AVAILABILITY.md", encoding="utf-8").read()))) == 1), tol=0)
 out.append("\n=== 25 September 2026 audit corrections ===")
 _s9 = pd.read_csv(f"{P}/supplementary/S9_cryptic_PSI_correlations_within_ALS.csv")
 _s9 = _s9[(_s9.proxy == "cryptic STMN2 PSI") & _s9.target_gene.isin(["TRPC1", "SARAF", "CBARP"])
