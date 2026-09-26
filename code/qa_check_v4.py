@@ -226,6 +226,29 @@ import subprocess as _sp
 close("manuscript and DATA_AVAILABILITY name the same release", 1,
       int(len(set(re.findall(r"releases/tag/(v\d+\.\d+\.\d+)",
                             TXT + io.open(f"{P}/DATA_AVAILABILITY.md", encoding="utf-8").read()))) == 1), tol=0)
+out.append("\n=== 26 September 2026 referee round ===")
+from scipy import stats as _st2
+close("smallest two-sided rank-test p at 3 vs 3", 0.10,
+      _st2.mannwhitneyu([3, 2, 1], [6, 5, 4], alternative="two-sided").pvalue, tol=0.001)
+_ga = io.open(f"{P}/figures/graphical_abstract.svg", encoding="utf-8").read()
+close("graphical abstract quotes the Welch p value", 1, int("p = 0.035" in _ga), tol=0)
+close("graphical abstract no longer quotes the Student p value", 0, int("0.0115" in _ga), tol=0)
+for _s in ["prepared for measurement 72 h after transduction, while puromycin selection was still in progress",
+           "seeded in 24-well plates at the same density, 40,000 cells per well",
+           "the smallest two-sided p value attainable by a rank or permutation test is 0.10",
+           "Amplification efficiencies were not determined",
+           "was not re-measured in the June and July set",
+           "GSE307054, the dataset of a preprint",
+           "SARAF and CBARP changed in the same direction in cervical and lumbar cord",
+           "a smaller release also means weaker STIM activation",
+           "neither the cell number nor the dye loading of each cuvette was recorded",
+           "BTP2, Synta66 or Gd³⁺",
+           "the novel-site junction at this locus carried six",
+           "the y axis spans 0–3 in A and 0.5–1.5 in B"]:
+    check("present", _s, True)
+_reps = len(re.findall(r"three independent cultures", SEARCH_TXT))
+close("the replicate structure is described the same way throughout", 4, _reps, tol=0)
+
 out.append("\n=== 25 September 2026 audit corrections ===")
 _s9 = pd.read_csv(f"{P}/supplementary/S9_cryptic_PSI_correlations_within_ALS.csv")
 _s9 = _s9[(_s9.proxy == "cryptic STMN2 PSI") & _s9.target_gene.isin(["TRPC1", "SARAF", "CBARP"])

@@ -25,10 +25,11 @@ alternative polyadenylation and nonsense-mediated decay. CBARP was the
 most reproducible splicing candidate across species, whereas STIM2,
 STIMATE and ORAI3 events were supported in the primary RNA-seq model. No
 confirmed RNA-processing event in the core SOCE machinery explained the
-functional change. In ALS brain, TRPC1 and SARAF increased and CBARP
-decreased in six brain regions, but these tissue associations could not
-be attributed to TDP-43 loss. TDP-43 knockdown is associated with
-reduced SOCE and altered calcium-regulatory RNA profiles, without
+functional change. In ALS tissue, TRPC1 and SARAF increased and CBARP
+decreased in six brain regions, and SARAF and CBARP changed in the same
+direction in cervical and lumbar cord, but these tissue associations
+could not be attributed to TDP-43 loss. TDP-43 knockdown is associated
+with reduced SOCE and altered calcium-regulatory RNA profiles, without
 evidence for a single causal RNA event.
 
 **Keywords:** TDP-43; store-operated Ca²⁺ entry; calcium homeostasis;
@@ -315,12 +316,12 @@ least 3.
 
 ### **2.8 Nonsense-mediated decay inhibition**
 
-Gene-level counts were obtained from GSE307054 (Sinha et al., 2025;
-i3Neurons; TDP-43 knockdown crossed with knockdown of XRN1, UPF1 and
-SMG6 in four combinations, two replicates each) and normalised with the
-authors’ size factors. Sequencing batch is confounded with TDP-43 status
-in that design, so the interaction was formed as a difference of
-within-batch differences:
+Gene-level counts were obtained from GSE307054, the dataset of a
+preprint (Sinha et al., 2025; i3Neurons; TDP-43 knockdown crossed with
+knockdown of XRN1, UPF1 and SMG6 in four combinations, two replicates
+each) and normalised with the authors’ size factors. Sequencing batch is
+confounded with TDP-43 status in that design, so the interaction was
+formed as a difference of within-batch differences:
 
 *interaction(c) = \[log2(TDP-43 knockdown + NMD inhibition c) −
 log2(TDP-43 knockdown)\] − \[log2(control + NMD inhibition c) −
@@ -503,39 +504,50 @@ profile are given in Supplementary Table S1.
 
 GAPDH was used as the sole reference gene because its mean Ct was
 essentially unchanged in the four-target RNA set: 19.49 in non-targeting
-shRNA controls and 19.50 in shTDP-43 cells (n = 4 each). Reporting
-guidelines for quantitative PCR recommend at least two validated
-reference genes; the single-reference design is therefore listed among
-the limitations.
+shRNA controls and 19.50 in shTDP-43 cells (n = 4 each). Amplification
+efficiencies were not determined for the individual assays, and the
+2^(−ΔΔCt) calculation therefore assumes near-equal efficiencies.
+Knockdown was verified in the RNA set collected in April and May and was
+not re-measured in the June and July set in which the four targets were
+quantified. Reporting guidelines for quantitative PCR recommend at least
+two validated reference genes, so the single-reference design and these
+two points are listed among the limitations.
 
 ### **2.14 Cytosolic Ca²⁺ measurement**
 
-Non-targeting shRNA control and shTDP-43 cells were seeded in 24-well
-plates at 40,000 cells per well. Cells were loaded with 5 µM Fura-2/AM
-(Invitrogen, F1221) and 0.02% Pluronic F-127 (Invitrogen, P3000MP) in
-HEPES-buffered saline (HBS) containing 1% bovine serum albumin (BSA) for
-60 min at 25 °C in the dark and washed three times for 15 min in 1%
-BSA/HBS. HBS contained 135 mM NaCl, 5.9 mM KCl, 1.2 mM MgCl₂, 1.5 mM
-CaCl₂, 11.6 mM HEPES, 5 mM NaHCO₃ and 11.5 mM D-glucose (pH 7.3).
-Cytosolic free Ca²⁺ was followed spectrofluorometrically as the
-F340/F380 ratio (excitation 340 and 380 nm, emission 510 nm; Grynkiewicz
-et al., 1985) on a cuvette-based QM8/2005 spectrofluorometer (Photon
-Technology International) with peristaltic perfusion, following the
-protocol of Selli et al. (2009). Loaded cells were transferred to
-Ca²⁺-free HBS containing 1 mM EGTA; SERCA was then inhibited with 10 µM
-cyclopiazonic acid (Sigma-Aldrich, cat. no. C1530) and the transient
-rise in F340/F380 was recorded as ER Ca²⁺ release. CaCl₂ was then
-introduced at a nominal concentration of 1.5 mM and the subsequent rise
-was recorded as store-operated Ca²⁺ entry (SOCE), following the
-established depletion–readdition paradigm. Peak amplitudes in both
-phases were quantified as Δ(F340/F380) relative to the respective
-preceding baseline. Each group comprised three independent cultures (n =
-3), and both phases were read from the same recording of each culture.
+Non-targeting shRNA control and shTDP-43 cells were prepared for
+measurement 72 h after transduction, while puromycin selection was still
+in progress; the RNA of Section 2.13 came from parallel cultures of the
+same transduction on day 5, after selection was complete. Both groups
+were seeded in 24-well plates at the same density, 40,000 cells per
+well, and the samples of a group were prepared and measured on the same
+day. Cells were loaded with 5 µM Fura-2/AM (Invitrogen, F1221) and 0.02%
+Pluronic F-127 (Invitrogen, P3000MP) in HEPES-buffered saline (HBS)
+containing 1% bovine serum albumin (BSA) for 60 min at 25 °C in the dark
+and washed three times for 15 min in 1% BSA/HBS. HBS contained 135 mM
+NaCl, 5.9 mM KCl, 1.2 mM MgCl₂, 1.5 mM CaCl₂, 11.6 mM HEPES, 5 mM NaHCO₃
+and 11.5 mM D-glucose (pH 7.3). Cytosolic free Ca²⁺ was followed
+spectrofluorometrically as the F340/F380 ratio (excitation 340 and 380
+nm, emission 510 nm; Grynkiewicz et al., 1985) on a cuvette-based
+QM8/2005 spectrofluorometer (Photon Technology International) with
+peristaltic perfusion, following the protocol of Selli et al. (2009).
+Loaded cells were transferred to Ca²⁺-free HBS containing 1 mM EGTA;
+SERCA was then inhibited with 10 µM cyclopiazonic acid (Sigma-Aldrich,
+cat. no. C1530) and the transient rise in F340/F380 was recorded as ER
+Ca²⁺ release. CaCl₂ was then introduced at a nominal concentration of
+1.5 mM and the subsequent rise was recorded as store-operated Ca²⁺ entry
+(SOCE), following the established depletion–readdition paradigm. Peak
+amplitudes in both phases were quantified as Δ(F340/F380) relative to
+the respective preceding baseline. Each group comprised three
+independent cultures (n = 3), and both phases were read from the same
+recording of each culture.
 
 The Fura-2 ratio records net cytosolic Ca²⁺ accumulation; the
 measurement does not isolate membrane influx from extrusion or ER
 re-uptake. Free extracellular Ca²⁺ after readdition was not measured
-independently.
+independently, and neither the cell number nor the dye loading of each
+cuvette was recorded, so a difference in either between the groups
+cannot be excluded.
 
 ### **2.15 WST-1 assay**
 
@@ -560,11 +572,14 @@ amplitudes from three independent cultures per group were compared with
 Welch’s two-tailed t-test (SciPy v1.12.0), which does not assume equal
 variances, and are reported with the difference in means and its 95%
 confidence interval; these two pre-specified comparisons were not
-adjusted for multiplicity. The readdition-to-release ratio of each
-culture was summarised descriptively. The 48-h WST-1 wells (n = 4) come
-from one experiment and were summarised descriptively, because wells
-within an experiment are not independent replicates. Significance was
-set at p \< 0.05, Holm-adjusted for the four-target RT-qPCR family.
+adjusted for multiplicity. With three samples per group the smallest
+two-sided p value attainable by a rank or permutation test is 0.10, so
+these comparisons rest on the parametric assumption of Welch’s test
+rather than on a distribution-free one. The readdition-to-release ratio
+of each culture was summarised descriptively. The 48-h WST-1 wells (n =
+4) come from one experiment and were summarised descriptively, because
+wells within an experiment are not independent replicates. Significance
+was set at p \< 0.05, Holm-adjusted for the four-target RT-qPCR family.
 
 ## **3. Results**
 
@@ -621,15 +636,17 @@ directions. This is the central observation of the study.
 <figcaption><p><strong>Figure 2.</strong> Fura-2 calcium measurements
 following TDP-43 knockdown in SH-SY5Y cells. (A, B) Original
 representative traces from non-targeting shRNA control and shTDP-43
-cells, shown at their native axis ranges. CPA (10 µM) and CaCl₂
-(nominally 1.5 mM) additions are indicated. (C) ER Ca²⁺ release after
-CPA. (D) Ca²⁺-readdition amplitude. Panels C and D show the three
-independent cultures per group and mean ± SEM (readdition, Welch’s
-t-test p = 0.035; ER release, p = 0.31). (E) The recordings in A and B
-replotted from their exported ratio values on common axes, with time
-aligned to the steepest point of the readdition rise. The traces
-illustrate individual recordings; group amplitudes were calculated from
-the original Prism measurements.</p></figcaption>
+cells, each shown at the axis range of its own recording: the y axis
+spans 0–3 in A and 0.5–1.5 in B, and the time windows differ, so the two
+panels are not directly comparable by eye; panel E replots them on
+common axes. CPA (10 µM) and CaCl₂ (nominally 1.5 mM) additions are
+indicated. (C) ER Ca²⁺ release after CPA. (D) Ca²⁺-readdition amplitude.
+Panels C and D show the three independent cultures per group and mean ±
+SEM (readdition, Welch’s t-test p = 0.035; ER release, p = 0.31). (E)
+The recordings in A and B replotted from their exported ratio values on
+common axes, with time aligned to the steepest point of the readdition
+rise. The traces illustrate individual recordings; group amplitudes were
+calculated from the original Prism measurements.</p></figcaption>
 </figure>
 
 ### **3.2 Transcript-family abundance contextualises the discordance**
@@ -1380,21 +1397,33 @@ here.</p></figcaption>
 
 TARDBP depletion was verified by RT-qPCR but not at the protein level,
 and one TDP-43-targeting shRNA was used without a rescue experiment. The
-Fura-2 comparison rests on three independent cultures per group, and the
-readdition signal was not characterised pharmacologically, for example
-with an ORAI channel inhibitor. The WST-1 signal is reported at 48 h
-only, from four wells of one experiment; it is not a cell count and
-cannot separate fewer cells from lower metabolic activity per cell.
-RT-qPCR was normalised to a single reference gene, GAPDH, whose Ct did
-not differ between groups. In the public inducible RNA-seq comparison
-GAPDH rose (log2FC +0.61) whereas TBP and B2M were stable; a similar
-rise in the laboratory cells would have led the target increases to be
-underestimated, and two-gene normalisation would be preferable. The
-laboratory assay used undifferentiated SH-SY5Y cells, whereas the public
-SH-SY5Y RNA-seq study used an inducible model and the motor-neuron
-datasets did not include matched Ca²⁺ measurements. Cuvette Fura-2
-ratios report net cytosolic accumulation and do not separate influx from
-extrusion or reuptake.
+Fura-2 comparison rests on three independent cultures per group. At that
+size no rank or permutation test can reach a two-sided p below 0.10, so
+the difference is supported by a parametric test alone and would be more
+convincing with five to six cultures per group. The readdition signal
+was not characterised pharmacologically, for example with a
+store-operated channel blocker such as BTP2, Synta66 or Gd³⁺, so it is
+defined by the depletion–readdition protocol rather than by
+pharmacology. The WST-1 signal is reported at 48 h only, from four wells
+of one experiment; it is not a cell count and cannot separate fewer
+cells from lower metabolic activity per cell. Because metabolic activity
+was 38.5% lower, a smaller or less healthy cell population could
+contribute to the smaller Fura-2 signal; the ratiometric readout is in
+principle independent of cell number, but neither cell number nor
+maximum response was measured in the cuvettes. RT-qPCR was normalised to
+a single reference gene, GAPDH, whose Ct did not differ between groups.
+In the public inducible RNA-seq comparison GAPDH rose (log2FC +0.61)
+whereas TBP and B2M were stable; a similar rise in the laboratory cells
+would have led the target increases to be underestimated, and two-gene
+normalisation would be preferable. The laboratory assay used
+undifferentiated SH-SY5Y cells, whereas the public SH-SY5Y RNA-seq study
+used an inducible model and the motor-neuron datasets did not include
+matched Ca²⁺ measurements. Cuvette Fura-2 ratios report net cytosolic
+accumulation and do not separate influx from extrusion or reuptake.
+Normalising readdition to the release of the same culture removes
+differences in store content but not their consequences, because a
+smaller release also means weaker STIM activation, so the ratio bounds
+rather than eliminates the contribution of the store.
 
 Bulk post-mortem expression can reflect cell composition, and age, RNA
 integrity and post-mortem interval were not modelled as covariates. The
@@ -1957,7 +1986,15 @@ set, with the number of genes carrying them in parentheses (Methods
 genes (Supplementary Table S6); n/a, not assessed in mouse. The null
 column gives the high-confidence calls of the control-versus-control
 split and their ratio to the real calls; NA, fewer than four control
-replicates. iPSC-MN, iPSC-derived motor neurons; KD, knockdown.
+replicates. In the Tier 1, SOCE-machinery and positive-control columns
+NA means that no gene of that set carried a high-confidence call,
+whereas in the null column it means that the dataset has fewer than four
+control replicates. The CBARP junction of Section 3.5 is not counted for
+SH-SY5Y: the high-confidence definition requires a novel splice site
+carrying at least 20 knockdown reads, and the novel-site junction at
+this locus carried six, while the junction that changes most in SH-SY5Y
+uses two annotated sites and is already used in controls (17% of exon-4
+donor reads). iPSC-MN, iPSC-derived motor neurons; KD, knockdown.
 
 **Table 5.** Cross-disease comparison of *TRPC1*, *SARAF* and *CBARP*.
 

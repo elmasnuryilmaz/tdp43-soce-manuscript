@@ -132,6 +132,24 @@ PASS  ER release control mean: manuscript 0.268 vs data 0.268
 PASS  WST-1 48 h knockdown: manuscript 61.5 vs data 61.5
 PASS  manuscript and DATA_AVAILABILITY name the same release: manuscript 1 vs data 1
 
+=== 26 September 2026 referee round ===
+PASS  smallest two-sided rank-test p at 3 vs 3: manuscript 0.1 vs data 0.1
+PASS  graphical abstract quotes the Welch p value: manuscript 1 vs data 1
+PASS  graphical abstract no longer quotes the Student p value: manuscript 0 vs data 0
+PASS  present: prepared for measurement 72 h after transduction, while puromycin selection was still in p
+PASS  present: seeded in 24-well plates at the same density, 40,000 cells per well
+PASS  present: the smallest two-sided p value attainable by a rank or permutation test is 0.10
+PASS  present: Amplification efficiencies were not determined
+PASS  present: was not re-measured in the June and July set
+PASS  present: GSE307054, the dataset of a preprint
+PASS  present: SARAF and CBARP changed in the same direction in cervical and lumbar cord
+PASS  present: a smaller release also means weaker STIM activation
+PASS  present: neither the cell number nor the dye loading of each cuvette was recorded
+PASS  present: BTP2, Synta66 or Gd³⁺
+PASS  present: the novel-site junction at this locus carried six
+PASS  present: the y axis spans 0–3 in A and 0.5–1.5 in B
+PASS  the replicate structure is described the same way throughout: manuscript 4 vs data 4
+
 === 25 September 2026 audit corrections ===
 PASS  proxy correlations, number of tests: manuscript 30 vs data 30
 PASS  proxy correlations, lowest rho: manuscript -0.29 vs data -0.294
@@ -451,4 +469,4 @@ PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 409 passed, 0 failed ====
+==== 425 passed, 0 failed ====

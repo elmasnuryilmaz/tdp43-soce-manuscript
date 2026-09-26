@@ -66,7 +66,8 @@ bx.errorbar([0, 1], [soce_c, soce_k], yerr=[soce_ce, soce_ke], fmt="none", color
 bx.set_xticks([0, 1]); bx.set_xticklabels(["non-targeting", "TDP-43 KD"], fontsize=8)
 bx.set_ylabel("SOCE  Δ(F340/F380)", fontsize=8)
 bx.set_ylim(0, 2.1); bx.tick_params(labelsize=7.5)
-bx.annotate(f"−{100*(1-soce_k/soce_c):.0f}%\np = 0.0115", xy=(1, soce_k + .18), ha="center",
+# Welch's two-tailed t-test, the test reported in Methods 2.16 and Section 3.1
+bx.annotate(f"−{100*(1-soce_k/soce_c):.0f}%\np = 0.035", xy=(1, soce_k + .18), ha="center",
             fontsize=8.5, weight="bold", color=KD_C)
 ax.set_title("A · Store-operated Ca²⁺ entry falls", loc="left")
 
@@ -144,6 +145,7 @@ fig.text(0.5, -0.055,
          ha="center", fontsize=9, color="#444")
 fig.savefig(OUT + ".png")
 fig.savefig(OUT + ".pdf")
+fig.savefig(OUT + ".svg")
 plt.close(fig)
 print("written:", OUT + ".png")
 print(f"  SOCE {soce_c:.3f} -> {soce_k:.3f} ({100*(1-soce_k/soce_c):.0f}% drop)")
