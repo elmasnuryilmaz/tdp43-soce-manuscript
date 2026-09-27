@@ -575,14 +575,19 @@ amplitudes from three independent cultures per group were compared with
 Welch’s two-tailed t-test (SciPy v1.12.0), which does not assume equal
 variances, and are reported with the difference in means and its 95%
 confidence interval; these two pre-specified comparisons were not
-adjusted for multiplicity. With three samples per group the smallest
-two-sided p value attainable by a rank or permutation test is 0.10, so
-these comparisons rest on the parametric assumption of Welch’s test
-rather than on a distribution-free one. The readdition-to-release ratio
-of each culture was summarised descriptively. The 48-h WST-1 wells (n =
-4) come from one experiment and were summarised descriptively, because
-wells within an experiment are not independent replicates. Significance
-was set at p \< 0.05, Holm-adjusted for the four-target RT-qPCR family.
+adjusted for multiplicity. Effect sizes are Hedges’ g, the
+small-sample-corrected standardised mean difference, with the interval
+of Hedges and Olkin; at three samples per group the point estimate is
+large but its interval is correspondingly wide, so it describes the size
+of the difference rather than establishing it. With three samples per
+group the smallest two-sided p value attainable by a rank or permutation
+test is 0.10, so these comparisons rest on the parametric assumption of
+Welch’s test rather than on a distribution-free one. The
+readdition-to-release ratio of each culture was summarised
+descriptively. The 48-h WST-1 wells (n = 4) come from one experiment and
+were summarised descriptively, because wells within an experiment are
+not independent replicates. Significance was set at p \< 0.05,
+Holm-adjusted for the four-target RT-qPCR family.
 
 ## **3. Results**
 
@@ -610,8 +615,9 @@ shTDP-43 cells (n = 4; one-way ANOVA on log2 values with Tukey’s test;
 **** p &lt; 0.0001 for the indicated pair). (B) Relative mRNA of TRPC1,
 STIM1, ORAI1 and ATP2A3 (n = 4; two-tailed t-tests with Holm adjustment
 across the four targets; ** adjusted p &lt; 0.01, *** adjusted p &lt;
-0.001). (C) WST-1 metabolic signal at 48 h (n = 4; descriptive summary
-only). Bars represent means ± SEM; dots are individual
+0.001). (C) WST-1 metabolic signal at 48 h (n = 4 wells of a single
+experiment, that is technical replicates; summarised descriptively and
+not tested). Bars represent means ± SEM; dots are individual
 measurements.</p></figcaption>
 </figure>
 
@@ -619,17 +625,19 @@ The Fura-2 Ca²⁺-readdition amplitude was markedly lower in shTDP-43
 cells (Figure 2). The readdition amplitude fell from 1.542 ± 0.282 to
 0.245 ± 0.083 Δ(F340/F380) (mean ± SEM, n = 3 independent cultures per
 group; difference −1.30, 95% CI −2.40 to −0.19; Welch’s t-test p =
-0.035). ER Ca²⁺ release fell less and not significantly, from 0.268 ±
-0.042 to 0.180 ± 0.061 (difference −0.09, 95% CI −0.30 to +0.13; p =
-0.31). Because both phases come from the same recording, readdition was
+0.035; Hedges’ g = −2.9, 95% CI −5.3 to −0.5). ER Ca²⁺ release fell less
+and not significantly, from 0.268 ± 0.042 to 0.180 ± 0.061 (difference
+−0.09, 95% CI −0.30 to +0.13; p = 0.31; Hedges’ g = −0.8, 95% CI −2.2 to
++0.6). Because both phases come from the same recording, readdition was
 also expressed relative to each culture’s own release. This ratio was
-5.88 ± 1.10 in controls and 1.36 ± 0.01 after knockdown, 77% lower, and
-every shTDP-43 culture had a lower ratio than every control culture
-(Supplementary Table S1). A smaller releasable store therefore does not
-account for most of the decrease. Plotted on common axes, the two
-representative recordings had similar baselines before readdition
-(Figure 2E). At 48 h, the WST-1 signal was 61.5 ± 0.8% of control, a
-38.5% decrease (n = 4 wells; descriptive; Figure 1C).
+5.88 ± 1.10 in controls and 1.36 ± 0.01 after knockdown, 77% lower
+(Hedges’ g = −2.7, 95% CI −4.9 to −0.4), and every shTDP-43 culture had
+a lower ratio than every control culture (Supplementary Table S1). A
+smaller releasable store therefore does not account for most of the
+decrease. Plotted on common axes, the two representative recordings had
+similar baselines before readdition (Figure 2E). At 48 h, the WST-1
+signal was 61.5 ± 0.8% of control, a 38.5% decrease (n = 4 wells;
+descriptive; Figure 1C).
 
 The transcript changes and functional change are therefore in opposite
 directions. This is the central observation of the study.
@@ -637,8 +645,9 @@ directions. This is the central observation of the study.
 <figure>
 <img src="../figures/main/Figure2_calcium_responses.png" style="width:6.05in;height:7.435in" />
 <figcaption><p><strong>Figure 2.</strong> Fura-2 calcium measurements
-following TDP-43 knockdown in SH-SY5Y cells. (A, B) Original
-representative traces from non-targeting shRNA control and shTDP-43
+following TDP-43 knockdown in SH-SY5Y cells. (A, B) The original
+recordings, exported from the GraphPad Prism trace project and
+reproduced here unchanged, from non-targeting shRNA control and shTDP-43
 cells, each shown at the axis range of its own recording: the y axis
 spans 0–3 in A and 0.5–1.5 in B, and the time windows differ, so the two
 panels are not directly comparable by eye; panel E replots them on
@@ -646,10 +655,12 @@ common axes. CPA (10 µM) and CaCl₂ (nominally 1.5 mM) additions are
 indicated. (C) ER Ca²⁺ release after CPA. (D) Ca²⁺-readdition amplitude.
 Panels C and D show the three independent cultures per group and mean ±
 SEM (readdition, Welch’s t-test p = 0.035; ER release, p = 0.31). (E)
-The recordings in A and B replotted from their exported ratio values on
-common axes, with time aligned to the steepest point of the readdition
-rise. The traces illustrate individual recordings; group amplitudes were
-calculated from the original Prism measurements.</p></figcaption>
+The same two recordings as in A and B, that is the same measured
+F340/F380 values exported from that Prism project, drawn on common axes
+so that the two can be compared directly; time is aligned to the
+steepest point of the readdition rise and no value is smoothed or
+rescaled. The traces illustrate individual recordings; group amplitudes
+were calculated from the original Prism measurements.</p></figcaption>
 </figure>
 
 ### **3.2 Transcript-family abundance contextualises the discordance**
@@ -1093,7 +1104,10 @@ poly(A) site.
 
 Taken together, these analyses support altered calcium-related RNA
 profiles but do not establish whether any SOCE-machinery gene is a
-direct target of cryptic splicing, APA or NMD-coupled degradation.
+direct target of cryptic splicing, APA or NMD-coupled degradation. The
+NMD and APA screens are hypothesis-generating: the first because batch
+is confounded with TDP-43 status, the second because it measures
+coverage gradients rather than poly(A) sites.
 
 ### **3.8 Enrichment of splicing changes in Ca²⁺ genes is model-dependent**
 

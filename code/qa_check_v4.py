@@ -245,7 +245,15 @@ for _s in ["prepared for measurement 72 h after transduction, while puromycin se
            "neither the cell number nor the dye loading of each cuvette was recorded",
            "BTP2, Synta66 or Gd³⁺",
            "the novel-site junction at this locus carried six",
-           "the y axis spans 0–3 in A and 0.5–1.5 in B"]:
+           "the y axis spans 0–3 in A and 0.5–1.5 in B",
+           "The original recordings, exported from the GraphPad Prism trace project and reproduced here unchanged",
+           "The same two recordings as in A and B, that is the same measured F340/F380 values exported from that Prism project",
+           "no value is smoothed or rescaled",
+           "Hedges’ g = −2.9, 95% CI −5.3 to −0.5",
+           "Hedges’ g = −0.8, 95% CI −2.2 to +0.6",
+           "Hedges’ g = −2.7, 95% CI −4.9 to −0.4",
+           "n = 4 wells of a single experiment, that is technical replicates; summarised descriptively and not tested",
+           "The NMD and APA screens are hypothesis-generating"]:
     check("present", _s, True)
 _reps = len(re.findall(r"three independent cultures", SEARCH_TXT))
 close("the replicate structure is described the same way throughout", 4, _reps, tol=0)

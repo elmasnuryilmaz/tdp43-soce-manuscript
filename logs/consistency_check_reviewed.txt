@@ -149,6 +149,14 @@ PASS  present: neither the cell number nor the dye loading of each cuvette was r
 PASS  present: BTP2, Synta66 or Gd³⁺
 PASS  present: the novel-site junction at this locus carried six
 PASS  present: the y axis spans 0–3 in A and 0.5–1.5 in B
+PASS  present: The original recordings, exported from the GraphPad Prism trace project and reproduced her
+PASS  present: The same two recordings as in A and B, that is the same measured F340/F380 values exported
+PASS  present: no value is smoothed or rescaled
+PASS  present: Hedges’ g = −2.9, 95% CI −5.3 to −0.5
+PASS  present: Hedges’ g = −0.8, 95% CI −2.2 to +0.6
+PASS  present: Hedges’ g = −2.7, 95% CI −4.9 to −0.4
+PASS  present: n = 4 wells of a single experiment, that is technical replicates; summarised descriptively
+PASS  present: The NMD and APA screens are hypothesis-generating
 PASS  the replicate structure is described the same way throughout: manuscript 4 vs data 4
 
 === 25 September 2026 audit corrections ===
@@ -470,4 +478,4 @@ PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 426 passed, 0 failed ====
+==== 434 passed, 0 failed ====
