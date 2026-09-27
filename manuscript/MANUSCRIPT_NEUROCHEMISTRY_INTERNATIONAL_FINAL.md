@@ -82,10 +82,13 @@ systematically.
 
 We first measure SOCE and target mRNAs after shRNA-mediated TDP-43
 depletion in SH-SY5Y cultures. We then use public RNA-seq datasets to
-examine calcium-regulatory transcript abundance and RNA processing,
-applying read-support and robustness checks to the splicing results.
-Finally, we assess how the candidate transcripts behave in ALS brain and
-selected neurological comparison cohorts.
+examine calcium-regulatory transcript abundance and the three routes by
+which TDP-43 loss is known to change RNA processing: annotated and
+cryptic splicing, alternative polyadenylation, which generates the
+truncated STMN2 transcript, and coupling to nonsense-mediated decay.
+Read-support and robustness checks are applied throughout to the
+splicing results. Finally, we assess how the candidate transcripts
+behave in ALS brain and selected neurological comparison cohorts.
 
 ## **2. Materials and Methods**
 
@@ -268,9 +271,10 @@ pooled within biological replicates, giving four per group.
 FRASER v1.14.1 (Mertes et al., 2021) was run on the nine-sample SH-SY5Y
 doxycycline series (0, 25 and 75 ng/mL), counting split and non-split
 reads from the alignments and modelling ψ5, ψ3 and splicing efficiency
-θ. FRASER treats aberrant splicing as a rare, sample-specific deviation
-from a cohort norm; because depleted samples form two-thirds of this
-cohort, results are reported as per-sample outlier burden.
+θ. Because that method treats aberrant splicing as a rare deviation from
+a cohort norm while two thirds of this cohort are depleted samples, the
+run is reported as a limit of the approach and is described in
+Supplementary Results 1.
 
 ### **2.7 Alternative polyadenylation**
 
@@ -321,20 +325,10 @@ preprint (Sinha et al., 2025; i3Neurons; TDP-43 knockdown crossed with
 knockdown of XRN1, UPF1 and SMG6 in four combinations, two replicates
 each) and normalised with the authors’ size factors. Sequencing batch is
 confounded with TDP-43 status in that design, so the interaction was
-formed as a difference of within-batch differences:
-
-*interaction(c) = \[log2(TDP-43 knockdown + NMD inhibition c) −
-log2(TDP-43 knockdown)\] − \[log2(control + NMD inhibition c) −
-log2(control)\]*
-
-for each of the four NMD-inhibition conditions c, giving four
-condition-level interaction values per gene; the two replicates within
-each condition are averaged. A positive interaction indicates a
-transcript that is produced upon TDP-43 loss and degraded by NMD. Genes
-with at least 10 normalised counts were tested (n = 19,145) with a
-four-condition one-sample t-test and an exact sign test. Because the
-TDP-43 factor is confounded with sequencing batch, these results are
-treated as exploratory.
+formed as a difference of within-batch differences, with the four
+NMD-inhibition conditions as the unit of inference. The model, the gene
+filter and the tests are given in Supplementary Results 2, and the
+results are treated as exploratory throughout.
 
 ### **2.9 Ca²⁺ gene panels and enrichment testing**
 
@@ -640,7 +634,7 @@ signal was 61.5 ± 0.8% of control, a 38.5% decrease (n = 4 wells;
 descriptive; Figure 1C).
 
 The transcript changes and functional change are therefore in opposite
-directions. This is the central observation of the study.
+directions.
 
 <figure>
 <img src="../figures/main/Figure2_calcium_responses.png" style="width:6.05in;height:7.435in" />
@@ -780,7 +774,7 @@ instead as an illustration of why threshold-based prioritisation of
 splicing events requires read-level verification (Supplementary Figure
 S2).
 
-### **3.4 Robust splicing changes concentrate in SOCE regulators**
+### **3.4 Which splicing changes in SOCE genes survive the robustness checks**
 
 Applying the robustness criteria to the twelve core entry components
 examined event by event (Methods 2.3) identified three events with
@@ -970,13 +964,10 @@ the noisier measure for a lowly used exon. On either measure the
 magnitude is too small to support an isoform switch, and the negative
 conclusion of the meta-analysis stands.
 
-FRASER, run on the nine-sample doxycycline series, returned no
-genome-wide significant outlier and no difference in per-sample outlier
-burden between depleted and control libraries (4.8 versus 2.3 events at
-p \< 10⁻⁵; p = 0.35). This is the expected behaviour of an outlier
-method in a cohort where the aberrant state is the majority, and we
-report it as a limit of that approach at this cohort size rather than as
-evidence against aberrant splicing.
+An outlier-based method, FRASER, returned no genome-wide significant
+outlier and no difference in per-sample outlier burden between depleted
+and control libraries, which is how such a method behaves when the
+aberrant state is the majority of the cohort (Supplementary Results 1).
 
 ### **3.6 Exploratory NMD interactions prioritise CBARP but do not confirm an NMD target**
 
@@ -984,39 +975,17 @@ Cryptic exons frequently introduce premature termination codons, which
 can make their transcripts susceptible to nonsense-mediated decay (NMD)
 and under-represented in steady-state RNA. An independent experiment in
 which TDP-43 knockdown is crossed with knockdown of XRN1, UPF1 and SMG6
-(GSE307054) provides an exploratory interaction test (Supplementary
-Figure S5): a transcript pool produced upon TDP-43 loss and degraded by
-NMD would be expected to rise preferentially when both perturbations are
-present (Methods 2.8).
-
-Because the four interventions reuse the same control and knockdown
-libraries, the eight difference-of-differences values that the design
-yields are not eight independent observations. We therefore took the
-four NMD-inhibition conditions as the unit of inference, averaging the
-two replicates within each condition and retaining the shared controls
-only within each contrast. Several positive-control and calcium-gene
-interactions were positive, but no gene passed genome-wide FDR
-correction in this conservative analysis (smallest q = 0.053). The
-result is therefore supportive at the level of a ranked exploratory
-signal, not a confirmatory NMD test.
-
-*CBARP* had the largest SOCE-panel interaction (+1.52 log₂; positive in
-all four conditions; Supplementary Table S10), but its conservative
-condition-level q-value was 0.145 (two-sided t-test; exact one-sided
-sign-test q = 0.310). It is therefore a prioritised candidate rather
-than an established NMD target. *RYR2* and *MCU* also had positive
-interactions, without genome-wide significance.
-
-Two negative results follow. First, the prediction from isoform-level
-testing that *STIM1* produces a premature-termination-codon-bearing,
-NMD-sensitive isoform was **not supported**: in the four-condition
-analysis the interaction was −0.325 (p = 0.317, q = 0.508), in the
-opposite direction. Second, in the same four-condition analysis none of
-the four Ca²⁺ panels showed collective NMD sensitivity (one-sided
-Mann–Whitney p = 0.44, 0.91, 0.96 and 0.91 for Tiers 1–4), and the
-sixteen positive-control genes were not NMD-sensitive as a group either
-(p = 0.62; Supplementary Table S10b), consistent with the absence of
-cryptic events in the SOCE machinery.
+(GSE307054) allows this to be tested as an interaction (Methods 2.8;
+Supplementary Figure S5; Supplementary Results 2). No gene passed
+genome-wide correction in the conservative four-condition analysis
+(smallest q = 0.053). CBARP had the largest interaction of the SOCE
+panel (+1.52 log₂, positive in all four conditions; Supplementary Table
+S10) but a condition-level q of 0.145, so the screen ranks it rather
+than establishing it as an NMD target. The analysis carries little
+weight in either direction: the sixteen literature positive controls
+were not NMD-sensitive as a group either (median interaction −0.11 log₂;
+p = 0.62), so this dataset does not demonstrate the sensitivity that
+would make a negative result for the SOCE genes informative.
 
 ### **3.7 A coverage-based APA screen yields candidate gradients but no confirmed APA event in the SOCE machinery**
 
@@ -1089,18 +1058,14 @@ and the point estimates carry the information.
 The two mouse lines gave 74 qualifying units in C2C12 and 131 in NSC34,
 neither with a positive control for this assay, because the *STMN2*
 cryptic polyadenylation site is absent from the mouse gene (Melamed et
-al., 2019), so the *Stmn2* units cannot serve as one. No SOCE-machinery
-unit exceeded \|Δ\| = 0.30 in either line, and the two largest (*Atp2a2*
-intron 6, +0.285, and *Trpc1* intron 7, +0.260, both in C2C12) have
-intervals that include zero and are not reproduced in the other line.
-One unit is positive in both motor-neuron models: the *SARAF* intron 5
-index rises in the iPSC-derived motor neurons (+0.097) and the *Saraf*
-intron 5 index in NSC34 (+0.204), while in SH-SY5Y the same unit is
-uninformative (0.000, interval −0.264 to +0.241). We record it as a
-candidate rather than a finding: the NSC34 interval is wide, the
-myoblast line shows nothing there, the units are matched by number
-rather than by sequence alignment, and a coverage gradient is not a
-poly(A) site.
+al., 2019), so the *Stmn2* units cannot serve as one, so neither line
+can say whether an absent signal means an absent event. No
+SOCE-machinery unit exceeded \|Δ\| = 0.30 in either line. One unit is
+positive in both motor-neuron models, the SARAF intron 5 index (+0.097
+in the iPSC-derived motor neurons and +0.204 in NSC34, against 0.000 in
+SH-SY5Y); we record it as a candidate rather than a finding, for the
+reasons set out in Supplementary Results 3, where the mouse values are
+given in full.
 
 Taken together, these analyses support altered calcium-related RNA
 profiles but do not establish whether any SOCE-machinery gene is a
@@ -1133,9 +1098,14 @@ contrast, nominally significant enrichment (hypergeometric p =
 0.018–0.022) disappeared entirely against the matched null (p =
 0.54–0.64).
 
-We therefore regard enrichment of splicing changes in Ca²⁺ homeostasis
-genes as a tentative, motor-neuron-associated observation rather than a
-general property of TDP-43 depletion.
+Two nominal results among 24 dataset–panel combinations, drawn from
+panels that are nested by construction, is what chance gives. Once the
+number of combinations is taken into account there is no evidence that
+Ca²⁺ homeostasis genes are enriched for splicing changes, and the
+apparent enrichment in the primary model is explained by the length and
+expression properties of those genes. We report the two motor-neuron
+panels as the only combinations that survived matching, not as an
+established enrichment.
 
 ### **3.9 TRPC1, SARAF and CBARP differ across ALS and neurological comparison cohorts**
 
@@ -1179,24 +1149,16 @@ In multiple sclerosis, *TRPC1* was decreased at donor level across all
 sampled lesion types (δ = −0.840; q = 0.038) and in lesions at sample
 level (δ = −0.594; q = 1.3 × 10⁻⁴); the direction was the same in the
 second multiple sclerosis cohort, which was underpowered (five regions
-pooled, δ = −0.226; q = 0.49). Because TRPC1 contributes to SOCE in
-oligodendrocyte precursor cells (Paez et al., 2011), we asked whether
-the decrease simply reflected demyelination and loss of
-oligodendrocyte-lineage cells. In normal-appearing white matter, where
-the myelin markers MBP (δ = +0.051), PLP1 (−0.074), MOG (−0.257) and MAG
-(−0.299) were unchanged, *TRPC1* was lower at sample level (δ = −0.482,
-p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10),
-and lower again with the donor as the unit of inference (seven of ten
-multiple sclerosis donors with NAWM samples versus five control donors,
-δ = −0.771, uncorrected p = 0.030). In the full GSE138614 comparison,
-regression of TRPC1 on MBP, PLP1 and GFAP attenuated the difference at
-both levels: from δ = −0.562 to Cliff’s δ of −0.418 on the residuals at
-sample level (p = 0.002), and from δ = −0.840 to −0.640 at donor level,
-where the adjusted difference did not reach significance (p = 0.055).
-*TRPC1* was lower in every lesion type, including remyelinating and
-inactive lesions (donor-level δ = −1.000 for both), and multiple
-sclerosis showed marked astrogliosis (GFAP δ = +0.84 to +0.96), again
-with *TRPC1* falling (Supplementary Table S16).
+pooled, δ = −0.226; q = 0.49). The decrease could reflect demyelination
+rather than a neuronal change, because TRPC1 contributes to SOCE in
+oligodendrocyte precursor cells (Paez et al., 2011). Two controls argue
+against that explanation: the decrease is present in normal-appearing
+white matter, where the myelin markers are unchanged (δ = −0.482 at
+sample level, p = 0.005; −0.771 at donor level, p = 0.030), and it
+survives regression of TRPC1 on MBP, PLP1 and GFAP, although the
+adjusted difference is smaller and, at donor level, is not significant.
+The lesion types, the myelin-adjusted values and the second cohort are
+given in Supplementary Results 4 and Supplementary Table S16.
 
 Among the disease cohorts and regions surveyed here, ALS was the only
 setting in which *TRPC1* was significantly increased (Supplementary
@@ -1360,10 +1322,13 @@ therefore cannot explain the functional decrease. STIMATE is
 mechanistically attractive because it promotes the conformational
 transition that activates STIM1 at ER–plasma-membrane junctions (Jing et
 al., 2015), while the ORAI3 event and ORAI-family redistribution could
-alter channel assembly in the primary model. Read-support and
-matched-background analyses were decisive here: they removed isolated
-events and apparent panel enrichment while retaining CBARP and a small
-number of model-specific candidates.
+alter channel assembly in the primary model. Read-support filtering and
+the matched-background null did most of the work here: together they
+removed isolated events and, in the primary model and the iPSC colonies,
+the apparent panel enrichment, while retaining CBARP and a small number
+of model-specific candidates. In the iPSC-derived motor neurons two
+panels survived matching, which is within what 24 nested combinations
+produce by chance.
 
 **Relevance to disease tissue.** TRPC1 and SARAF increased and CBARP
 decreased in six ALS brain regions, matching the direction observed in

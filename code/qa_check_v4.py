@@ -226,6 +226,46 @@ import subprocess as _sp
 close("manuscript and DATA_AVAILABILITY name the same release", 1,
       int(len(set(re.findall(r"releases/tag/(v\d+\.\d+\.\d+)",
                             TXT + io.open(f"{P}/DATA_AVAILABILITY.md", encoding="utf-8").read()))) == 1), tol=0)
+out.append("\n=== analyses moved to the supplementary material ===")
+_supp2 = _sp.run(["pandoc", "-t", "plain", "--wrap=none",
+                  f"{P}/supplementary/SUPPLEMENTARY_MATERIAL.docx"], capture_output=True, text=True).stdout
+for _n, _title in ((1, "Aberrant splicing outlier detection"), (2, "Nonsense-mediated decay interaction"),
+                   (3, "Polyadenylation screen in the two mouse lines"), (4, "Multiple sclerosis in detail")):
+    close(f"Supplementary Results {_n} present in the supplementary document", 1,
+          int(f"Supplementary Results {_n}. {_title}" in _supp2), tol=0)
+    close(f"Supplementary Results {_n} cited in the manuscript", 1,
+          int(f"Supplementary Results {_n}" in SEARCH_TXT), tol=0)
+
+for _v in ["SARAF intron 5 index rises in the iPSC-derived motor neurons (+0.097)",
+           "in SH-SY5Y the same unit is uninformative (0.000, interval −0.264 to +0.241)",
+           "(δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)",
+           "from δ = −0.562 to Cliff’s δ of −0.418 on the residuals at sample level (p = 0.002)"]:
+    close(f"moved text kept in the supplementary: {_v[:40]}", 1, int(_v in _supp2), tol=0)
+for _v in ["smallest q = 0.053", "median interaction −0.11 log₂", "p = 0.62",
+           "4.8 versus 2.3 events", "Atp2a2 intron 6, +0.285", "Trpc1 intron 7, +0.260",
+           "δ = −0.562 to Cliff’s δ of −0.418", "donor-level δ = −1.000 for both",
+           "exact one-sided sign-test q = 0.310", "interaction was −0.325 (p = 0.317, q = 0.508)"]:
+    close(f"value kept in the supplementary text: {_v[:40]}", 1, int(_v in _supp2), tol=0)
+for _s in ["FRASER, run on the nine-sample doxycycline series, returned no genome-wide",
+           "Because the four interventions reuse the same control and knockdown libraries",
+           "RYR2 and MCU also had positive interactions",
+           "the myelin markers MBP (δ = +0.051), PLP1 (−0.074), MOG (−0.257) and MAG (−0.299)"]:
+    check("absent", _s, False)
+
+out.append("\n=== 27 September 2026 structural scan ===")
+for _s in ["Two nominal results among 24 dataset–panel combinations",
+           "there is no evidence that Ca²⁺ homeostasis genes are enriched for splicing changes",
+           "3.4 Which splicing changes in SOCE genes survive the robustness checks",
+           "alternative polyadenylation, which generates the truncated STMN2 transcript",
+           "coupling to nonsense-mediated decay",
+           "In the iPSC-derived motor neurons two panels survived matching"]:
+    check("present", _s, True)
+for _s in ["This is the central observation of the study",
+           "tentative, motor-neuron-associated observation",
+           "Robust splicing changes concentrate in SOCE regulators",
+           "they removed isolated events and apparent panel enrichment"]:
+    check("absent", _s, False)
+
 out.append("\n=== 26 September 2026 referee round ===")
 from scipy import stats as _st2
 close("smallest two-sided rank-test p at 3 vs 3", 0.10,
@@ -463,7 +503,7 @@ close("S10b positive-control panel p", 0.62,
 out.append("\n=== manuscript strings that must be present ===")
 for s in ["10,926 versus 176 reads", "three spinal cord levels", "six brain regions",
           "0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in mouse striatum",
-          "interaction was −0.325 (p = 0.317, q = 0.508)", "chr11:4,088,702–4,088,738",
+           "chr11:4,088,702–4,088,738",
           "chr4:27,007,983–27,008,006", "n = 3", "10 µM cyclopiazonic acid",
           "Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA",
           "cryptic junction was most frequent in spinal cord",
@@ -472,7 +512,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six brain regi
           "from 0.570 in controls to 0.819 in knockdown (Δ = +0.249",
           "`-p --countReadPairs` for paired-end libraries",
           "74 qualifying units in C2C12 and 131 in NSC34",
-          "*SARAF* intron 5 index rises in the iPSC-derived motor neurons (+0.097) and the *Saraf* intron 5 index in NSC34 (+0.204)",
+          
           "null-to-real call ratios were 0.98 in iPSC colonies and 2.01 in K562 total RNA",
           "this check is available only for the human comparisons",
           "isoform-level testing did not detect a *CBARP* isoform switch",
@@ -486,7 +526,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six brain regi
           "Total *STMN2* expression was therefore not used as a specific indicator",
           "Cellular metabolic activity was assessed 48 h after seeding",
           "10 MS/5 control donors, 98 samples",
-          "in SH-SY5Y the same unit is uninformative (0.000, interval \u22120.264 to +0.241)",
+          
           "decreased at donor level across all sampled lesion types (\u03b4 = \u22120.840; q = 0.038)"]:
     check("present", s, True)
 out.append("\n=== strings that must be gone ===")
@@ -608,9 +648,8 @@ close("abstract length, words including headings (at most 350)", 1,
 for s_ in ["fixed-effect inverse-variance meta-analysis",
            "the mean per-base depths of its two windows summed to at least 3",
            "derived from the doctoral thesis of Elmasnur Yılmaz",
-           "tentative, motor-neuron-associated observation",
-           "(δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)",
-           "from δ = −0.562 to Cliff’s δ of −0.418 on the residuals at sample level (p = 0.002), and from δ = −0.840 to −0.640 at donor level",
+           
+           
            "375,000 per well", "Dharmacon TRC Lentiviral shRNA, cat. no. RHS3979",
            "1 mM EGTA", "Premix WST-1, Takara Bio, cat. no. MK400"]:
     check("present", s_, True)

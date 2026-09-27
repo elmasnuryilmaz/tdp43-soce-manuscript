@@ -132,6 +132,46 @@ PASS  ER release control mean: manuscript 0.268 vs data 0.268
 PASS  WST-1 48 h knockdown: manuscript 61.5 vs data 61.5
 PASS  manuscript and DATA_AVAILABILITY name the same release: manuscript 1 vs data 1
 
+=== analyses moved to the supplementary material ===
+PASS  Supplementary Results 1 present in the supplementary document: manuscript 1 vs data 1
+PASS  Supplementary Results 1 cited in the manuscript: manuscript 1 vs data 1
+PASS  Supplementary Results 2 present in the supplementary document: manuscript 1 vs data 1
+PASS  Supplementary Results 2 cited in the manuscript: manuscript 1 vs data 1
+PASS  Supplementary Results 3 present in the supplementary document: manuscript 1 vs data 1
+PASS  Supplementary Results 3 cited in the manuscript: manuscript 1 vs data 1
+PASS  Supplementary Results 4 present in the supplementary document: manuscript 1 vs data 1
+PASS  Supplementary Results 4 cited in the manuscript: manuscript 1 vs data 1
+PASS  moved text kept in the supplementary: SARAF intron 5 index rises in the iPSC-d: manuscript 1 vs data 1
+PASS  moved text kept in the supplementary: in SH-SY5Y the same unit is uninformativ: manuscript 1 vs data 1
+PASS  moved text kept in the supplementary: (δ = −0.482, p = 0.005), although not af: manuscript 1 vs data 1
+PASS  moved text kept in the supplementary: from δ = −0.562 to Cliff’s δ of −0.418 o: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: smallest q = 0.053: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: median interaction −0.11 log₂: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: p = 0.62: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: 4.8 versus 2.3 events: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: Atp2a2 intron 6, +0.285: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: Trpc1 intron 7, +0.260: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: δ = −0.562 to Cliff’s δ of −0.418: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: donor-level δ = −1.000 for both: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: exact one-sided sign-test q = 0.310: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: interaction was −0.325 (p = 0.317, q = 0: manuscript 1 vs data 1
+PASS  absent: FRASER, run on the nine-sample doxycycline series, returned no genome-wide
+PASS  absent: Because the four interventions reuse the same control and knockdown libraries
+PASS  absent: RYR2 and MCU also had positive interactions
+PASS  absent: the myelin markers MBP (δ = +0.051), PLP1 (−0.074), MOG (−0.257) and MAG (−0.299)
+
+=== 27 September 2026 structural scan ===
+PASS  present: Two nominal results among 24 dataset–panel combinations
+PASS  present: there is no evidence that Ca²⁺ homeostasis genes are enriched for splicing changes
+PASS  present: 3.4 Which splicing changes in SOCE genes survive the robustness checks
+PASS  present: alternative polyadenylation, which generates the truncated STMN2 transcript
+PASS  present: coupling to nonsense-mediated decay
+PASS  present: In the iPSC-derived motor neurons two panels survived matching
+PASS  absent: This is the central observation of the study
+PASS  absent: tentative, motor-neuron-associated observation
+PASS  absent: Robust splicing changes concentrate in SOCE regulators
+PASS  absent: they removed isolated events and apparent panel enrichment
+
 === 26 September 2026 referee round ===
 PASS  smallest two-sided rank-test p at 3 vs 3: manuscript 0.1 vs data 0.1
 PASS  graphical abstract quotes the Welch p value: manuscript 1 vs data 1
@@ -286,7 +326,6 @@ PASS  present: 10,926 versus 176 reads
 PASS  present: three spinal cord levels
 PASS  present: six brain regions
 PASS  present: 0.64 calls in iPSC colonies, 2.17 in K562 total RNA and 0.83 in mouse striatum
-PASS  present: interaction was −0.325 (p = 0.317, q = 0.508)
 PASS  present: chr11:4,088,702–4,088,738
 PASS  present: chr4:27,007,983–27,008,006
 PASS  present: n = 3
@@ -298,7 +337,6 @@ PASS  present: 59 units in 29 genes passed the same depth filter
 PASS  present: from 0.570 in controls to 0.819 in knockdown (Δ = +0.249
 PASS  present: `-p --countReadPairs` for paired-end libraries
 PASS  present: 74 qualifying units in C2C12 and 131 in NSC34
-PASS  present: *SARAF* intron 5 index rises in the iPSC-derived motor neurons (+0.097) and the *Saraf* in
 PASS  present: null-to-real call ratios were 0.98 in iPSC colonies and 2.01 in K562 total RNA
 PASS  present: this check is available only for the human comparisons
 PASS  present: isoform-level testing did not detect a *CBARP* isoform switch
@@ -312,7 +350,6 @@ PASS  present: 3⁶ = 729 combinations for the three-versus-three comparisons an
 PASS  present: Total *STMN2* expression was therefore not used as a specific indicator
 PASS  present: Cellular metabolic activity was assessed 48 h after seeding
 PASS  present: 10 MS/5 control donors, 98 samples
-PASS  present: in SH-SY5Y the same unit is uninformative (0.000, interval −0.264 to +0.241)
 PASS  present: decreased at donor level across all sampled lesion types (δ = −0.840; q = 0.038)
 
 === strings that must be gone ===
@@ -446,9 +483,6 @@ PASS  abstract length, words including headings (at most 350): manuscript 1 vs d
 PASS  present: fixed-effect inverse-variance meta-analysis
 PASS  present: the mean per-base depths of its two windows summed to at least 3
 PASS  present: derived from the doctoral thesis of Elmasnur Yılmaz
-PASS  present: tentative, motor-neuron-associated observation
-PASS  present: (δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)
-PASS  present: from δ = −0.562 to Cliff’s δ of −0.418 on the residuals at sample level (p = 0.002), and f
 PASS  present: 375,000 per well
 PASS  present: Dharmacon TRC Lentiviral shRNA, cat. no. RHS3979
 PASS  present: 1 mM EGTA
@@ -478,4 +512,4 @@ PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 434 passed, 0 failed ====
+==== 464 passed, 0 failed ====
