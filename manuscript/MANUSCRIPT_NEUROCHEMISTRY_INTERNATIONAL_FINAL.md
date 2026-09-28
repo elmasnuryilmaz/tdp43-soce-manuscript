@@ -153,8 +153,20 @@ multi-overlapping reads not counted) and modelled with DESeq2 v1.42.1
 (Love et al., 2014) within each dataset, with Benjamini–Hochberg
 correction (Benjamini and Hochberg, 1995). Genes with p_adj \< 0.05 and
 \|log2FC\| ≥ 1 were called differentially expressed. Sensitivity to
-unmodelled variation was assessed with svaseq (sva v3.50.0; Leek, 2014);
-the principal findings were unchanged.
+unmodelled variation was assessed with svaseq (sva v3.50.0; Leek, 2014),
+which estimated two surrogate variables in the primary SH-SY5Y
+comparison. Refitting with them leaves the fold changes in place: the
+direction agrees for every gene that stays differentially expressed and
+the median change in log2 fold change is 0.20 across the 14,012 genes
+with an adjusted p value in both fits. It costs power, because two of
+the four residual degrees of freedom are then spent on the surrogate
+variables, so 1,694 genes meet the thresholds in the model used here and
+1,067 in the surrogate-variable model, 850 of them shared. *STIM1*,
+*TRPC1*, *ORAI3*, *SARAF* and *CBARP* remain differentially expressed in
+both fits; *ORAI1*, *ATP2A3*, *ATP2A2* and *STIM2* do not, and the first
+two are among the four targets confirmed by RT-qPCR in the laboratory
+cells. The per-gene comparison is provided in the analysis package
+(source_data/svaseq_sensitivity_SHSY5Y.csv).
 
 ### **2.3 Alternative splicing and robustness assessment**
 

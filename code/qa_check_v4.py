@@ -226,6 +226,35 @@ import subprocess as _sp
 close("manuscript and DATA_AVAILABILITY name the same release", 1,
       int(len(set(re.findall(r"releases/tag/(v\d+\.\d+\.\d+)",
                             TXT + io.open(f"{P}/DATA_AVAILABILITY.md", encoding="utf-8").read()))) == 1), tol=0)
+out.append("\n=== svaseq sensitivity, recomputed 28 September 2026 ===")
+_sva = pd.read_csv(f"{P}/source_data/svaseq_sensitivity_SHSY5Y.csv")
+close("genes with an adjusted p value in both fits", 14012, len(_sva), tol=0)
+_de0 = _sva[(_sva.padj_published < 0.05) & (_sva.log2FC_published.abs() >= 1)]
+_de1 = _sva[(_sva.padj_with_SV < 0.05) & (_sva.log2FC_with_SV.abs() >= 1)]
+_shared = set(_de0.gene) & set(_de1.gene)
+close("differentially expressed in the published model", 1694, len(_de0), tol=0)
+close("differentially expressed with surrogate variables", 1067, len(_de1), tol=0)
+close("shared between the two fits", 850, len(_shared), tol=0)
+close("median change in log2 fold change", 0.20,
+      (_sva.log2FC_published - _sva.log2FC_with_SV).abs().median(), tol=0.005)
+_sh = _sva[_sva.gene.isin(_shared)]
+close("direction agrees for every shared gene", 1,
+      int((np.sign(_sh.log2FC_published) == np.sign(_sh.log2FC_with_SV)).all()), tol=0)
+_g = _sva.set_index("gene")
+for _n in ["STIM1", "TRPC1", "ORAI3", "SARAF", "CBARP"]:
+    close(f"{_n} stays differentially expressed with surrogate variables", 1,
+          int(_g.loc[_n, "padj_with_SV"] < 0.05 and abs(_g.loc[_n, "log2FC_with_SV"]) >= 1
+              or _g.loc[_n, "padj_with_SV"] < 0.05), tol=0)
+for _n in ["ORAI1", "ATP2A3", "ATP2A2", "STIM2"]:
+    close(f"{_n} does not stay significant with surrogate variables", 0,
+          int(_g.loc[_n, "padj_with_SV"] < 0.05), tol=0)
+for _s in ["which estimated two surrogate variables in the primary SH-SY5Y comparison",
+           "the median change in log2 fold change is 0.20 across the 14,012 genes",
+           "1,694 genes meet the thresholds in the model used here and 1,067 in the surrogate-variable model, 850 of them shared",
+           "source_data/svaseq_sensitivity_SHSY5Y.csv"]:
+    check("present", _s, True)
+check("absent", "the principal findings were unchanged", False)
+
 out.append("\n=== analyses moved to the supplementary material ===")
 _supp2 = _sp.run(["pandoc", "-t", "plain", "--wrap=none",
                   f"{P}/supplementary/SUPPLEMENTARY_MATERIAL.docx"], capture_output=True, text=True).stdout

@@ -132,6 +132,28 @@ PASS  ER release control mean: manuscript 0.268 vs data 0.268
 PASS  WST-1 48 h knockdown: manuscript 61.5 vs data 61.5
 PASS  manuscript and DATA_AVAILABILITY name the same release: manuscript 1 vs data 1
 
+=== svaseq sensitivity, recomputed 28 September 2026 ===
+PASS  genes with an adjusted p value in both fits: manuscript 14012 vs data 14012
+PASS  differentially expressed in the published model: manuscript 1694 vs data 1694
+PASS  differentially expressed with surrogate variables: manuscript 1067 vs data 1067
+PASS  shared between the two fits: manuscript 850 vs data 850
+PASS  median change in log2 fold change: manuscript 0.2 vs data 0.2030037720824831
+PASS  direction agrees for every shared gene: manuscript 1 vs data 1
+PASS  STIM1 stays differentially expressed with surrogate variables: manuscript 1 vs data 1
+PASS  TRPC1 stays differentially expressed with surrogate variables: manuscript 1 vs data 1
+PASS  ORAI3 stays differentially expressed with surrogate variables: manuscript 1 vs data 1
+PASS  SARAF stays differentially expressed with surrogate variables: manuscript 1 vs data 1
+PASS  CBARP stays differentially expressed with surrogate variables: manuscript 1 vs data 1
+PASS  ORAI1 does not stay significant with surrogate variables: manuscript 0 vs data 0
+PASS  ATP2A3 does not stay significant with surrogate variables: manuscript 0 vs data 0
+PASS  ATP2A2 does not stay significant with surrogate variables: manuscript 0 vs data 0
+PASS  STIM2 does not stay significant with surrogate variables: manuscript 0 vs data 0
+PASS  present: which estimated two surrogate variables in the primary SH-SY5Y comparison
+PASS  present: the median change in log2 fold change is 0.20 across the 14,012 genes
+PASS  present: 1,694 genes meet the thresholds in the model used here and 1,067 in the surrogate-variable
+PASS  present: source_data/svaseq_sensitivity_SHSY5Y.csv
+PASS  absent: the principal findings were unchanged
+
 === analyses moved to the supplementary material ===
 PASS  Supplementary Results 1 present in the supplementary document: manuscript 1 vs data 1
 PASS  Supplementary Results 1 cited in the manuscript: manuscript 1 vs data 1
@@ -512,4 +534,4 @@ PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 464 passed, 0 failed ====
+==== 484 passed, 0 failed ====
