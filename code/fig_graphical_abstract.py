@@ -64,14 +64,13 @@ bx.bar([0], [soce_c], 0.55, color=CT_C, alpha=.85)
 bx.bar([1], [soce_k], 0.55, color=KD_C, alpha=.85)
 bx.errorbar([0, 1], [soce_c, soce_k], yerr=[soce_ce, soce_ke], fmt="none", color="#222", capsize=4, lw=1.2)
 bx.set_xticks([0, 1]); bx.set_xticklabels(["non-targeting", "TDP-43 KD"], fontsize=8)
-bx.set_ylabel("SOCE  Δ(F340/F380)", fontsize=8)
+bx.set_ylabel("Ca²⁺ readdition  Δ(F340/F380)", fontsize=8)
 bx.set_ylim(0, 2.1); bx.tick_params(labelsize=7.5)
-# Welch's two-tailed t-test, the test reported in Methods 2.16 and Section 3.1
-bx.annotate(f"−{100*(1-soce_k/soce_c):.0f}%\np = 0.035", xy=(1, soce_k + .18), ha="center",
+bx.annotate(f"−{100*(1-soce_k/soce_c):.0f}%\n3 wells; one plate", xy=(1, soce_k + .18), ha="center",
             fontsize=8.5, weight="bold", color=KD_C)
-ax.set_title("A · Store-operated Ca²⁺ entry falls", loc="left")
+ax.set_title("A · Ca²⁺-readdition response lower", loc="left")
 
-# ------------------------------------------------ B: transcripts rise, entry falls
+# ------------------------------------------------ B: transcripts rise, within-plate readdition response falls
 ax = fig.add_subplot(gs[0, 1])
 g = list(folds); v = [folds[k] for k in g]
 ax.bar(np.arange(len(g)), v, 0.6, color=KD_C, alpha=.85)
@@ -81,7 +80,7 @@ for i, val in enumerate(v):
 ax.set_xticks(np.arange(len(g))); ax.set_xticklabels(g, fontsize=8.5, rotation=20)
 ax.set_ylabel("mRNA, knockdown / control")
 ax.set_ylim(0, 4.0)
-ax.text(0.03, 0.99, "every component measured by RT-qPCR\nrises while the entry itself falls",
+ax.text(0.03, 0.99, "measured mRNAs rise; readdition was\nlower in three wells on one plate",
         transform=ax.transAxes, fontsize=8, color="#555", va="top")
 ax.set_title("B · The discordance", loc="left")
 
@@ -136,12 +135,12 @@ ax.set_xlabel("TRPC1 in patient tissue, Cliff's δ")
 ax.set_xlim(-1.02, 0.75)
 ax.set_title("D · TRPC1 in patient tissue", loc="left")
 
-fig.suptitle("TDP-43 knockdown reduces store-operated Ca²⁺ entry while the transcripts of its components increase",
+fig.suptitle("TDP-43 knockdown: a one-plate Ca²⁺-readdition observation and altered calcium-regulatory RNAs",
              y=1.035, fontsize=12.5, weight="bold")
 fig.text(0.5, -0.055,
          "No high-confidence cryptic splice junction was found in the 51-gene core SOCE/TRP panel in SH-SY5Y, where the canonical "
          "cryptic targets were recovered, and cryptic $\\it{STMN2}$ inclusion does not correlate with $\\it{TRPC1}$ within ALS tissue:\n"
-         "the transcript changes are candidate explanations for the functional deficit, not a demonstrated mechanism.",
+         "the transcript changes motivate tests in independently replicated functional experiments.",
          ha="center", fontsize=9, color="#444")
 fig.savefig(OUT + ".png")
 fig.savefig(OUT + ".pdf")

@@ -284,10 +284,10 @@ def arrow(ax, p1, p2, dashed=False, color=INK):
 def figure6():
     fig, ax = plt.subplots(figsize=(7.1, 3.9))
     ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis("off")
-    ax.text(0.01, 0.985, "Measured in the laboratory cultures", va="top", weight="bold", fontsize=8.5)
+    ax.text(0.01, 0.985, "Laboratory measurements (Fura-2: one culture plate)", va="top", weight="bold", fontsize=8.5)
     box(ax, 0.36, 0.76, 0.28, 0.15, "shRNA knockdown", "TARDBP mRNA ↓ 94%", BLUE)
     box(ax, 0.02, 0.50, 0.30, 0.17, "RT-qPCR", "TRPC1 / STIM1 / ORAI1 / ATP2A3 ↑", BLUE)
-    box(ax, 0.68, 0.50, 0.30, 0.17, "Fura-2", "Ca$^{2+}$ readdition ↓; ER release ↓ (n.s.)", BLUE)
+    box(ax, 0.68, 0.50, 0.30, 0.17, "Fura-2", "Ca$^{2+}$ readdition ↓\n3 wells/group; one plate", BLUE)
     arrow(ax, (0.42, 0.76), (0.22, 0.67)); arrow(ax, (0.58, 0.76), (0.78, 0.67))
     ax.text(0.01, 0.42, "Candidate mechanisms from public RNA-seq (hypotheses)", va="top", weight="bold",
             fontsize=8.5)

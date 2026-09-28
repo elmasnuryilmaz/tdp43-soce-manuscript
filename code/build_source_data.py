@@ -7,8 +7,8 @@ Sheets
   TARDBP_qPCR       raw Ct, dCt, ddCt and 2^-ddCt for the three groups (n = 4)
   Target_qPCR_Ct    raw Ct for the four SOCE-associated targets (n = 4 per group)
   Target_qPCR_rel   relative expression per replicate (the values plotted in Figure 1B)
-  Fura2             ER release and Ca2+ readdition amplitudes (n = 3 independent cultures)
-  Fura2_per_culture both phases per culture and their ratio
+  Fura2             ER release and Ca2+ readdition amplitudes (three wells/group, one plate)
+  Fura2_per_culture historical sheet name; both phases per well and their ratio
   WST1              per-well metabolic signal at 48 h (n = 4)
   Summary_stats     group means and SEM for Figures 1 and 2; Figure 1 tests
 """
@@ -132,39 +132,25 @@ for tab, lab in [("WST_1_48h", "48 h")]:
     rows.append(dict(panel="1C", measurement=f"WST-1 signal {lab}", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 1), SEM=round(sem(k), 1),
                      test="descriptive only; four wells from one experiment", p_value=""))
-def welch(c, k):
-    """Welch's two-tailed t-test with the 95% CI of the difference (knockdown minus control)."""
-    vc, vk = c.var(ddof=1) / len(c), k.var(ddof=1) / len(k)
-    df = (vc + vk) ** 2 / (vc ** 2 / (len(c) - 1) + vk ** 2 / (len(k) - 1))
-    diff = k.mean() - c.mean(); half = stats.t.ppf(0.975, df) * np.sqrt(vc + vk)
-    return diff, diff - half, diff + half, stats.ttest_ind(c, k, equal_var=False).pvalue
-
-
-def signed(v, nd=2):
-    return f"{v:+.{nd}f}".replace("-", "\u2212")
-
-
 for tab, lab, panel in [("ER_Ca2_release", "ER Ca2+ release", "2C"),
                         ("SOCE", "SOCE", "2D")]:
     c = np.array(fu[tab]["Control"]); k = np.array(fu[tab]["TDP-43 KD"])
-    d, lo, hi, pw = welch(c, k)
     rows.append(dict(panel=panel, measurement=f"{lab} delta F340/F380", group=NT,
                      n=len(c), mean=round(c.mean(), 3), SEM=round(sem(c), 3), test="", p_value=""))
     rows.append(dict(panel=panel, measurement=f"{lab} delta F340/F380", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 3), SEM=round(sem(k), 3),
-                     test=(f"Welch's two-tailed t-test, n = 3 independent cultures per group; difference "
-                           f"{signed(d)}, 95% CI {signed(lo)} to {signed(hi)}"),
-                     p_value=f"{pw:.3g}"))
-# Both phases come from the same recording of each culture, so each culture has one ratio.
+                     test="descriptive only; three wells per group on one culture plate",
+                     p_value=""))
+# Both phases come from the same recording of each well.
 paired = []
 for grp, lab in [("Control", NT), ("TDP-43 KD", "shTDP-43")]:
     for i, (er, soce) in enumerate(zip(fu["ER_Ca2_release"][grp], fu["SOCE"][grp]), 1):
-        paired.append(dict(group=lab, culture=i, ER_release=er, readdition=soce,
+        paired.append(dict(group=lab, well=i, ER_release=er, readdition=soce,
                            readdition_to_release_ratio=soce / er))
 paired = pd.DataFrame(paired)
 for lab in [NT, "shTDP-43"]:
     v = paired.loc[paired.group == lab, "readdition_to_release_ratio"].to_numpy()
-    rows.append(dict(panel="2C-D", measurement="readdition/ER release ratio per culture", group=lab,
+    rows.append(dict(panel="2C-D", measurement="readdition/ER release ratio per well", group=lab,
                      n=len(v), mean=round(v.mean(), 2), SEM=round(sem(v), 2),
                      test="descriptive; ratio of the two phases of the same recording" if lab != NT else "",
                      p_value=""))
@@ -183,16 +169,16 @@ readme = pd.DataFrame({"sheet": ["TARDBP_qPCR", "Target_qPCR_Ct", "Target_qPCR_r
         "Fura-2/AM measurements. ER Ca2+ release is the rise in F340/F380 after 10 uM "
         "cyclopiazonic acid in Ca2+-free HBS with EGTA; SOCE is the rise after re-addition "
         "of nominally 1.5 mM CaCl2. Both are peak delta(F340/F380) versus the preceding baseline; "
-        "n = 3 independent cultures per group, and replicate i of both phases is the same recording. "
+        "three wells per group from one culture plate, and well i of both phases is the same recording. "
         "The control group is the non-targeting (scrambled) shRNA control. The original Prism amplitude "
         "table is sekil_4.20_fura2.pzfx. Figure 2A-B uses unredrawn graphs exported from the original "
         "trace project Elmas_130626_Ca2_Trase_Grafikleri.pzf; the exported ratio/time tables of these two "
         "recordings are in source_data/fura2_traces of the repository and are replotted in Figure 2E. "
         "Only the CPA annotation was corrected to the author-confirmed 10 uM; trace data "
         "and axes were unchanged.",
-        "Both Fura-2 phases per culture with the readdition-to-release ratio of that culture.",
+        "Both Fura-2 phases per well with the readdition-to-release ratio of that well; one culture plate only.",
         "WST-1 metabolic signal at 48 h (n = 4; not a direct cell count or viability measure), normalised to the mean of the non-targeting (scrambled) shRNA control.",
-        "Group means, SEM and the statistical tests behind Figures 1 and 2, including the Welch tests and 95% CIs of the Fura-2 amplitudes.",
+        "Group means and well-to-well SEM behind Figures 1 and 2; Fura-2 and WST-1 comparisons are descriptive only.",
         "Primer sequences, product sizes and annealing temperatures for the RT-qPCR targets "
         "and the GAPDH reference.",
         "Thermal cycling profile of the RT-qPCR reactions."]})

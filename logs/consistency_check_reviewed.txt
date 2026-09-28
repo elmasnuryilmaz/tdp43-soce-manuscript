@@ -291,12 +291,15 @@ PASS  absent: they removed isolated events and apparent panel enrichment
 
 === 26 September 2026 referee round ===
 PASS  smallest two-sided rank-test p at 3 vs 3: manuscript 0.1 vs data 0.1
-PASS  graphical abstract quotes the Welch p value: manuscript 1 vs data 1
+PASS  graphical abstract names the one-plate design: manuscript 1 vs data 1
+PASS  graphical abstract omits the well-level p value: manuscript 0 vs data 0
+PASS  graphical abstract avoids an established SOCE decrease claim: manuscript 0 vs data 0
+PASS  graphical abstract names the observed readdition response: manuscript 1 vs data 1
 PASS  graphical abstract no longer quotes the Student p value: manuscript 0 vs data 0
 PASS  present: prepared for measurement 72 h after transduction, while puromycin selection was still in p
 PASS  present: onto disinfected glass coverslips in 24-well plates one day before the measurement
 PASS  present: measured while still attached to the coverslip, which was mounted in the cuvette
-PASS  present: the smallest two-sided p value attainable by a rank or permutation test is 0.10
+PASS  present: three wells on the same plate (n = 3 technical replicates)
 PASS  present: Amplification efficiencies were not determined
 PASS  present: was not re-measured in the June and July set
 PASS  present: GSE307054, the dataset of a preprint
@@ -309,12 +312,11 @@ PASS  present: the y axis spans 0–3 in A and 0.5–1.5 in B
 PASS  present: The original recordings, exported from the GraphPad Prism trace project and reproduced her
 PASS  present: The same two recordings as in A and B, that is the same measured F340/F380 values exported
 PASS  present: no value is smoothed or rescaled
-PASS  present: Hedges’ g = −2.9, 95% CI −5.3 to −0.5
-PASS  present: Hedges’ g = −0.8, 95% CI −2.2 to +0.6
-PASS  present: Hedges’ g = −2.7, 95% CI −4.9 to −0.4
+PASS  present: The single-plate Fura-2 observation requires independent replication
+PASS  present: the well-level Welch p value and confidence interval calculated previously cannot support
 PASS  present: n = 4 wells of a single experiment, that is technical replicates; summarised descriptively
 PASS  present: The NMD and APA screens are hypothesis-generating
-PASS  the replicate structure is described the same way throughout: manuscript 4 vs data 4
+PASS  no independent-culture Fura-2 claims remain: manuscript 0 vs data 0
 
 === 25 September 2026 audit corrections ===
 PASS  proxy correlations, number of tests: manuscript 30 vs data 30
@@ -346,15 +348,17 @@ PASS  absent: Three independent cohorts extended this
 PASS  supplementary document calls S12 the machine-readable version of Table 4: manuscript 1 vs data 1
 PASS  supplementary document describes the S11 candidate_gradient column: manuscript 1 vs data 1
 
-=== 25 September 2026 revision: Fura-2 tests, per-culture ratio, CBARP junction ===
+=== 28 September 2026 author correction: Fura-2 wells on one plate ===
+PASS  supplementary and main titles match: manuscript 1 vs data 1
+PASS  highlights describe the Fura-2 difference without a functional claim: manuscript 1 vs data 1
+PASS  highlight names the one-plate design: manuscript 1 vs data 1
+PASS  S1 description names the wells and plate: manuscript 1 vs data 1
 PASS  readdition difference (-1.30): manuscript -1.3 vs data -1.2971616666666668
-PASS  readdition 95% CI low (-2.40): manuscript -2.4 vs data -2.3995911524422695
-PASS  readdition 95% CI high (-0.19): manuscript -0.19 vs data -0.19473218089106425
-PASS  readdition Welch p (0.035): manuscript 0.035 vs data 0.035441970039664726
-PASS  ER release difference (-0.09): manuscript -0.09 vs data -0.08795433333333333
-PASS  ER release 95% CI low (-0.30): manuscript -0.3 vs data -0.3037227176360606
-PASS  ER release 95% CI high (+0.13): manuscript 0.13 vs data 0.127814050969394
-PASS  ER release Welch p (0.31): manuscript 0.31 vs data 0.30682921569214067
+PASS  readdition control minimum: manuscript 1.013 vs data 1.013373
+PASS  readdition control maximum: manuscript 1.975 vs data 1.975406
+PASS  readdition knockdown minimum: manuscript 0.08 vs data 0.08027300000000004
+PASS  readdition knockdown maximum: manuscript 0.338 vs data 0.338355
+PASS  ER release difference (-0.088): manuscript -0.088 vs data -0.08795433333333333
 PASS  ER release decrease (33%): manuscript 33 vs data 32.815148571862075
 PASS  readdition decrease (84%): manuscript 84 vs data 84.11057292240788
 PASS  ratio control mean (5.88): manuscript 5.88 vs data 5.881017301600075
@@ -363,11 +367,15 @@ PASS  ratio knockdown mean (1.36): manuscript 1.36 vs data 1.360822444055126
 PASS  ratio knockdown SEM (0.01): manuscript 0.01 vs data 0.011408623219758328
 PASS  ratio decrease (77%): manuscript 77 vs data 76.86076448568038
 PASS  every knockdown ratio below every control ratio: manuscript 1 vs data 1
-PASS  present: n = 3 independent cultures; Welch’s t-test p = 0.035
-PASS  present: difference −1.30, 95% CI −2.40 to −0.19; Welch’s t-test p = 0.035
-PASS  present: difference −0.09, 95% CI −0.30 to +0.13; p = 0.31
+PASS  present: three wells per group on one plate; difference −1.30
+PASS  present: The observed ranges were 1.013–1.975 and 0.080–0.338
+PASS  present: ER Ca²⁺ release was 0.268 ± 0.042 and 0.180 ± 0.061
 PASS  present: This ratio was 5.88 ± 1.10 in controls and 1.36 ± 0.01 after knockdown, 77% lower
-PASS  present: Each group comprised three independent cultures (n = 3)
+PASS  present: Each group comprised three wells on the same plate
+PASS  absent: Welch’s t-test p = 0.035
+PASS  absent: Hedges’ g = −2.9
+PASS  absent: n = 3 independent cultures
+PASS  absent: ER release fell less and not significantly
 PASS  CBARP junction b share, SH-SY5Y control (17%): manuscript 17 vs data 17.447241291634885
 PASS  CBARP junction b share, SH-SY5Y knockdown (86%): manuscript 86 vs data 86.32478632478633
 PASS  CBARP junction b share, iPSC control (1%): manuscript 1 vs data 0.9014738523810253
@@ -475,8 +483,6 @@ PASS  absent: 10,930
 PASS  absent: four spinal cord regions
 PASS  absent: p = 0.13)
 PASS  absent: log2FC = −1.746
-PASS  absent: single culture plate
-PASS  absent: not independent biological replicates
 PASS  absent: prioritized candidate
 PASS  absent: full GENCODE v47 index
 PASS  absent: Cutadapt v4.6
@@ -629,4 +635,4 @@ PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 567 passed, 0 failed ====
+==== 573 passed, 0 failed ====

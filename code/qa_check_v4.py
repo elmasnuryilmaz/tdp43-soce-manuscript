@@ -412,12 +412,17 @@ from scipy import stats as _st2
 close("smallest two-sided rank-test p at 3 vs 3", 0.10,
       _st2.mannwhitneyu([3, 2, 1], [6, 5, 4], alternative="two-sided").pvalue, tol=0.001)
 _ga = io.open(f"{P}/figures/graphical_abstract.svg", encoding="utf-8").read()
-close("graphical abstract quotes the Welch p value", 1, int("p = 0.035" in _ga), tol=0)
+close("graphical abstract names the one-plate design", 1, int("3 wells; one plate" in _ga), tol=0)
+close("graphical abstract omits the well-level p value", 0, int("p = 0.035" in _ga), tol=0)
+close("graphical abstract avoids an established SOCE decrease claim", 0,
+      int("reduces store-operated Ca" in _ga), tol=0)
+close("graphical abstract names the observed readdition response", 1,
+      int("Ca²⁺-readdition observation" in _ga), tol=0)
 close("graphical abstract no longer quotes the Student p value", 0, int("0.0115" in _ga), tol=0)
 for _s in ["prepared for measurement 72 h after transduction, while puromycin selection was still in progress",
            "onto disinfected glass coverslips in 24-well plates one day before the measurement",
            "measured while still attached to the coverslip, which was mounted in the cuvette",
-           "the smallest two-sided p value attainable by a rank or permutation test is 0.10",
+           "three wells on the same plate (n = 3 technical replicates)",
            "Amplification efficiencies were not determined",
            "was not re-measured in the June and July set",
            "GSE307054, the dataset of a preprint",
@@ -430,14 +435,13 @@ for _s in ["prepared for measurement 72 h after transduction, while puromycin se
            "The original recordings, exported from the GraphPad Prism trace project and reproduced here unchanged",
            "The same two recordings as in A and B, that is the same measured F340/F380 values exported from that Prism project",
            "no value is smoothed or rescaled",
-           "Hedges’ g = −2.9, 95% CI −5.3 to −0.5",
-           "Hedges’ g = −0.8, 95% CI −2.2 to +0.6",
-           "Hedges’ g = −2.7, 95% CI −4.9 to −0.4",
+           "The single-plate Fura-2 observation requires independent replication",
+           "the well-level Welch p value and confidence interval calculated previously cannot support",
            "n = 4 wells of a single experiment, that is technical replicates; summarised descriptively and not tested",
            "The NMD and APA screens are hypothesis-generating"]:
     check("present", _s, True)
-_reps = len(re.findall(r"three independent cultures", SEARCH_TXT))
-close("the replicate structure is described the same way throughout", 4, _reps, tol=0)
+close("no independent-culture Fura-2 claims remain", 0,
+      len(re.findall(r"three independent cultures", SEARCH_TXT)), tol=0)
 
 out.append("\n=== 25 September 2026 audit corrections ===")
 _s9 = pd.read_csv(f"{P}/supplementary/S9_cryptic_PSI_correlations_within_ALS.csv")
@@ -476,29 +480,30 @@ close("supplementary document calls S12 the machine-readable version of Table 4"
 close("supplementary document describes the S11 candidate_gradient column", 1,
       int("candidate_gradient column" in _supp), tol=0)
 
-out.append("\n=== 25 September 2026 revision: Fura-2 tests, per-culture ratio, CBARP junction ===")
-from scipy import stats as _st
+out.append("\n=== 28 September 2026 author correction: Fura-2 wells on one plate ===")
+from docx import Document as _DocxDocument
+_main_doc = _DocxDocument(f"{P}/manuscript/MANUSCRIPT_NEUROCHEMISTRY_INTERNATIONAL_FINAL.docx")
+_supp_doc = _DocxDocument(f"{P}/supplementary/SUPPLEMENTARY_MATERIAL.docx")
+_highlights_doc = _DocxDocument(f"{P}/highlights_Neurochemistry_International.docx")
+close("supplementary and main titles match", 1,
+      int(_supp_doc.paragraphs[1].text == _main_doc.paragraphs[0].text), tol=0)
+close("highlights describe the Fura-2 difference without a functional claim", 1,
+      int(_highlights_doc.paragraphs[3].text ==
+          "No RNA-processing event in the SOCE machinery explained the observed Fura-2 difference."), tol=0)
+close("highlight names the one-plate design", 1,
+      int("One-plate Fura-2 measurements" in _highlights_doc.paragraphs[1].text), tol=0)
+close("S1 description names the wells and plate", 1,
+      int("three wells per group on one culture plate" in _supp_doc.paragraphs[12].text), tol=0)
 _fp = pd.read_excel(f"{P}/supplementary/S1_laboratory_source_data.xlsx", sheet_name="Fura2_per_culture")
 _c = _fp[_fp.group == "Non-targeting shRNA control"]; _k = _fp[_fp.group == "shTDP-43"]
-
-
-def _welch(a, b):
-    va, vb = a.var(ddof=1) / len(a), b.var(ddof=1) / len(b)
-    df = (va + vb) ** 2 / (va ** 2 / (len(a) - 1) + vb ** 2 / (len(b) - 1))
-    d = b.mean() - a.mean(); h = _st.t.ppf(0.975, df) * np.sqrt(va + vb)
-    return d, d - h, d + h, _st.ttest_ind(a, b, equal_var=False).pvalue
-
-
-_d, _lo, _hi, _p = _welch(_c.readdition.to_numpy(), _k.readdition.to_numpy())
+_d = _k.readdition.mean() - _c.readdition.mean()
 close("readdition difference (-1.30)", -1.30, _d, tol=0.005)
-close("readdition 95% CI low (-2.40)", -2.40, _lo, tol=0.005)
-close("readdition 95% CI high (-0.19)", -0.19, _hi, tol=0.005)
-close("readdition Welch p (0.035)", 0.035, _p, tol=0.0005)
-_d, _lo, _hi, _p = _welch(_c.ER_release.to_numpy(), _k.ER_release.to_numpy())
-close("ER release difference (-0.09)", -0.09, _d, tol=0.005)
-close("ER release 95% CI low (-0.30)", -0.30, _lo, tol=0.005)
-close("ER release 95% CI high (+0.13)", 0.13, _hi, tol=0.005)
-close("ER release Welch p (0.31)", 0.31, _p, tol=0.005)
+close("readdition control minimum", 1.013, _c.readdition.min(), tol=0.001)
+close("readdition control maximum", 1.975, _c.readdition.max(), tol=0.001)
+close("readdition knockdown minimum", 0.080, _k.readdition.min(), tol=0.001)
+close("readdition knockdown maximum", 0.338, _k.readdition.max(), tol=0.001)
+_d = _k.ER_release.mean() - _c.ER_release.mean()
+close("ER release difference (-0.088)", -0.088, _d, tol=0.001)
 close("ER release decrease (33%)", 33, 100 * (1 - _k.ER_release.mean() / _c.ER_release.mean()), tol=0.5)
 close("readdition decrease (84%)", 84, 100 * (1 - _k.readdition.mean() / _c.readdition.mean()), tol=0.5)
 _rc, _rk = _c.readdition_to_release_ratio, _k.readdition_to_release_ratio
@@ -508,12 +513,15 @@ close("ratio knockdown mean (1.36)", 1.36, _rk.mean(), tol=0.005)
 close("ratio knockdown SEM (0.01)", 0.01, _rk.std(ddof=1) / np.sqrt(3), tol=0.005)
 close("ratio decrease (77%)", 77, 100 * (1 - _rk.mean() / _rc.mean()), tol=0.5)
 close("every knockdown ratio below every control ratio", 1, int(_rk.max() < _rc.min()), tol=0)
-for _s in ["n = 3 independent cultures; Welch’s t-test p = 0.035",
-           "difference −1.30, 95% CI −2.40 to −0.19; Welch’s t-test p = 0.035",
-           "difference −0.09, 95% CI −0.30 to +0.13; p = 0.31",
+for _s in ["three wells per group on one plate; difference −1.30",
+           "The observed ranges were 1.013–1.975 and 0.080–0.338",
+           "ER Ca²⁺ release was 0.268 ± 0.042 and 0.180 ± 0.061",
            "This ratio was 5.88 ± 1.10 in controls and 1.36 ± 0.01 after knockdown, 77% lower",
-           "Each group comprised three independent cultures (n = 3)"]:
+           "Each group comprised three wells on the same plate"]:
     check("present", _s, True)
+for _s in ["Welch’s t-test p = 0.035", "Hedges’ g = −2.9", "n = 3 independent cultures",
+           "ER release fell less and not significantly"]:
+    check("absent", _s, False)
 _j = pd.read_csv(f"{P}/source_data/CBARP_locus/CBARP_junction_counts_per_library.tsv", sep="\t")
 _share = []
 for (_ds, _g, _smp), _sub in _j.groupby(["dataset", "group", "sample"]):
@@ -672,7 +680,6 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six brain regi
     check("present", s, True)
 out.append("\n=== strings that must be gone ===")
 for s in ["Sah P, et al.", "10,930", "four spinal cord regions", "p = 0.13)", "log2FC = −1.746",
-          "single culture plate", "not independent biological replicates",
           "prioritized candidate", "full GENCODE v47 index", "Cutadapt v4.6",
           "the mouse datasets were not analysed at all",
           "all 3\u2076 = 729 replicate combinations", "their p values are therefore optimistic",

@@ -70,8 +70,11 @@ figurlerin ayri dosyalarini, ek materyali ve veri dosyalarini icerir.
 03_TABLOLAR      Makaledeki Tablo 1-5'in CSV surumleri
 04_EK_VERI       Ek Tablo S1-S18 veri dosyalari (S1 laboratuvar ham verisi XLSX)
 
+Fura-2 olcumu grup basina tek kultur plakasindaki uc kuyudan gelir. Makalede bu fark
+betimsel olarak sunulur; bagimsiz biyolojik tekrarlar icin cikarimsal p degeri verilmez.
+
 DOSYA_LISTESI_SHA256.txt her dosyanin saglama toplamini verir.
-Kod ve veri deposu: github.com/elmasnuryilmaz/tdp43-soce-manuscript (surum v1.0.5)
+Kod ve veri deposu: github.com/elmasnuryilmaz/tdp43-soce-manuscript
 """, encoding="utf-8")
 
 files = sorted(p for p in STAGE.rglob("*") if p.is_file() and p.name != "DOSYA_LISTESI_SHA256.txt")

@@ -1,10 +1,10 @@
 # TDP-43 knockdown and store-operated Ca²⁺ entry: analysis repository
 
 Code, figures, tables, supplementary files and source data for the manuscript
-*TDP-43 knockdown is associated with reduced store-operated Ca²⁺ entry and altered
+*TDP-43 knockdown is associated with a lower Ca²⁺-readdition response and altered
 calcium-regulatory RNA profiles in SH-SY5Y cells*.
 
-![Graphical abstract: TDP-43 knockdown reduces store-operated Ca2+ entry while the transcripts of its components increase](figures/graphical_abstract.png)
+![Graphical abstract: a lower calcium-readdition response was observed in one plate after TDP-43 knockdown](figures/graphical_abstract.png)
 
 *Every value in this summary is read from the files in this repository by
 `code/fig_graphical_abstract.py`; it is not a figure of the manuscript.*
@@ -28,7 +28,7 @@ why. Where the thesis and this repository differ, this repository is current.
 ├── figures/supplementary/ current Supplementary Figures S1–S8
 ├── figures/Figure1–9    historical nine-figure layout
 ├── tables/               Tables 1–5, CSV in the current manuscript order
-├── supplementary/        Supplementary Tables S1–S17
+├── supplementary/        Supplementary Tables S1–S18
 ├── source_data/          intermediate data behind Tables 4–5 and Figures 6–8
 ├── code/                 analysis and figure scripts
 ├── logs/                 automated consistency check
@@ -54,8 +54,8 @@ Supplementary Figure S3 is drawn from the alignments: `code/cbarp_bam_extract.py
 14 SH-SY5Y and iPSC-colony BAM files with the junction rules of Methods 2.5 and writes
 `source_data/CBARP_locus/`; `code/fig_splicing_revision.py` draws Figures 4 and 6 and S3 from it.
 Figure 2 retains the original representative Fura-2 traces and pairs them with the measured
-ER-release and Ca²⁺-readdition amplitudes. The lower panels show the three independent cultures
-per group and mean ± SEM; the two amplitudes are compared with Welch's t-test. Panel E
+ER-release and Ca²⁺-readdition amplitudes. The lower panels show three wells per group from one
+culture plate and mean ± well-to-well SEM; these comparisons are descriptive. Panel E
 (`code/fig2_common_scale_panel.py`) replots the exported ratio values of the two representative
 recordings (`source_data/fura2_traces/`) on common axes. WST-1 was measured at 48 h (n = 4 wells).
 
@@ -80,7 +80,7 @@ Figure numbers are **not** burned into the images; the file name carries the num
 
 | File | Content |
 |---|---|
-| `S1_laboratory_source_data.xlsx` | raw Ct, relative expression, Fura-2 and WST-1 values per replicate, primers, thermal profile, summary statistics |
+| `S1_laboratory_source_data.xlsx` | raw Ct and relative expression, Fura-2 technical wells from one plate, WST-1 well values, primers, thermal profile and descriptive summaries |
 | `S2_calcium_gene_panels.csv` | the four cumulative Ca²⁺ panels |
 | `S3_rMATS_significant_events.csv.gz` | every rMATS event at FDR < 0.05 and \|ΔPSI\| ≥ 0.10, JC and JCEC, six datasets, with event coordinates, form lengths and raw junction counts |
 | `S4_matched_permutation_enrichment.csv` | enrichment against the covariate-matched null |
@@ -97,6 +97,7 @@ Figure numbers are **not** burned into the images; the file name carries the num
 | `S15_STIM2.1_exon_six_datasets.csv` | STIM2.1 meta-analysis |
 | `S16_multiple_sclerosis_both_cohorts.csv`, `S16b_multiple_sclerosis_donor_level.csv` | MS analysis; the donor-level re-analysis is new in v4 |
 | `S17_dataset_accessions.csv` | every accession with design, library type, run-level groups for knockdown experiments and group definitions for patient cohorts |
+| `S18_TRPC1_cell_composition_adjustment.csv`, `S18b_cryptic_STMN2_by_group_and_region.csv`, `S18c_cryptic_STMN2_within_comparison_group.csv` | NYGC cell-marker adjustment and cryptic STMN2 comparison-group checks |
 
 A thesis-era supplementary table listing "cryptic-junction-positive and NMD-sensitive genes"
 is not part of this set: it was built from the superseded eight-contrast NMD statistics

@@ -1,4 +1,4 @@
-# **TDP-43 knockdown is associated with reduced store-operated Ca²⁺ entry and altered calcium-regulatory RNA profiles in SH-SY5Y cells**
+# **TDP-43 knockdown is associated with a lower Ca²⁺-readdition response and altered calcium-regulatory RNA profiles in SH-SY5Y cells**
 
 **Elmasnur Yılmazᵃ, Yasemin Eraçᵃ,\***
 
@@ -14,23 +14,25 @@ TDP-43 loss is implicated in amyotrophic lateral sclerosis (ALS), but
 its relationship to store-operated Ca²⁺ entry (SOCE) is unclear. After
 shRNA-mediated TARDBP depletion in SH-SY5Y cells, TRPC1, STIM1, ORAI1
 and ATP2A3 mRNAs increased 1.7- to 3.2-fold, while the Fura-2
-Ca²⁺-readdition amplitude was 84% lower after knockdown (n = 3
-independent cultures; Welch’s t-test p = 0.035). ER Ca²⁺ release was 33%
-lower (p = 0.31), and readdition normalised to each culture’s own
-release remained 77% lower. At 48 h, the WST-1 signal was 38.5% lower (n
-= 4). We reanalysed six public TDP-43-depletion RNA-seq comparisons (38
-libraries) for calcium-regulatory expression and splicing, screened
-eleven comparisons for unannotated junction changes, and assessed
-alternative polyadenylation and nonsense-mediated decay. CBARP was the
-most reproducible splicing candidate across species, whereas STIM2,
-STIMATE and ORAI3 events were supported in the primary RNA-seq model. No
+Ca²⁺-readdition amplitude was 84% lower in the knockdown wells of one
+culture plate (three wells per group; descriptive). ER Ca²⁺ release was
+33% lower, and readdition normalised to each well’s own release was 77%
+lower. At 48 h, the WST-1 signal was 38.5% lower in four wells from one
+of three experiments (descriptive). We reanalysed six public
+TDP-43-depletion RNA-seq comparisons (38 libraries) for
+calcium-regulatory expression and splicing, screened eleven comparisons
+for unannotated junction changes, and assessed alternative
+polyadenylation and nonsense-mediated decay. CBARP was the most
+reproducible splicing candidate across species, whereas STIM2, STIMATE
+and ORAI3 events were supported in the primary RNA-seq model. No
 confirmed RNA-processing event in the core SOCE machinery explained the
-functional change. In ALS tissue, TRPC1 and SARAF increased and CBARP
-decreased in six brain regions, and SARAF and CBARP changed in the same
-direction in cervical and lumbar cord, but these tissue associations
-could not be attributed to TDP-43 loss. TDP-43 knockdown is associated
-with reduced SOCE and altered calcium-regulatory RNA profiles, without
-evidence for a single causal RNA event.
+observed Fura-2 difference. In ALS tissue, TRPC1 and SARAF increased and
+CBARP decreased in six brain regions, and SARAF and CBARP changed in the
+same direction in cervical and lumbar cord, but these tissue
+associations could not be attributed to TDP-43 loss. The single-plate
+Fura-2 observation requires independent replication; the RNA analyses
+identify candidate calcium-regulatory changes without establishing a
+causal link to that response.
 
 **Keywords:** TDP-43; store-operated Ca²⁺ entry; calcium homeostasis;
 alternative splicing; CBARP; SARAF; amyotrophic lateral sclerosis
@@ -545,15 +547,16 @@ in progress; the RNA of Section 2.13 came from parallel cultures of the
 same transduction on day 5, after selection was complete. Both groups
 were seeded at the same density, 40,000 cells per well, onto disinfected
 glass coverslips in 24-well plates one day before the measurement, and
-the samples of a group were prepared and measured on the same day. Cells
-were measured while still attached to the coverslip, which was mounted
-in the cuvette, so they were neither trypsinised nor measured in
-suspension. Cells were loaded with 5 µM Fura-2/AM (Invitrogen, F1221)
-and 0.02% Pluronic F-127 (Invitrogen, P3000MP) in HEPES-buffered saline
-(HBS) containing 1% bovine serum albumin (BSA) for 60 min at 25 °C in
-the dark and washed three times for 15 min in 1% BSA/HBS. HBS contained
-135 mM NaCl, 5.9 mM KCl, 1.2 mM MgCl₂, 1.5 mM CaCl₂, 11.6 mM HEPES, 5 mM
-NaHCO₃ and 11.5 mM D-glucose (pH 7.3). Cytosolic free Ca²⁺ was followed
+three samples per group came from separate wells of the same culture
+plate and were measured on the same day. Cells were measured while still
+attached to the coverslip, which was mounted in the cuvette, so they
+were neither trypsinised nor measured in suspension. Cells were loaded
+with 5 µM Fura-2/AM (Invitrogen, F1221) and 0.02% Pluronic F-127
+(Invitrogen, P3000MP) in HEPES-buffered saline (HBS) containing 1%
+bovine serum albumin (BSA) for 60 min at 25 °C in the dark and washed
+three times for 15 min in 1% BSA/HBS. HBS contained 135 mM NaCl, 5.9 mM
+KCl, 1.2 mM MgCl₂, 1.5 mM CaCl₂, 11.6 mM HEPES, 5 mM NaHCO₃ and 11.5 mM
+D-glucose (pH 7.3). Cytosolic free Ca²⁺ was followed
 spectrofluorometrically as the F340/F380 ratio (excitation 340 and 380
 nm, emission 510 nm; Grynkiewicz et al., 1985) on a cuvette-based
 QM8/2005 spectrofluorometer (Photon Technology International) with
@@ -565,9 +568,10 @@ Ca²⁺ release. CaCl₂ was then introduced at a nominal concentration of
 1.5 mM and the subsequent rise was recorded as store-operated Ca²⁺ entry
 (SOCE), following the established depletion–readdition paradigm. Peak
 amplitudes in both phases were quantified as Δ(F340/F380) relative to
-the respective preceding baseline. Each group comprised three
-independent cultures (n = 3), and both phases were read from the same
-recording of each culture.
+the respective preceding baseline. Each group comprised three wells on
+the same plate (n = 3 technical replicates), and both phases were read
+from the same recording of each well. No independent Fura-2 culture
+experiment is available for this comparison.
 
 The Fura-2 ratio records net cytosolic Ca²⁺ accumulation; the
 measurement does not isolate membrane influx from extrusion or ER
@@ -594,24 +598,17 @@ Bioinformatic thresholds are given above. Laboratory data are mean ±
 SEM. TARDBP knockdown was assessed by one-way ANOVA on log2-transformed
 relative expression with Tukey’s multiple comparison test. The four
 target-gene RT-qPCR comparisons used two-tailed Student’s t-tests with
-Holm adjustment across the four targets (GraphPad Prism 10). Fura-2
-amplitudes from three independent cultures per group were compared with
-Welch’s two-tailed t-test (SciPy v1.12.0), which does not assume equal
-variances, and are reported with the difference in means and its 95%
-confidence interval; these two pre-specified comparisons were not
-adjusted for multiplicity. Effect sizes are Hedges’ g, the
-small-sample-corrected standardised mean difference, with the interval
-of Hedges and Olkin; at three samples per group the point estimate is
-large but its interval is correspondingly wide, so it describes the size
-of the difference rather than establishing it. With three samples per
-group the smallest two-sided p value attainable by a rank or permutation
-test is 0.10, so these comparisons rest on the parametric assumption of
-Welch’s test rather than on a distribution-free one. The
-readdition-to-release ratio of each culture was summarised
-descriptively. The 48-h WST-1 wells (n = 4) come from one experiment and
-were summarised descriptively, because wells within an experiment are
-not independent replicates. Significance was set at p \< 0.05,
-Holm-adjusted for the four-target RT-qPCR family.
+Holm adjustment across the four targets (GraphPad Prism 10). The Fura-2
+data comprise three wells per group from one culture plate. We report
+their means, well-to-well SEM and observed differences descriptively; no
+inferential p value, confidence interval or standardised effect size is
+assigned to the Fura-2 comparison because wells from one plate are not
+independent biological replicates. The readdition-to-release ratio of
+each well was likewise summarised descriptively. The 48-h WST-1 values
+are four wells from one of three experiments and are also summarised
+descriptively; the other two experiments are not available in the
+package. Significance was set at p \< 0.05, Holm-adjusted for the
+four-target RT-qPCR family.
 
 ## **3. Results**
 
@@ -646,25 +643,25 @@ measurements.</p></figcaption>
 </figure>
 
 The Fura-2 Ca²⁺-readdition amplitude was markedly lower in shTDP-43
-cells (Figure 2). The readdition amplitude fell from 1.542 ± 0.282 to
-0.245 ± 0.083 Δ(F340/F380) (mean ± SEM, n = 3 independent cultures per
-group; difference −1.30, 95% CI −2.40 to −0.19; Welch’s t-test p =
-0.035; Hedges’ g = −2.9, 95% CI −5.3 to −0.5). ER Ca²⁺ release fell less
-and not significantly, from 0.268 ± 0.042 to 0.180 ± 0.061 (difference
-−0.09, 95% CI −0.30 to +0.13; p = 0.31; Hedges’ g = −0.8, 95% CI −2.2 to
-+0.6). Because both phases come from the same recording, readdition was
-also expressed relative to each culture’s own release. This ratio was
-5.88 ± 1.10 in controls and 1.36 ± 0.01 after knockdown, 77% lower
-(Hedges’ g = −2.7, 95% CI −4.9 to −0.4), and every shTDP-43 culture had
-a lower ratio than every control culture (Supplementary Table S1). A
-smaller releasable store therefore does not account for most of the
-decrease. Plotted on common axes, the two representative recordings had
-similar baselines before readdition (Figure 2E). At 48 h, the WST-1
-signal was 61.5 ± 0.8% of control, a 38.5% decrease (n = 4 wells;
-descriptive; Figure 1C).
+cells (Figure 2). The readdition amplitude was 1.542 ± 0.282 in control
+wells and 0.245 ± 0.083 Δ(F340/F380) in knockdown wells (mean ±
+well-to-well SEM, three wells per group on one plate; difference −1.30,
+or 84% of the control mean). The observed ranges were 1.013–1.975 and
+0.080–0.338, respectively. ER Ca²⁺ release was 0.268 ± 0.042 and 0.180 ±
+0.061 (difference −0.088, or 33% of the control mean). Because both
+phases came from the same recording, readdition was also expressed
+relative to each well’s own release. This ratio was 5.88 ± 1.10 in
+controls and 1.36 ± 0.01 after knockdown, 77% lower; every knockdown
+well had a lower ratio than every control well (Supplementary Table S1).
+The ratio pattern suggests that a smaller releasable store alone may not
+explain the within-plate difference, but it cannot establish that this
+response recurs across independent cultures. Plotted on common axes, the
+two representative recordings had similar baselines before readdition
+(Figure 2E). At 48 h, the WST-1 signal was 61.5 ± 0.8% of control, a
+38.5% decrease (n = 4 wells; descriptive; Figure 1C).
 
-The transcript changes and functional change are therefore in opposite
-directions.
+The measured mRNAs and the within-plate Fura-2 response therefore moved
+in opposite directions.
 
 <figure>
 <img src="../figures/main/Figure2_calcium_responses.png" style="width:6.05in;height:7.435in" />
@@ -677,14 +674,15 @@ spans 0–3 in A and 0.5–1.5 in B, and the time windows differ, so the two
 panels are not directly comparable by eye; panel E replots them on
 common axes. CPA (10 µM) and CaCl₂ (nominally 1.5 mM) additions are
 indicated. (C) ER Ca²⁺ release after CPA. (D) Ca²⁺-readdition amplitude.
-Panels C and D show the three independent cultures per group and mean ±
-SEM (readdition, Welch’s t-test p = 0.035; ER release, p = 0.31). (E)
-The same two recordings as in A and B, that is the same measured
-F340/F380 values exported from that Prism project, drawn on common axes
-so that the two can be compared directly; time is aligned to the
-steepest point of the readdition rise and no value is smoothed or
-rescaled. The traces illustrate individual recordings; group amplitudes
-were calculated from the original Prism measurements.</p></figcaption>
+Panels C and D show three wells per group from one culture plate and
+mean ± well-to-well SEM; the comparisons are descriptive and no
+inferential test is shown. (E) The same two recordings as in A and B,
+that is the same measured F340/F380 values exported from that Prism
+project, drawn on common axes so that the two can be compared directly;
+time is aligned to the steepest point of the readdition rise and no
+value is smoothed or rescaled. The traces illustrate individual
+recordings; group amplitudes were calculated from the original Prism
+measurements.</p></figcaption>
 </figure>
 
 ### **3.2 Transcript-family abundance contextualises the discordance**
@@ -740,7 +738,8 @@ ratio at ER–plasma-membrane junctions (Hoover and Lewis, 2011) and is
 not used here as a mechanistic readout.
 
 Together, the changes in ORAI-family composition and SOCE regulators
-provide candidate molecular explanations for the reduced SOCE phenotype.
+provide hypotheses for the lower calcium-readdition signal observed in
+one laboratory plate.
 
 <figure>
 <img src="../figures/main/Figure3_transcript_profile.png" style="width:6.05in;height:4.94225in" />
@@ -1278,29 +1277,30 @@ it followed neuronal content rather than the junction.
 
 ## **4. Discussion**
 
-This study identifies a marked reduction in Fura-2-measured SOCE after
-TDP-43 knockdown and connects that functional phenotype to coordinated
-changes in calcium-regulatory transcripts. The central feature is a
-mismatch between abundance and function: the adjusted STIM and ORAI
-transcript pools increased, yet the SOCE amplitude decreased by
-approximately 84%. The transcript data do not show a simple loss of core
-SOCE mRNAs; they do not establish protein abundance. Channel
-composition, feedback inhibition, ER refilling and cellular
-bioenergetics remain possible interacting determinants. This combination
-defines a multilayered calcium-homeostasis phenotype rather than uniform
-suppression of one channel or one RNA-processing event.
+In one Fura-2 culture plate, TDP-43 knockdown wells had a lower
+calcium-readdition response. In an independent public SH-SY5Y model,
+adjusted STIM and ORAI transcript pools increased; these data generate
+hypotheses about the within-plate signal but do not establish a
+reproducible functional phenotype or its RNA mechanism. The transcript
+data do not show a simple loss of core SOCE mRNAs; they do not establish
+protein abundance. Channel composition, feedback inhibition, ER
+refilling and cellular bioenergetics remain possible interacting
+determinants. Together, the observations motivate testing calcium
+regulation and RNA processing in matched, independently replicated
+experiments.
 
-**Architecture of the functional phenotype.** ER release fell by 33% and
-not significantly, whereas readdition fell by 84% and remained 77% lower
-when each culture was normalised to its own release, so a smaller
-releasable store does not account for most of the SOCE decrease. The
-transcript data identify two mechanistic layers that could act together.
-First, ATP2A2, which dominates the SERCA family in these cells,
-decreased modestly and could reduce the efficiency of ER refilling.
-Second, the ORAI family shifted sharply: ORAI3 rose from 8% to 30% of
-ORAI transcripts, ORAI2 decreased from 77% to 53%, and SARAF increased.
-Channel output depends on the relative abundance, assembly and
-localisation of STIM and ORAI proteins rather than their summed RNA
+**Interpretation of the Fura-2 response.** Within the single Fura-2
+plate, mean ER release was 33% lower and mean readdition 84% lower;
+readdition remained 77% lower when each well was normalised to its own
+release. This pattern suggests that store release alone may not explain
+the smaller readdition response, but it needs replication in independent
+cultures. The transcript data identify two mechanistic layers that could
+act together. First, ATP2A2, which dominates the SERCA family in these
+cells, decreased modestly and could reduce the efficiency of ER
+refilling. Second, the ORAI family shifted sharply: ORAI3 rose from 8%
+to 30% of ORAI transcripts, ORAI2 decreased from 77% to 53%, and SARAF
+increased. Channel output depends on the relative abundance, assembly
+and localisation of STIM and ORAI proteins rather than their summed RNA
 abundance; even the STIM1:ORAI1 protein ratio can change CRAC-channel
 trapping and gating (Hoover and Lewis, 2011). A rise in these
 transcripts could also be compensatory after reduced Ca²⁺ signalling;
@@ -1442,15 +1442,15 @@ broader calcium-network mechanisms and place the functional phenotype
 within a directly testable neurochemical framework.
 
 <figure>
-<img src="../figures/main/Figure6_working_model.png" style="width:6.15in;height:3.37817in" />
+<img src="../figures/main/Figure6_working_model.png" style="width:6.05in;height:3.32324in" />
 <figcaption><p><strong>Figure 6.</strong> Working model of the observed
 calcium phenotype and candidate RNA changes. Blue boxes and solid arrows
-summarise what was measured in the laboratory cultures after TARDBP
-knockdown: higher TRPC1, STIM1, ORAI1 and ATP2A3 mRNA, a smaller
-Ca²⁺-readdition amplitude and a smaller, non-significant decrease in ER
-Ca²⁺ release. Orange boxes are candidate mechanisms suggested by the
-public RNA-seq data; dashed arrows mark hypotheses for future
-perturbation, not demonstrated causal links. CBARP is placed on a
+summarise laboratory measurements after TARDBP knockdown: higher TRPC1,
+STIM1, ORAI1 and ATP2A3 mRNA and, in three wells per group on one
+culture plate, lower mean Ca²⁺-readdition and ER-release amplitudes. The
+Fura-2 comparison is descriptive. Orange boxes are candidate mechanisms
+suggested by the public RNA-seq data; dashed arrows mark hypotheses for
+future perturbation, not demonstrated causal links. CBARP is placed on a
 parallel voltage-gated channel branch that was not measured
 here.</p></figcaption>
 </figure>
@@ -1459,33 +1459,36 @@ here.</p></figcaption>
 
 TARDBP depletion was verified by RT-qPCR but not at the protein level,
 and one TDP-43-targeting shRNA was used without a rescue experiment. The
-Fura-2 comparison rests on three independent cultures per group. At that
-size no rank or permutation test can reach a two-sided p below 0.10, so
-the difference is supported by a parametric test alone and would be more
-convincing with five to six cultures per group. The readdition signal
-was not characterised pharmacologically, for example with a
-store-operated channel blocker such as BTP2, Synta66 or Gd³⁺, so it is
-defined by the depletion–readdition protocol rather than by
-pharmacology. The WST-1 signal is reported at 48 h only, from four wells
-of one experiment; it is not a cell count and cannot separate fewer
-cells from lower metabolic activity per cell. Because metabolic activity
-was 38.5% lower, a smaller or less healthy cell population could
-contribute to the smaller Fura-2 signal; the ratiometric readout is in
-principle independent of cell number, but neither cell number nor
-maximum response was measured in the cuvettes. RT-qPCR was normalised to
-a single reference gene, GAPDH, whose Ct did not differ between groups.
-In the public inducible RNA-seq comparison GAPDH rose (log2FC +0.61)
-whereas TBP and B2M were stable; a similar rise in the laboratory cells
-would have led the target increases to be underestimated, and two-gene
-normalisation would be preferable. The laboratory assay used
-undifferentiated SH-SY5Y cells, whereas the public SH-SY5Y RNA-seq study
-used an inducible model and the motor-neuron datasets did not include
-matched Ca²⁺ measurements. Cuvette Fura-2 ratios report net cytosolic
-accumulation and do not separate influx from extrusion or reuptake.
-Normalising readdition to the release of the same culture removes
-differences in store content but not their consequences, because a
-smaller release also means weaker STIM activation, so the ratio bounds
-rather than eliminates the contribution of the store.
+Fura-2 comparison rests on three wells per group from one culture plate,
+rather than independent biological experiments. Its 84% lower mean is a
+descriptive within-plate observation; the well-level Welch p value and
+confidence interval calculated previously cannot support a
+population-level inference. Independent culture experiments are required
+to estimate biological variability and test whether the response
+replicates. The readdition signal was not characterised
+pharmacologically, for example with a store-operated channel blocker
+such as BTP2, Synta66 or Gd³⁺, so it is defined by the
+depletion–readdition protocol rather than by pharmacology. The WST-1
+signal is reported at 48 h only, from four wells of one experiment; it
+is not a cell count and cannot separate fewer cells from lower metabolic
+activity per cell. Because metabolic activity was 38.5% lower, a smaller
+or less healthy cell population could contribute to the smaller Fura-2
+signal; the ratiometric readout is in principle independent of cell
+number, but neither cell number nor maximum response was measured in the
+cuvettes. RT-qPCR was normalised to a single reference gene, GAPDH,
+whose Ct did not differ between groups. In the public inducible RNA-seq
+comparison GAPDH rose (log2FC +0.61) whereas TBP and B2M were stable; a
+similar rise in the laboratory cells would have led the target increases
+to be underestimated, and two-gene normalisation would be preferable.
+The laboratory assay used undifferentiated SH-SY5Y cells, whereas the
+public SH-SY5Y RNA-seq study used an inducible model and the
+motor-neuron datasets did not include matched Ca²⁺ measurements. Cuvette
+Fura-2 ratios report net cytosolic accumulation and do not separate
+influx from extrusion or reuptake. Normalising readdition to the release
+of the same well removes differences in store content but not their
+consequences, because a smaller release also means weaker STIM
+activation, so the ratio bounds rather than eliminates the contribution
+of the store.
 
 Bulk post-mortem expression can reflect cell composition, which
 regression on marker genes adjusts for only partially, and age, RNA
@@ -1497,17 +1500,17 @@ batch, so its interaction results are exploratory.
 
 ## **5. Conclusion**
 
-TDP-43 depletion in SH-SY5Y cells was associated with a large reduction
-in Fura-2-measured SOCE and with altered expression and splicing of
-calcium-regulatory genes. Transcript-family summaries and reproducible
-*CBARP* splicing identify candidate explanations, but they do not
-establish protein stoichiometry or a single causal RNA switch.
-Coverage-based APA and conservative NMD analyses do not provide
-confirmatory evidence that SOCE-machinery genes are direct targets of
-those pathways. In ALS tissue, *TRPC1*, *SARAF* and *CBARP* showed
-region-dependent expression differences. *CBARP*, *SARAF* and *TRPC1*
-are therefore priorities for targeted protein-level and functional
-follow-up.
+In one SH-SY5Y culture-plate experiment, TDP-43 knockdown wells showed a
+lower Fura-2 calcium-readdition response. Independently,
+calcium-regulatory mRNA expression and splicing analyses identified
+candidate changes. Transcript-family summaries and reproducible *CBARP*
+splicing identify candidate explanations, but they do not establish
+protein stoichiometry or a single causal RNA switch. Coverage-based APA
+and conservative NMD analyses do not provide confirmatory evidence that
+SOCE-machinery genes are direct targets of those pathways. In ALS
+tissue, *TRPC1*, *SARAF* and *CBARP* showed region-dependent expression
+differences. *CBARP*, *SARAF* and *TRPC1* are therefore priorities for
+targeted protein-level and functional follow-up.
 
 ## **Declarations**
 
