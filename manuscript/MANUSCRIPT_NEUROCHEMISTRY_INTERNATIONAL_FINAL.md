@@ -401,7 +401,7 @@ number, protein abundance or complex stoichiometry.
 
 ALS post-mortem RNA-seq was taken from the New York Genome Center (NYGC)
 ALS Consortium/Target ALS collection (GSE153960; Prudencio et al., 2020;
-1,641 samples with metadata after filtering). After a low-expression
+1,640 samples with metadata after filtering). After a low-expression
 filter (counts per million \[CPM\] \> 0.40), comparisons used log2 CPM
 with per-sample median centring, Mann–Whitney U tests,
 Benjamini–Hochberg correction within each region and Cliff’s δ as effect
@@ -414,12 +414,15 @@ subdivision. Within the same cohort, the “Other Neurological Disorders”
 group was compared against the **same** non-neurological controls as
 ALS, so that control-side confounders (RNA quality, post-mortem
 interval, collection site, library batch) are shared between the two
-comparisons; case numbers allowed this comparison in three regions. The
-public metadata do not identify the constituent disorders, which the
-NYGC provides on request; these regions contained 49 cerebellar, 45
-frontal-cortex and 35 temporal-cortex case samples (Table 5). Age, RNA
-integrity number and post-mortem interval were not included as
-covariates. Per-sample median centring removes sample-wide expression
+comparisons; case numbers allowed this comparison in three regions.
+Groups were used as single labels: 266 samples annotated with both ALS
+Spectrum MND and Other Neurological Disorders, and two annotated with
+Pre-fALS and Other Neurological Disorders, were assigned to neither
+group. The public metadata do not identify the constituent disorders,
+which the NYGC provides on request; these regions contained 49
+cerebellar, 45 frontal-cortex and 35 temporal-cortex case samples (Table
+5). Age, RNA integrity number and post-mortem interval were not included
+as covariates. Per-sample median centring removes sample-wide expression
 shifts and the shared controls equalise control-side confounders, but
 neither adjusts for case–control differences in these variables, so
 residual confounding by them cannot be excluded.
@@ -447,8 +450,14 @@ at sample level and after averaging within donors; both are reported,
 and the donor-level values, which count each donor once, are treated as
 primary.
 
-Cell-composition markers (GFAP, AIF1, SNAP25, RBFOX3, MBP, PLP1) were
-carried through all comparisons.
+Cell-composition markers (*GFAP*, *AIF1*, *SNAP25*, *RBFOX3*, *MBP*,
+*PLP1*) were carried through all comparisons. To ask whether the *TRPC1*
+differences reflected cell composition, *TRPC1* was regressed within
+each region on a neuronal marker (*SNAP25* or *RBFOX3*), alone or
+together with *GFAP*, by ordinary least squares with an intercept across
+all samples of the comparison, as for multiple sclerosis; the residuals
+were compared with the Mann–Whitney U test and Cliff’s δ, with
+Benjamini–Hochberg correction within each group and model.
 
 Junction-level quantification of the truncated *STMN2* transcript was
 obtained without access to the original alignments: the same SRA study
@@ -461,7 +470,13 @@ reads at the donor. The cryptic junction coordinates were not taken from
 the literature but from our own de novo discovery in SH-SY5Y (Section
 3.5); their agreement with published positions is therefore an
 independent check rather than an assumption. Libraries were linked to
-the cohort metadata through the CGND identifier.
+the cohort metadata through the CGND identifier. The same indicator was
+computed for the comparison group, on the samples of the expression
+comparison that reached the read threshold; where a sample had been
+sequenced as more than one library, the reads were pooled so that each
+sample counts once. Within that group, associations with cryptic PSI
+were tested by Spearman correlation and, to separate them from neuronal
+content, by partial Spearman correlation on *SNAP25*.
 
 ### **2.12 Cell culture and TDP-43 knockdown**
 
@@ -1153,15 +1168,29 @@ negative (δ = −0.321). Cervical and lumbar cord are well powered in this
 cohort, so the absence there is informative; thoracic cord and occipital
 cortex are not, since no gene reached significance in either.
 
+Because *TRPC1* followed neuronal content in every group and region
+(Spearman ρ with *SNAP25* = 0.34 to 0.86; Supplementary Table S18c), we
+regressed it on cell-composition markers (Methods 2.11). The ALS
+increase was attenuated but not reversed: in the six regions in which it
+was significant, the adjusted δ remained positive under every marker
+combination (+0.26 to +0.66), and it remained significant in cerebellum,
+frontal cortex and medial motor cortex whichever markers were used, and
+in all six regions after adjustment for *RBFOX3* (Supplementary Table
+S18).
+
 The “Other Neurological Disorders” group within the same cohort was
 compared against the same controls. *TRPC1* decreased in all three
 testable regions (δ = −0.407 to −0.717), the opposite direction to ALS.
 Shared controls remove confounding specific to the control samples, but
 do not resolve differences in disease composition, brain region, case
-processing or cell composition between the case groups. GFAP and SNAP25
-moved more strongly in the comparison group than in ALS while *TRPC1*
-fell; these markers make a simple neurodegeneration explanation less
-compelling but do not provide comprehensive cell-composition adjustment.
+processing or cell composition between the case groups. In this group
+*SNAP25* fell and *GFAP* rose in frontal and temporal cortex (*SNAP25* δ
+= −0.57 and −0.55; *GFAP* δ = +0.59 and +0.64), consistent with neuronal
+loss and astrogliosis. Adjustment for *SNAP25* removed most of the
+temporal-cortex decrease in *TRPC1* (δ = −0.571 before and −0.169 after;
+−0.390 after adjustment for *RBFOX3*) but not the frontal or cerebellar
+decrease (−0.42 to −0.68 and −0.39 to −0.42 across the four models;
+Supplementary Table S18).
 
 Three independent diseases, in four datasets, extended this
 (Supplementary Figure S7). *TRPC1* was decreased in Alzheimer’s disease
@@ -1223,6 +1252,29 @@ seen in ALS tissue. This exploratory analysis therefore does not support
 attributing the regional expression differences to TDP-43-dependent RNA
 processing; all tested correlations are provided in Supplementary Table
 S9.
+
+The same indicator characterises the comparison group, whose constituent
+disorders are not public. In this group the cryptic junction was common
+in cortex: it exceeded 1% of the reads at the exon-1 donor in 21 of 42
+frontal and 22 of 35 temporal cortex samples, against 2 of 154 and 2 of
+25 ALS samples and none of the controls of the same regions (Cliff’s δ
+versus controls = +0.73 and +0.71; q \< 10⁻⁶), whereas in cerebellum no
+comparison-group or ALS sample exceeded 1% (Supplementary Table S18b).
+This is consistent with the TDP-43 proteinopathy of frontotemporal lobar
+degeneration or limbic-predominant age-related TDP-43 encephalopathy,
+although the diagnoses cannot be checked. *TRPC1* was nevertheless lower
+in these regions. Within the group, *TRPC1* fell as cryptic inclusion
+rose (ρ = −0.50 in frontal and −0.40 in temporal cortex), but *SNAP25*
+fell with it (ρ = −0.49 and −0.47), and with *SNAP25* held constant no
+association remained (partial ρ = −0.24, p = 0.12, and 0.00, p = 0.98;
+Supplementary Table S18c).
+
+Across the cohort, *TRPC1* therefore did not behave as a readout of
+TDP-43 loss of function. It rose in ALS brain regions, in which the
+cryptic junction exceeded 1% of reads in at most 14% of samples, was
+unchanged in ALS spinal cord, where it did so in 41–67%, and fell in the
+cortex of the comparison group, where it did so in 50–63%; within groups
+it followed neuronal content rather than the junction.
 
 ## **4. Discussion**
 
@@ -1352,15 +1404,21 @@ of model-specific candidates. In the iPSC-derived motor neurons two
 panels survived matching, which is within what 24 nested combinations
 produce by chance.
 
-**Relevance to disease tissue.** TRPC1 and SARAF increased and CBARP
-decreased in six ALS brain regions, matching the direction observed in
-the public SH-SY5Y model. TRPC1 remained unchanged in the well-powered
-cervical and lumbar spinal-cord comparisons and decreased in the
-neurological comparison cohorts. Among the disease cohorts surveyed, ALS
-alone showed a significant TRPC1 increase, concentrated in brain
-regions. Because bulk-tissue expression is sensitive to region and
-cellular composition, these observations identify disease-associated
-candidates rather than a direct TDP-43-driven mechanism.
+**Relevance to disease tissue.** *TRPC1* and *SARAF* increased and
+*CBARP* decreased in six ALS brain regions, matching the direction
+observed in the public SH-SY5Y model. *TRPC1* remained unchanged in the
+well-powered cervical and lumbar spinal-cord comparisons and decreased
+in the neurological comparison cohorts. Among the disease cohorts
+surveyed, ALS alone showed a significant *TRPC1* increase, concentrated
+in brain regions. The increase was attenuated but not removed by
+adjustment for neuronal and astrocytic markers, so it does not appear to
+be only a difference in cell composition; it did not, however, follow
+the cryptic *STMN2* indicator of TDP-43 loss of function, and a
+comparison group that carried that indicator in cortex more often than
+the ALS samples showed the opposite change. The tissue increase is
+therefore a disease-associated candidate whose cause is not established,
+and the direction it shares with the cellular model does not by itself
+link the two.
 
 **Integrated mechanism and testable predictions.** Previous work
 connecting TDP-43 to Ca²⁺ signalling has centred on ER–mitochondrial
@@ -1429,10 +1487,13 @@ differences in store content but not their consequences, because a
 smaller release also means weaker STIM activation, so the ratio bounds
 rather than eliminates the contribution of the store.
 
-Bulk post-mortem expression can reflect cell composition, and age, RNA
+Bulk post-mortem expression can reflect cell composition, which
+regression on marker genes adjusts for only partially, and age, RNA
 integrity and post-mortem interval were not modelled as covariates. The
-NMD dataset confounds TDP-43 status with sequencing batch, so its
-interaction results are exploratory.
+disorders that make up the NYGC comparison group are not public, and the
+cryptic *STMN2* junction indicates TDP-43 loss of function rather than a
+diagnosis. The NMD dataset confounds TDP-43 status with sequencing
+batch, so its interaction results are exploratory.
 
 ## **5. Conclusion**
 

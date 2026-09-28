@@ -1,0 +1,24 @@
+group,region,n_samples,n_donors,n_detected,n_PSI_above_0_01,fraction_PSI_above_0_01,mean_PSI,cliffs_delta_vs_control,p_value,q_value
+ALS,Cerebellum,157,146,5,0,0.0,7.543828595488627e-05,,,
+Other neurological disorders,Cerebellum,49,49,0,0,0.0,0.0,-0.07894736842105263,0.04813117385415776,0.04813117385415775
+Non-neurological control,Cerebellum,38,38,3,1,0.02631578947368421,0.0004466316472664742,,,
+ALS,Cortex Frontal,154,154,20,2,0.012987012987012988,0.0006635322021321866,,,
+Other neurological disorders,Cortex Frontal,42,42,31,21,0.5,0.05289515907506798,0.7333333333333333,1.6954954812326332e-13,5.0864864436979e-13
+Non-neurological control,Cortex Frontal,55,55,1,0,0.0,1.7250301880282906e-05,,,
+ALS,Cortex Motor Lateral,80,80,30,7,0.0875,0.0023317125337103447,,,
+Non-neurological control,Cortex Motor Lateral,17,17,2,0,0.0,0.0007204800692262835,,,
+ALS,Cortex Motor Medial,80,80,28,11,0.1375,0.003970158371477443,,,
+Non-neurological control,Cortex Motor Medial,18,18,0,0,0.0,0.0,,,
+ALS,Cortex Occipital,44,44,2,1,0.022727272727272728,0.000962010909893107,,,
+Non-neurological control,Cortex Occipital,10,10,0,0,0.0,0.0,,,
+ALS,Cortex Temporal,25,25,8,2,0.08,0.0019021507145943867,,,
+Other neurological disorders,Cortex Temporal,35,35,25,22,0.6285714285714286,0.05997830077004992,0.7142857142857143,2.763826807474508e-07,4.1457402112117623e-07
+Non-neurological control,Cortex Temporal,24,24,0,0,0.0,0.0,,,
+ALS,Hippocampus,29,29,5,1,0.034482758620689655,0.0009403132086953166,,,
+Non-neurological control,Hippocampus,11,11,0,0,0.0,0.0,,,
+ALS,Spinal Cord Cervical,115,115,79,66,0.5739130434782609,0.06000772414527824,,,
+Non-neurological control,Spinal Cord Cervical,32,32,2,0,0.0,5.758232780291604e-05,,,
+ALS,Spinal Cord Lumbar,123,123,90,83,0.6747967479674797,0.0663775474812997,,,
+Non-neurological control,Spinal Cord Lumbar,41,41,0,0,0.0,0.0,,,
+ALS,Spinal Cord Thoracic,34,34,18,14,0.4117647058823529,0.023835345430318896,,,
+Non-neurological control,Spinal Cord Thoracic,7,7,0,0,0.0,0.0,,,

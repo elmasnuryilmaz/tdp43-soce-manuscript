@@ -1,0 +1,26 @@
+family,group,region,x,y,n,spearman_rho,p_value,partial_rho_given_SNAP25,partial_p_value,q_value,normalised_with
+cryptic STMN2 PSI within the comparison group,Other neurological disorders,Cortex Frontal,cryptic STMN2 PSI,TRPC1,42,-0.5027592749789351,0.0006907812671832583,-0.24440121778433924,0.12356161470863733,0.0032053339300991864,
+cryptic STMN2 PSI within the comparison group,Other neurological disorders,Cortex Frontal,cryptic STMN2 PSI,SARAF,42,-0.48280915900969457,0.0012020002237871949,-0.10582659428826859,0.5102051963064387,0.0032053339300991864,
+cryptic STMN2 PSI within the comparison group,Other neurological disorders,Cortex Frontal,cryptic STMN2 PSI,CBARP,42,0.004496952370115699,0.977451447557302,-0.15704652100274616,0.3267936911156871,0.977451447557302,
+cryptic STMN2 PSI within the comparison group,Other neurological disorders,Cortex Frontal,cryptic STMN2 PSI,SNAP25,42,-0.4860796698243242,0.0011001604663334395,,,0.0032053339300991864,
+cryptic STMN2 PSI within the comparison group,Other neurological disorders,Cortex Temporal,cryptic STMN2 PSI,TRPC1,35,-0.3969098684226629,0.01823709722226612,0.0039905106500004745,0.9821303283383624,0.029179355555625792,
+cryptic STMN2 PSI within the comparison group,Other neurological disorders,Cortex Temporal,cryptic STMN2 PSI,SARAF,35,-0.20830328689086558,0.22982488186779776,0.21421517240239416,0.2237791288211152,0.30643317582373036,
+cryptic STMN2 PSI within the comparison group,Other neurological disorders,Cortex Temporal,cryptic STMN2 PSI,CBARP,35,-0.11803852923815718,0.4994654988182573,-0.2515472413664498,0.15126123751711784,0.5708177129351512,
+cryptic STMN2 PSI within the comparison group,Other neurological disorders,Cortex Temporal,cryptic STMN2 PSI,SNAP25,35,-0.4717290082038718,0.0042258833461447124,,,0.008451766692289425,
+TRPC1 with the neuronal marker SNAP25,ALS,Cerebellum,SNAP25,TRPC1,158,0.5842545701815902,7.723571221653068e-16,,,6.5650355384051085e-15,ALS comparison
+TRPC1 with the neuronal marker SNAP25,Non-neurological control,Cerebellum,SNAP25,TRPC1,38,0.5953605427289638,8.050489988496674e-05,,,0.00011404860817036955,ALS comparison
+TRPC1 with the neuronal marker SNAP25,Other neurological disorders,Cerebellum,SNAP25,TRPC1,49,0.6021428571428572,4.715432558363194e-06,,,1.0020294186521786e-05,Other neurological disorders comparison
+TRPC1 with the neuronal marker SNAP25,ALS,Cortex Frontal,SNAP25,TRPC1,154,0.6547311006514043,3.264457306476352e-20,,,5.549577421009799e-19,ALS comparison
+TRPC1 with the neuronal marker SNAP25,Non-neurological control,Cortex Frontal,SNAP25,TRPC1,56,0.5316473000683527,2.4829940861096195e-05,,,3.8373544967148665e-05,ALS comparison
+TRPC1 with the neuronal marker SNAP25,Other neurological disorders,Cortex Frontal,SNAP25,TRPC1,45,0.6436100131752306,1.8508850894647536e-06,,,4.495006645842973e-06,Other neurological disorders comparison
+TRPC1 with the neuronal marker SNAP25,ALS,Cortex Motor Lateral,SNAP25,TRPC1,82,0.49902591395391865,1.824511259357244e-06,,,4.495006645842973e-06,ALS comparison
+TRPC1 with the neuronal marker SNAP25,Non-neurological control,Cortex Motor Lateral,SNAP25,TRPC1,18,0.8555211558307534,6.005632918162668e-06,,,1.1343973289862818e-05,ALS comparison
+TRPC1 with the neuronal marker SNAP25,ALS,Cortex Motor Medial,SNAP25,TRPC1,81,0.6043360433604336,2.318247169688751e-09,,,9.85255047117719e-09,ALS comparison
+TRPC1 with the neuronal marker SNAP25,Non-neurological control,Cortex Motor Medial,SNAP25,TRPC1,19,0.7228070175438598,0.0004720201792145147,,,0.0006172571574343654,ALS comparison
+TRPC1 with the neuronal marker SNAP25,ALS,Cortex Occipital,SNAP25,TRPC1,45,0.6945981554677206,1.2044839362069456e-07,,,4.0952453831036153e-07,ALS comparison
+TRPC1 with the neuronal marker SNAP25,Non-neurological control,Cortex Occipital,SNAP25,TRPC1,11,0.5090909090909091,0.10973723224165641,,,0.10973723224165641,ALS comparison
+TRPC1 with the neuronal marker SNAP25,ALS,Cortex Temporal,SNAP25,TRPC1,25,0.6392307692307693,0.0005817833939500861,,,0.0007064512640822475,ALS comparison
+TRPC1 with the neuronal marker SNAP25,Non-neurological control,Cortex Temporal,SNAP25,TRPC1,24,0.7530434782608695,2.1706524916784425e-05,,,3.6901092358533525e-05,ALS comparison
+TRPC1 with the neuronal marker SNAP25,Other neurological disorders,Cortex Temporal,SNAP25,TRPC1,35,0.8294117647058825,7.420869501132935e-10,,,4.20515938397533e-09,Other neurological disorders comparison
+TRPC1 with the neuronal marker SNAP25,ALS,Hippocampus,SNAP25,TRPC1,29,0.34039408866995063,0.07078761908875618,,,0.08022596830059034,ALS comparison
+TRPC1 with the neuronal marker SNAP25,Non-neurological control,Hippocampus,SNAP25,TRPC1,11,0.5181818181818182,0.10249153979096379,,,0.10889726102789903,ALS comparison

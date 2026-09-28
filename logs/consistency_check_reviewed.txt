@@ -132,6 +132,90 @@ PASS  ER release control mean: manuscript 0.268 vs data 0.268
 PASS  WST-1 48 h knockdown: manuscript 61.5 vs data 61.5
 PASS  manuscript and DATA_AVAILABILITY name the same release: manuscript 1 vs data 1
 
+=== comparison group and cell composition (Tables S18, S18b, S18c) ===
+PASS  NYGC samples with metadata in the count matrix: manuscript 1640 vs data 1640
+PASS  samples labelled both ALS and comparison group: manuscript 266 vs data 266
+PASS  samples labelled both Pre-fALS and comparison group: manuscript 2 vs data 2
+PASS  ALS adjusted TRPC1 delta, lowest: manuscript 0.26 vs data 0.2558294470353098
+PASS  ALS adjusted TRPC1 delta, highest: manuscript 0.66 vs data 0.6551724137931034
+PASS  ALS adjusted TRPC1 delta positive in every region and model: manuscript 1 vs data 1
+PASS  significant under every model: cerebellum, frontal, medial motor: manuscript 1 vs data 1
+PASS  significant in all six after RBFOX3: manuscript 6 vs data 6
+PASS  comparison group, temporal TRPC1 before adjustment: manuscript -0.571 vs data -0.5714285714285714
+PASS  comparison group, temporal TRPC1 after SNAP25: manuscript -0.169 vs data -0.169047619047619
+PASS  comparison group, temporal TRPC1 after RBFOX3: manuscript -0.39 vs data -0.3904761904761905
+PASS  comparison group, frontal adjusted range low: manuscript -0.68 vs data -0.6817460317460318
+PASS  comparison group, frontal adjusted range high: manuscript -0.42 vs data -0.4222222222222222
+PASS  comparison group, cerebellum adjusted range low: manuscript -0.42 vs data -0.4210526315789473
+PASS  comparison group, cerebellum adjusted range high: manuscript -0.39 vs data -0.3899033297529538
+PASS  comparison group SNAP25 delta, Cortex Frontal: manuscript -0.57 vs data variable  region        
+SNAP25    Cortex Frontal   -0.570635
+Name: cliffs_delta, dtype: float64
+PASS  comparison group SNAP25 delta, Cortex Temporal: manuscript -0.55 vs data variable  region         
+SNAP25    Cortex Temporal   -0.552381
+Name: cliffs_delta, dtype: float64
+PASS  comparison group GFAP delta, Cortex Frontal: manuscript 0.59 vs data variable  region        
+GFAP      Cortex Frontal    0.588095
+Name: cliffs_delta, dtype: float64
+PASS  comparison group GFAP delta, Cortex Temporal: manuscript 0.64 vs data variable  region         
+GFAP      Cortex Temporal    0.640476
+Name: cliffs_delta, dtype: float64
+PASS  S18b Other neurol Cortex Frontal: samples above 1%: manuscript 21 vs data 21
+PASS  S18b Other neurol Cortex Frontal: samples: manuscript 42 vs data 42
+PASS  S18b Other neurol Cortex Temporal: samples above 1%: manuscript 22 vs data 22
+PASS  S18b Other neurol Cortex Temporal: samples: manuscript 35 vs data 35
+PASS  S18b ALS Cortex Frontal: samples above 1%: manuscript 2 vs data 2
+PASS  S18b ALS Cortex Frontal: samples: manuscript 154 vs data 154
+PASS  S18b ALS Cortex Temporal: samples above 1%: manuscript 2 vs data 2
+PASS  S18b ALS Cortex Temporal: samples: manuscript 25 vs data 25
+PASS  S18b Non-neurolog Cortex Frontal: samples above 1%: manuscript 0 vs data 0
+PASS  S18b Non-neurolog Cortex Frontal: samples: manuscript 55 vs data 55
+PASS  S18b Non-neurolog Cortex Temporal: samples above 1%: manuscript 0 vs data 0
+PASS  S18b Non-neurolog Cortex Temporal: samples: manuscript 24 vs data 24
+PASS  S18b Other neurol Cerebellum: samples above 1%: manuscript 0 vs data 0
+PASS  S18b Other neurol Cerebellum: samples: manuscript 49 vs data 49
+PASS  S18b ALS Cerebellum: samples above 1%: manuscript 0 vs data 0
+PASS  S18b ALS Cerebellum: samples: manuscript 157 vs data 157
+PASS  comparison group vs control delta, frontal: manuscript 0.73 vs data 0.7333333333333333
+PASS  comparison group vs control delta, temporal: manuscript 0.71 vs data 0.7142857142857143
+PASS  comparison group vs control q below 1e-6 in cortex: manuscript 1 vs data 1
+PASS  ALS brain: at most 14% above 1%: manuscript 1 vs data 1
+PASS  ALS cord: lowest fraction 41%: manuscript 0.41 vs data 0.4117647058823529
+PASS  ALS cord: highest fraction 67%: manuscript 0.67 vs data 0.6747967479674797
+PASS  comparison-group cortex: lowest fraction 50%: manuscript 0.5 vs data 0.5
+PASS  comparison-group cortex: highest fraction 63%: manuscript 0.63 vs data 0.6285714285714286
+PASS  within comparison group rho TRPC1 Cortex Frontal: manuscript -0.5 vs data -0.5027592749789351
+PASS  within comparison group rho TRPC1 Cortex Temporal: manuscript -0.4 vs data -0.3969098684226629
+PASS  within comparison group rho SNAP25 Cortex Frontal: manuscript -0.49 vs data -0.4860796698243242
+PASS  within comparison group rho SNAP25 Cortex Temporal: manuscript -0.47 vs data -0.4717290082038718
+PASS  partial rho TRPC1 frontal: manuscript -0.24 vs data -0.2444012177843392
+PASS  partial p TRPC1 frontal: manuscript 0.12 vs data 0.1235616147086373
+PASS  partial rho TRPC1 temporal: manuscript 0.0 vs data 0.0039905106500004
+PASS  partial p TRPC1 temporal: manuscript 0.98 vs data 0.9821303283383624
+PASS  TRPC1-SNAP25 rho, lowest: manuscript 0.34 vs data 0.3403940886699506
+PASS  TRPC1-SNAP25 rho, highest: manuscript 0.86 vs data 0.8555211558307534
+PASS  TRPC1-SNAP25 rho positive everywhere: manuscript 1 vs data 1
+PASS  Supplementary Table S18 cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S18b cited in the text: manuscript 1 vs data 1
+PASS  Supplementary Table S18c cited in the text: manuscript 1 vs data 1
+PASS  present: 1,640 samples with metadata after filtering
+PASS  present: Groups were used as single labels: 266 samples annotated with both ALS Spectrum MND and Ot
+PASS  present: the adjusted δ remained positive under every marker combination (+0.26 to +0.66)
+PASS  present: Adjustment for SNAP25 removed most of the temporal-cortex decrease
+PASS  present: (δ = −0.571 before and −0.169 after; −0.390 after adjustment for RBFOX3)
+PASS  present: 21 of 42 frontal and 22 of 35 temporal cortex samples, against 2 of 154 and 2 of 25 ALS sa
+PASS  present: whereas in cerebellum no comparison-group or ALS sample exceeded 1%
+PASS  present: although the diagnoses cannot be checked
+PASS  present: (partial ρ = −0.24, p = 0.12, and 0.00, p = 0.98
+PASS  present: exceeded 1% of reads in at most 14% of samples, was unchanged in ALS spinal cord, where it
+PASS  present: where it did so in 50–63%
+PASS  present: the direction it shares with the cellular model does not by itself link the two
+PASS  present: which regression on marker genes adjusts for only partially
+PASS  present: the cryptic STMN2 junction indicates TDP-43 loss of function rather than a diagnosis
+PASS  absent: 1,641 samples
+PASS  absent: make a simple neurodegeneration explanation less compelling
+PASS  absent: these observations identify disease-associated candidates rather than a direct TDP-43-driv
+
 === stage-wise confirmation for STIM1 ===
 PASS  STIM1 transcripts in the stage-wise procedure: manuscript 7 vs data 7
 PASS  STIM1 screening-stage q: manuscript 5.49e-07 vs data 5.48705787968024e-07
@@ -545,4 +629,4 @@ PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 493 passed, 0 failed ====
+==== 567 passed, 0 failed ====

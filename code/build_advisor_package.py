@@ -59,7 +59,7 @@ Alti ana figur metnin icine gomulu oldugu icin makale tek basina okunabilir; bu 
 figurlerin ayri dosyalarini, ek materyali ve veri dosyalarini icerir.
 
 01_EK_MATERYAL
-  SUPPLEMENTARY_MATERIAL.docx  Ek Tablo S1-S17 aciklamalari ve Ek Figur S1-S8 (gorsellerle)
+  SUPPLEMENTARY_MATERIAL.docx  Ek Tablo S1-S18 aciklamalari ve Ek Figur S1-S8 (gorsellerle)
   HIGHLIGHTS.docx              Dort maddelik one cikanlar listesi
 
 02_GORSELLER
@@ -68,7 +68,7 @@ figurlerin ayri dosyalarini, ek materyali ve veri dosyalarini icerir.
   Grafik_Ozet    Grafiksel ozet
 
 03_TABLOLAR      Makaledeki Tablo 1-5'in CSV surumleri
-04_EK_VERI       Ek Tablo S1-S17 veri dosyalari (S1 laboratuvar ham verisi XLSX)
+04_EK_VERI       Ek Tablo S1-S18 veri dosyalari (S1 laboratuvar ham verisi XLSX)
 
 DOSYA_LISTESI_SHA256.txt her dosyanin saglama toplamini verir.
 Kod ve veri deposu: github.com/elmasnuryilmaz/tdp43-soce-manuscript (surum v1.0.5)

@@ -226,6 +226,102 @@ import subprocess as _sp
 close("manuscript and DATA_AVAILABILITY name the same release", 1,
       int(len(set(re.findall(r"releases/tag/(v\d+\.\d+\.\d+)",
                             TXT + io.open(f"{P}/DATA_AVAILABILITY.md", encoding="utf-8").read()))) == 1), tol=0)
+out.append("\n=== comparison group and cell composition (Tables S18, S18b, S18c) ===")
+import gzip as _gz
+_B = "/Users/elmas/Desktop/TEZ/output/ek_analizler_2026-07-31"
+_meta = pd.read_csv(f"{_B}/06_WGCNA_ALS_kohort/T60_NYGC_ornek_ustverisi.csv", low_memory=False)
+with _gz.open(f"{_B}/00_ham_veri_onbellek/gse153960/GSE153960_counts.txt.gz", "rt") as _fh:
+    _cols = {c for c in _fh.readline().rstrip("\n").split("\t") if c.startswith("CGND")}
+_meta = _meta.dropna(subset=["ornek_id"]).drop_duplicates("ornek_id")
+_meta = _meta[_meta.ornek_id.isin(_cols)]
+_g = _meta.grup.astype(str).str.strip().str.replace("DIsorders", "Disorders").value_counts()
+close("NYGC samples with metadata in the count matrix", 1640, len(_meta), tol=0)
+close("samples labelled both ALS and comparison group", 266, int(_g.get("ALS Spectrum MND, Other Neurological Disorders", 0)), tol=0)
+close("samples labelled both Pre-fALS and comparison group", 2, int(_g.get("Pre-fALS, Other Neurological Disorders", 0)), tol=0)
+
+_s18 = pd.read_csv(f"{P}/supplementary/S18_TRPC1_cell_composition_adjustment.csv")
+_t = _s18[_s18.variable == "TRPC1"]
+_six = ["Cerebellum", "Cortex Frontal", "Cortex Motor Lateral", "Cortex Motor Medial", "Cortex Temporal", "Hippocampus"]
+_a = _t[(_t.group == "ALS") & _t.region.isin(_six) & (_t.adjustment != "none")]
+close("ALS adjusted TRPC1 delta, lowest", 0.26, _a.cliffs_delta.min(), tol=0.005)
+close("ALS adjusted TRPC1 delta, highest", 0.66, _a.cliffs_delta.max(), tol=0.005)
+close("ALS adjusted TRPC1 delta positive in every region and model", 1, int((_a.cliffs_delta > 0).all()), tol=0)
+_rob = sorted(r for r in _six if (_a[_a.region == r].q_value < 0.05).all())
+close("significant under every model: cerebellum, frontal, medial motor", 1,
+      int(_rob == ["Cerebellum", "Cortex Frontal", "Cortex Motor Medial"]), tol=0)
+close("significant in all six after RBFOX3", 6, int((_a[_a.adjustment == "RBFOX3"].q_value < 0.05).sum()), tol=0)
+_o = _t[_t.group == "Other neurological disorders"].set_index(["region", "adjustment"]).cliffs_delta
+close("comparison group, temporal TRPC1 before adjustment", -0.571, _o[("Cortex Temporal", "none")], tol=0.0005)
+close("comparison group, temporal TRPC1 after SNAP25", -0.169, _o[("Cortex Temporal", "SNAP25")], tol=0.0005)
+close("comparison group, temporal TRPC1 after RBFOX3", -0.390, _o[("Cortex Temporal", "RBFOX3")], tol=0.0005)
+_fr = _o.loc["Cortex Frontal"].drop("none"); _ce = _o.loc["Cerebellum"].drop("none")
+close("comparison group, frontal adjusted range low", -0.68, _fr.min(), tol=0.005)
+close("comparison group, frontal adjusted range high", -0.42, _fr.max(), tol=0.005)
+close("comparison group, cerebellum adjusted range low", -0.42, _ce.min(), tol=0.005)
+close("comparison group, cerebellum adjusted range high", -0.39, _ce.max(), tol=0.005)
+_mk = _s18[_s18.group == "Other neurological disorders"].set_index(["variable", "region"]).cliffs_delta
+for _v, _r, _x in (("SNAP25", "Cortex Frontal", -0.57), ("SNAP25", "Cortex Temporal", -0.55),
+                   ("GFAP", "Cortex Frontal", 0.59), ("GFAP", "Cortex Temporal", 0.64)):
+    close(f"comparison group {_v} delta, {_r}", _x, _mk[(_v, _r)], tol=0.005)
+
+_b = pd.read_csv(f"{P}/supplementary/S18b_cryptic_STMN2_by_group_and_region.csv").set_index(["group", "region"])
+_OND, _ALS, _CT = "Other neurological disorders", "ALS", "Non-neurological control"
+for _grp, _r, _k, _n in ((_OND, "Cortex Frontal", 21, 42), (_OND, "Cortex Temporal", 22, 35),
+                         (_ALS, "Cortex Frontal", 2, 154), (_ALS, "Cortex Temporal", 2, 25),
+                         (_CT, "Cortex Frontal", 0, 55), (_CT, "Cortex Temporal", 0, 24),
+                         (_OND, "Cerebellum", 0, 49), (_ALS, "Cerebellum", 0, 157)):
+    close(f"S18b {_grp[:12]} {_r}: samples above 1%", _k, int(_b.loc[(_grp, _r), "n_PSI_above_0_01"]), tol=0)
+    close(f"S18b {_grp[:12]} {_r}: samples", _n, int(_b.loc[(_grp, _r), "n_samples"]), tol=0)
+close("comparison group vs control delta, frontal", 0.73, _b.loc[(_OND, "Cortex Frontal"), "cliffs_delta_vs_control"], tol=0.005)
+close("comparison group vs control delta, temporal", 0.71, _b.loc[(_OND, "Cortex Temporal"), "cliffs_delta_vs_control"], tol=0.005)
+close("comparison group vs control q below 1e-6 in cortex", 1,
+      int(max(_b.loc[(_OND, "Cortex Frontal"), "q_value"], _b.loc[(_OND, "Cortex Temporal"), "q_value"]) < 1e-6), tol=0)
+_bb = _b.reset_index()
+_alsb = _bb[(_bb.group == _ALS) & ~_bb.region.str.startswith("Spinal")]
+_alsc = _bb[(_bb.group == _ALS) & _bb.region.str.startswith("Spinal")]
+_ondc = _bb[(_bb.group == _OND) & _bb.region.str.startswith("Cortex")]
+close("ALS brain: at most 14% above 1%", 1, int(_alsb.fraction_PSI_above_0_01.max() <= 0.14), tol=0)
+close("ALS cord: lowest fraction 41%", 0.41, _alsc.fraction_PSI_above_0_01.min(), tol=0.005)
+close("ALS cord: highest fraction 67%", 0.67, _alsc.fraction_PSI_above_0_01.max(), tol=0.005)
+close("comparison-group cortex: lowest fraction 50%", 0.50, _ondc.fraction_PSI_above_0_01.min(), tol=0.005)
+close("comparison-group cortex: highest fraction 63%", 0.63, _ondc.fraction_PSI_above_0_01.max(), tol=0.005)
+
+_c = pd.read_csv(f"{P}/supplementary/S18c_cryptic_STMN2_within_comparison_group.csv")
+_w = _c[_c.family.str.startswith("cryptic")].set_index(["region", "y"])
+for _r, _y, _x in (("Cortex Frontal", "TRPC1", -0.50), ("Cortex Temporal", "TRPC1", -0.40),
+                   ("Cortex Frontal", "SNAP25", -0.49), ("Cortex Temporal", "SNAP25", -0.47)):
+    close(f"within comparison group rho {_y} {_r}", _x, _w.loc[(_r, _y), "spearman_rho"], tol=0.005)
+close("partial rho TRPC1 frontal", -0.24, _w.loc[("Cortex Frontal", "TRPC1"), "partial_rho_given_SNAP25"], tol=0.005)
+close("partial p TRPC1 frontal", 0.12, _w.loc[("Cortex Frontal", "TRPC1"), "partial_p_value"], tol=0.005)
+close("partial rho TRPC1 temporal", 0.00, _w.loc[("Cortex Temporal", "TRPC1"), "partial_rho_given_SNAP25"], tol=0.005)
+close("partial p TRPC1 temporal", 0.98, _w.loc[("Cortex Temporal", "TRPC1"), "partial_p_value"], tol=0.005)
+_k = _c[_c.family.str.startswith("TRPC1 with")]
+close("TRPC1-SNAP25 rho, lowest", 0.34, _k.spearman_rho.min(), tol=0.005)
+close("TRPC1-SNAP25 rho, highest", 0.86, _k.spearman_rho.max(), tol=0.005)
+close("TRPC1-SNAP25 rho positive everywhere", 1, int((_k.spearman_rho > 0).all()), tol=0)
+
+for _i in ("S18", "S18b", "S18c"):
+    close(f"Supplementary Table {_i} cited in the text", 1,
+          int(re.search(rf"Table {_i}(?![0-9a-z])", SEARCH_TXT.split("## References")[0]) is not None), tol=0)
+for _s in ["1,640 samples with metadata after filtering",
+           "Groups were used as single labels: 266 samples annotated with both ALS Spectrum MND and Other Neurological Disorders",
+           "the adjusted δ remained positive under every marker combination (+0.26 to +0.66)",
+           "Adjustment for SNAP25 removed most of the temporal-cortex decrease",
+           "(δ = −0.571 before and −0.169 after; −0.390 after adjustment for RBFOX3)",
+           "21 of 42 frontal and 22 of 35 temporal cortex samples, against 2 of 154 and 2 of 25 ALS samples",
+           "whereas in cerebellum no comparison-group or ALS sample exceeded 1%",
+           "although the diagnoses cannot be checked",
+           "(partial ρ = −0.24, p = 0.12, and 0.00, p = 0.98",
+           "exceeded 1% of reads in at most 14% of samples, was unchanged in ALS spinal cord, where it did so in 41–67%",
+           "where it did so in 50–63%",
+           "the direction it shares with the cellular model does not by itself link the two",
+           "which regression on marker genes adjusts for only partially",
+           "the cryptic STMN2 junction indicates TDP-43 loss of function rather than a diagnosis"]:
+    check("present", _s, True)
+for _s in ["1,641 samples", "make a simple neurodegeneration explanation less compelling",
+           "these observations identify disease-associated candidates rather than a direct TDP-43-driven mechanism"]:
+    check("absent", _s, False)
+
 out.append("\n=== stage-wise confirmation for STIM1 ===")
 _st = pd.read_csv("/Users/elmas/Desktop/TEZ/output/reanalysis_corrected_full_2026-07-22/"
                   "isoform_0_vs_75/drimseq_stager/stageR_adjusted_pvalues.csv")
