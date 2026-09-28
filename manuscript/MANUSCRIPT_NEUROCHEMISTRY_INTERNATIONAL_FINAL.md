@@ -217,8 +217,11 @@ isoform usage was assessed with IsoformSwitchAnalyzeR v2.6.0
 Robinson, 2016) and stageR v1.28.0 (Van den Berge et al., 2017),
 including prediction of open reading frames, premature termination
 codons, sensitivity to nonsense-mediated decay (NMD) and protein-domain
-consequences. As an annotation-independent comparison, LeafCutter v0.2.9
-(Li et al., 2018) was run on the same alignments, and SUPPA2 v2.3
+consequences. Gene-level q values from this pipeline are the
+screening-stage values of the stage-wise procedure, and stageR supplies
+the confirmation stage that asks which individual transcripts carry the
+gene-level signal. As an annotation-independent comparison, LeafCutter
+v0.2.9 (Li et al., 2018) was run on the same alignments, and SUPPA2 v2.3
 (Trincado et al., 2018) was run on the three control and three 75 ng/mL
 libraries as a check of method concordance.
 
@@ -799,8 +802,15 @@ In the primary SH-SY5Y model these were *STIMATE* (ΔPSI = +0.244; FDR =
 A *STIM1* event (chr11:4,088,702–4,088,738; 37 bp, frame-disrupting)
 reached ΔPSI = +0.145 (FDR = 4.0 × 10⁻⁴) with a confidence interval
 marginally including zero, and was positive in all three human datasets.
-Isoform-level testing supported *STIM1* (DRIMSeq gene-level q = 5.49 ×
-10⁻⁷) with two isoforms predicted to carry premature termination codons.
+Isoform-level testing placed *STIM1* among the genes with differential
+isoform usage at the screening stage (DRIMSeq gene-level q = 5.49 ×
+10⁻⁷), but the stage-wise confirmation did not single out any
+transcript: all seven *STIM1* transcripts carried a confirmation-stage
+adjusted p of 1.0. Two *STIM1* isoforms are predicted to carry premature
+termination codons, and neither is among the ones whose usage changes
+(isoform-level q = 0.33 and 0.77), whereas the two that do change are
+not predicted to carry them. The gene-level signal is therefore not
+attributable to a premature-termination-codon isoform.
 
 *CBARP*, encoding a suppressor of voltage-gated Ca²⁺ channel activity
 and Ca²⁺-evoked exocytosis (Béguin et al., 2014), was the most

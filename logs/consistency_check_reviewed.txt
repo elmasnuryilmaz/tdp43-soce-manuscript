@@ -132,6 +132,17 @@ PASS  ER release control mean: manuscript 0.268 vs data 0.268
 PASS  WST-1 48 h knockdown: manuscript 61.5 vs data 61.5
 PASS  manuscript and DATA_AVAILABILITY name the same release: manuscript 1 vs data 1
 
+=== stage-wise confirmation for STIM1 ===
+PASS  STIM1 transcripts in the stage-wise procedure: manuscript 7 vs data 7
+PASS  STIM1 screening-stage q: manuscript 5.49e-07 vs data 5.48705787968024e-07
+PASS  STIM1 transcripts confirmed at 0.05: manuscript 0 vs data 0
+PASS  every STIM1 transcript has a confirmation-stage p of 1.0: manuscript 1 vs data 1
+PASS  present: the stage-wise confirmation did not single out any transcript
+PASS  present: all seven STIM1 transcripts carried a confirmation-stage adjusted p of 1.0
+PASS  present: isoform-level q = 0.33 and 0.77
+PASS  present: stageR supplies the confirmation stage
+PASS  absent: Isoform-level testing supported STIM1
+
 === svaseq sensitivity, recomputed 28 September 2026 ===
 PASS  genes with an adjusted p value in both fits: manuscript 14012 vs data 14012
 PASS  differentially expressed in the published model: manuscript 1694 vs data 1694
@@ -176,7 +187,7 @@ PASS  value kept in the supplementary text: Trpc1 intron 7, +0.260: manuscript 1
 PASS  value kept in the supplementary text: δ = −0.562 to Cliff’s δ of −0.418: manuscript 1 vs data 1
 PASS  value kept in the supplementary text: donor-level δ = −1.000 for both: manuscript 1 vs data 1
 PASS  value kept in the supplementary text: exact one-sided sign-test q = 0.310: manuscript 1 vs data 1
-PASS  value kept in the supplementary text: interaction was −0.325 (p = 0.317, q = 0: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: STIM1 was −0.325 (p = 0.317, q = 0.508): manuscript 1 vs data 1
 PASS  absent: FRASER, run on the nine-sample doxycycline series, returned no genome-wide
 PASS  absent: Because the four interventions reuse the same control and knockdown libraries
 PASS  absent: RYR2 and MCU also had positive interactions
@@ -534,4 +545,4 @@ PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 484 passed, 0 failed ====
+==== 493 passed, 0 failed ====

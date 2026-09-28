@@ -226,6 +226,22 @@ import subprocess as _sp
 close("manuscript and DATA_AVAILABILITY name the same release", 1,
       int(len(set(re.findall(r"releases/tag/(v\d+\.\d+\.\d+)",
                             TXT + io.open(f"{P}/DATA_AVAILABILITY.md", encoding="utf-8").read()))) == 1), tol=0)
+out.append("\n=== stage-wise confirmation for STIM1 ===")
+_st = pd.read_csv("/Users/elmas/Desktop/TEZ/output/reanalysis_corrected_full_2026-07-22/"
+                  "isoform_0_vs_75/drimseq_stager/stageR_adjusted_pvalues.csv")
+_st1 = _st[_st.geneID == "STIM1"]
+close("STIM1 transcripts in the stage-wise procedure", 7, len(_st1), tol=0)
+close("STIM1 screening-stage q", 5.49e-7, float(_st1.gene.iloc[0]), tol=1e-8)
+close("STIM1 transcripts confirmed at 0.05", 0, int((_st1.transcript < 0.05).sum()), tol=0)
+close("every STIM1 transcript has a confirmation-stage p of 1.0", 1,
+      int((_st1.transcript == 1.0).all()), tol=0)
+for _s in ["the stage-wise confirmation did not single out any transcript",
+           "all seven STIM1 transcripts carried a confirmation-stage adjusted p of 1.0",
+           "isoform-level q = 0.33 and 0.77",
+           "stageR supplies the confirmation stage"]:
+    check("present", _s, True)
+check("absent", "Isoform-level testing supported STIM1", False)
+
 out.append("\n=== svaseq sensitivity, recomputed 28 September 2026 ===")
 _sva = pd.read_csv(f"{P}/source_data/svaseq_sensitivity_SHSY5Y.csv")
 close("genes with an adjusted p value in both fits", 14012, len(_sva), tol=0)
@@ -273,7 +289,7 @@ for _v in ["SARAF intron 5 index rises in the iPSC-derived motor neurons (+0.097
 for _v in ["smallest q = 0.053", "median interaction −0.11 log₂", "p = 0.62",
            "4.8 versus 2.3 events", "Atp2a2 intron 6, +0.285", "Trpc1 intron 7, +0.260",
            "δ = −0.562 to Cliff’s δ of −0.418", "donor-level δ = −1.000 for both",
-           "exact one-sided sign-test q = 0.310", "interaction was −0.325 (p = 0.317, q = 0.508)"]:
+           "exact one-sided sign-test q = 0.310", "STIM1 was −0.325 (p = 0.317, q = 0.508)"]:
     close(f"value kept in the supplementary text: {_v[:40]}", 1, int(_v in _supp2), tol=0)
 for _s in ["FRASER, run on the nine-sample doxycycline series, returned no genome-wide",
            "Because the four interventions reuse the same control and knockdown libraries",
