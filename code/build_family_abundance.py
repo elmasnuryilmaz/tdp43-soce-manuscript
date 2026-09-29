@@ -31,7 +31,7 @@ FAMILIES = [
     ("ORAI (CRAC channel)", ["ORAI1", "ORAI2", "ORAI3"]),
     ("SERCA (Ca2+ re-uptake into ER)", ["ATP2A1", "ATP2A2", "ATP2A3"]),
     ("TRPC", ["TRPC1", "TRPC3", "TRPC4", "TRPC5", "TRPC6"]),
-    ("SOCE regulators", ["SARAF", "STIMATE", "CRACR2A", "CRACR2B", "CBARP"]),
+    ("Ca2+-entry regulators", ["SARAF", "STIMATE", "CRACR2A", "CRACR2B", "CBARP"]),
     ("Mitochondrial Ca2+ uptake", ["MCU", "MICU1", "MICU2", "MICU3", "MCUR1", "MCUB"]),
     ("PMCA (Ca2+ extrusion)", ["ATP2B1", "ATP2B2", "ATP2B3", "ATP2B4"]),
 ]

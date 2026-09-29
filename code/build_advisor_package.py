@@ -47,9 +47,12 @@ for p in sorted((PKG / "supplementary").glob("S*")):
     if p.suffix in (".csv", ".xlsx", ".gz") and p.name[1].isdigit():
         copies.append((p, f"04_EK_VERI/{p.name}"))
 
-for name in ['STIM1_transcript_test_eligibility.csv', 'nmd_descriptive_all_genes.csv.gz', 'svaseq_sensitivity_SHSY5Y.csv', 'qpcr_biological_replicate_tests.csv']:
+for name in ['STIM1_transcript_test_eligibility.csv', 'STIM1_isoformswitch_DEXSeq.csv', 'nmd_descriptive_all_genes.csv.gz',
+             'svaseq_sensitivity_SHSY5Y.csv', 'qpcr_biological_replicate_tests.csv', 'power_simulation_S1.csv',
+             'DESeq2_featureCounts_vs_Salmon_calcium_genes.csv']:
     copies.append((PKG / 'source_data' / name, f'05_KAYNAK_KONTROLLER/{name}'))
-copies.append((PKG / 'QPCR_CORRECTION_2026-09-29.md', '05_KAYNAK_KONTROLLER/QPCR_CORRECTION_2026-09-29.md'))
+for name in ['QPCR_CORRECTION_2026-09-29.md', 'CORRECTIONS_2026-09-29_v1.0.8.md']:
+    copies.append((PKG / name, f'05_KAYNAK_KONTROLLER/{name}'))
 
 for src, rel in copies:
     dst = STAGE / rel
@@ -64,17 +67,25 @@ Alti ana figur metnin icine gomulu oldugu icin makale tek basina okunabilir; bu 
 figurlerin ayri dosyalarini, ek materyali ve veri dosyalarini icerir.
 
 01_EK_MATERYAL
-  SUPPLEMENTARY_MATERIAL.docx  Ek Tablo S1-S18d aciklamalari ve Ek Figur S1-S8 (gorsellerle)
+  SUPPLEMENTARY_MATERIAL.docx  Ek Tablo S1-S18d aciklamalari, Ek Sonuc 1-6 ve Ek Figur S1-S9 (gorsellerle)
   HIGHLIGHTS.docx              Dort maddelik one cikanlar listesi
 
 02_GORSELLER
   Ana_Figurler   Figure1-6, PNG (baski cozunurlugu) ve SVG (duzenlenebilir)
-  Ek_Figurler    Supplementary Figure S1-S8, PNG ve SVG
-  Grafik_Ozet    Grafiksel ozet
+  Ek_Figurler    Supplementary Figure S1-S9, PNG ve SVG
+  Grafik_Ozet    Istege bagli dergi grafik ozeti; ayni zamanda depo ozetidir. Makalenin numarali bir figuru
+                 degildir ve ana metinde ya da ekte gosterilmeyen bir bulgu tasimaz.
 
 03_TABLOLAR      Makaledeki Tablo 1-5'in CSV surumleri
 04_EK_VERI       Ek Tablo S1-S18d veri dosyalari (S1 laboratuvar ham verisi XLSX)
-05_KAYNAK_KONTROLLER  STIM1, NMD, svaseq kaynak tablolari ve duzeltme ozeti
+05_KAYNAK_KONTROLLER  STIM1, NMD, svaseq, guc simulasyonu ve featureCounts/Salmon karsilastirma tablolari; duzeltme ozetleri
+
+Bu surum (v1.0.8) bir onceki surumun hakem bicimli degerlendirmesine yanit verir: ana iddia kanit duzeyine
+indirildi (Fura-2 tek plaka, betimsel ve RNA verisiyle eslestirilmemis gozlem; RNA analizleri aday uretir),
+"high-confidence" adi "stringent-filter" olarak degistirildi, guc simulasyonunun varsayimlari yazildi,
+Sekil 2, 4, 5, 6 ve grafik ozet yeniden cizildi, Ek Figur S9 eklendi, DESeq2 sayim kaynaklari (Salmon/featureCounts)
+Yontem 2.2'de acikca ayrildi. Ayrintilar: 05_KAYNAK_KONTROLLER/CORRECTIONS_2026-09-29_v1.0.8.md.
+Ek Figur aciklamalarinin bagimsiz kopyasi depoda: supplementary/Supplementary_Figure_Legends.md.
 
 RT-qPCR grup basina dort biyolojik tekrardir. Fura-2 grup basina
 tek kultur plakasindaki uc kuyudan, mevcut WST-1 verisi bir deneydeki dort kuyudan gelir.

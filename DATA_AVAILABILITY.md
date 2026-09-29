@@ -43,7 +43,16 @@ run-level group assignment for knockdown experiments and group definitions for p
   events requires the complete rMATS output.
 - Laboratory raw instrument files. The values behind every laboratory panel of current Figures 1 and 2: Ct values,
   per-replicate relative expression, Fura-2 amplitudes, normalised WST-1 signal values, primers and
-  the thermal profile are in `supplementary/S1_laboratory_source_data.xlsx`.
+  the thermal profile are in `supplementary/S1_laboratory_source_data.xlsx`. The original Fura-2 recordings
+  (all three wells per group, one plate) are shown in Supplementary Figure S9; the image they are cropped from is
+  `source_data/fura2_traces/Figure2_panels_A-D.png`.
+
+## Files added for release v1.0.8
+
+- `source_data/power_simulation_S1.csv` - the simulated detection power behind Supplementary Figure S1
+  (reads per sample x true delta-PSI; 2,000 simulations per cell).
+- `source_data/STIM1_isoformswitch_DEXSeq.csv` - the transcript-level STIM1 test results quoted in the
+  manuscript, extracted from the IsoformSwitchAnalyzeR object by `code/stim1_isoformswitch_extract.R`.
 
 ## Paths
 
@@ -54,5 +63,5 @@ must be edited before the code runs elsewhere; the intended order is in `README.
 
 ## Versioned submission snapshot
 
-The six-figure submission snapshot is released as `v1.0.7` at
-`https://github.com/elmasnuryilmaz/tdp43-soce-manuscript/releases/tag/v1.0.7`.
+The six-figure submission snapshot is released as `v1.0.8` at
+`https://github.com/elmasnuryilmaz/tdp43-soce-manuscript/releases/tag/v1.0.8`.

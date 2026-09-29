@@ -46,7 +46,8 @@ ax.barh(d.gene,d.dPSI,color=BLUE,height=.7)
 for i,(v,k,c) in enumerate(zip(d.dPSI,d.okuma_KD,d.okuma_CTRL)):
     ax.text(v+.014,i,f"{int(k)}/{int(c)}",va="center",fontsize=7,color="black")
 ax.set_xlim(0,1.32);ax.set_xlabel("ΔPSI (knockdown − control)")
-ax.set_title("A  Literature positive controls recovered de novo",loc="left")
+ax.set_title("A  Literature positive controls recovered de novo, SH-SY5Y 75 ng/mL",loc="left",pad=14)
+ax.text(0,1.02,"Stringent-filter calls, MAPQ-filtered junction set; labels give knockdown/control junction reads",transform=ax.transAxes,fontsize=6.6,color="#6B6B6B",va="bottom")
 names=["Tier1_SOCE_TRP_51","Tier2_Channel_Release_Transport_117",
        "Tier3_Curated_Calcium_Handling_258","Tier4_Expanded_Calcium_Associated_732"]
 sizes=[51,117,258,732]
@@ -60,9 +61,10 @@ ax.bar(x,counts,color=BLUE,width=.6)
 for i,n in enumerate(counts):
     ax.text(i,n+.08,str(n),ha="center",fontsize=8,color="black")
 ax.set_xticks(x,[f"Tier {i+1}\n({sizes[i]} genes)" for i in range(4)])
-ax.set_ylabel("Genes with a cryptic event")
+ax.set_ylabel("Genes with a stringent-filter\nunannotated change")
 ax.set_ylim(0,max(counts)+1.2)
-ax.set_title("B  Cumulative Ca$^{2+}$ gene panels",loc="left")
+ax.set_title("B  Cumulative Ca$^{2+}$ gene panels, SH-SY5Y 75 ng/mL",loc="left",pad=14)
+ax.text(0,1.02,"Same call set as A; the tiers are nested, so the counts are not independent",transform=ax.transAxes,fontsize=6.6,color="#6B6B6B",va="bottom")
 posgenes={"STMN2","UNC13A","HDGFL2","ACTL6B","AGRN","KALRN","ARHGAP32","PFKP",
           "ATG4B","SETD5","ELAVL3","POLDIP3","CAMK2B","RSF1","GPSM2","SYNJ2"}
 order=["SH_SY5Y","SH_SY5Y_DOZ25","iPSC_koloni","K562_mRNA","iPSC_MN",
@@ -86,7 +88,8 @@ for ypos,v in zip(yy,values):
     ax.text(v+.2,ypos,str(v),va="center",fontsize=7.5,color="black")
 ax.set_yticks(yy,labels);ax.set_xlim(0,18)
 ax.set_xlabel("Positive-control genes recovered (of 16)")
-ax.set_title("C  Human comparison datasets (permissive definition)",loc="left")
+ax.set_title("C  Human comparison datasets, permissive definition (regtools junction set)",loc="left",pad=14)
+ax.text(0,1.02,"iPSC-MN: 2 controls after TDP-43 knockdown versus none after FUS or TAF15 (Fisher exact p = 0.48); not a specificity test",transform=ax.transAxes,fontsize=6.6,color="#6B6B6B",va="bottom")
 save(fig,"Supplementary_Figure_S4_cryptic_controls")
 
 # S5 uses the corrected descriptive table, without independence claims.
@@ -99,6 +102,8 @@ a=a[a.delta.abs()>=.05].sort_values("delta").reset_index(drop=True)
 fig,(ax,ax2)=plt.subplots(2,1,figsize=(7.1,9.0),layout="constrained",
                          gridspec_kw={"height_ratios":[1.8,1.0]})
 for i,r in a.iterrows():
+    if r.gene in posgenes:
+        ax.axhspan(i-.5,i+.5,color="#EDEDED",lw=0,zorder=0)
     color=GREEN if r.measure=="IPA_index" else BLUE
     ax.plot([r.boot_low,r.boot_high],[i,i],color=color,lw=1.3)
     ax.plot(r.delta,i,"o",color=color,ms=4.8)
@@ -108,10 +113,13 @@ lab=[f"{r.gene} · {r.unit.replace('termexon','terminal exon')}"
      for _,r in a.iterrows()]
 ax.set_yticks(range(len(a)),lab,fontsize=7)
 ax.set_xlabel("Δ coverage index (knockdown − control)")
-ax.set_title("A  Depth-qualified coverage-index changes",loc="left")
+ax.set_title("A  Depth-qualified coverage-index changes, SH-SY5Y (units with |Δ| ≥ 0.05)",loc="left",pad=14)
+ax.text(0,1.008,"Unit numbers are ordinal, not canonical intron numbers; coverage gradients, not poly(A) sites",transform=ax.transAxes,fontsize=6.6,color="#6B6B6B",va="bottom")
 ax.legend(handles=[Patch(color=GREEN,label="Intronic index"),
-                   Patch(color=BLUE,label="Distal 3′UTR index")],
-          frameon=False,fontsize=7.5,loc="upper left")
+                   Patch(color=BLUE,label="Distal 3′UTR index"),
+                   Patch(facecolor="#EDEDED",edgecolor="#BBBBBB",label="Cryptic positive-control gene"),
+                   Patch(facecolor="white",edgecolor="#BBBBBB",label="Ca$^{2+}$-panel gene")],
+          frameon=False,fontsize=7.3,loc="lower right")
 man=pd.read_csv(D/"kod"/"ornekler.tsv",sep="\t")
 sub=man[man.dataset=="SH_SY5Y"]
 kd=list(sub[sub.group=="KD"]["sample"]);ct=list(sub[sub.group=="CTRL"]["sample"])
@@ -171,8 +179,11 @@ ax.barh(y-w/2,[v[0] for v in vals],w,color=ORANGE,label="ALS")
 ax.barh(y+w/2,[v[1] for v in vals],w,color=BLUE,label="Non-neurological control")
 ax.set_yticks(y,labels,fontsize=7)
 ax.invert_yaxis();ax.set_xlim(0,80)
-ax.set_xlabel("Samples with cryptic STMN2 junction (%)")
-ax.set_title("A  Cryptic STMN2 by region",loc="left")
+ax.set_xlabel("Samples with a cryptic STMN2 junction detected (%)")
+ax.set_title("A  Cryptic STMN2 junction detected, by region",loc="left",pad=22)
+ax.text(0,1.008,"Detected = at least one cryptic-junction read, among samples with ≥ 20 reads at the exon-1 donor.\n"
+        "Supplementary Table S18b instead counts samples with PSI > 1%.",
+        transform=ax.transAxes,fontsize=6.6,color="#6B6B6B",va="bottom",linespacing=1.3)
 ax.legend(frameon=False,fontsize=7.5,loc="lower right")
 cmap=LinearSegmentedColormap.from_list("rho",
                                       ["#95C4DF","#FFFFFF","#F1B481"])

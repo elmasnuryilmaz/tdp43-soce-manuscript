@@ -59,12 +59,12 @@ close("STIM1 exon length", 37, int(t2.loc["STIM1", "exon_bp"]), tol=0)
 
 out.append("\n=== Table 4 / S14: cryptic calls and null test ===")
 t3 = pd.read_csv(f"{P}/tables/Table4_cryptic_events_eleven_comparisons.csv").set_index("comparison")
-close("SH-SY5Y high-confidence events (regtools)", 165,
-      int(t3.loc["SH-SY5Y 75 ng/mL", "high_confidence_events"]), tol=0)
+close("SH-SY5Y stringent-filter events (regtools)", 165,
+      int(t3.loc["SH-SY5Y 75 ng/mL", "stringent_filter_events"]), tol=0)
 close("SH-SY5Y genes", 113, int(t3.loc["SH-SY5Y 75 ng/mL", "genes"]), tol=0)
-close("iPSC-MN TDP-43 high-confidence events", 18, int(t3.loc["iPSC-MN, TDP-43 KD", "high_confidence_events"]), tol=0)
-close("iPSC-MN FUS high-confidence events", 26, int(t3.loc["iPSC-MN, FUS KD", "high_confidence_events"]), tol=0)
-close("iPSC-MN TAF15 high-confidence events", 23, int(t3.loc["iPSC-MN, TAF15 KD", "high_confidence_events"]), tol=0)
+close("iPSC-MN TDP-43 stringent-filter events", 18, int(t3.loc["iPSC-MN, TDP-43 KD", "stringent_filter_events"]), tol=0)
+close("iPSC-MN FUS stringent-filter events", 26, int(t3.loc["iPSC-MN, FUS KD", "stringent_filter_events"]), tol=0)
+close("iPSC-MN TAF15 stringent-filter events", 23, int(t3.loc["iPSC-MN, TAF15 KD", "stringent_filter_events"]), tol=0)
 close("iPSC-MN TDP-43 permissive positive controls", 2,
       int(t3.loc["iPSC-MN, TDP-43 KD", "positive_controls_permissive"]), tol=0)
 close("iPSC-MN FUS permissive positive controls", 0,
@@ -75,18 +75,18 @@ close("iPSC colonies permissive positive controls", 15,
       int(t3.loc["iPSC colonies", "positive_controls_permissive"]), tol=0)
 close("permissive call counts, TDP-43 / FUS / TAF15", 141,
       int(t3.loc["iPSC-MN, TDP-43 KD", "permissive_events"]), tol=0)
-close("burden minimum", 12, int(t3.high_confidence_events.min()), tol=0)
+close("burden minimum", 12, int(t3.stringent_filter_events.min()), tol=0)
 _mouse = t3.loc[["C2C12", "NSC34", "Mouse striatum"]]
 close("Table 4 mouse rows: positive controls not assessed", 3,
-      int((_mouse.positive_controls_high_confidence == "n/a (mouse)").sum()), tol=0)
-close("burden maximum", 477, int(t3.high_confidence_events.max()), tol=0)
+      int((_mouse.positive_controls_stringent_filter == "n/a (mouse)").sum()), tol=0)
+close("burden maximum", 477, int(t3.stringent_filter_events.max()), tol=0)
 s14 = pd.read_csv(f"{P}/supplementary/S14_control_vs_control_null_test.csv")
 _s14p = s14[s14.tier == "permissive"].set_index("dataset")
 close("permissive null ratio iPSC colonies (Methods 2.5: 0.98 per real call)", 0.98,
       _s14p.loc["iPSC colonies", "null_to_real_ratio"])
 close("permissive null ratio K562 total RNA (Methods 2.5: 2.01)", 2.01,
       _s14p.loc["K562 total RNA", "null_to_real_ratio"])
-s14 = s14[s14.tier == "tier 2 (high-confidence)"].set_index("dataset")
+s14 = s14[s14.tier == "tier 2 (stringent filter)"].set_index("dataset")
 close("null ratio iPSC colonies", 0.64, s14.loc["iPSC colonies", "null_to_real_ratio"])
 close("null ratio K562 total RNA", 2.17, s14.loc["K562 total RNA", "null_to_real_ratio"])
 close("null ratio mouse striatum", 0.83, s14.loc["Mouse striatum", "null_to_real_ratio"])
@@ -114,7 +114,7 @@ fam = t4[t4.Gene == "FAMILY TOTAL"].set_index("Family")
 # composition-adjusted TPM (build_family_abundance.py); unadjusted TPM understates every
 # change by about a quarter because a few abundant transcripts gain share in knockdown
 for f, v in [("SERCA (Ca2+ re-uptake into ER)", -12), ("Mitochondrial Ca2+ uptake", -25),
-             ("STIM (ER Ca2+ sensor)", 48), ("ORAI (CRAC channel)", 27), ("SOCE regulators", 30)]:
+             ("STIM (ER Ca2+ sensor)", 48), ("ORAI (CRAC channel)", 27), ("Ca2+-entry regulators", 30)]:
     close(f"family net, adjusted, {f}", v, round(fam.loc[f, "change_pct_adjusted"]), tol=0.6)
 _o = t4[t4.Family == "ORAI (CRAC channel)"].set_index("Gene")
 _okd = _o.loc["FAMILY TOTAL", "TPM_KD_adjusted"]
@@ -312,8 +312,8 @@ for _s in ["1,640 samples with metadata after filtering",
            "whereas in cerebellum no comparison-group or ALS sample exceeded 1%",
            "although the diagnoses cannot be checked",
            "(partial ρ = −0.24, p = 0.12, and 0.00, p = 0.98",
-           "exceeded 1% of reads in at most 14% of samples, showed no statistically significant difference in ALS spinal cord, where it did so in 41–67%",
-           "where it did so in 50–63%",
+           "exceeded 1% of reads in at most 14% of samples, showed no statistically significant difference in ALS spinal cord (41–67%)",
+           "fell in the cortex of the comparison group (50–63%)",
            "the direction it shares with the cellular model does not by itself link the two",
            "which regression on marker genes adjusts for only partially",
            "the cryptic STMN2 junction indicates TDP-43 loss of function rather than a diagnosis"]:
@@ -333,7 +333,7 @@ close("every evaluable STIM1 transcript has a confirmation-stage p of 1.0", 1,
       int((_st1.transcript == 1.0).all()), tol=0)
 for _s in ["none of seven evaluable transcripts passed stageR confirmation",
            "all confirmation-stage adjusted p values = 1.0",
-           "isoforms had q = 0.33 and 0.77",
+           "the two predicted PTC isoforms did not change (q = 0.33 and 0.77)",
            "stageR supplies transcript-level confirmation"]:
     check("present", _s, True)
 check("absent", "Isoform-level testing supported STIM1", False)
@@ -362,8 +362,8 @@ for _n in ["ORAI1", "ATP2A3", "ATP2A2", "STIM2"]:
     close(f"{_n} does not stay significant with surrogate variables", 0,
           int(_g.loc[_n, "padj_with_SV"] < 0.05), tol=0)
 for _s in ["which estimated two surrogate variables in the primary SH-SY5Y comparison",
-           "The median absolute difference in log2 fold change was 0.20 across the 14,012 genes",
-           "1,067 genes met both DE thresholds, compared with 1,694 in the original model; 850 were shared",
+           "reduced the number meeting them from 1,694 to 1,067",
+           "kept the direction of all 850 genes",
            "source_data/svaseq_sensitivity_SHSY5Y.csv"]:
     check("present", _s, True)
 check("absent", "the principal findings were unchanged", False)
@@ -371,8 +371,11 @@ check("absent", "the principal findings were unchanged", False)
 out.append("\n=== analyses moved to the supplementary material ===")
 _supp2 = _sp.run(["pandoc", "-t", "plain", "--wrap=none",
                   f"{P}/supplementary/SUPPLEMENTARY_MATERIAL.docx"], capture_output=True, text=True).stdout
-for _n, _title in ((1, "Aberrant splicing outlier detection"), (2, "Nonsense-mediated decay interaction"),
-                   (3, "Polyadenylation screen in the two mouse lines"), (4, "Multiple sclerosis in detail")):
+for _v in ["The median absolute difference in log2 fold change was 0.20", "14,012 genes"]:
+    close(f"svaseq statistic kept in Supplementary Results 5: {_v[:40]}", 1, int(_v in _supp2), tol=0)
+for _n, _title in ((1, "Aberrant splicing outlier detection (FRASER)"), (2, "Nonsense-mediated decay interaction"),
+                   (3, "Coverage-based polyadenylation screen: details"), (4, "Multiple sclerosis in detail"),
+                   (5, "Surrogate-variable sensitivity analysis (svaseq)"), (6, "STIM1 isoform-level testing")):
     close(f"Supplementary Results {_n} present in the supplementary document", 1,
           int(f"Supplementary Results {_n}. {_title}" in _supp2), tol=0)
     close(f"Supplementary Results {_n} cited in the manuscript", 1,
@@ -397,10 +400,10 @@ for _s in ["FRASER, run on the nine-sample doxycycline series, returned no genom
 out.append("\n=== 27 September 2026 structural scan ===")
 for _s in ["Two of the 24 dataset–panel combinations had nominal permutation p < 0.05",
            "Neither survived adjustment for the number of comparisons",
-           "3.4 Which splicing changes in SOCE genes survive the robustness checks",
+           "3.4 Splicing changes in core SOCE-pathway genes that pass the robustness checks",
            "alternative polyadenylation, which generates the truncated STMN2 transcript",
            "coupling to nonsense-mediated decay",
-           "In the iPSC-derived motor neurons two panels retained nominal associations after matching"]:
+           "Two of the 24 dataset–panel combinations had nominal permutation p < 0.05 after matching"]:
     check("present", _s, True)
 for _s in ["This is the central observation of the study",
            "tentative, motor-neuron-associated observation",
@@ -413,12 +416,12 @@ from scipy import stats as _st2
 close("smallest two-sided rank-test p at 3 vs 3", 0.10,
       _st2.mannwhitneyu([3, 2, 1], [6, 5, 4], alternative="two-sided").pvalue, tol=0.001)
 _ga = io.open(f"{P}/figures/graphical_abstract.svg", encoding="utf-8").read()
-close("graphical abstract names the one-plate design", 1, int("3 wells; one plate" in _ga), tol=0)
+close("graphical abstract names the one-plate design", 1, int("one plate: 3 wells/group" in _ga), tol=0)
 close("graphical abstract omits the well-level p value", 0, int("p = 0.035" in _ga), tol=0)
 close("graphical abstract avoids an established SOCE decrease claim", 0,
       int("reduces store-operated Ca" in _ga), tol=0)
 close("graphical abstract names the observed readdition response", 1,
-      int("Ca²⁺-readdition observation" in _ga), tol=0)
+      int("-readdition observation" in _ga), tol=0)
 close("graphical abstract no longer quotes the Student p value", 0, int("0.0115" in _ga), tol=0)
 for _s in ["prepared for measurement 72 h after transduction, while puromycin selection was still in progress",
            "onto disinfected glass coverslips in 24-well plates one day before the measurement",
@@ -432,14 +435,12 @@ for _s in ["prepared for measurement 72 h after transduction, while puromycin se
            "neither the cell number nor the dye loading of each cuvette was recorded",
            "BTP2, Synta66 or Gd³⁺",
            "the novel-site junction at this locus carried six",
-           "the y axis spans 0–3 in A and 0.5–1.5 in B",
-           "The original recordings, exported from the GraphPad Prism trace project and reproduced here unchanged",
-           "The same two recordings as in A and B, that is the same measured F340/F380 values exported from that Prism project",
+           "The original recordings, with the CPA and CaCl₂ additions, are shown at their own axis ranges in Supplementary Figure S9",
            "no value is smoothed or rescaled",
-           "The Fura-2 and WST-1 observations require independent biological replication",
+           "which requires independent biological replication",
            "it does not estimate between-experiment variability",
            "WST-1 signal at 48 h, four wells from one experiment",
-           "The NMD and APA screens are hypothesis-generating"]:
+           "The APA and NMD analyses are hypothesis-generating"]:
     check("present", _s, True)
 close("no independent-culture Fura-2 claims remain", 0,
       len(re.findall(r"three independent cultures", SEARCH_TXT)), tol=0)
@@ -464,8 +465,8 @@ for _g, _u, _v in [("SARAF", "termexon", -0.036), ("ORAI2", "termexon", 0.012),
           _apa11.loc[(_g, _u), "delta"], tol=0.0005)
 close("S11 units below the candidate threshold are flagged", 1,
       int((_apa11.candidate_gradient == "no").sum() > 0), tol=0)
-for _s in ["the twelve core entry components", "the only high-confidence unannotated change anywhere in the SOCE panel",
-           "three units of the Ca²⁺ panel likewise exclude zero",
+for _s in ["the twelve core SOCE-pathway genes", "The only stringent-filter unannotated change anywhere in the nineteen-gene SOCE-associated set",
+           "three terminal-exon units outside this set also excluded zero",
            "this model provides no evidence of enrichment beyond the length and expression properties",
            "Fisher’s exact test p = 0.48", "four independent datasets covering Alzheimer’s disease, Parkinson’s disease and multiple sclerosis",
            "In the two human models compared at junction level", "Figure 1A", "Figure 1B", "Figure 1C"]:
@@ -488,9 +489,9 @@ _supp_doc = _DocxDocument(f"{P}/supplementary/SUPPLEMENTARY_MATERIAL.docx")
 _highlights_doc = _DocxDocument(f"{P}/highlights_Neurochemistry_International.docx")
 close("supplementary and main titles match", 1,
       int(_supp_doc.paragraphs[1].text == _main_doc.paragraphs[0].text), tol=0)
-close("highlights describe the Fura-2 difference without a functional claim", 1,
+close("third highlight names the recurrent CBARP finding", 1,
       int(_highlights_doc.paragraphs[3].text ==
-          "RNA analyses identified candidates without establishing a SOCE mechanism."), tol=0)
+          "CBARP splicing changed in five of six TDP-43-depletion RNA-seq datasets."), tol=0)
 close("highlight names the one-plate design", 1,
       int("One-plate Fura-2 measurements" in _highlights_doc.paragraphs[1].text), tol=0)
 close("S1 description names the wells and plate", 1,
@@ -600,7 +601,7 @@ for _gene, _reg, _q in [("STIM1", "Spinal Cord Lumbar", 0.0021), ("ORAI1", "Spin
 out.append("\n=== published tables carry English dataset labels and the full control set ===")
 _POS16 = {"STMN2", "UNC13A", "HDGFL2", "ACTL6B", "AGRN", "KALRN", "ARHGAP32", "PFKP",
           "ATG4B", "SETD5", "CAMK2B", "ELAVL3", "POLDIP3", "RSF1", "GPSM2", "SYNJ2"}
-for _f in ["S5_high_confidence_cryptic_events", "S6_cryptic_positive_controls",
+for _f in ["S5_stringent_filter_unannotated_splicing_candidates", "S6_cryptic_positive_controls",
            "S7_SOCE_genes_annotation_free"]:
     _d = pd.read_csv(f"{P}/supplementary/{_f}.csv")
     _bad = [c for c in _d.comparison.unique()
@@ -660,7 +661,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six brain regi
           "Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA",
           "cryptic junction was most frequent in spinal cord",
           "Cutadapt v5.2",
-          "59 units in 29 genes passed the same depth filter",
+          "59 units in 29 genes passed the depth filter",
           "from 0.570 in controls to 0.819 in knockdown (Δ = +0.249",
           "`-p --countReadPairs` for paired-end libraries",
           "74 qualifying units in C2C12 and 131 in NSC34",
@@ -670,7 +671,7 @@ for s in ["10,926 versus 176 reads", "three spinal cord levels", "six brain regi
           "isoform-level testing did not detect a *CBARP* isoform switch",
           "the three mouse comparisons have no conserved control",
           "*ORAI3* went from 8% to 30% of ORAI transcripts and *ORAI2* from 77% to 53%",
-          "The STIM (+48%) and SOCE-regulator (+30%) pools also rose, whereas the SERCA and mitochondrial-uptake pools fell (−12% and −25%)",
+          "The STIM (+48%) and Ca²⁺-entry-regulator (+30%) pools also rose, whereas the SERCA and mitochondrial-uptake pools fell (−12% and −25%)",
           "the median gene expressed in both groups (mean TPM > 5) had 24% lower TPM",
           "Neither is independent of the splicing results",
           "Yoast RE, Emrich SM, Zhang X, et al.",
@@ -846,12 +847,227 @@ if _uncited:
 out.append(f"    {len(_cites)} distinct citations, {len(_refs)} references")
 
 out.append("\n=== Tables 1-5 in the manuscript match tables/*.csv ===")
-import subprocess as _sp
-_r = _sp.run(["/usr/bin/python3", f"{P}/code/build_manuscript_docx.py", "--check"],
-             capture_output=True, text=True)
-close("Markdown tables regenerated from the CSV files are identical", 0, _r.returncode, tol=0)
+# The tables are regenerated from tables/*.csv with the formatting functions of the baseline builder
+# and compared with the tables of the CURRENT manuscript by their numbers, row by row. (Until v1.0.7 this
+# check regenerated the historical v4 Markdown instead of the current manuscript.)
+import importlib.util as _iu
+_spec = _iu.spec_from_file_location("baseline_tables", f"{P}/code/build_manuscript_docx.py")
+_bt = _iu.module_from_spec(_spec)
+_spec.loader.exec_module(_bt)
+_NUM = re.compile(r"[+−\-]?\d[\d,]*(?:\.\d+)?(?:\s*×\s*10[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)?")
+
+
+def _table_rows(tbl):
+    rows = []
+    for line in tbl.splitlines():
+        if line.startswith("|") and not set(line.replace("|", "").strip()) <= set(":- "):
+            rows.append([c.strip() for c in re.split(r"(?<!\\)\|", line.strip().strip("|"))])
+    return rows
+
+
+def _numbers(cells):
+    txt = " ".join(cells).replace("*", "").replace("\\", "")
+    return [re.sub(r"\s+", "", x).replace("−", "-") for x in _NUM.findall(txt)]
+
+
+for _n, _fn in {1: _bt.table4, 2: _bt.table1, 3: _bt.table2, 4: _bt.table3, 5: _bt.table5}.items():
+    _cap = re.search(rf"^\*\*Table {_n}\.", TXT, re.M)
+    _rest = TXT[_cap.end():]
+    _i = _rest.index("|")
+    _act = _table_rows(_rest[_i:_rest.index("\n\n", _i)])[1:]
+    _exp = _table_rows(_fn()[0])[1:]
+    _bad = sum(_numbers(e) != _numbers(a) for e, a in zip(_exp, _act)) + abs(len(_exp) - len(_act))
+    close(f"Table {_n} of the manuscript equals the numbers regenerated from tables/*.csv ({len(_exp)} rows)", 0, _bad, tol=0)
 for _n in range(1, 6):
     check(f"table {_n} present", f"Table {_n}.", True)
+
+
+out.append("\n=== release v1.0.8: evaluation of v1.0.7 (claim, naming, simulation, figures, package) ===")
+# -- naming: labels that overstated the evidence or blurred the biology are gone from every document
+_TERMS = ["high-confidence", "SOCE machinery", "SOCE-machinery", "core entry components", "SOCE regulator",
+          "SOCE-regulator", "discordance", "did most of the work", "We first measure SOCE", "independently supported",
+          "Integrated mechanism", "Which splicing changes", "observed SOCE phenotype", "central observation"]
+for _t in _TERMS:
+    close(f"'{_t}' is absent from the manuscript", 0, int(_t.lower() in SEARCH_TXT.lower()), tol=0)
+    close(f"'{_t}' is absent from the supplementary document", 0, int(_t.lower() in _supp2.lower()), tol=0)
+for _s in ["stringent-filter unannotated splicing candidate", "nineteen-gene SOCE-associated set",
+           "core SOCE-pathway genes", "Ca²⁺-entry regulators",
+           "The name describes the filter and does not imply validated specificity",
+           "a set of candidates whose sensitivity has been checked against known targets, not a set with established specificity"]:
+    check("present", _s, True)
+
+# -- the claim: a single-plate discovery observation, not paired with the RNA data
+_NEW_TITLE = ("Calcium-regulatory RNA candidates after TDP-43 knockdown in SH-SY5Y cells: reanalysis of public "
+              "RNA-seq data and a single-plate Ca²⁺-readdition observation")
+close("title states the RNA-candidate framing and the single plate", 1, int(_main_doc.paragraphs[0].text == _NEW_TITLE), tol=0)
+for _s in ["this observation motivated the RNA analyses but was not paired with the RT-qPCR or RNA-seq samples",
+           "the Fura-2 observation comes from a single culture plate and served to motivate the RNA analyses, not to establish a phenotype",
+           "The RT-qPCR mRNA measurements and the one-plate Fura-2 response therefore differed in direction",
+           "they are not paired and do not show opposing changes within the same cells",
+           "Working hypotheses and discriminating experiments",
+           "Possible contributors to the single-plate Fura-2 difference",
+           "none of which was tested here",
+           "no confirmed RNA-processing event in the core SOCE-pathway genes explained it"]:
+    check("present", _s, True)
+close("Results 3.1 heading names the single plate", 1,
+      int("3.1 SOCE-associated mRNAs are higher, and the Ca²⁺-readdition amplitude is lower in one Fura-2 plate" in SEARCH_TXT), tol=0)
+
+# -- Discussion order: RNA findings first, the single-plate hypotheses after them, tissue and experiments last
+_disc = SEARCH_TXT.split("## 4. Discussion")[1].split("### Limitations")[0]
+_order = [_disc.index(k) for k in ["This study asked which calcium-regulatory RNA changes",
+                                   "RNA-processing findings depend on model and method",
+                                   "CBARP and the other splicing candidates",
+                                   "Possible contributors to the single-plate Fura-2 difference",
+                                   "Comparison with ALS calcium models and cell state",
+                                   "Relevance to disease tissue", "Working hypotheses and discriminating experiments"]]
+close("Discussion paragraphs follow the intended order", 1, int(_order == sorted(_order)), tol=0)
+
+# -- section numbering after the merge of the NMD and outlier results into Section 3.6
+for _h in ["3.6 APA, NMD and outlier screens yield candidates but no confirmed event in the core SOCE-pathway genes",
+           "3.7 Matched analyses do not establish enrichment", "3.8 TRPC1, SARAF and CBARP differ across ALS and neurological comparison cohorts"]:
+    check("present", _h, True)
+for _h in ["3.9 TRPC1", "Section 3.9", "3.6 Descriptive NMD", "A coverage-based APA screen yields"]:
+    check("absent", _h, False)
+_secs = {int(x) for x in re.findall(r"Sections? 3\.(\d+)", _body)}
+close("every 'Section 3.x' reference points to an existing section (3.1-3.8)", 1, int(max(_secs) <= 8), tol=0)
+_meth = {int(x) for x in re.findall(r"(?:Methods|Sections?) 2\.(\d+)", _body)}
+close("every 'Methods 2.x' reference points to an existing section (2.1-2.16)", 1, int(max(_meth) <= 16), tol=0)
+
+# -- detection-power simulation: values in the text come from the stored table, assumptions from the code
+_pw = pd.read_csv(f"{P}/source_data/power_simulation_S1.csv")
+_pv = lambda d, x: float(_pw[(_pw.reads_per_sample == d) & (_pw.true_delta_PSI.round(2) == x)].power.iloc[0])
+for _lab, _d, _x, _v in [("10 reads, dPSI 0.10", 10, 0.10, 0.08), ("100 reads, dPSI 0.10", 100, 0.10, 0.28),
+                         ("50 reads, dPSI 0.20", 50, 0.20, 0.58), ("100 reads, dPSI 0.20", 100, 0.20, 0.74),
+                         ("50 reads, dPSI 0.30", 50, 0.30, 0.90), ("100 reads, dPSI 0.30", 100, 0.30, 0.97)]:
+    close(f"simulated power, {_lab}", _v, _pv(_d, _x), tol=0.005)
+close("80% power is not reached at 10 or 20 reads up to dPSI 0.30", 1,
+      int(_pw[_pw.reads_per_sample.isin([10, 20])].power.max() < 0.8), tol=0)
+close("80% power is reached between dPSI 0.20 and 0.30 at 50 and 100 reads", 1,
+      int(all(_pv(d, 0.20) < 0.8 <= _pv(d, 0.30) for d in (50, 100))), tol=0)
+_sim = re.search(r"def sim_power\(n_per_group, depth, dpsi, base_psi=([0-9.]+), nsim=(\d+), alpha=([0-9.]+), disp=([0-9.]+)\)",
+                 io.open(f"{P}/code/05_meta_permutasyon_guc.py", encoding="utf-8").read())
+close("simulation baseline PSI in the code (0.5)", 0.5, float(_sim.group(1)))
+close("simulation runs in the code (2,000)", 2000, int(_sim.group(2)), tol=0)
+close("simulation alpha in the code (0.05)", 0.05, float(_sim.group(3)))
+close("simulation between-replicate SD in the code (0.05)", 0.05, float(_sim.group(4)))
+_ev = pd.read_csv(f"{P}/supplementary/S3_rMATS_significant_events.csv.gz")
+_rd = _ev[(_ev.dataset == "SH-SY5Y (GSE296712)") & (_ev.model == "JC")].mean_reads_per_sample
+close("lower quartile of reads per sample, nominally significant SH-SY5Y events (9.7)", 9.7, _rd.quantile(0.25), tol=0.05)
+close("median reads per sample, nominally significant SH-SY5Y events (21.3)", 21.3, _rd.median(), tol=0.05)
+for _s in ["close to the lower quartile of the nominally significant events (9.7 reads per sample; median 21.3)",
+           "The simulation is not an estimate of rMATS power",
+           "standard deviation 0.05, limited to 0.01–0.99",
+           "The simulation does not reproduce the rMATS model, its FDR correction or its |ΔPSI| threshold"]:
+    check("present", _s, True)
+close("Supplementary Figure S1 legend states the assumptions", 1,
+      int("Example detection-power simulation" in _supp2 and "is not an estimate of rMATS power" in _supp2), tol=0)
+
+# -- svaseq numbers live in Results 3.2 and Supplementary Results 5 (table recomputed from the CSV)
+_sv = pd.read_csv(f"{P}/source_data/svaseq_sensitivity_SHSY5Y.csv").set_index("gene")
+_SUP = str.maketrans("⁰¹²³⁴⁵⁶⁷⁸⁹⁻", "0123456789-")
+
+
+def _qval(txt):
+    m = re.match(r"([0-9.]+)\s*×\s*10([⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)", txt)
+    return float(m.group(1)) * 10 ** int(m.group(2).translate(_SUP)) if m else float(txt)
+
+
+_tb = _supp_doc.tables[0]
+close("svaseq table lists nine genes", 9, len(_tb.rows) - 1, tol=0)
+for _r in _tb.rows[1:]:
+    _g = _r.cells[0].text
+    close(f"svaseq table, {_g}: log2FC original", float(_sv.loc[_g, "log2FC_published"]), float(_r.cells[1].text.replace("−", "-")), tol=0.006)
+    close(f"svaseq table, {_g}: log2FC with surrogate variables", float(_sv.loc[_g, "log2FC_with_SV"]), float(_r.cells[3].text.replace("−", "-")), tol=0.006)
+    for _c, _col in ((2, "padj_published"), (4, "padj_with_SV")):
+        _x, _y = float(_sv.loc[_g, _col]), _qval(_r.cells[_c].text)
+        close(f"svaseq table, {_g}: {_col}", 1, int(abs(_x - _y) <= 0.06 * _x + 5e-4), tol=0)
+
+# -- STIM1 transcripts: identifiers only in the supplement; every number from the source files
+_el = pd.read_csv(f"{P}/source_data/STIM1_transcript_test_eligibility.csv")
+close("all nine STIM1 transcript identifiers are listed in Supplementary Results 6", 9, sum(f in _supp2 for f in _el.feature_id), tol=0)
+close("no transcript identifier remains in the main text", 0, len(re.findall(r"ENST0000\d+", SEARCH_TXT)), tol=0)
+_isa = pd.read_csv(f"{P}/source_data/STIM1_isoformswitch_DEXSeq.csv").set_index("isoform_id")
+close("STIM1 isoform switch q, ENST00000698913.1 (5.5e-38)", 5.5e-38, _isa.loc["ENST00000698913.1", "isoform_switch_q_value"], tol=0.06e-38)
+close("STIM1 isoform switch q, ENST00000698912.1 (1.6e-10)", 1.6e-10, _isa.loc["ENST00000698912.1", "isoform_switch_q_value"], tol=0.06e-10)
+close("the two changing isoforms are not PTC isoforms", 1, int((_isa.loc[["ENST00000698912.1", "ENST00000698913.1"], "PTC"] == False).all()), tol=0)
+close("PTC isoform q 0.33 (ENST00000698919.1)", 0.33, _isa.loc["ENST00000698919.1", "isoform_switch_q_value"], tol=0.005)
+close("PTC isoform q 0.77 (ENST00000698918.1)", 0.77, _isa.loc["ENST00000698918.1", "isoform_switch_q_value"], tol=0.005)
+close("dIF of the two changing isoforms (+0.037, -0.032)", 1,
+      int(abs(_isa.loc["ENST00000698912.1", "dIF"] - 0.037) < 0.001 and abs(_isa.loc["ENST00000698913.1", "dIF"] + 0.032) < 0.001), tol=0)
+for _s in ["ENST00000698912.1", "ENST00000698913.1", "dIF +0.037 and −0.032", "not a single confirmation chain"]:
+    close(f"Supplementary Results 6 contains '{_s}'", 1, int(_s in _supp2), tol=0)
+
+# -- DESeq2 count sources: every statistic in the article is from the Salmon-based table of the primary comparison;
+#    the featureCounts run of the same six libraries is a cross-check whose agreement is quoted in Methods 2.2
+_fc = pd.read_csv(f"{P}/source_data/DESeq2_ctrl_vs_75_featureCounts.csv", index_col=0)
+_sa = pd.read_csv(f"{P}/source_data/DESeq2_ctrl_vs_75_fullmap.csv", index_col=0)
+_cm = _fc.index.intersection(_sa.index)
+_fa, _fb = _fc.loc[_cm, "log2FoldChange"], _sa.loc[_cm, "log2FoldChange"]
+_fok = _fa.notna() & _fb.notna()
+close("genes counted in both DESeq2 runs (20,833)", 20833, int(_fok.sum()), tol=0)
+close("log2FC correlation, featureCounts versus Salmon counts (r = 0.85)", 0.85, float(np.corrcoef(_fa[_fok], _fb[_fok])[0, 1]), tol=0.005)
+for _g, _v in (("STIM1", 0.929), ("TRPC1", 0.958), ("ORAI1", 0.433), ("ATP2A3", 1.306), ("CBARP", -1.254),
+               ("ORAI3", 2.056), ("ORAI2", -0.173), ("ATP2A2", -0.247), ("GAPDH", 0.612)):
+    close(f"quoted DESeq2 log2FC of {_g} is the Salmon-based value", _v, float(_sa.loc[_g, "log2FoldChange"]), tol=0.0006)
+close("the four RT-qPCR targets have the same direction in both count sets", 1,
+      int(all(np.sign(_fc.loc[_g, "log2FoldChange"]) == np.sign(_sa.loc[_g, "log2FoldChange"])
+              for _g in ("STIM1", "TRPC1", "ORAI1", "ATP2A3"))), tol=0)
+for _s in ["every DESeq2 statistic reported here was computed on Salmon estimated counts summed to genes with the complete transcript-to-gene map",
+           "gave similar log2 fold changes (Pearson r = 0.85 across the 20,833 genes counted in both)",
+           "log2FC and p_adj are from DESeq2 on gene-level Salmon counts"]:
+    check("present", _s, True)
+check("absent", "Gene counts were generated with featureCounts", False)
+
+# -- graphical abstract: one dot per region, no averaged delta, no disease ranking, CBARP visible
+_gs = io.open(f"{P}/figures/graphical_abstract.svg", encoding="utf-8").read()
+_gcode = io.open(f"{P}/code/fig_graphical_abstract.py", encoding="utf-8").read()
+close("graphical abstract draws one dot per region", 1, int("one dot per region" in _gs), tol=0)
+close("graphical abstract code does not average regional deltas", 0, int("cliffs_delta.mean()" in _gcode), tol=0)
+close("graphical abstract shows the CBARP junction", 1, int("CBARP splicing" in _gs), tol=0)
+close("graphical abstract makes no correlation-absence claim", 0, int("does not correlate" in _gs), tol=0)
+close("graphical abstract states that the Fura-2 data are not paired with RT-qPCR", 1, int("not paired with RT-qPCR" in _gs), tol=0)
+
+# -- highlights
+close("highlights: four items", 4, len(_highlights_doc.paragraphs) - 1, tol=0)
+close("highlights: every item is at most 85 characters", 1, int(all(len(q.text) <= 85 for q in _highlights_doc.paragraphs[1:])), tol=0)
+
+# -- figures: every picture has alt text; Supplementary Figure S9 exists and is cited
+for _d, _lab in ((_main_doc, "manuscript"), (_supp_doc, "supplement")):
+    _alts = [dp.get("descr") or "" for dp in _d._element.xpath(".//wp:docPr")]
+    close(f"{_lab}: every picture has alt text ({len(_alts)} pictures)", 0, sum(len(a) < 20 for a in _alts), tol=0)
+close("main manuscript embeds six figures", 6, len(_main_doc._element.xpath(".//wp:docPr")), tol=0)
+close("supplement embeds nine figures", 9, len(_supp_doc._element.xpath(".//wp:docPr")), tol=0)
+close("Supplementary Figure S9 is cited in the manuscript", 1, int("Supplementary Figure S9" in SEARCH_TXT), tol=0)
+close("supplementary contents list the nine figures and six result sections", 1,
+      int("S1–S9" in _supp_doc.paragraphs[8].text and "1–6" in _supp_doc.paragraphs[7].text), tol=0)
+close("Supplementary Figure S5 alt text no longer calls the conditions units of inference", 0,
+      int(any("units of inference" in (dp.get("descr") or "") for dp in _supp_doc._element.xpath(".//wp:docPr"))), tol=0)
+
+# -- repository documents agree with the manuscript files
+_leg = io.open(f"{P}/supplementary/Supplementary_Figure_Legends.md", encoding="utf-8").read()
+close("stand-alone legends cover Supplementary Figures S1-S9", 9, len(re.findall(r"\*\*Supplementary Figure S\d\.\*\*", _leg)), tol=0)
+for _t in ["units of inference", "high-confidence", "Replicate-level PSI for SOCE-related splicing candidates"]:
+    close(f"stand-alone legends do not contain '{_t}'", 0, int(_t in _leg), tol=0)
+_ld = _DocxDocument(f"{P}/supplementary/Supplementary_Figure_Legends.docx")
+close("legend .docx and .md hold the same nine legends", 1,
+      int(sum(bool(re.match(r"Supplementary Figure S\d\.", p.text)) for p in _ld.paragraphs) == 9), tol=0)
+_rd = io.open(f"{P}/README.md", encoding="utf-8").read()
+for _t in ["Figures 6-8", "Figures 6–8", "fig_supp_splicing.py", "eight\nsupplementary figures", "Supplementary Figures S1–S8",
+           "high-confidence", "TDP-43 knockdown is associated with a lower"]:
+    close(f"README does not contain the stale '{_t}'", 0, int(_t in _rd), tol=0)
+for _t in ["Supplementary Figures S1–S9", "v1.0.8", "Which counts feed which result", "Evidence levels"]:
+    close(f"README contains '{_t}'", 1, int(_t in _rd), tol=0)
+for _f in ["CORRECTIONS_2026-09-29_v1.0.8.md", "source_data/power_simulation_S1.csv", "source_data/DESeq2_ctrl_vs_75_featureCounts.csv",
+           "code/build_supplementary_legends.py"]:
+    close(f"file named in the README exists: {_f}", 1, int(os.path.exists(f"{P}/{_f}")), tol=0)
+
+# -- inventories
+for _s in ["S16b. Donor-level re-analysis of multiple sclerosis", "The supplementary material also contains Figures S1–S9"]:
+    check("present", _s, True)
+close("supplementary document inventories S16b", 1, int("S16b. Donor-level re-analysis of multiple sclerosis" in _supp2), tol=0)
+_main_len = len(re.sub(r"\s+", " ", _body.split("## 1. Introduction")[1].split("## Declarations")[0]).split())
+out.append(f"    Introduction to Conclusion, including captions and Limitations: {_main_len} words")
+close("Introduction to Conclusion is shorter than in v1.0.7 (13,396 words)", 1, int(_main_len < 13396), tol=0)
 
 out.append(f"\n==== {ok} passed, {bad} failed ====")
 os.makedirs(f"{P}/logs", exist_ok=True)

@@ -82,13 +82,32 @@ def junction_b_share():
 
 
 # ------------------------------------------------------------------ Figure 4
+def se_schematic(ax):
+    """Skipped-exon event: inclusion junctions above, skipping junction below."""
+    ax.set_xlim(0, 10)
+    ax.set_ylim(-1.5, 1.6)
+    ax.axis("off")
+    boxes = [(0.2, 1.7, "#BBBBBB"), (4.0, 6.0, ORANGE), (8.3, 9.8, "#BBBBBB")]
+    for a, b, colr in boxes:
+        ax.add_patch(Rectangle((a, -0.32), b - a, 0.64, fc=colr, ec=INK, lw=0.5))
+    for x1, x2 in ((1.7, 4.0), (6.0, 8.3)):
+        ax.add_patch(PathPatch(MPath([(x1, 0.32), ((x1 + x2) / 2, 1.5), (x2, 0.32)], [MPath.MOVETO, MPath.CURVE3, MPath.CURVE3]),
+                               fill=False, ec=INK, lw=0.6))
+    ax.add_patch(PathPatch(MPath([(1.0, -0.32), (5.0, -1.9), (9.0, -0.32)], [MPath.MOVETO, MPath.CURVE3, MPath.CURVE3]),
+                           fill=False, ec=INK, lw=0.6, ls=(0, (3, 2))))
+    ax.text(3.0, 1.15, "inclusion", ha="center", va="bottom", fontsize=5.6, color=MUTED)
+    ax.text(7.2, 1.15, "inclusion", ha="center", va="bottom", fontsize=5.6, color=MUTED)
+    ax.text(5.0, -1.25, "skipping", ha="center", va="top", fontsize=5.6, color=MUTED)
+    ax.text(5.0, 0.0, "exon", ha="center", va="center", fontsize=5.6, color="white", weight="bold")
+
+
 def figure4():
     t3 = pd.read_csv(ROOT / "tables" / "Table3_robust_SOCE_splicing_events.csv").set_index("gene")
     s15 = pd.read_csv(ROOT / "supplementary" / "S15_STIM2.1_exon_six_datasets.csv")
     share = junction_b_share()
 
-    fig = plt.figure(figsize=(7.1, 5.0))
-    gs = fig.add_gridspec(2, 1, height_ratios=[1, 1.08], hspace=0.55)
+    fig = plt.figure(figsize=(7.1, 5.35))
+    gs = fig.add_gridspec(2, 1, height_ratios=[1, 1.08], hspace=0.50)
     top = gs[0].subgridspec(1, 4, wspace=0.55)
     bot = gs[1].subgridspec(1, 3, width_ratios=[0.30, 1.25, 1], wspace=0.45)
 
@@ -104,7 +123,7 @@ def figure4():
         ax.set_xlim(-0.5, 1.5)
         ax.set_xticks([0, 1], ["Control", "KD"])
         ax.set_ylabel("PSI" if i == 0 else "")
-        ax.set_title(("A  " if i == 0 else "") + gene, loc="left", weight="bold")
+        ax.set_title(f"{gene}: {int(r.exon_bp)}-bp exon", loc="left", weight="bold", fontsize=7.6)
         label = f"ΔPSI {r.delta_PSI:+.3f}\n95% CI {r.CI95_low:+.3f} to {r.CI95_high:+.3f}".replace("-", "−")
         ax.text(0.5, 0.985, label,
                 transform=ax.transAxes, ha="center", va="top", fontsize=6.2, color=INK)
@@ -140,7 +159,9 @@ def figure4():
     ax.set_xlabel("ΔPSI of the 24-nt SOAR exon (KD − control)")
     ax.spines[["top", "right", "left"]].set_visible(False)
     ax.tick_params(axis="x", direction="out", length=2.5, width=0.6)
-    ax.set_title("B  STIM2.1 exon across six datasets", loc="left", weight="bold")
+    ax.set_title("B  STIM2.1: the 24-nt SOAR exon in six datasets", loc="left", weight="bold", pad=13)
+    ax.text(0.0, 1.0, "a different STIM2 exon from the 119-bp exon of panel A", transform=ax.transAxes,
+            ha="left", va="bottom", fontsize=6.2, color=MUTED)
 
     # C: CBARP junction b per library
     ax = fig.add_subplot(bot[2])
@@ -157,7 +178,10 @@ def figure4():
     ax.set_title("C  CBARP exon 4 junction", loc="left", weight="bold")
     clean(ax)
 
-    fig.subplots_adjust(left=0.075, right=0.985, top=0.95, bottom=0.12)
+    fig.subplots_adjust(left=0.075, right=0.985, top=0.855, bottom=0.12)
+    fig.text(0.075, 0.975, "A  Skipped-exon events in SH-SY5Y (rMATS, three libraries per group)",
+             ha="left", va="top", weight="bold", fontsize=8.3)
+    se_schematic(fig.add_axes([0.71, 0.895, 0.275, 0.07]))
     save(fig, MAIN, "Figure4_SOCE_splicing")
 
 
@@ -282,30 +306,35 @@ def arrow(ax, p1, p2, dashed=False, color=INK):
 
 
 def figure6():
-    fig, ax = plt.subplots(figsize=(7.1, 3.9))
+    fig, ax = plt.subplots(figsize=(7.1, 4.1))
     ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.axis("off")
-    ax.text(0.01, 0.985, "Laboratory measurements", va="top", weight="bold", fontsize=8.5)
-    box(ax, 0.36, 0.76, 0.28, 0.15, "shRNA knockdown", "TARDBP mRNA ↓ 94%", BLUE)
-    box(ax, 0.02, 0.50, 0.30, 0.17, "RT-qPCR", "TRPC1 / STIM1 / ORAI1 / ATP2A3 ↑\n4 biological replicates/group", BLUE)
-    box(ax, 0.68, 0.50, 0.30, 0.17, "Fura-2", "Ca$^{2+}$ readdition ↓\n3 wells/group; one plate", BLUE)
-    arrow(ax, (0.42, 0.76), (0.22, 0.67)); arrow(ax, (0.58, 0.76), (0.78, 0.67))
-    ax.text(0.01, 0.42, "Candidate mechanisms from public RNA-seq (hypotheses)", va="top", weight="bold",
-            fontsize=8.5)
+    ax.text(0.01, 0.985, "Laboratory measurements in SH-SY5Y cells", va="top", weight="bold", fontsize=8.3)
+    box(ax, 0.335, 0.735, 0.33, 0.16, "shRNA knockdown", "TARDBP mRNA ↓ 94% (RT-qPCR, own RNA set)", BLUE)
+    box(ax, 0.02, 0.475, 0.31, 0.19, "RT-qPCR, day-5 RNA", "TRPC1 / STIM1 / ORAI1 / ATP2A3 ↑\n4 biological replicates/group", BLUE)
+    box(ax, 0.67, 0.475, 0.31, 0.19, "Fura-2, 72 h after transduction", "ER Ca$^{2+}$ release ↓, Ca$^{2+}$ readdition ↓\n3 wells/group; one plate; descriptive", BLUE)
+    arrow(ax, (0.42, 0.735), (0.22, 0.665)); arrow(ax, (0.58, 0.735), (0.78, 0.665))
+    ax.text(0.5, 0.57, "separate cultures and time points;\nnot paired sample by sample", ha="center", va="center", fontsize=6.8, color=MUTED, style="italic", linespacing=1.3)
+    ax.text(0.01, 0.395, "Candidate mechanisms from public RNA-seq (hypotheses)", va="top", weight="bold", fontsize=8.3)
     box(ax, 0.02, 0.06, 0.30, 0.19, "Parallel Ca$^{2+}$ entry route", "CBARP splicing → CaV (not measured)", ORANGE)
     box(ax, 0.35, 0.06, 0.30, 0.19, "ER refilling", "ATP2A2 ↓ / bioenergetics", ORANGE)
     box(ax, 0.68, 0.06, 0.30, 0.19, "Channel composition and feedback", "ORAI3 share ↑ / SARAF ↑", ORANGE)
-    arrow(ax, (0.55, 0.25), (0.76, 0.50), dashed=True, color=MUTED)
-    arrow(ax, (0.83, 0.25), (0.83, 0.50), dashed=True, color=MUTED)
-    ax.plot([0.66, 0.71], [0.965, 0.965], color=INK, lw=0.9)
-    ax.text(0.715, 0.965, "measured link", va="center", fontsize=6.6)
-    ax.plot([0.83, 0.88], [0.965, 0.965], color=MUTED, lw=0.9, ls=(0, (3, 2)))
-    ax.text(0.885, 0.965, "hypothesis to test", va="center", fontsize=6.6, color=MUTED)
+    arrow(ax, (0.55, 0.25), (0.76, 0.475), dashed=True, color=MUTED)
+    arrow(ax, (0.83, 0.25), (0.83, 0.475), dashed=True, color=MUTED)
+    ax.plot([0.64, 0.69], [0.962, 0.962], color=INK, lw=0.9)
+    ax.text(0.695, 0.962, "measured", va="center", fontsize=6.6)
+    ax.plot([0.80, 0.85], [0.962, 0.962], color=MUTED, lw=0.9, ls=(0, (3, 2)))
+    ax.text(0.855, 0.962, "hypothesis to test", va="center", fontsize=6.6, color=MUTED)
     fig.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.02)
     save(fig, MAIN, "Figure6_working_model")
 
 
 if __name__ == "__main__":
-    figure4()
-    supplementary_s3()
-    figure6()
-    print("written: Figure4_SOCE_splicing, Supplementary_Figure_S3_CBARP_locus, Figure6_working_model")
+    import sys
+    only = sys.argv[1:] or ["4", "s3", "6"]
+    if "4" in only:
+        figure4()
+    if "s3" in only:
+        supplementary_s3()
+    if "6" in only:
+        figure6()
+    print("written:", ", ".join(only))

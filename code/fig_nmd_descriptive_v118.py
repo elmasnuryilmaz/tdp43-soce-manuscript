@@ -7,7 +7,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 ROOT=Path(__file__).resolve().parents[1]
 nmd=pd.read_csv(ROOT/'source_data/nmd_descriptive_all_genes.csv.gz')
-kr=pd.read_csv(ROOT/'supplementary/S5_high_confidence_cryptic_events.csv')
+kr=pd.read_csv(ROOT/'supplementary/S5_stringent_filter_unannotated_splicing_candidates.csv')
 cryptic=set(kr.loc[kr.comparison=='SH-SY5Y 75 ng/mL (MAPQ-filtered set)','gene'])
 if not cryptic:
     raw=pd.read_csv(ROOT.parent/'07_DISK_ANALIZLERI/sonuclar/YUKSEK_GUVEN_OWN_SH_SY5Y.tsv',sep='\t')

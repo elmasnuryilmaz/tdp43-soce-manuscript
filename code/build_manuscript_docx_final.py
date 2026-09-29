@@ -113,7 +113,13 @@ def table2():
 
 
 def table3():
-    t = pd.read_csv(f"{TAB}/Table4_cryptic_events_eleven_comparisons.csv").set_index("comparison")
+    t = pd.read_csv(f"{TAB}/Table4_cryptic_events_eleven_comparisons.csv")
+    t = t.rename(columns={"stringent_filter_events": "high_confidence_events",
+                          "positive_controls_stringent_filter": "positive_controls_high_confidence",
+                          "positive_control_genes_stringent_filter": "positive_control_genes_high_confidence",
+                          "SOCE_associated_set_genes": "SOCE_machinery_genes",
+                          "null_calls_stringent_filter": "null_calls_high_confidence"})
+    t = t.set_index("comparison")
     order = ["SH-SY5Y 75 ng/mL", "SH-SY5Y 25 ng/mL", "iPSC colonies", "iPSC-MN, TDP-43 KD",
              "iPSC-MN, FUS KD", "iPSC-MN, TAF15 KD", "K562 total RNA", "K562 poly(A)+ mRNA",
              "C2C12", "NSC34", "Mouse striatum"]

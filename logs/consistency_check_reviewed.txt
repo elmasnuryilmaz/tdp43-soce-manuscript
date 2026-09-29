@@ -22,11 +22,11 @@ PASS  STIM1 exon start 1-based: manuscript 4088702 vs data 4088702
 PASS  STIM1 exon length: manuscript 37 vs data 37
 
 === Table 4 / S14: cryptic calls and null test ===
-PASS  SH-SY5Y high-confidence events (regtools): manuscript 165 vs data 165
+PASS  SH-SY5Y stringent-filter events (regtools): manuscript 165 vs data 165
 PASS  SH-SY5Y genes: manuscript 113 vs data 113
-PASS  iPSC-MN TDP-43 high-confidence events: manuscript 18 vs data 18
-PASS  iPSC-MN FUS high-confidence events: manuscript 26 vs data 26
-PASS  iPSC-MN TAF15 high-confidence events: manuscript 23 vs data 23
+PASS  iPSC-MN TDP-43 stringent-filter events: manuscript 18 vs data 18
+PASS  iPSC-MN FUS stringent-filter events: manuscript 26 vs data 26
+PASS  iPSC-MN TAF15 stringent-filter events: manuscript 23 vs data 23
 PASS  iPSC-MN TDP-43 permissive positive controls: manuscript 2 vs data 2
 PASS  iPSC-MN FUS permissive positive controls: manuscript 0 vs data 0
 PASS  SH-SY5Y permissive positive controls: manuscript 13 vs data 13
@@ -62,7 +62,7 @@ PASS  family net, adjusted, SERCA (Ca2+ re-uptake into ER): manuscript -12 vs da
 PASS  family net, adjusted, Mitochondrial Ca2+ uptake: manuscript -25 vs data -25
 PASS  family net, adjusted, STIM (ER Ca2+ sensor): manuscript 48 vs data 48
 PASS  family net, adjusted, ORAI (CRAC channel): manuscript 27 vs data 27
-PASS  family net, adjusted, SOCE regulators: manuscript 30 vs data 30
+PASS  family net, adjusted, Ca2+-entry regulators: manuscript 30 vs data 30
 PASS  ORAI3 share of ORAI pool, control (8%): manuscript 8 vs data 8
 PASS  ORAI3 share of ORAI pool, knockdown (30%): manuscript 30 vs data 30
 PASS  ORAI2 share of ORAI pool, knockdown (53%): manuscript 53 vs data 53
@@ -208,7 +208,7 @@ PASS  present: whereas in cerebellum no comparison-group or ALS sample exceeded 
 PASS  present: although the diagnoses cannot be checked
 PASS  present: (partial ρ = −0.24, p = 0.12, and 0.00, p = 0.98
 PASS  present: exceeded 1% of reads in at most 14% of samples, showed no statistically significant differ
-PASS  present: where it did so in 50–63%
+PASS  present: fell in the cortex of the comparison group (50–63%)
 PASS  present: the direction it shares with the cellular model does not by itself link the two
 PASS  present: which regression on marker genes adjusts for only partially
 PASS  present: the cryptic STMN2 junction indicates TDP-43 loss of function rather than a diagnosis
@@ -223,7 +223,7 @@ PASS  STIM1 transcripts confirmed at 0.05: manuscript 0 vs data 0
 PASS  every evaluable STIM1 transcript has a confirmation-stage p of 1.0: manuscript 1 vs data 1
 PASS  present: none of seven evaluable transcripts passed stageR confirmation
 PASS  present: all confirmation-stage adjusted p values = 1.0
-PASS  present: isoforms had q = 0.33 and 0.77
+PASS  present: the two predicted PTC isoforms did not change (q = 0.33 and 0.77)
 PASS  present: stageR supplies transcript-level confirmation
 PASS  absent: Isoform-level testing supported STIM1
 
@@ -245,12 +245,14 @@ PASS  ATP2A3 does not stay significant with surrogate variables: manuscript 0 vs
 PASS  ATP2A2 does not stay significant with surrogate variables: manuscript 0 vs data 0
 PASS  STIM2 does not stay significant with surrogate variables: manuscript 0 vs data 0
 PASS  present: which estimated two surrogate variables in the primary SH-SY5Y comparison
-PASS  present: The median absolute difference in log2 fold change was 0.20 across the 14,012 genes
-PASS  present: 1,067 genes met both DE thresholds, compared with 1,694 in the original model; 850 were sh
+PASS  present: reduced the number meeting them from 1,694 to 1,067
+PASS  present: kept the direction of all 850 genes
 PASS  present: source_data/svaseq_sensitivity_SHSY5Y.csv
 PASS  absent: the principal findings were unchanged
 
 === analyses moved to the supplementary material ===
+PASS  svaseq statistic kept in Supplementary Results 5: The median absolute difference in log2 f: manuscript 1 vs data 1
+PASS  svaseq statistic kept in Supplementary Results 5: 14,012 genes: manuscript 1 vs data 1
 PASS  Supplementary Results 1 present in the supplementary document: manuscript 1 vs data 1
 PASS  Supplementary Results 1 cited in the manuscript: manuscript 1 vs data 1
 PASS  Supplementary Results 2 present in the supplementary document: manuscript 1 vs data 1
@@ -259,6 +261,10 @@ PASS  Supplementary Results 3 present in the supplementary document: manuscript 
 PASS  Supplementary Results 3 cited in the manuscript: manuscript 1 vs data 1
 PASS  Supplementary Results 4 present in the supplementary document: manuscript 1 vs data 1
 PASS  Supplementary Results 4 cited in the manuscript: manuscript 1 vs data 1
+PASS  Supplementary Results 5 present in the supplementary document: manuscript 1 vs data 1
+PASS  Supplementary Results 5 cited in the manuscript: manuscript 1 vs data 1
+PASS  Supplementary Results 6 present in the supplementary document: manuscript 1 vs data 1
+PASS  Supplementary Results 6 cited in the manuscript: manuscript 1 vs data 1
 PASS  moved text kept in the supplementary: human SARAF locus in iPSC-derived motor : manuscript 1 vs data 1
 PASS  moved text kept in the supplementary: human SH-SY5Y estimate was 0.000 (interv: manuscript 1 vs data 1
 PASS  moved text kept in the supplementary: (δ = −0.482, p = 0.005), although not af: manuscript 1 vs data 1
@@ -281,10 +287,10 @@ PASS  absent: the myelin markers MBP (δ = +0.051), PLP1 (−0.074), MOG (−0.2
 === 27 September 2026 structural scan ===
 PASS  present: Two of the 24 dataset–panel combinations had nominal permutation p < 0.05
 PASS  present: Neither survived adjustment for the number of comparisons
-PASS  present: 3.4 Which splicing changes in SOCE genes survive the robustness checks
+PASS  present: 3.4 Splicing changes in core SOCE-pathway genes that pass the robustness checks
 PASS  present: alternative polyadenylation, which generates the truncated STMN2 transcript
 PASS  present: coupling to nonsense-mediated decay
-PASS  present: In the iPSC-derived motor neurons two panels retained nominal associations after matching
+PASS  present: Two of the 24 dataset–panel combinations had nominal permutation p < 0.05 after matching
 PASS  absent: This is the central observation of the study
 PASS  absent: tentative, motor-neuron-associated observation
 PASS  absent: Robust splicing changes concentrate in SOCE regulators
@@ -309,14 +315,12 @@ PASS  present: cannot distinguish altered ER store depletion from changes in STI
 PASS  present: neither the cell number nor the dye loading of each cuvette was recorded
 PASS  present: BTP2, Synta66 or Gd³⁺
 PASS  present: the novel-site junction at this locus carried six
-PASS  present: the y axis spans 0–3 in A and 0.5–1.5 in B
-PASS  present: The original recordings, exported from the GraphPad Prism trace project and reproduced her
-PASS  present: The same two recordings as in A and B, that is the same measured F340/F380 values exported
+PASS  present: The original recordings, with the CPA and CaCl₂ additions, are shown at their own axis ran
 PASS  present: no value is smoothed or rescaled
-PASS  present: The Fura-2 and WST-1 observations require independent biological replication
+PASS  present: which requires independent biological replication
 PASS  present: it does not estimate between-experiment variability
 PASS  present: WST-1 signal at 48 h, four wells from one experiment
-PASS  present: The NMD and APA screens are hypothesis-generating
+PASS  present: The APA and NMD analyses are hypothesis-generating
 PASS  no independent-culture Fura-2 claims remain: manuscript 0 vs data 0
 
 === 25 September 2026 audit corrections ===
@@ -331,9 +335,9 @@ PASS  S11 holds the SARAF termexon value quoted in Section 3.7: manuscript -0.03
 PASS  S11 holds the ORAI2 termexon value quoted in Section 3.7: manuscript 0.012 vs data 0.0122099333990824
 PASS  S11 holds the SARAF intron5 value quoted in Section 3.7: manuscript 0.0 vs data 0.0001143561787292
 PASS  S11 units below the candidate threshold are flagged: manuscript 1 vs data 1
-PASS  present: the twelve core entry components
-PASS  present: the only high-confidence unannotated change anywhere in the SOCE panel
-PASS  present: three units of the Ca²⁺ panel likewise exclude zero
+PASS  present: the twelve core SOCE-pathway genes
+PASS  present: The only stringent-filter unannotated change anywhere in the nineteen-gene SOCE-associated
+PASS  present: three terminal-exon units outside this set also excluded zero
 PASS  present: this model provides no evidence of enrichment beyond the length and expression properties
 PASS  present: Fisher’s exact test p = 0.48
 PASS  present: four independent datasets covering Alzheimer’s disease, Parkinson’s disease and multiple s
@@ -351,7 +355,7 @@ PASS  supplementary document describes the S11 candidate_gradient column: manusc
 
 === 28 September 2026 author correction: Fura-2 wells on one plate ===
 PASS  supplementary and main titles match: manuscript 1 vs data 1
-PASS  highlights describe the Fura-2 difference without a functional claim: manuscript 1 vs data 1
+PASS  third highlight names the recurrent CBARP finding: manuscript 1 vs data 1
 PASS  highlight names the one-plate design: manuscript 1 vs data 1
 PASS  S1 description names the wells and plate: manuscript 1 vs data 1
 PASS  readdition difference (-1.30): manuscript -1.3 vs data -1.2971616666666668
@@ -422,7 +426,7 @@ PASS  S9 q, SNAP25 Cortex Motor Medial: manuscript 0.028 vs data 0.0282142118398
 PASS  S9 q, SARAF Spinal Cord Lumbar: manuscript 0.049 vs data 0.0488764493568879
 
 === published tables carry English dataset labels and the full control set ===
-PASS  S5_high_confidence_cryptic_events: untranslated dataset labels: manuscript 0 vs data 0
+PASS  S5_stringent_filter_unannotated_splicing_candidates: untranslated dataset labels: manuscript 0 vs data 0
 PASS  S6_cryptic_positive_controls: untranslated dataset labels: manuscript 0 vs data 0
 PASS  S7_SOCE_genes_annotation_free: untranslated dataset labels: manuscript 0 vs data 0
 PASS  S6 genes all belong to the sixteen literature controls: manuscript 0 vs data 0
@@ -460,7 +464,7 @@ PASS  present: 10 µM cyclopiazonic acid
 PASS  present: Albarran L, Lopez JJ, Woodard GE, Salido GM, Rosado JA
 PASS  present: cryptic junction was most frequent in spinal cord
 PASS  present: Cutadapt v5.2
-PASS  present: 59 units in 29 genes passed the same depth filter
+PASS  present: 59 units in 29 genes passed the depth filter
 PASS  present: from 0.570 in controls to 0.819 in knockdown (Δ = +0.249
 PASS  present: `-p --countReadPairs` for paired-end libraries
 PASS  present: 74 qualifying units in C2C12 and 131 in NSC34
@@ -469,7 +473,7 @@ PASS  present: this check is available only for the human comparisons
 PASS  present: isoform-level testing did not detect a *CBARP* isoform switch
 PASS  present: the three mouse comparisons have no conserved control
 PASS  present: *ORAI3* went from 8% to 30% of ORAI transcripts and *ORAI2* from 77% to 53%
-PASS  present: The STIM (+48%) and SOCE-regulator (+30%) pools also rose, whereas the SERCA and mitochond
+PASS  present: The STIM (+48%) and Ca²⁺-entry-regulator (+30%) pools also rose, whereas the SERCA and mit
 PASS  present: the median gene expressed in both groups (mean TPM > 5) had 24% lower TPM
 PASS  present: Neither is independent of the splicing results
 PASS  present: Yoast RE, Emrich SM, Zhang X, et al.
@@ -594,7 +598,7 @@ PASS  STIM2.1 pooled CI high (+0.024): manuscript 0.024 vs data 0.02424458242178
 PASS  STIM2.1 pooled p (0.914): manuscript 0.914 vs data 0.9140196486392349
 PASS  STIM2.1 exon positive in five of six datasets: manuscript 5 vs data 5
 PASS  STIM2.1 Cochran's Q (4.84): manuscript 4.84 vs data 4.835615134691267
-PASS  STIM2.1 heterogeneity p (0.44): manuscript 0.44 vs data 0.4362697467925243
+PASS  STIM2.1 heterogeneity p (0.44): manuscript 0.44 vs data 0.43626974679252417
 PASS  STIM2.1 I2 (0%): manuscript 0 vs data 0.0
 PASS  STIM2.1 weight carried by the mouse datasets (86%): manuscript 0.86 vs data 0.8549007360636193
 PASS  STIM2.1 human-only pooled dPSI (+0.031): manuscript 0.031 vs data 0.030856860665233875
@@ -630,11 +634,195 @@ PASS  reference entries never cited in the text: manuscript 0 vs data 0
     72 distinct citations, 72 references
 
 === Tables 1-5 in the manuscript match tables/*.csv ===
-PASS  Markdown tables regenerated from the CSV files are identical: manuscript 0 vs data 0
+PASS  Table 1 of the manuscript equals the numbers regenerated from tables/*.csv (35 rows): manuscript 0 vs data 0
+PASS  Table 2 of the manuscript equals the numbers regenerated from tables/*.csv (6 rows): manuscript 0 vs data 0
+PASS  Table 3 of the manuscript equals the numbers regenerated from tables/*.csv (4 rows): manuscript 0 vs data 0
+PASS  Table 4 of the manuscript equals the numbers regenerated from tables/*.csv (11 rows): manuscript 0 vs data 0
+PASS  Table 5 of the manuscript equals the numbers regenerated from tables/*.csv (24 rows): manuscript 0 vs data 0
 PASS  table 1 present: Table 1.
 PASS  table 2 present: Table 2.
 PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 575 passed, 0 failed ====
+=== release v1.0.8: evaluation of v1.0.7 (claim, naming, simulation, figures, package) ===
+PASS  'high-confidence' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'high-confidence' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'SOCE machinery' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'SOCE machinery' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'SOCE-machinery' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'SOCE-machinery' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'core entry components' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'core entry components' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'SOCE regulator' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'SOCE regulator' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'SOCE-regulator' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'SOCE-regulator' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'discordance' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'discordance' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'did most of the work' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'did most of the work' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'We first measure SOCE' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'We first measure SOCE' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'independently supported' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'independently supported' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'Integrated mechanism' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'Integrated mechanism' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'Which splicing changes' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'Which splicing changes' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'observed SOCE phenotype' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'observed SOCE phenotype' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  'central observation' is absent from the manuscript: manuscript 0 vs data 0
+PASS  'central observation' is absent from the supplementary document: manuscript 0 vs data 0
+PASS  present: stringent-filter unannotated splicing candidate
+PASS  present: nineteen-gene SOCE-associated set
+PASS  present: core SOCE-pathway genes
+PASS  present: Ca²⁺-entry regulators
+PASS  present: The name describes the filter and does not imply validated specificity
+PASS  present: a set of candidates whose sensitivity has been checked against known targets, not a set wi
+PASS  title states the RNA-candidate framing and the single plate: manuscript 1 vs data 1
+PASS  present: this observation motivated the RNA analyses but was not paired with the RT-qPCR or RNA-seq
+PASS  present: the Fura-2 observation comes from a single culture plate and served to motivate the RNA an
+PASS  present: The RT-qPCR mRNA measurements and the one-plate Fura-2 response therefore differed in dire
+PASS  present: they are not paired and do not show opposing changes within the same cells
+PASS  present: Working hypotheses and discriminating experiments
+PASS  present: Possible contributors to the single-plate Fura-2 difference
+PASS  present: none of which was tested here
+PASS  present: no confirmed RNA-processing event in the core SOCE-pathway genes explained it
+PASS  Results 3.1 heading names the single plate: manuscript 1 vs data 1
+PASS  Discussion paragraphs follow the intended order: manuscript 1 vs data 1
+PASS  present: 3.6 APA, NMD and outlier screens yield candidates but no confirmed event in the core SOCE-
+PASS  present: 3.7 Matched analyses do not establish enrichment
+PASS  present: 3.8 TRPC1, SARAF and CBARP differ across ALS and neurological comparison cohorts
+PASS  absent: 3.9 TRPC1
+PASS  absent: Section 3.9
+PASS  absent: 3.6 Descriptive NMD
+PASS  absent: A coverage-based APA screen yields
+PASS  every 'Section 3.x' reference points to an existing section (3.1-3.8): manuscript 1 vs data 1
+PASS  every 'Methods 2.x' reference points to an existing section (2.1-2.16): manuscript 1 vs data 1
+PASS  simulated power, 10 reads, dPSI 0.10: manuscript 0.08 vs data 0.077
+PASS  simulated power, 100 reads, dPSI 0.10: manuscript 0.28 vs data 0.2765
+PASS  simulated power, 50 reads, dPSI 0.20: manuscript 0.58 vs data 0.5825
+PASS  simulated power, 100 reads, dPSI 0.20: manuscript 0.74 vs data 0.7415
+PASS  simulated power, 50 reads, dPSI 0.30: manuscript 0.9 vs data 0.9005
+PASS  simulated power, 100 reads, dPSI 0.30: manuscript 0.97 vs data 0.969
+PASS  80% power is not reached at 10 or 20 reads up to dPSI 0.30: manuscript 1 vs data 1
+PASS  80% power is reached between dPSI 0.20 and 0.30 at 50 and 100 reads: manuscript 1 vs data 1
+PASS  simulation baseline PSI in the code (0.5): manuscript 0.5 vs data 0.5
+PASS  simulation runs in the code (2,000): manuscript 2000 vs data 2000
+PASS  simulation alpha in the code (0.05): manuscript 0.05 vs data 0.05
+PASS  simulation between-replicate SD in the code (0.05): manuscript 0.05 vs data 0.05
+PASS  lower quartile of reads per sample, nominally significant SH-SY5Y events (9.7): manuscript 9.7 vs data 9.666666666666666
+PASS  median reads per sample, nominally significant SH-SY5Y events (21.3): manuscript 21.3 vs data 21.33333333333333
+PASS  present: close to the lower quartile of the nominally significant events (9.7 reads per sample; med
+PASS  present: The simulation is not an estimate of rMATS power
+PASS  present: standard deviation 0.05, limited to 0.01–0.99
+PASS  present: The simulation does not reproduce the rMATS model, its FDR correction or its |ΔPSI| thresh
+PASS  Supplementary Figure S1 legend states the assumptions: manuscript 1 vs data 1
+PASS  svaseq table lists nine genes: manuscript 9 vs data 9
+PASS  svaseq table, STIM1: log2FC original: manuscript 0.929268613864923 vs data 0.93
+PASS  svaseq table, STIM1: log2FC with surrogate variables: manuscript 0.904823725904089 vs data 0.9
+PASS  svaseq table, STIM1: padj_published: manuscript 1 vs data 1
+PASS  svaseq table, STIM1: padj_with_SV: manuscript 1 vs data 1
+PASS  svaseq table, TRPC1: log2FC original: manuscript 0.957895335297178 vs data 0.96
+PASS  svaseq table, TRPC1: log2FC with surrogate variables: manuscript 1.31904465559978 vs data 1.32
+PASS  svaseq table, TRPC1: padj_published: manuscript 1 vs data 1
+PASS  svaseq table, TRPC1: padj_with_SV: manuscript 1 vs data 1
+PASS  svaseq table, ORAI3: log2FC original: manuscript 2.05624739776012 vs data 2.06
+PASS  svaseq table, ORAI3: log2FC with surrogate variables: manuscript 2.10820928315891 vs data 2.11
+PASS  svaseq table, ORAI3: padj_published: manuscript 1 vs data 1
+PASS  svaseq table, ORAI3: padj_with_SV: manuscript 1 vs data 1
+PASS  svaseq table, SARAF: log2FC original: manuscript 0.547882504253508 vs data 0.55
+PASS  svaseq table, SARAF: log2FC with surrogate variables: manuscript 0.503344150523506 vs data 0.5
+PASS  svaseq table, SARAF: padj_published: manuscript 1 vs data 1
+PASS  svaseq table, SARAF: padj_with_SV: manuscript 1 vs data 1
+PASS  svaseq table, CBARP: log2FC original: manuscript -1.25373358688605 vs data -1.25
+PASS  svaseq table, CBARP: log2FC with surrogate variables: manuscript -1.33988361261611 vs data -1.34
+PASS  svaseq table, CBARP: padj_published: manuscript 1 vs data 1
+PASS  svaseq table, CBARP: padj_with_SV: manuscript 1 vs data 1
+PASS  svaseq table, ORAI1: log2FC original: manuscript 0.432524865424346 vs data 0.43
+PASS  svaseq table, ORAI1: log2FC with surrogate variables: manuscript 0.16144311268855 vs data 0.16
+PASS  svaseq table, ORAI1: padj_published: manuscript 1 vs data 1
+PASS  svaseq table, ORAI1: padj_with_SV: manuscript 1 vs data 1
+PASS  svaseq table, ATP2A3: log2FC original: manuscript 1.30632431416148 vs data 1.31
+PASS  svaseq table, ATP2A3: log2FC with surrogate variables: manuscript 0.97292007825539 vs data 0.97
+PASS  svaseq table, ATP2A3: padj_published: manuscript 1 vs data 1
+PASS  svaseq table, ATP2A3: padj_with_SV: manuscript 1 vs data 1
+PASS  svaseq table, ATP2A2: log2FC original: manuscript -0.246836243745097 vs data -0.25
+PASS  svaseq table, ATP2A2: log2FC with surrogate variables: manuscript -0.233237742097084 vs data -0.23
+PASS  svaseq table, ATP2A2: padj_published: manuscript 1 vs data 1
+PASS  svaseq table, ATP2A2: padj_with_SV: manuscript 1 vs data 1
+PASS  svaseq table, STIM2: log2FC original: manuscript -0.527030346169244 vs data -0.53
+PASS  svaseq table, STIM2: log2FC with surrogate variables: manuscript -0.140799535092739 vs data -0.14
+PASS  svaseq table, STIM2: padj_published: manuscript 1 vs data 1
+PASS  svaseq table, STIM2: padj_with_SV: manuscript 1 vs data 1
+PASS  all nine STIM1 transcript identifiers are listed in Supplementary Results 6: manuscript 9 vs data 9
+PASS  no transcript identifier remains in the main text: manuscript 0 vs data 0
+PASS  STIM1 isoform switch q, ENST00000698913.1 (5.5e-38): manuscript 5.5e-38 vs data 5.52891935630433e-38
+PASS  STIM1 isoform switch q, ENST00000698912.1 (1.6e-10): manuscript 1.6e-10 vs data 1.56320768763226e-10
+PASS  the two changing isoforms are not PTC isoforms: manuscript 1 vs data 1
+PASS  PTC isoform q 0.33 (ENST00000698919.1): manuscript 0.33 vs data 0.332018514468279
+PASS  PTC isoform q 0.77 (ENST00000698918.1): manuscript 0.77 vs data 0.767841386842901
+PASS  dIF of the two changing isoforms (+0.037, -0.032): manuscript 1 vs data 1
+PASS  Supplementary Results 6 contains 'ENST00000698912.1': manuscript 1 vs data 1
+PASS  Supplementary Results 6 contains 'ENST00000698913.1': manuscript 1 vs data 1
+PASS  Supplementary Results 6 contains 'dIF +0.037 and −0.032': manuscript 1 vs data 1
+PASS  Supplementary Results 6 contains 'not a single confirmation chain': manuscript 1 vs data 1
+PASS  genes counted in both DESeq2 runs (20,833): manuscript 20833 vs data 20833
+PASS  log2FC correlation, featureCounts versus Salmon counts (r = 0.85): manuscript 0.85 vs data 0.8459569279531953
+PASS  quoted DESeq2 log2FC of STIM1 is the Salmon-based value: manuscript 0.929 vs data 0.929268613864923
+PASS  quoted DESeq2 log2FC of TRPC1 is the Salmon-based value: manuscript 0.958 vs data 0.957895335297178
+PASS  quoted DESeq2 log2FC of ORAI1 is the Salmon-based value: manuscript 0.433 vs data 0.432524865424346
+PASS  quoted DESeq2 log2FC of ATP2A3 is the Salmon-based value: manuscript 1.306 vs data 1.30632431416148
+PASS  quoted DESeq2 log2FC of CBARP is the Salmon-based value: manuscript -1.254 vs data -1.25373358688605
+PASS  quoted DESeq2 log2FC of ORAI3 is the Salmon-based value: manuscript 2.056 vs data 2.05624739776012
+PASS  quoted DESeq2 log2FC of ORAI2 is the Salmon-based value: manuscript -0.173 vs data -0.172924833410512
+PASS  quoted DESeq2 log2FC of ATP2A2 is the Salmon-based value: manuscript -0.247 vs data -0.246836243745097
+PASS  quoted DESeq2 log2FC of GAPDH is the Salmon-based value: manuscript 0.612 vs data 0.612167948727638
+PASS  the four RT-qPCR targets have the same direction in both count sets: manuscript 1 vs data 1
+PASS  present: every DESeq2 statistic reported here was computed on Salmon estimated counts summed to gen
+PASS  present: gave similar log2 fold changes (Pearson r = 0.85 across the 20,833 genes counted in both)
+PASS  present: log2FC and p_adj are from DESeq2 on gene-level Salmon counts
+PASS  absent: Gene counts were generated with featureCounts
+PASS  graphical abstract draws one dot per region: manuscript 1 vs data 1
+PASS  graphical abstract code does not average regional deltas: manuscript 0 vs data 0
+PASS  graphical abstract shows the CBARP junction: manuscript 1 vs data 1
+PASS  graphical abstract makes no correlation-absence claim: manuscript 0 vs data 0
+PASS  graphical abstract states that the Fura-2 data are not paired with RT-qPCR: manuscript 1 vs data 1
+PASS  highlights: four items: manuscript 4 vs data 4
+PASS  highlights: every item is at most 85 characters: manuscript 1 vs data 1
+PASS  manuscript: every picture has alt text (6 pictures): manuscript 0 vs data 0
+PASS  supplement: every picture has alt text (9 pictures): manuscript 0 vs data 0
+PASS  main manuscript embeds six figures: manuscript 6 vs data 6
+PASS  supplement embeds nine figures: manuscript 9 vs data 9
+PASS  Supplementary Figure S9 is cited in the manuscript: manuscript 1 vs data 1
+PASS  supplementary contents list the nine figures and six result sections: manuscript 1 vs data 1
+PASS  Supplementary Figure S5 alt text no longer calls the conditions units of inference: manuscript 0 vs data 0
+PASS  stand-alone legends cover Supplementary Figures S1-S9: manuscript 9 vs data 9
+PASS  stand-alone legends do not contain 'units of inference': manuscript 0 vs data 0
+PASS  stand-alone legends do not contain 'high-confidence': manuscript 0 vs data 0
+PASS  stand-alone legends do not contain 'Replicate-level PSI for SOCE-related splicing candidates': manuscript 0 vs data 0
+PASS  legend .docx and .md hold the same nine legends: manuscript 1 vs data 1
+PASS  README does not contain the stale 'Figures 6-8': manuscript 0 vs data 0
+PASS  README does not contain the stale 'Figures 6–8': manuscript 0 vs data 0
+PASS  README does not contain the stale 'fig_supp_splicing.py': manuscript 0 vs data 0
+PASS  README does not contain the stale 'eight
+supplementary figures': manuscript 0 vs data 0
+PASS  README does not contain the stale 'Supplementary Figures S1–S8': manuscript 0 vs data 0
+PASS  README does not contain the stale 'high-confidence': manuscript 0 vs data 0
+PASS  README does not contain the stale 'TDP-43 knockdown is associated with a lower': manuscript 0 vs data 0
+PASS  README contains 'Supplementary Figures S1–S9': manuscript 1 vs data 1
+PASS  README contains 'v1.0.8': manuscript 1 vs data 1
+PASS  README contains 'Which counts feed which result': manuscript 1 vs data 1
+PASS  README contains 'Evidence levels': manuscript 1 vs data 1
+PASS  file named in the README exists: CORRECTIONS_2026-09-29_v1.0.8.md: manuscript 1 vs data 1
+PASS  file named in the README exists: source_data/power_simulation_S1.csv: manuscript 1 vs data 1
+PASS  file named in the README exists: source_data/DESeq2_ctrl_vs_75_featureCounts.csv: manuscript 1 vs data 1
+PASS  file named in the README exists: code/build_supplementary_legends.py: manuscript 1 vs data 1
+PASS  present: S16b. Donor-level re-analysis of multiple sclerosis
+PASS  present: The supplementary material also contains Figures S1–S9
+PASS  supplementary document inventories S16b: manuscript 1 vs data 1
+    Introduction to Conclusion, including captions and Limitations: 13128 words
+PASS  Introduction to Conclusion is shorter than in v1.0.7 (13,396 words): manuscript 1 vs data 1
+
+==== 759 passed, 0 failed ====

@@ -98,10 +98,10 @@ w(s[["dataset", "gene", "event_class", "chrom", "start_1based", "end", "strand",
 
 # ------------------------------------------------------------------- Table 3
 hc = pd.read_csv(f"{D}/tablolar/S13_yuksek_guven_kriptik_ozet.tsv", sep="\t")
-hc = hc.rename(columns={"veri_seti": "comparison", "olay": "high_confidence_events",
-    "gen": "genes", "pozitif_kontrol": "positive_controls_high_confidence",
-    "bulunan": "positive_control_genes_high_confidence", "Tier1": "Tier1_genes",
-    "cekirdek_SOCE": "SOCE_machinery_genes"})
+hc = hc.rename(columns={"veri_seti": "comparison", "olay": "stringent_filter_events",
+    "gen": "genes", "pozitif_kontrol": "positive_controls_stringent_filter",
+    "bulunan": "positive_control_genes_stringent_filter", "Tier1": "Tier1_genes",
+    "cekirdek_SOCE": "SOCE_associated_set_genes"})
 perm = {}
 for ds in hc.comparison:
     f = f"{D}/sonuclar/RT_KRIPTIK_{ds}.tsv"
@@ -116,7 +116,7 @@ hc["permissive_genes"] = [perm.get(d, (np.nan,) * 3)[1] for d in hc.comparison]
 hc["positive_controls_permissive"] = [perm.get(d, (np.nan,) * 3)[2] for d in hc.comparison]
 null = pd.read_csv(f"{D}/tablolar/S15_kriptik_esik_kalibrasyonu.tsv", sep="\t")
 null = null[null.kademe == "K2"].set_index("veri_seti")
-hc["null_calls_high_confidence"] = pd.array([null.bos_olay.get(d, np.nan) for d in hc.comparison],
+hc["null_calls_stringent_filter"] = pd.array([null.bos_olay.get(d, np.nan) for d in hc.comparison],
                                            dtype="Float64").astype("Int64")
 hc["null_to_real_ratio"] = [null.yanlis_pozitif_orani.get(d, np.nan) for d in hc.comparison]
 hc["comparison"] = hc.comparison.map(lambda x: DSET.get(x, x))
@@ -127,13 +127,13 @@ hc["comparison"] = hc.comparison.map(lambda x: DSET.get(x, x))
 MOUSE = {"C2C12", "NSC34", "Mouse striatum"}
 _m = hc.comparison.isin(MOUSE)
 hc["positive_controls_permissive"] = hc.positive_controls_permissive.astype(object)
-hc["positive_controls_high_confidence"] = hc.positive_controls_high_confidence.astype(object)
-hc.loc[_m, ["positive_controls_permissive", "positive_controls_high_confidence",
-            "positive_control_genes_high_confidence"]] = "n/a (mouse)"
+hc["positive_controls_stringent_filter"] = hc.positive_controls_stringent_filter.astype(object)
+hc.loc[_m, ["positive_controls_permissive", "positive_controls_stringent_filter",
+            "positive_control_genes_stringent_filter"]] = "n/a (mouse)"
 hc = hc[["comparison", "permissive_events", "permissive_genes", "positive_controls_permissive",
-         "high_confidence_events", "genes", "positive_controls_high_confidence",
-         "positive_control_genes_high_confidence", "Tier1_genes", "SOCE_machinery_genes",
-         "null_calls_high_confidence", "null_to_real_ratio"]]
+         "stringent_filter_events", "genes", "positive_controls_stringent_filter",
+         "positive_control_genes_stringent_filter", "Tier1_genes", "SOCE_associated_set_genes",
+         "null_calls_stringent_filter", "null_to_real_ratio"]]
 w(hc, f"{TAB}/Table4_cryptic_events_eleven_comparisons.csv")
 
 # ------------------------------------------------------------------- Table 4
@@ -215,7 +215,7 @@ e["decision"] = e.decision.str.strip().str.lower().replace(
     {"zenginlesme yok": "no enrichment", "zenginlesme var": "enrichment"})
 w(e, f"{SUP}/S4_matched_permutation_enrichment.csv")
 # S5, S6, S7 junction tables
-for src, dst in [("S5_yuksek_guven_kriptik_olaylar", "S5_high_confidence_cryptic_events"),
+for src, dst in [("S5_yuksek_guven_kriptik_olaylar", "S5_stringent_filter_unannotated_splicing_candidates"),
                  ("S6_kriptik_pozitif_kontroller", "S6_cryptic_positive_controls"),
                  ("S7_SOCE_anotasyonsuz_analiz", "S7_SOCE_genes_annotation_free")]:
     df = en_junction(pd.read_csv(f"{D}/tablolar/{src}.tsv", sep="\t"))
@@ -355,7 +355,7 @@ for ds in s14.dataset.unique():
                           positive_controls=len(set(r_.gene.astype(str).str.upper()) & _POS16)))
 s14 = pd.concat([pd.DataFrame(_perm), s14], ignore_index=True)
 s14["dataset"] = s14.dataset.map(lambda x: DSET.get(x, x))
-s14["tier"] = s14.tier.replace({"K1": "tier 1", "K2": "tier 2 (high-confidence)", "K3": "tier 3"})
+s14["tier"] = s14.tier.replace({"K1": "tier 1", "K2": "tier 2 (stringent filter)", "K3": "tier 3"})
 s14["criteria"] = (s14.criteria.str.replace("okuma", "reads")
                    .str.replace("GA>", "CI lower bound>", regex=False))
 s14["positive_controls"] = s14.positive_controls.astype(object)

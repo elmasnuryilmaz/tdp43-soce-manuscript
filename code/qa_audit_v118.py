@@ -45,7 +45,7 @@ for c in ['X','XS','XU','US']:
 check('CBARP contrasts reproduce directly from normalized libraries',np.allclose(vals,n[n.gene=='CBARP'][cols].iloc[0].values.astype(float)))
 old=openpyxl.load_workbook(io.BytesIO(subprocess.check_output(['git','show','a80c10e:supplementary/S1_laboratory_source_data.xlsx'],cwd=R)))
 new=openpyxl.load_workbook(R/'supplementary/S1_laboratory_source_data.xlsx')
-allowed={'README':{'B2','B3','B4','B8'},'TARDBP_qPCR':{'B1'},'Target_qPCR_Ct':{'C1'},'Target_qPCR_rel':{'C1'},'Summary_stats':{f'{c}{i}' for c in 'GH' for i in range(2,14)}}
+allowed={'README':{'B2','B3','B4','B5','B8'},'TARDBP_qPCR':{'B1'},'Target_qPCR_Ct':{'C1'},'Target_qPCR_rel':{'C1'},'Summary_stats':{f'{c}{i}' for c in 'GH' for i in range(2,14)}}
 check('S1 preserves all source worksheets',old.sheetnames==new.sheetnames)
 for name in old.sheetnames:
  for row in old[name]:

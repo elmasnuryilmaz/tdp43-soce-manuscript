@@ -1,4 +1,4 @@
-comparison,permissive_events,permissive_genes,positive_controls_permissive,high_confidence_events,genes,positive_controls_high_confidence,positive_control_genes_high_confidence,Tier1_genes,SOCE_machinery_genes,null_calls_high_confidence,null_to_real_ratio
+comparison,permissive_events,permissive_genes,positive_controls_permissive,stringent_filter_events,genes,positive_controls_stringent_filter,positive_control_genes_stringent_filter,Tier1_genes,SOCE_associated_set_genes,null_calls_stringent_filter,null_to_real_ratio
 C2C12,566,379,n/a (mouse),158,110,n/a (mouse),n/a (mouse),NA,NA,,
 Mouse striatum,43,32,n/a (mouse),12,9,n/a (mouse),n/a (mouse),NA,NA,10,0.83
 K562 poly(A)+ mRNA,1683,1030,6,145,94,4,"AGRN,ATG4B,HDGFL2,PFKP",NA,NA,,
