@@ -313,7 +313,7 @@ PASS  present: the y axis spans 0–3 in A and 0.5–1.5 in B
 PASS  present: The original recordings, exported from the GraphPad Prism trace project and reproduced her
 PASS  present: The same two recordings as in A and B, that is the same measured F340/F380 values exported
 PASS  present: no value is smoothed or rescaled
-PASS  present: The laboratory observations require independent biological replication
+PASS  present: The Fura-2 and WST-1 observations require independent biological replication
 PASS  present: it does not estimate between-experiment variability
 PASS  present: WST-1 signal at 48 h, four wells from one experiment
 PASS  present: The NMD and APA screens are hypothesis-generating
@@ -387,7 +387,7 @@ PASS  alternative 3' site to exon 5 acceptor distance (197 nt): manuscript 197 v
 PASS  present: 197 nucleotides upstream of the exon 5 acceptor
 PASS  present: carried 17% of exon-4 donor reads in SH-SY5Y controls and 86% after knockdown, and 1% and 
 PASS  main figures first cited in numerical order: manuscript 1 vs data 1
-PASS  absent: without inferential tests
+PASS  absent: All laboratory comparisons are descriptive
 PASS  absent: These Fura-2 and WST-1 comparisons are descriptive
 PASS  absent: What reproduces is the involvement of the locus
 PASS  absent: Figure5_CBARP_splicing

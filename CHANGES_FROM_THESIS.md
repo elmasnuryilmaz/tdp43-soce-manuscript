@@ -84,9 +84,9 @@ and FRASER 1.14.1 were confirmed. Full list: `environment.yml`.
 ## 6. Experimental units and September 29 scientific audit
 
 The author confirmed that the Fura-2 observations are three wells from one plate,
-and the four RT-qPCR observations are technical repeats of the same biological
-sample per group. All laboratory comparisons are now descriptive; qPCR and Fura-2
-p values, biological confidence intervals and significance stars are omitted.
+and clarified that RT-qPCR has four biological replicates per group. RT-qPCR
+uses two-sided Welch tests on Delta Ct with Holm adjustment. Fura-2 remains
+descriptive, without inferential p values or biological confidence intervals.
 WST-1 remains four wells from one of three experiments; the other experiments are
 not available. See `CORRECTIONS_2026-09-29.md` for the S13 coordinate/chromosome fix,
 STIM1 missing tests, DE threshold clarification and NYGC donor sensitivity.

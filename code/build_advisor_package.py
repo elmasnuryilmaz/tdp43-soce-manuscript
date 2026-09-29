@@ -16,7 +16,8 @@ from pathlib import Path
 DATE = sys.argv[1] if len(sys.argv) > 1 else "2026-09-29"
 ROOT = Path("/Users/elmas/Desktop/MAKALE")
 PKG = ROOT / "09_YAYIN_PAKETI"
-OUT = ROOT / f"HOCAYA_GONDERIM_{DATE}"
+SUFFIX = sys.argv[2] if len(sys.argv) > 2 else ""
+OUT = ROOT / f"HOCAYA_GONDERIM_{DATE}{SUFFIX}"
 STAGE = OUT / f"EKLER_{DATE}"
 
 if OUT.exists():
@@ -46,9 +47,9 @@ for p in sorted((PKG / "supplementary").glob("S*")):
     if p.suffix in (".csv", ".xlsx", ".gz") and p.name[1].isdigit():
         copies.append((p, f"04_EK_VERI/{p.name}"))
 
-for name in ['STIM1_transcript_test_eligibility.csv', 'nmd_descriptive_all_genes.csv.gz', 'svaseq_sensitivity_SHSY5Y.csv']:
+for name in ['STIM1_transcript_test_eligibility.csv', 'nmd_descriptive_all_genes.csv.gz', 'svaseq_sensitivity_SHSY5Y.csv', 'qpcr_biological_replicate_tests.csv']:
     copies.append((PKG / 'source_data' / name, f'05_KAYNAK_KONTROLLER/{name}'))
-copies.append((PKG / 'CORRECTIONS_2026-09-29.md', '05_KAYNAK_KONTROLLER/CORRECTIONS_2026-09-29.md'))
+copies.append((PKG / 'QPCR_CORRECTION_2026-09-29.md', '05_KAYNAK_KONTROLLER/QPCR_CORRECTION_2026-09-29.md'))
 
 for src, rel in copies:
     dst = STAGE / rel
@@ -75,9 +76,10 @@ figurlerin ayri dosyalarini, ek materyali ve veri dosyalarini icerir.
 04_EK_VERI       Ek Tablo S1-S18d veri dosyalari (S1 laboratuvar ham verisi XLSX)
 05_KAYNAK_KONTROLLER  STIM1, NMD, svaseq kaynak tablolari ve duzeltme ozeti
 
-RT-qPCR grup basina ayni biyolojik ornegin dort teknik olcumudur. Fura-2 grup basina
+RT-qPCR grup basina dort biyolojik tekrardir. Fura-2 grup basina
 tek kultur plakasindaki uc kuyudan, mevcut WST-1 verisi bir deneydeki dort kuyudan gelir.
-Tum laboratuvar karsilastirmalari betimseldir; cikarimsal p degeri verilmez.
+RT-qPCR icin Delta Ct uzerinde Welch testi ve Holm duzeltmesi kullanilir.
+Fura-2 ve WST-1 karsilastirmalari betimseldir; bu iki analizde cikarimsal p degeri verilmez.
 
 DOSYA_LISTESI_SHA256.txt her dosyanin saglama toplamini verir.
 Kod ve veri deposu: github.com/elmasnuryilmaz/tdp43-soce-manuscript

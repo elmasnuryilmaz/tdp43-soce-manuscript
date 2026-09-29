@@ -436,7 +436,7 @@ for _s in ["prepared for measurement 72 h after transduction, while puromycin se
            "The original recordings, exported from the GraphPad Prism trace project and reproduced here unchanged",
            "The same two recordings as in A and B, that is the same measured F340/F380 values exported from that Prism project",
            "no value is smoothed or rescaled",
-           "The laboratory observations require independent biological replication",
+           "The Fura-2 and WST-1 observations require independent biological replication",
            "it does not estimate between-experiment variability",
            "WST-1 signal at 48 h, four wells from one experiment",
            "The NMD and APA screens are hypothesis-generating"]:
@@ -494,7 +494,7 @@ close("highlights describe the Fura-2 difference without a functional claim", 1,
 close("highlight names the one-plate design", 1,
       int("One-plate Fura-2 measurements" in _highlights_doc.paragraphs[1].text), tol=0)
 close("S1 description names the wells and plate", 1,
-      int("three wells per group on one culture plate" in _supp_doc.paragraphs[12].text), tol=0)
+      int("three wells per group on one plate" in _supp_doc.paragraphs[12].text), tol=0)
 _fp = pd.read_excel(f"{P}/supplementary/S1_laboratory_source_data.xlsx", sheet_name="Fura2_per_culture")
 _c = _fp[_fp.group == "Non-targeting shRNA control"]; _k = _fp[_fp.group == "shTDP-43"]
 _d = _k.readdition.mean() - _c.readdition.mean()
@@ -545,7 +545,7 @@ for _m in re.finditer(r"Figures? (\d)", SEARCH_TXT):
     _first.setdefault(int(_m.group(1)), _m.start())
 close("main figures first cited in numerical order", 1,
       int([k for k, _ in sorted(_first.items(), key=lambda kv: kv[1])] == sorted(_first)), tol=0)
-for _s in ["without inferential tests", "These Fura-2 and WST-1 comparisons are descriptive",
+for _s in ["All laboratory comparisons are descriptive", "These Fura-2 and WST-1 comparisons are descriptive",
            "What reproduces is the involvement of the locus", "Figure5_CBARP_splicing",
            "UNC13A programs", "cryptic-splicing program."]:
     check("absent", _s, False)

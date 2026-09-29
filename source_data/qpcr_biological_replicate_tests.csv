@@ -1,0 +1,7 @@
+gene,control,n_control,n_knockdown,experimental_unit,test,correction_family,mean_dCt_control,mean_dCt_knockdown,t_statistic,df,p_value,holm_adjusted_p
+TARDBP,Untransduced control,4,4,biological replicate,two-sided Welch t-test on Delta Ct,TARDBP,6.0275,10.295,100.18093275755912,5.526324990955071,3.1995558426905583e-10,3.1995558426905583e-10
+TARDBP,Non-targeting shRNA control,4,4,biological replicate,two-sided Welch t-test on Delta Ct,TARDBP,6.132499999999999,10.295,128.58516683204624,5.711736863096201,4.152935836489262e-11,8.305871672978524e-11
+TRPC1,Non-targeting shRNA control,4,4,biological replicate,two-sided Welch t-test on Delta Ct,four targets,6.7924999999999995,5.937499999999999,-9.303467851300839,3.2127586233410517,0.001980839776400603,0.003961679552801206
+STIM1,Non-targeting shRNA control,4,4,biological replicate,two-sided Welch t-test on Delta Ct,four targets,6.2375,5.334999999999999,-8.368237844443227,3.253838288428314,0.002620372418346022,0.003961679552801206
+ORAI1,Non-targeting shRNA control,4,4,biological replicate,two-sided Welch t-test on Delta Ct,four targets,7.6775,6.9375,-6.628711749531334,5.401082923622093,0.0008697629198187508,0.0026092887594562526
+ATP2A3,Non-targeting shRNA control,4,4,biological replicate,two-sided Welch t-test on Delta Ct,four targets,6.6575,4.99,-12.837213430023693,5.836158477947358,1.6915133921416925e-05,6.76605356856677e-05

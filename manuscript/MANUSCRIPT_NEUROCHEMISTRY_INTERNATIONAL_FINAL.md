@@ -14,12 +14,12 @@ TDP-43 loss is implicated in amyotrophic lateral sclerosis (ALS), but
 its relationship to store-operated Ca²⁺ entry (SOCE) is unclear. After
 shRNA-mediated *TARDBP* depletion in SH-SY5Y cells, *TRPC1*, *STIM1*,
 *ORAI1* and *ATP2A3* mRNA measurements were 1.7- to 3.2-fold higher
-(four technical RT-qPCR repeats per group; descriptive), while the
-Fura-2 Ca²⁺-readdition amplitude was 84% lower in the knockdown wells of
-one culture plate (three wells per group; descriptive). ER Ca²⁺ release
-was 33% lower, and readdition normalised to each well’s own release was
-77% lower. At 48 h, the WST-1 signal was 38.5% lower in four wells from
-one of three experiments (descriptive). We reanalysed six public
+(four biological RT-qPCR replicates per group), while the Fura-2
+Ca²⁺-readdition amplitude was 84% lower in the knockdown wells of one
+culture plate (three wells per group; descriptive). ER Ca²⁺ release was
+33% lower, and readdition normalised to each well’s own release was 77%
+lower. At 48 h, the WST-1 signal was 38.5% lower in four wells from one
+of three experiments (descriptive). We reanalysed six public
 TDP-43-depletion RNA-seq comparisons (38 libraries) for
 calcium-regulatory expression and splicing, screened eleven comparisons
 for unannotated junction changes, and assessed alternative
@@ -31,7 +31,7 @@ explained the observed Fura-2 difference. In ALS tissue, *TRPC1* and
 *SARAF* increased and *CBARP* decreased in six brain regions, and
 *SARAF* and *CBARP* changed in the same direction in cervical and lumbar
 cord, but these tissue associations could not be attributed to TDP-43
-loss. The laboratory observations require independent biological
+loss. The Fura-2 and WST-1 observations require independent biological
 replication; the RNA analyses identify candidate calcium-regulatory
 changes without establishing a causal link to that response.
 
@@ -543,12 +543,11 @@ specificity was checked from a single melt-curve peak. Relative
 expression was calculated by the 2<sup>−ΔΔCt</sup> method (Livak and
 Schmittgen, 2001), with non-transduced cells as the calibrator for
 *TARDBP* and the non-targeting shRNA control for the target genes (four
-technical measurements of the same biological sample per group).
-*TARDBP* and the target genes were measured on separate RNA sets;
-recorded assay dates were 14 April – 21 May 2026 and 3 June – 10 July
-2026, respectively. These dates do not identify independent cultures or
-RNA isolations. Primer sequences, product sizes, annealing temperatures
-and the thermal cycling profile are given in Supplementary Table S1.
+biological replicates per group). *TARDBP* and the target genes were
+measured on separate RNA sets; recorded assay dates were 14 April – 21
+May 2026 and 3 June – 10 July 2026, respectively. Primer sequences,
+product sizes, annealing temperatures and the thermal cycling profile
+are given in Supplementary Table S1.
 
 *GAPDH* was used as the sole reference gene because its mean Ct was
 similar in the four-target RNA set: 19.49 in non-targeting shRNA
@@ -618,46 +617,49 @@ the three experiments performed; values are reported as mean ± SEM.
 ### **2.16 Statistics**
 
 Bioinformatic thresholds and correction families are specified above.
-All laboratory comparisons are descriptive. RT-qPCR comprises four
-technical measurements of the same biological sample per group; the
-*TARDBP* and target-gene assays used separate RNA sets. Fura-2 comprises
-three wells per group from one culture plate. WST-1 comprises four wells
-from one of three experiments; the other two experiments are not
-available in the package. We report means, technical-repeat or
-well-to-well SEM, and observed differences without inferential p values,
-biological confidence intervals or standardised effect sizes. These
-measurements do not estimate between-experiment variability. The Fura-2
-readdition-to-release ratio is also summarised per well.
+RT-qPCR used four biological replicates per group, with separate RNA
+sets for TARDBP and the target genes. Two-sided Welch tests on ΔCt were
+Holm-adjusted across the four targets and, separately, the two TARDBP
+knockdown-versus-control comparisons; adjusted p \< 0.05 was
+significant. Plots show relative-expression means and SEM across
+biological replicates. Fura-2 comprised three wells per group on one
+plate; WST-1 comprised four wells from one of three experiments, with
+the other two experiments unavailable. Fura-2 and WST-1 means,
+well-to-well SEM and differences are descriptive, without inferential
+tests or estimates of between-experiment variability. The Fura-2
+readdition-to-release ratio is summarised per well.
 
 ## **3. Results**
 
 ### 3.1 TDP-43 knockdown is associated with a smaller Ca²⁺-readdition amplitude despite increased SOCE-related mRNAs
 
-Mean *TARDBP* mRNA was 94.4% lower in the shTDP-43 sample than in the
-non-targeting shRNA sample and 94.8% lower than in the non-transduced
-sample (four technical RT-qPCR measurements per group; descriptive;
-Figure 1A).
+Mean TARDBP mRNA was 94.4% lower in shTDP-43 cells than in non-targeting
+shRNA controls and 94.8% lower than in non-transduced controls (four
+biological replicates per group; Holm-adjusted p = 8.3 × 10⁻¹¹ and 3.2 ×
+10⁻¹⁰, respectively; Figure 1A).
 
-Relative to the non-targeting shRNA sample, mean measurements of four
+Relative to the non-targeting shRNA controls, mean measurements of four
 SOCE-associated mRNAs were higher: *TRPC1* ≈ 1.8-fold, *STIM1* ≈
 1.9-fold, *ORAI1* ≈ 1.7-fold and *ATP2A3*/SERCA3 ≈ 3.2-fold (four
-technical measurements per group; Figure 1B). These descriptive
-differences require biological replication. All four directions matched
-the RNA-seq results in the same cell line (*STIM1* log2FC = 0.929, p_adj
-= 4.3 × 10⁻⁴⁷; *TRPC1* 0.958, 1.3 × 10⁻¹²; *ORAI1* 0.433, 2.4 × 10⁻⁴;
-*ATP2A3* 1.306, 1.4 × 10⁻²⁹).
+biological replicates per group; Figure 1B). All four increases were
+significant in ΔCt tests after Holm correction (adjusted p = 0.0040,
+0.0040, 0.0026 and 6.8 × 10⁻⁵, respectively). All four directions
+matched the RNA-seq results in the same cell line (*STIM1* log2FC =
+0.929, p_adj = 4.3 × 10⁻⁴⁷; *TRPC1* 0.958, 1.3 × 10⁻¹²; *ORAI1* 0.433,
+2.4 × 10⁻⁴; *ATP2A3* 1.306, 1.4 × 10⁻²⁹).
 
 <figure>
 <img src="../figures/main/Figure1_functional_consequences.png" style="width:6.05in;height:2.55444in" />
-<figcaption><p><em><strong>Figure 1.</strong> Descriptive laboratory
-measurements in SH-SY5Y cells. (A) TARDBP mRNA in untransduced,
-non-targeting shRNA and shTDP-43 samples. (B) Relative TRPC1, STIM1,
-ORAI1 and ATP2A3 mRNA. Each RT-qPCR group comprises four technical
-measurements of the same biological sample; panels A and B use separate
-RNA sets. (C) WST-1 signal at 48 h, four wells from one experiment. Bars
-show means with technical-repeat or well-to-well SEM; dots show
-individual measurements. No inferential significance tests are assigned
-to these comparisons.</em></p></figcaption>
+<figcaption><p><em><strong>Figure 1. Laboratory measurements</strong> in
+SH-SY5Y cells. (A) TARDBP mRNA in untransduced, non-targeting shRNA and
+shTDP-43 samples. (B) Relative TRPC1, STIM1, ORAI1 and ATP2A3 mRNA. Each
+RT-qPCR group comprises four biological replicates; panels A and B use
+separate RNA sets. (C) WST-1 signal at 48 h, four wells from one
+experiment. Bars show means with SEM across biological replicates in A
+and B and across wells in C; dots show individual measurements. RT-qPCR
+comparisons use two-sided Welch tests on ΔCt with Holm correction
+(Methods 2.16; Supplementary Table S1); WST-1 is
+descriptive.</em></p></figcaption>
 </figure>
 
 The Fura-2 Ca²⁺-readdition amplitude was markedly lower in shTDP-43
@@ -1486,12 +1488,11 @@ RNA changes. Blue boxes and solid arrows summarise laboratory
 measurements after TARDBP knockdown: higher TRPC1, STIM1, ORAI1 and
 ATP2A3 mRNA and, in three wells per group on one culture plate, lower
 mean Ca²⁺-readdition and ER-release amplitudes. RT-qPCR comprises four
-technical measurements per group; both the qPCR and Fura-2 comparisons
-are descriptive. Orange boxes are candidate mechanisms suggested by the
-public RNA-seq data; dashed arrows mark hypotheses for future
-perturbation, not demonstrated causal links. CBARP is placed on a
-parallel voltage-gated channel branch that was not measured
-here.</em></p></figcaption>
+biological replicates per group; the Fura-2 comparison is descriptive.
+Orange boxes are candidate mechanisms suggested by the public RNA-seq
+data; dashed arrows mark hypotheses for future perturbation, not
+demonstrated causal links. CBARP is placed on a parallel voltage-gated
+channel branch that was not measured here.</em></p></figcaption>
 </figure>
 
 ### Limitations
@@ -1514,21 +1515,20 @@ was 38.5% lower, a smaller or less healthy cell population could
 contribute to the smaller Fura-2 signal; the ratiometric readout is in
 principle independent of cell number, but neither cell number nor
 maximum response was measured in the cuvettes. RT-qPCR used four
-technical measurements of the same biological sample per group and
-therefore does not provide independent biological confirmation of the
-RNA-seq changes. It was normalised to a single reference gene, *GAPDH*,
-whose mean Ct was similar between the measured groups. In the public
-inducible RNA-seq comparison *GAPDH* rose (log2FC +0.61) whereas *TBP*
-and *B2M* were stable; a similar rise in the laboratory cells would have
-led the target increases to be underestimated, and two-gene
-normalisation would be preferable. The laboratory assay used
-undifferentiated SH-SY5Y cells, whereas the public SH-SY5Y RNA-seq study
-used an inducible model and the motor-neuron datasets did not include
-matched Ca²⁺ measurements. Cuvette Fura-2 ratios report net cytosolic
-accumulation and do not separate influx from extrusion or reuptake. The
-readdition-to-release ratio is descriptive and cannot distinguish
-altered ER store depletion from changes in STIM activation, calcium
-influx or clearance.
+biological replicates per group and supported the direction of the four
+target-gene changes in an independent RNA sample set. It was normalised
+to a single reference gene, *GAPDH*, whose mean Ct was similar between
+the measured groups. In the public inducible RNA-seq comparison *GAPDH*
+rose (log2FC +0.61) whereas *TBP* and *B2M* were stable; a similar rise
+in the laboratory cells would have led the target increases to be
+underestimated, and two-gene normalisation would be preferable. The
+laboratory assay used undifferentiated SH-SY5Y cells, whereas the public
+SH-SY5Y RNA-seq study used an inducible model and the motor-neuron
+datasets did not include matched Ca²⁺ measurements. Cuvette Fura-2
+ratios report net cytosolic accumulation and do not separate influx from
+extrusion or reuptake. The readdition-to-release ratio is descriptive
+and cannot distinguish altered ER store depletion from changes in STIM
+activation, calcium influx or clearance.
 
 Bulk post-mortem expression can reflect cell composition, which
 regression on marker genes adjusts for only partially, and age, RNA
@@ -1581,8 +1581,8 @@ scripts in execution order, including the coverage, NMD,
 transcript-family and donor-level scripts used for the results reported
 here, the four Ca²⁺ gene panels, per-event count tables, junction and
 LSV tables, and the code that draws every figure. The versioned
-submission snapshot is available as GitHub release v1.0.6 at
-https://github.com/elmasnuryilmaz/tdp43-soce-manuscript/releases/tag/v1.0.6.
+submission snapshot is available as GitHub release v1.0.7 at
+https://github.com/elmasnuryilmaz/tdp43-soce-manuscript/releases/tag/v1.0.7.
 The complete 23 GB rMATS output is not redistributed; the package
 provides the thresholded event table and the scripts and public
 accessions required to regenerate it. The package downloads the two
@@ -1590,9 +1590,10 @@ externally hosted resources it needs (the recount3 junction matrix for
 SRP270799 and the GSE307054 count table) at run time. Every rMATS event
 that meets the thresholds of Section 2.3, with its event coordinates,
 form lengths and raw junction counts, is provided as Supplementary Table
-S3. RT-qPCR, Fura-2 and WST-1 source data, including technical-repeat
-values and the descriptive summaries behind every laboratory figure
-panel, are provided in Supplementary Table S1.
+S3. RT-qPCR, Fura-2 and WST-1 source data, including
+biological-replicate RT-qPCR values, well-level Fura-2 and WST-1 values,
+and the summaries behind every laboratory figure panel, are provided in
+Supplementary Table S1.
 
 ## **Declaration of generative AI and AI-assisted technologies in the manuscript preparation process**
 
@@ -1919,11 +1920,11 @@ Yoast RE, Emrich SM, Zhang X, et al. The native ORAI channel trio
 underlies the diversity of Ca²⁺ signaling events. *Nat Commun*.
 2020;11:2444. doi:10.1038/s41467-020-16232-6
 
-**S1.** Laboratory source data: raw Ct and relative expression from four
-technical RT-qPCR measurements per group, Fura-2 amplitudes from three
-wells per group on one culture plate, WST-1 values from four wells of
-one experiment, primers and thermal profile. All laboratory summaries
-are descriptive.
+**S1.** Laboratory source data: raw Ct and relative expression for four
+biological RT-qPCR replicates per group, Fura-2 amplitudes from three
+wells per group on one plate, WST-1 values from four wells of one
+experiment, primers and thermal profile. RT-qPCR includes Holm-adjusted
+ΔCt tests; Fura-2 and WST-1 are descriptive.
 
 **S2.** Ca²⁺ gene panels (four cumulative sets).
 

@@ -1,4 +1,4 @@
-"""Current Figure 1: technical RT-qPCR repeats and within-experiment WST-1 wells."""
+"""Current Figure 1: biological RT-qPCR replicates and within-experiment WST-1 wells."""
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -28,7 +28,7 @@ for i,(g,c) in enumerate(zip(['Untransduced control','Non-targeting shRNA contro
 ax.set_xticks([0,1,2],['No virus','Control\nshRNA','shTDP-43'])
 ax.set_ylabel('TARDBP mRNA (2$^{-\\Delta\\Delta Ct}$)')
 ax.set_ylim(0,1.3); ax.set_title('A TARDBP mRNA',loc='left')
-ax.text(.5,.97,'4 technical repeats/group',transform=ax.transAxes,ha='center',va='top',fontsize=7.5)
+ax.text(.5,.97,'4 biological replicates/group',transform=ax.transAxes,ha='center',va='top',fontsize=7.5)
 ax=axes[1]
 genes=['TRPC1','STIM1','ORAI1','ATP2A3']
 for i,g in enumerate(genes):
@@ -38,7 +38,7 @@ ax.set_xticks(range(4),genes); ax.set_ylim(0,4.8)
 ax.set_ylabel('Relative mRNA (2$^{-\\Delta\\Delta Ct}$)')
 ax.set_title('B Calcium-related mRNAs',loc='left')
 ax.legend([plt.Rectangle((0,0),1,1,color=blue),plt.Rectangle((0,0),1,1,color=orange)],['Non-targeting shRNA','shTDP-43'],frameon=False,fontsize=7.5,loc='upper left')
-ax.text(.5,.77,'4 technical repeats/group',transform=ax.transAxes,ha='center',fontsize=7.5)
+ax.text(.5,.77,'4 biological replicates/group',transform=ax.transAxes,ha='center',fontsize=7.5)
 ax=axes[2]
 for i,(grp,c) in enumerate([('Non-targeting shRNA control',blue),('shTDP-43',orange)]):
     draw(ax,i,ws.loc[ws.group==grp,'signal_pct_of_control'],c)
@@ -46,6 +46,6 @@ ax.axhline(100,color=grey,ls='--',lw=.9); ax.set_ylim(0,125)
 ax.set_xticks([0,1],['Non-targeting\nshRNA','shTDP-43'])
 ax.set_ylabel('WST-1 signal (% of control)'); ax.set_title('C WST-1 at 48 h',loc='left')
 ax.text(.5,.96,'4 wells; one experiment',transform=ax.transAxes,ha='center',va='top',fontsize=7.5)
-fig.supxlabel('Descriptive measurements; error bars show technical SEM',fontsize=8)
+fig.supxlabel('Mean ± SEM; A–B: biological replicates; C: wells from one experiment',fontsize=8)
 for ext in ('png','svg'): fig.savefig(ROOT/f'figures/main/Figure1_functional_consequences.{ext}')
 plt.close(fig)

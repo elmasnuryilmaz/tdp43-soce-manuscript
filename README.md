@@ -107,7 +107,7 @@ is not part of this set: it was built from the superseded eight-contrast NMD sta
 
 For the current figure set, the laboratory source values are read by
 `code/fig_lab_descriptive_v118.py`; `code/relabel_s1_qpcr_v118.mjs` maintains the
-source workbook’s technical-replicate labels and descriptive summaries; the representative Fura-2
+source workbook’s biological-replicate qPCR labels and summaries; the representative Fura-2
 traces come from the original Prism export and are not numerically redrawn.
 `code/fig_main_transcript_disease.py`, `code/fig_supp_splicing.py` and
 `code/fig_supp_rna_processing.py` generate the RNA figures. The retained S1 and S2
@@ -153,11 +153,10 @@ licensed for reuse until the article is published.
 
 ## September 29 corrections and current rebuild order
 
-Release v1.0.6 includes the scientific audit corrections described in
-`CORRECTIONS_2026-09-29.md`. RT-qPCR has four technical measurements per group,
+Release v1.0.7 includes the scientific audit corrections described in
+`CORRECTIONS_2026-09-29.md`, with the qPCR correction in `QPCR_CORRECTION_2026-09-29.md`. RT-qPCR has four biological replicates per group,
 Fura-2 three wells per group on one plate, and the available WST-1 values four
-wells from one experiment. None of these laboratory comparisons is assigned an
-inferential p value. Public RNA-seq experiments retain their own biological designs.
+wells from one experiment. RT-qPCR uses two-sided Welch tests on Delta Ct with Holm adjustment. Fura-2 and WST-1 are descriptive. Public RNA-seq experiments retain their own biological designs.
 
 Current analysis/figure entrypoints (with the workstation input paths configured):
 
@@ -165,7 +164,7 @@ Current analysis/figure entrypoints (with the workstation input paths configured
    and all nine STIM1 transcript-test eligibility records.
 2. `python code/nygc_donor_sensitivity_v118.py`: S18d donor sensitivity; also reproduces
    S18/S18b/S18c through the shared normalization module.
-3. `node code/relabel_s1_qpcr_v118.mjs`: preserve S1 measurements and update experimental units.
+3. `python code/qpcr_biological_replicates_v121.py` then `node code/relabel_s1_qpcr_v118.mjs`: preserve S1 measurements and update experimental units.
 4. `python code/fig_lab_descriptive_v118.py` and `python code/fig_nmd_descriptive_v118.py`:
    current Figure 1 and Supplementary Figure S5.
 5. `python code/export_manuscript_md.py`, `python code/qa_check_v4.py` and

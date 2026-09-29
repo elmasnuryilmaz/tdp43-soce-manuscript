@@ -1,2 +1,2 @@
-908 checks passed; 0 failed
+924 checks passed; 0 failed
 Includes cell-by-cell preservation checks for laboratory measurements and raw-library reconstruction of CBARP.

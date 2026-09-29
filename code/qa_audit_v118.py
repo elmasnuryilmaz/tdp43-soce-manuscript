@@ -52,7 +52,8 @@ for name in old.sheetnames:
   for cell in row:
    if cell.coordinate not in allowed.get(name,set()):
     check(f'S1 preserved {name}!{cell.coordinate}',cell.value==new[name][cell.coordinate].value)
-check('S1 removes qPCR inferential p values',all(new['Summary_stats'][f'H{i}'].value is None for i in range(2,14)))
+check('S1 reports biological qPCR inference',all(isinstance(new['Summary_stats'][f'H{i}'].value,(float,int)) for i in [5,7,9,11,13]))
+check('S1 labels qPCR biological replicates',new['TARDBP_qPCR']['B1'].value=='biological_replicate')
 donor=pd.read_csv(R/'supplementary/S18d_NYGC_donor_level_sensitivity.csv')
 z=donor[(donor.group=='ALS')&(donor.region=='Cerebellum')&(donor.gene=='TRPC1')]
 check('S18d distinguishes 158 cerebellar samples from 147 donors',len(z)==5 and z.n_case_samples.eq(158).all() and z.n_case_donors.eq(147).all())
@@ -65,7 +66,7 @@ for path in paths:
  for suffix in ['S18.','S18b.','S18c.','S18d.']:
   check(path+' inventory '+suffix,suffix in text)
  check(path+' no obsolete release', 'v1.0.5' not in text)
- check(path+' labels RT-qPCR as technical','technical' in text and 'RT-qPCR' in text)
+ check(path+' labels RT-qPCR biological','four biological' in text and 'RT-qPCR' in text)
 root=etree.fromstring(zipfile.ZipFile(R/paths[0]).read('word/document.xml'))
 check('Main manuscript retains 79 Zotero instruction nodes',len([t for t in root.xpath('//w:instrText/text()',namespaces=ns) if 'ZOTERO' in t])==79)
 check('Main no independent culture inference','three independent cultures' not in texts[0] and 'principal findings were unchanged' not in texts[0])
@@ -73,5 +74,23 @@ check('Main states technical-replicate limitation','biological replication' in t
 for f in ['figures/main/Figure1_functional_consequences.svg','figures/graphical_abstract.svg']:
  svg=(R/f).read_text()
  check(f+' no qPCR inferential labels',not any(v in svg for v in ['p &lt;','p = 0.','p &lt; 0.001','***']))
+# Current author clarification: qPCR biological replication, inference on Delta Ct.
+from scipy.stats import ttest_ind
+from qpcr_biological_replicates_v121 import holm
+q=pd.read_csv(R/'source_data/qpcr_biological_replicate_tests.csv')
+for family,rows in q.groupby('correction_family',sort=False):
+ raw_p=[]
+ for _,r in rows.iterrows():
+  z=pd.read_excel(R/'supplementary/S1_laboratory_source_data.xlsx',sheet_name='TARDBP_qPCR' if r.gene=='TARDBP' else 'Target_qPCR_Ct')
+  if r.gene!='TARDBP':z=z[z.gene==r.gene]
+  kd=z.loc[z.group=='shTDP-43','dCt'];ctrl=z.loc[z.group==r.control,'dCt']
+  check('qPCR biological n=4 '+r.gene+' '+r.control,len(kd)==len(ctrl)==4)
+  raw_p.append(ttest_ind(kd,ctrl,equal_var=False).pvalue)
+ check('qPCR raw and Holm p values match Delta Ct '+family,np.allclose(raw_p,rows.p_value,rtol=1e-10,atol=0) and np.allclose(holm(raw_p),rows.holm_adjusted_p,rtol=1e-10,atol=0))
+for text in texts:
+ check('No qPCR technical-repeat descriptions',not any(x in text for x in ['four technical','technical RT-qPCR','All laboratory comparisons are descriptive']))
+check('All four qPCR targets pass Holm adjustment',q[q.correction_family=='four targets'].holm_adjusted_p.lt(.05).all())
+for row,gene in [(7,'TRPC1'),(9,'STIM1'),(11,'ORAI1'),(13,'ATP2A3')]:
+ check('S1 adjusted p '+gene,np.isclose(new['Summary_stats'][f'H{row}'].value,q.loc[q.gene==gene,'holm_adjusted_p'].iloc[0],rtol=1e-10,atol=0))
 print(f'{len(passed)} checks passed; 0 failed')
 print('Includes cell-by-cell preservation checks for laboratory measurements and raw-library reconstruction of CBARP.')
