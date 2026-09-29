@@ -38,11 +38,13 @@ for f in glob.glob(f"{OUT}/RT_LSV_*.tsv.gz"):
     d = pd.read_csv(f, sep="\t", low_memory=False)
     sp = "mouse" if ds in ("C2C12", "NSC34", "Fare_striatum") else "human"
     c, e_s, e_e, gen = HED[sp]
-    sub = d[(d["gene"] == gen) & (d["chrom"].astype(str) == c)]
-    # ekzonun iki yanındaki birleşimler: end == e_s-1 (yukarı intron) veya start == e_e+1 (aşağı intron)
-    inc = sub[(sub["end"] == e_s - 1) | (sub["start"] == e_e + 1)]
+    d["chrom"] = d["chrom"].astype(str).str.removeprefix("chr")
+    sub = d[(d["gene"] == gen) & (d["chrom"] == c)]
+    # e_s is 0-based exon start; junctions use 1-based inclusive introns.
+    # Thus the upstream intron ends at e_s, not e_s - 1.
+    inc = sub[(sub["end"] == e_s) | (sub["start"] == e_e + 1)]
     for _, r in inc.iterrows():
-        rows.append(dict(veri_seti=ds, yan="yukari" if r["end"] == e_s - 1 else "asagi",
+        rows.append(dict(veri_seti=ds, yan="yukari" if r["end"] == e_s else "asagi",
                          chrom=r["chrom"], start=r["start"], end=r["end"], sinif=r["sinif"],
                          lsv_tipi=r["lsv_tipi"], psi_KD=r["psi_KD"], psi_CTRL=r["psi_CTRL"],
                          dPSI=r["dPSI"], GA_alt=r["GA_alt"], GA_ust=r["GA_ust"], q=r["q"],

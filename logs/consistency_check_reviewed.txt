@@ -207,7 +207,7 @@ PASS  present: 21 of 42 frontal and 22 of 35 temporal cortex samples, against 2 
 PASS  present: whereas in cerebellum no comparison-group or ALS sample exceeded 1%
 PASS  present: although the diagnoses cannot be checked
 PASS  present: (partial ρ = −0.24, p = 0.12, and 0.00, p = 0.98
-PASS  present: exceeded 1% of reads in at most 14% of samples, was unchanged in ALS spinal cord, where it
+PASS  present: exceeded 1% of reads in at most 14% of samples, showed no statistically significant differ
 PASS  present: where it did so in 50–63%
 PASS  present: the direction it shares with the cellular model does not by itself link the two
 PASS  present: which regression on marker genes adjusts for only partially
@@ -220,11 +220,11 @@ PASS  absent: these observations identify disease-associated candidates rather t
 PASS  STIM1 transcripts in the stage-wise procedure: manuscript 7 vs data 7
 PASS  STIM1 screening-stage q: manuscript 5.49e-07 vs data 5.48705787968024e-07
 PASS  STIM1 transcripts confirmed at 0.05: manuscript 0 vs data 0
-PASS  every STIM1 transcript has a confirmation-stage p of 1.0: manuscript 1 vs data 1
-PASS  present: the stage-wise confirmation did not single out any transcript
-PASS  present: all seven STIM1 transcripts carried a confirmation-stage adjusted p of 1.0
-PASS  present: isoform-level q = 0.33 and 0.77
-PASS  present: stageR supplies the confirmation stage
+PASS  every evaluable STIM1 transcript has a confirmation-stage p of 1.0: manuscript 1 vs data 1
+PASS  present: none of seven evaluable transcripts passed stageR confirmation
+PASS  present: all confirmation-stage adjusted p values = 1.0
+PASS  present: isoforms had q = 0.33 and 0.77
+PASS  present: stageR supplies transcript-level confirmation
 PASS  absent: Isoform-level testing supported STIM1
 
 === svaseq sensitivity, recomputed 28 September 2026 ===
@@ -234,18 +234,19 @@ PASS  differentially expressed with surrogate variables: manuscript 1067 vs data
 PASS  shared between the two fits: manuscript 850 vs data 850
 PASS  median change in log2 fold change: manuscript 0.2 vs data 0.2030037720824831
 PASS  direction agrees for every shared gene: manuscript 1 vs data 1
-PASS  STIM1 stays differentially expressed with surrogate variables: manuscript 1 vs data 1
-PASS  TRPC1 stays differentially expressed with surrogate variables: manuscript 1 vs data 1
-PASS  ORAI3 stays differentially expressed with surrogate variables: manuscript 1 vs data 1
-PASS  SARAF stays differentially expressed with surrogate variables: manuscript 1 vs data 1
-PASS  CBARP stays differentially expressed with surrogate variables: manuscript 1 vs data 1
+PASS  STIM1 retains q < 0.05 in both fits (not necessarily the FC threshold): manuscript 1 vs data 1
+PASS  TRPC1 retains q < 0.05 in both fits (not necessarily the FC threshold): manuscript 1 vs data 1
+PASS  ORAI3 retains q < 0.05 in both fits (not necessarily the FC threshold): manuscript 1 vs data 1
+PASS  SARAF retains q < 0.05 in both fits (not necessarily the FC threshold): manuscript 1 vs data 1
+PASS  CBARP retains q < 0.05 in both fits (not necessarily the FC threshold): manuscript 1 vs data 1
+PASS  only ORAI3 and CBARP meet both DE cutoffs in both fits among these five: manuscript 1 vs data 1
 PASS  ORAI1 does not stay significant with surrogate variables: manuscript 0 vs data 0
 PASS  ATP2A3 does not stay significant with surrogate variables: manuscript 0 vs data 0
 PASS  ATP2A2 does not stay significant with surrogate variables: manuscript 0 vs data 0
 PASS  STIM2 does not stay significant with surrogate variables: manuscript 0 vs data 0
 PASS  present: which estimated two surrogate variables in the primary SH-SY5Y comparison
-PASS  present: the median change in log2 fold change is 0.20 across the 14,012 genes
-PASS  present: 1,694 genes meet the thresholds in the model used here and 1,067 in the surrogate-variable
+PASS  present: The median absolute difference in log2 fold change was 0.20 across the 14,012 genes
+PASS  present: 1,067 genes met both DE thresholds, compared with 1,694 in the original model; 850 were sh
 PASS  present: source_data/svaseq_sensitivity_SHSY5Y.csv
 PASS  absent: the principal findings were unchanged
 
@@ -258,32 +259,32 @@ PASS  Supplementary Results 3 present in the supplementary document: manuscript 
 PASS  Supplementary Results 3 cited in the manuscript: manuscript 1 vs data 1
 PASS  Supplementary Results 4 present in the supplementary document: manuscript 1 vs data 1
 PASS  Supplementary Results 4 cited in the manuscript: manuscript 1 vs data 1
-PASS  moved text kept in the supplementary: SARAF intron 5 index rises in the iPSC-d: manuscript 1 vs data 1
-PASS  moved text kept in the supplementary: in SH-SY5Y the same unit is uninformativ: manuscript 1 vs data 1
+PASS  moved text kept in the supplementary: human SARAF locus in iPSC-derived motor : manuscript 1 vs data 1
+PASS  moved text kept in the supplementary: human SH-SY5Y estimate was 0.000 (interv: manuscript 1 vs data 1
 PASS  moved text kept in the supplementary: (δ = −0.482, p = 0.005), although not af: manuscript 1 vs data 1
 PASS  moved text kept in the supplementary: from δ = −0.562 to Cliff’s δ of −0.418 o: manuscript 1 vs data 1
-PASS  value kept in the supplementary text: smallest q = 0.053: manuscript 1 vs data 1
-PASS  value kept in the supplementary text: median interaction −0.11 log₂: manuscript 1 vs data 1
-PASS  value kept in the supplementary text: p = 0.62: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: without t tests, sign tests, panel-enric: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: median interaction of −0.11 log₂: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: not validated NMD rescue in this experim: manuscript 1 vs data 1
 PASS  value kept in the supplementary text: 4.8 versus 2.3 events: manuscript 1 vs data 1
-PASS  value kept in the supplementary text: Atp2a2 intron 6, +0.285: manuscript 1 vs data 1
-PASS  value kept in the supplementary text: Trpc1 intron 7, +0.260: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: Atp2a2 intron 6 (+0.285): manuscript 1 vs data 1
+PASS  value kept in the supplementary text: Trpc1 intron 7 (+0.260): manuscript 1 vs data 1
 PASS  value kept in the supplementary text: δ = −0.562 to Cliff’s δ of −0.418: manuscript 1 vs data 1
 PASS  value kept in the supplementary text: donor-level δ = −1.000 for both: manuscript 1 vs data 1
-PASS  value kept in the supplementary text: exact one-sided sign-test q = 0.310: manuscript 1 vs data 1
-PASS  value kept in the supplementary text: STIM1 was −0.325 (p = 0.317, q = 0.508): manuscript 1 vs data 1
+PASS  value kept in the supplementary text: range +1.19 to +2.23: manuscript 1 vs data 1
+PASS  value kept in the supplementary text: STIM1 had a mean interaction of −0.325 l: manuscript 1 vs data 1
 PASS  absent: FRASER, run on the nine-sample doxycycline series, returned no genome-wide
 PASS  absent: Because the four interventions reuse the same control and knockdown libraries
 PASS  absent: RYR2 and MCU also had positive interactions
 PASS  absent: the myelin markers MBP (δ = +0.051), PLP1 (−0.074), MOG (−0.257) and MAG (−0.299)
 
 === 27 September 2026 structural scan ===
-PASS  present: Two nominal results among 24 dataset–panel combinations
-PASS  present: there is no evidence that Ca²⁺ homeostasis genes are enriched for splicing changes
+PASS  present: Two of the 24 dataset–panel combinations had nominal permutation p < 0.05
+PASS  present: Neither survived adjustment for the number of comparisons
 PASS  present: 3.4 Which splicing changes in SOCE genes survive the robustness checks
 PASS  present: alternative polyadenylation, which generates the truncated STMN2 transcript
 PASS  present: coupling to nonsense-mediated decay
-PASS  present: In the iPSC-derived motor neurons two panels survived matching
+PASS  present: In the iPSC-derived motor neurons two panels retained nominal associations after matching
 PASS  absent: This is the central observation of the study
 PASS  absent: tentative, motor-neuron-associated observation
 PASS  absent: Robust splicing changes concentrate in SOCE regulators
@@ -304,7 +305,7 @@ PASS  present: Amplification efficiencies were not determined
 PASS  present: was not re-measured in the June and July set
 PASS  present: GSE307054, the dataset of a preprint
 PASS  present: SARAF and CBARP changed in the same direction in cervical and lumbar cord
-PASS  present: a smaller release also means weaker STIM activation
+PASS  present: cannot distinguish altered ER store depletion from changes in STIM activation
 PASS  present: neither the cell number nor the dye loading of each cuvette was recorded
 PASS  present: BTP2, Synta66 or Gd³⁺
 PASS  present: the novel-site junction at this locus carried six
@@ -312,9 +313,9 @@ PASS  present: the y axis spans 0–3 in A and 0.5–1.5 in B
 PASS  present: The original recordings, exported from the GraphPad Prism trace project and reproduced her
 PASS  present: The same two recordings as in A and B, that is the same measured F340/F380 values exported
 PASS  present: no value is smoothed or rescaled
-PASS  present: The single-plate Fura-2 observation requires independent replication
-PASS  present: the well-level Welch p value and confidence interval calculated previously cannot support
-PASS  present: n = 4 wells of a single experiment, that is technical replicates; summarised descriptively
+PASS  present: The laboratory observations require independent biological replication
+PASS  present: it does not estimate between-experiment variability
+PASS  present: WST-1 signal at 48 h, four wells from one experiment
 PASS  present: The NMD and APA screens are hypothesis-generating
 PASS  no independent-culture Fura-2 claims remain: manuscript 0 vs data 0
 
@@ -335,7 +336,7 @@ PASS  present: the only high-confidence unannotated change anywhere in the SOCE 
 PASS  present: three units of the Ca²⁺ panel likewise exclude zero
 PASS  present: this model provides no evidence of enrichment beyond the length and expression properties
 PASS  present: Fisher’s exact test p = 0.48
-PASS  present: Three independent diseases, in four datasets
+PASS  present: four independent datasets covering Alzheimer’s disease, Parkinson’s disease and multiple s
 PASS  present: In the two human models compared at junction level
 PASS  present: Figure 1A
 PASS  present: Figure 1B
@@ -444,7 +445,8 @@ PASS  CBARP events above 100 reads: manuscript 26 vs data 26
 PASS  CBARP SH-SY5Y events, all negative: manuscript 3 vs data 3
 PASS  Ca2+ units excluding zero that Section 3.5 does not name: manuscript 0 vs data 0
     all named: ITPR1, ITPR3, MICU3, ORAI2, SARAF, STIM1, STIM2
-PASS  S10b positive-control panel p: manuscript 0.62 vs data 0.6161950274296075
+PASS  S10b cryptic reference panel descriptive median: manuscript -0.1143427734 vs data -0.1143427734169288
+PASS  S10b omits inferential tests: manuscript 0 vs data 0
 
 === manuscript strings that must be present ===
 PASS  present: 10,926 versus 176 reads
@@ -494,7 +496,7 @@ PASS  absent: is not measurable in SH-SY5Y
 PASS  absent: used in the first version of this analysis
 PASS  absent: The original analysis treated eight contrasts
 PASS  absent: the correction was applied only to the primary SH-SY5Y model
-PASS  absent: require independent biological replication
+PASS  absent: three independent cultures per group
 PASS  absent: Ca²⁺ imaging
 PASS  absent: isoform-level testing, to converge
 PASS  absent: each of which is a minor member
@@ -592,7 +594,7 @@ PASS  STIM2.1 pooled CI high (+0.024): manuscript 0.024 vs data 0.02424458242178
 PASS  STIM2.1 pooled p (0.914): manuscript 0.914 vs data 0.9140196486392349
 PASS  STIM2.1 exon positive in five of six datasets: manuscript 5 vs data 5
 PASS  STIM2.1 Cochran's Q (4.84): manuscript 4.84 vs data 4.835615134691267
-PASS  STIM2.1 heterogeneity p (0.44): manuscript 0.44 vs data 0.43626974679252417
+PASS  STIM2.1 heterogeneity p (0.44): manuscript 0.44 vs data 0.4362697467925243
 PASS  STIM2.1 I2 (0%): manuscript 0 vs data 0.0
 PASS  STIM2.1 weight carried by the mouse datasets (86%): manuscript 0.86 vs data 0.8549007360636193
 PASS  STIM2.1 human-only pooled dPSI (+0.031): manuscript 0.031 vs data 0.030856860665233875
@@ -635,4 +637,4 @@ PASS  table 3 present: Table 3.
 PASS  table 4 present: Table 4.
 PASS  table 5 present: Table 5.
 
-==== 573 passed, 0 failed ====
+==== 575 passed, 0 failed ====

@@ -6,11 +6,11 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-09-28T20:41:02.549369</dc:date>
+    <dc:date>2026-09-29T07:29:46.612849</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
-      <dc:title>Matplotlib v3.8.3, https://matplotlib.org/</dc:title>
+      <dc:title>Matplotlib v3.10.3, https://matplotlib.org/</dc:title>
      </cc:Agent>
     </dc:creator>
    </cc:Work>
@@ -40,7 +40,7 @@ Q 180.4536 24.59808 180.4536 28.68372
 L 180.4536 66.81636
 Q 180.4536 70.902 187.96824 70.902
 z
-" clip-path="url(#pf7c75fdb89)" style="fill: #ffffff; stroke: #0072b2; stroke-width: 0.9; stroke-linejoin: miter"/>
+" clip-path="url(#p62689ab78b)" style="fill: #ffffff; stroke: #0072b2; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 17.6364 141.71976
@@ -53,7 +53,7 @@ Q 10.12176 89.96832 10.12176 94.05396
 L 10.12176 137.63412
 Q 10.12176 141.71976 17.6364 141.71976
 z
-" clip-path="url(#pf7c75fdb89)" style="fill: #ffffff; stroke: #0072b2; stroke-width: 0.9; stroke-linejoin: miter"/>
+" clip-path="url(#p62689ab78b)" style="fill: #ffffff; stroke: #0072b2; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 348.28056 141.71976
@@ -66,27 +66,27 @@ Q 340.76592 89.96832 340.76592 94.05396
 L 340.76592 137.63412
 Q 340.76592 141.71976 348.28056 141.71976
 z
-" clip-path="url(#pf7c75fdb89)" style="fill: #ffffff; stroke: #0072b2; stroke-width: 0.9; stroke-linejoin: miter"/>
+" clip-path="url(#p62689ab78b)" style="fill: #ffffff; stroke: #0072b2; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 215.52192 68.17824
 Q 165.42432 80.43516 116.304123 92.452948
-" clip-path="url(#pf7c75fdb89)" style="fill: none; stroke: #222222; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#p62689ab78b)" style="fill: none; stroke: #222222; stroke-width: 0.9; stroke-linecap: round"/>
     <path d="M 120.228757 93.345834
 L 116.304123 92.452948
 L 119.373212 89.848972
 z
-" clip-path="url(#pf7c75fdb89)" style="fill: #222222; stroke: #222222; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#p62689ab78b)" style="fill: #222222; stroke: #222222; stroke-width: 0.9; stroke-linecap: round"/>
    </g>
    <g id="patch_6">
     <path d="M 295.67808 68.17824
 Q 345.77568 80.43516 394.895877 92.452948
-" clip-path="url(#pf7c75fdb89)" style="fill: none; stroke: #222222; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#p62689ab78b)" style="fill: none; stroke: #222222; stroke-width: 0.9; stroke-linecap: round"/>
     <path d="M 391.826788 89.848972
 L 394.895877 92.452948
 L 390.971243 93.345834
 z
-" clip-path="url(#pf7c75fdb89)" style="fill: #222222; stroke: #222222; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#p62689ab78b)" style="fill: #222222; stroke: #222222; stroke-width: 0.9; stroke-linecap: round"/>
    </g>
    <g id="patch_7">
     <path d="M 17.6364 261.5652
@@ -99,7 +99,7 @@ Q 10.12176 204.36624 10.12176 208.45188
 L 10.12176 257.47956
 Q 10.12176 261.5652 17.6364 261.5652
 z
-" clip-path="url(#pf7c75fdb89)" style="fill: #ffffff; stroke: #e69f00; stroke-width: 0.9; stroke-linejoin: miter"/>
+" clip-path="url(#p62689ab78b)" style="fill: #ffffff; stroke: #e69f00; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_8">
     <path d="M 182.95848 261.5652
@@ -112,7 +112,7 @@ Q 175.44384 204.36624 175.44384 208.45188
 L 175.44384 257.47956
 Q 175.44384 261.5652 182.95848 261.5652
 z
-" clip-path="url(#pf7c75fdb89)" style="fill: #ffffff; stroke: #e69f00; stroke-width: 0.9; stroke-linejoin: miter"/>
+" clip-path="url(#p62689ab78b)" style="fill: #ffffff; stroke: #e69f00; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_9">
     <path d="M 348.28056 261.5652
@@ -125,103 +125,142 @@ Q 340.76592 204.36624 340.76592 208.45188
 L 340.76592 257.47956
 Q 340.76592 261.5652 348.28056 261.5652
 z
-" clip-path="url(#pf7c75fdb89)" style="fill: #ffffff; stroke: #e69f00; stroke-width: 0.9; stroke-linejoin: miter"/>
+" clip-path="url(#p62689ab78b)" style="fill: #ffffff; stroke: #e69f00; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_10">
     <path d="M 280.6488 207.09
 Q 333.25128 173.043 385.009033 139.54275
-" clip-path="url(#pf7c75fdb89)" style="fill: none; stroke-dasharray: 2.7,1.8; stroke-dashoffset: 0; stroke: #6b6b6b; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#p62689ab78b)" style="fill: none; stroke-dasharray: 2.7,1.8; stroke-dashoffset: 0; stroke: #6b6b6b; stroke-width: 0.9; stroke-linecap: round"/>
     <path d="M 381.008788 139.98777
 L 385.009033 139.54275
 L 382.964902 143.009958
 z
-" clip-path="url(#pf7c75fdb89)" style="fill: #6b6b6b; stroke-dasharray: 2.7,1.8; stroke-dashoffset: 0; stroke: #6b6b6b; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#p62689ab78b)" style="fill: #6b6b6b; stroke-dasharray: 2.7,1.8; stroke-dashoffset: 0; stroke: #6b6b6b; stroke-width: 0.9; stroke-linecap: round"/>
    </g>
    <g id="patch_11">
     <path d="M 420.92208 207.09
 Q 420.92208 173.043 420.92208 140.002231
-" clip-path="url(#pf7c75fdb89)" style="fill: none; stroke-dasharray: 2.7,1.8; stroke-dashoffset: 0; stroke: #6b6b6b; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#p62689ab78b)" style="fill: none; stroke-dasharray: 2.7,1.8; stroke-dashoffset: 0; stroke: #6b6b6b; stroke-width: 0.9; stroke-linecap: round"/>
     <path d="M 419.12208 143.602231
 L 420.92208 140.002231
 L 422.72208 143.602231
 z
-" clip-path="url(#pf7c75fdb89)" style="fill: #6b6b6b; stroke-dasharray: 2.7,1.8; stroke-dashoffset: 0; stroke: #6b6b6b; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#p62689ab78b)" style="fill: #6b6b6b; stroke-dasharray: 2.7,1.8; stroke-dashoffset: 0; stroke: #6b6b6b; stroke-width: 0.9; stroke-linecap: round"/>
    </g>
    <g id="line2d_1">
     <path d="M 335.75616 12.34116
 L 360.80496 12.34116
-" clip-path="url(#pf7c75fdb89)" style="fill: none; stroke: #222222; stroke-width: 0.9; stroke-linecap: square"/>
+" clip-path="url(#p62689ab78b)" style="fill: none; stroke: #222222; stroke-width: 0.9; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
     <path d="M 420.92208 12.34116
 L 445.97088 12.34116
-" clip-path="url(#pf7c75fdb89)" style="fill: none; stroke-dasharray: 2.7,1.8; stroke-dashoffset: 0; stroke: #6b6b6b; stroke-width: 0.9"/>
+" clip-path="url(#p62689ab78b)" style="fill: none; stroke-dasharray: 2.7,1.8; stroke-dashoffset: 0; stroke: #6b6b6b; stroke-width: 0.9"/>
    </g>
    <g id="text_1">
-    <text style="font: 700 8.5px 'Arial'; text-anchor: start" x="10.12176" y="13.081374" transform="rotate(-0 10.12176 13.081374)">Laboratory measurements (Fura-2: one culture plate)</text>
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Arial'; text-anchor: start" x="10.12176" y="12.977781" transform="rotate(-0 10.12176 12.977781)">Descriptive laboratory measurements</text>
    </g>
    <g id="text_2">
-    <text style="font: 700 8px 'Arial'; text-anchor: middle" x="255.6" y="42.469638" transform="rotate(-0 255.6 42.469638)">shRNA knockdown</text>
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Arial'; text-anchor: middle" x="255.6" y="42.469638" transform="rotate(-0 255.6 42.469638)">shRNA knockdown</text>
    </g>
    <g id="text_3">
-    <text style="font: 7.2px 'Arial'; text-anchor: middle" x="255.6" y="57.787695" transform="rotate(-0 255.6 57.787695)">TARDBP mRNA ↓ 94%</text>
+    <text style="font-size: 7.2px; font-family: 'Arial'; text-anchor: middle" x="255.6" y="57.787695" transform="rotate(-0 255.6 57.787695)">TARDBP mRNA ↓ 94%</text>
    </g>
    <g id="text_4">
-    <text style="font: 700 8px 'Arial'; text-anchor: middle" x="90.27792" y="109.631834" transform="rotate(-0 90.27792 109.631834)">RT-qPCR</text>
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Arial'; text-anchor: middle" x="90.27792" y="109.631834" transform="rotate(-0 90.27792 109.631834)">RT-qPCR</text>
    </g>
    <g id="text_5">
-    <text style="font: 7.2px 'Arial'; text-anchor: middle" x="90.27792" y="126.973449" transform="rotate(-0 90.27792 126.973449)">TRPC1 / STIM1 / ORAI1 / ATP2A3 ↑</text>
+    <text style="font-size: 7.2px; font-family: 'Arial'" transform="translate(32.327482 123.070936)">TRPC1 / STIM1 / ORAI1 / ATP2A3 ↑</text>
+    <text style="font-size: 7.2px; font-family: 'Arial'" transform="translate(49.854982 130.869211)">4 technical repeats/group</text>
    </g>
    <g id="text_6">
-    <text style="font: 700 8px 'Arial'; text-anchor: middle" x="420.92208" y="109.583084" transform="rotate(-0 420.92208 109.583084)">Fura-2</text>
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Arial'; text-anchor: middle" x="420.92208" y="109.583084" transform="rotate(-0 420.92208 109.583084)">Fura-2</text>
    </g>
    <g id="text_7">
     <!-- Ca$^{2+}$ readdition ↓ -->
     <g transform="translate(392.69808 123.650311)">
      <text>
-      <tspan style="font: 7.2px 'Arial'" x="0 5.235718 17.28988 19.304163 21.718469 25.750574 29.782678 33.814783 37.846887 39.457605 41.471887 43.082605 47.114709 51.146814 53.161096" y="-0.7984375000000004">Ca readdition ↓</tspan>
-      <tspan style="font: 5.04px 'Arial'" x="9.334814 13.146021" y="-3.4781250000000004">2+</tspan>
+      <tspan x="0" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">C</tspan>
+      <tspan x="5.235718" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">a</tspan>
+      <tspan x="17.28988" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'"> </tspan>
+      <tspan x="19.304163" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">r</tspan>
+      <tspan x="21.718469" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">e</tspan>
+      <tspan x="25.750574" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">a</tspan>
+      <tspan x="29.782678" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">d</tspan>
+      <tspan x="33.814783" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">d</tspan>
+      <tspan x="37.846887" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">i</tspan>
+      <tspan x="39.457605" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">t</tspan>
+      <tspan x="41.471887" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">i</tspan>
+      <tspan x="43.082605" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">o</tspan>
+      <tspan x="47.114709" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">n</tspan>
+      <tspan x="51.146814" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'"> </tspan>
+      <tspan x="53.161096" y="-0.798438" style="font-size: 7.2px; font-family: 'Arial'">↓</tspan>
+      <tspan x="9.334814" y="-3.478125" style="font-size: 5.04px; font-family: 'Arial'">2</tspan>
+      <tspan x="13.146021" y="-3.478125" style="font-size: 5.04px; font-family: 'Arial'">+</tspan>
      </text>
     </g>
-    <text style="font: 7.2px 'Arial'" transform="translate(382.899892 131.451961)">3 wells/group; one plate</text>
+    <text style="font-size: 7.2px; font-family: 'Arial'" transform="translate(382.899892 131.451961)">3 wells/group; one plate</text>
    </g>
    <g id="text_8">
-    <text style="font: 700 8.5px 'Arial'; text-anchor: start" x="10.12176" y="166.973814" transform="rotate(-0 10.12176 166.973814)">Candidate mechanisms from public RNA-seq (hypotheses)</text>
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Arial'; text-anchor: start" x="10.12176" y="166.973814" transform="rotate(-0 10.12176 166.973814)">Candidate mechanisms from public RNA-seq (hypotheses)</text>
    </g>
    <g id="text_9">
     <!-- Parallel Ca$^{2+}$ entry route -->
     <g transform="translate(43.35792 226.330461)">
      <text>
-      <tspan style="font: 700 8px 'Arial'" x="0 5.335938 9.785156 12.898438 17.347656 19.570312 21.792969 26.242188 28.464844 30.6875 36.464844 49.776172 51.998828 56.448047 61.334766 63.998828 67.112109 71.561328 73.783984 76.897266 81.783984 86.670703 89.334766" y="-0.9125000000000005">Parallel Ca entry route</tspan>
-      <tspan style="font: 5.6px 'Arial'" x="40.990625 45.196094" y="-3.9750000000000005">2+</tspan>
+      <tspan x="0" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">P</tspan>
+      <tspan x="5.335938" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">a</tspan>
+      <tspan x="9.785156" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">r</tspan>
+      <tspan x="12.898438" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">a</tspan>
+      <tspan x="17.347656" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">l</tspan>
+      <tspan x="19.570312" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">l</tspan>
+      <tspan x="21.792969" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">e</tspan>
+      <tspan x="26.242188" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">l</tspan>
+      <tspan x="28.464844" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'"> </tspan>
+      <tspan x="30.6875" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">C</tspan>
+      <tspan x="36.464844" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">a</tspan>
+      <tspan x="49.776172" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'"> </tspan>
+      <tspan x="51.998828" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">e</tspan>
+      <tspan x="56.448047" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">n</tspan>
+      <tspan x="61.334766" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">t</tspan>
+      <tspan x="63.998828" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">r</tspan>
+      <tspan x="67.112109" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">y</tspan>
+      <tspan x="71.561328" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'"> </tspan>
+      <tspan x="73.783984" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">r</tspan>
+      <tspan x="76.897266" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">o</tspan>
+      <tspan x="81.783984" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">u</tspan>
+      <tspan x="86.670703" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">t</tspan>
+      <tspan x="89.334766" y="-0.9125" style="font-weight: 700; font-size: 8px; font-family: 'Arial'">e</tspan>
+      <tspan x="40.990625" y="-3.975" style="font-size: 5.6px; font-family: 'Arial'">2</tspan>
+      <tspan x="45.196094" y="-3.975" style="font-size: 5.6px; font-family: 'Arial'">+</tspan>
      </text>
     </g>
    </g>
    <g id="text_10">
-    <text style="font: 7.2px 'Arial'; text-anchor: middle" x="90.27792" y="245.179008" transform="rotate(-0 90.27792 245.179008)">CBARP splicing → CaV (not measured)</text>
+    <text style="font-size: 7.2px; font-family: 'Arial'; text-anchor: middle" x="90.27792" y="245.179008" transform="rotate(-0 90.27792 245.179008)">CBARP splicing → CaV (not measured)</text>
    </g>
    <g id="text_11">
-    <text style="font: 700 8px 'Arial'; text-anchor: middle" x="255.6" y="225.720461" transform="rotate(-0 255.6 225.720461)">ER refilling</text>
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Arial'; text-anchor: middle" x="255.6" y="225.720461" transform="rotate(-0 255.6 225.720461)">ER refilling</text>
    </g>
    <g id="text_12">
-    <text style="font: 7.2px 'Arial'; text-anchor: middle" x="255.6" y="245.179008" transform="rotate(-0 255.6 245.179008)">ATP2A2 ↓ / bioenergetics</text>
+    <text style="font-size: 7.2px; font-family: 'Arial'; text-anchor: middle" x="255.6" y="245.179008" transform="rotate(-0 255.6 245.179008)">ATP2A2 ↓ / bioenergetics</text>
    </g>
    <g id="text_13">
-    <text style="font: 700 8px 'Arial'; text-anchor: middle" x="420.92208" y="225.772961" transform="rotate(-0 420.92208 225.772961)">Channel composition and feedback</text>
+    <text style="font-weight: 700; font-size: 8px; font-family: 'Arial'; text-anchor: middle" x="420.92208" y="225.772961" transform="rotate(-0 420.92208 225.772961)">Channel composition and feedback</text>
    </g>
    <g id="text_14">
-    <text style="font: 7.2px 'Arial'; text-anchor: middle" x="420.92208" y="245.184633" transform="rotate(-0 420.92208 245.184633)">ORAI3 share ↑ / SARAF ↑</text>
+    <text style="font-size: 7.2px; font-family: 'Arial'; text-anchor: middle" x="420.92208" y="245.184633" transform="rotate(-0 420.92208 245.184633)">ORAI3 share ↑ / SARAF ↑</text>
    </g>
    <g id="text_15">
-    <text style="font: 6.6px 'Arial'; text-anchor: start" x="363.30984" y="14.047363" transform="rotate(-0 363.30984 14.047363)">measured link</text>
+    <text style="font-size: 6.6px; font-family: 'Arial'; text-anchor: start" x="363.30984" y="14.047363" transform="rotate(-0 363.30984 14.047363)">measured link</text>
    </g>
    <g id="text_16">
-    <text style="fill: #6b6b6b; font: 6.6px 'Arial'; text-anchor: start" x="448.47576" y="14.008691" transform="rotate(-0 448.47576 14.008691)">hypothesis to test</text>
+    <text style="font-size: 6.6px; font-family: 'Arial'; text-anchor: start; fill: #6b6b6b" x="448.47576" y="14.008691" transform="rotate(-0 448.47576 14.008691)">hypothesis to test</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="pf7c75fdb89">
+  <clipPath id="p62689ab78b">
    <rect x="5.112" y="2.808" width="500.976" height="272.376"/>
   </clipPath>
  </defs>

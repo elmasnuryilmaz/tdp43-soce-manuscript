@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.patches import Patch
 
-PKG = Path("/Users/elmas/Desktop/MAKALE/11_NEUROCHEMISTRY_INTERNATIONAL_FIGURE_REVISION")
+PKG = Path(__file__).resolve().parents[1]
 OUT = PKG / "figures" / "supplementary"
 OUT.mkdir(parents=True, exist_ok=True)
 D = Path("/Users/elmas/Desktop/MAKALE/07_DISK_ANALIZLERI")
@@ -89,29 +89,8 @@ ax.set_xlabel("Positive-control genes recovered (of 16)")
 ax.set_title("C  Human comparison datasets (permissive definition)",loc="left")
 save(fig,"Supplementary_Figure_S4_cryptic_controls")
 
-# S5. Dependence-aware exploratory NMD interaction.
-nmd=pd.read_csv(RESULTS/"NMD_etkilesim_paylasimli_kontrol_t4.tsv",sep="\t")
-old=pd.read_csv(RESULTS/"NMD_etkilesim_tum_genler.tsv",sep="\t",usecols=["ens","sembol"])
-nmd=nmd.merge(old,on="ens",how="left")
-nmd["symbol"]=nmd.sembol.fillna(nmd.ens)
-cryptic={g for g in kr.gene.astype(str) if not g.startswith("ENSG") and g!="."}
-background=nmd.loc[~nmd.symbol.isin(cryptic),"interaction_log2"]
-on=nmd.loc[nmd.symbol.isin(cryptic),"interaction_log2"]
-cb=float(nmd.loc[nmd.symbol=="CBARP","interaction_log2"].iloc[0])
-fig,ax=plt.subplots(figsize=(7.1,4.0),layout="constrained")
-bins=np.linspace(-2,2,60)
-ax.hist(background,bins=bins,density=True,color="#C9CDCF",
-        label=f"Other genes (n={len(background):,})")
-ax.hist(on,bins=bins,density=True,histtype="step",lw=1.8,color=ORANGE,
-        label=f"Cryptic-junction genes (n={len(on)})")
-ax.axvline(cb,color=BLUE,lw=1.4)
-ax.text(cb-.04,1.16,f"CBARP {cb:+.2f}",ha="right",va="top",color="black",fontsize=8)
-ax.set_ylim(0,1.40)
-ax.set_xlabel("TDP-43-specific NMD interaction (log$_2$)")
-ax.set_ylabel("Density")
-ax.set_title("Exploratory NMD interaction",loc="left")
-ax.legend(frameon=False,fontsize=7.5,loc="upper left")
-save(fig,"Supplementary_Figure_S5_NMD_interaction")
+# S5 uses the corrected descriptive table, without independence claims.
+import fig_nmd_descriptive_v118
 
 # S6. Coverage-index candidates with their existing bootstrap intervals,
 # plus the STMN2 coverage positive control.

@@ -57,7 +57,7 @@ ax.text(5, 7.9, "lentiviral shRNA\nagainst TARDBP", ha="center", va="center", fo
 ax.annotate("", xy=(5, 6.5), xytext=(5, 7.0),
             arrowprops=dict(arrowstyle="-|>", color="#333", lw=1.6))
 ax.text(5, 6.0, "TDP-43 mRNA  −94.8%", ha="center", fontsize=10, weight="bold", color=KD_C)
-ax.text(5, 5.35, "(one-way ANOVA, p < 0.0001, n = 4)", ha="center", fontsize=7.5, color="#555")
+ax.text(5, 5.35, "(4 technical repeats; descriptive)", ha="center", fontsize=7.5, color="#555")
 
 bx = ax.inset_axes([0.17, 0.05, 0.68, 0.42])
 bx.bar([0], [soce_c], 0.55, color=CT_C, alpha=.85)
@@ -80,7 +80,7 @@ for i, val in enumerate(v):
 ax.set_xticks(np.arange(len(g))); ax.set_xticklabels(g, fontsize=8.5, rotation=20)
 ax.set_ylabel("mRNA, knockdown / control")
 ax.set_ylim(0, 4.0)
-ax.text(0.03, 0.99, "measured mRNAs rise; readdition was\nlower in three wells on one plate",
+ax.text(0.03, 0.99, "RT-qPCR: 4 technical repeats/group\nDescriptive mRNA measurements",
         transform=ax.transAxes, fontsize=8, color="#555", va="top")
 ax.set_title("B · The discordance", loc="left")
 

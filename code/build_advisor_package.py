@@ -5,7 +5,7 @@ Layout produced in ~/Desktop/MAKALE/HOCAYA_GONDERIM_<date>/
     MAKALE_HOCAYA_REVIZYON.docx   the manuscript, loose, figures embedded in the text
     EKLER_<date>.zip              supplementary material, highlights, figures, tables and data
 
-Run: /usr/bin/python3 code/build_advisor_package.py 2026-09-26
+Run: python code/build_advisor_package.py 2026-09-29
 """
 import hashlib
 import shutil
@@ -13,14 +13,14 @@ import sys
 import zipfile
 from pathlib import Path
 
-DATE = sys.argv[1] if len(sys.argv) > 1 else "2026-09-26"
+DATE = sys.argv[1] if len(sys.argv) > 1 else "2026-09-29"
 ROOT = Path("/Users/elmas/Desktop/MAKALE")
 PKG = ROOT / "09_YAYIN_PAKETI"
 OUT = ROOT / f"HOCAYA_GONDERIM_{DATE}"
 STAGE = OUT / f"EKLER_{DATE}"
 
 if OUT.exists():
-    shutil.rmtree(OUT)
+    raise FileExistsError(f"Refusing to overwrite an existing package: {OUT}")
 STAGE.mkdir(parents=True)
 
 # the manuscript stays outside the archive so it can be opened directly
@@ -46,6 +46,10 @@ for p in sorted((PKG / "supplementary").glob("S*")):
     if p.suffix in (".csv", ".xlsx", ".gz") and p.name[1].isdigit():
         copies.append((p, f"04_EK_VERI/{p.name}"))
 
+for name in ['STIM1_transcript_test_eligibility.csv', 'nmd_descriptive_all_genes.csv.gz', 'svaseq_sensitivity_SHSY5Y.csv']:
+    copies.append((PKG / 'source_data' / name, f'05_KAYNAK_KONTROLLER/{name}'))
+copies.append((PKG / 'CORRECTIONS_2026-09-29.md', '05_KAYNAK_KONTROLLER/CORRECTIONS_2026-09-29.md'))
+
 for src, rel in copies:
     dst = STAGE / rel
     dst.parent.mkdir(parents=True, exist_ok=True)
@@ -59,7 +63,7 @@ Alti ana figur metnin icine gomulu oldugu icin makale tek basina okunabilir; bu 
 figurlerin ayri dosyalarini, ek materyali ve veri dosyalarini icerir.
 
 01_EK_MATERYAL
-  SUPPLEMENTARY_MATERIAL.docx  Ek Tablo S1-S18 aciklamalari ve Ek Figur S1-S8 (gorsellerle)
+  SUPPLEMENTARY_MATERIAL.docx  Ek Tablo S1-S18d aciklamalari ve Ek Figur S1-S8 (gorsellerle)
   HIGHLIGHTS.docx              Dort maddelik one cikanlar listesi
 
 02_GORSELLER
@@ -68,10 +72,12 @@ figurlerin ayri dosyalarini, ek materyali ve veri dosyalarini icerir.
   Grafik_Ozet    Grafiksel ozet
 
 03_TABLOLAR      Makaledeki Tablo 1-5'in CSV surumleri
-04_EK_VERI       Ek Tablo S1-S18 veri dosyalari (S1 laboratuvar ham verisi XLSX)
+04_EK_VERI       Ek Tablo S1-S18d veri dosyalari (S1 laboratuvar ham verisi XLSX)
+05_KAYNAK_KONTROLLER  STIM1, NMD, svaseq kaynak tablolari ve duzeltme ozeti
 
-Fura-2 olcumu grup basina tek kultur plakasindaki uc kuyudan gelir. Makalede bu fark
-betimsel olarak sunulur; bagimsiz biyolojik tekrarlar icin cikarimsal p degeri verilmez.
+RT-qPCR grup basina ayni biyolojik ornegin dort teknik olcumudur. Fura-2 grup basina
+tek kultur plakasindaki uc kuyudan, mevcut WST-1 verisi bir deneydeki dort kuyudan gelir.
+Tum laboratuvar karsilastirmalari betimseldir; cikarimsal p degeri verilmez.
 
 DOSYA_LISTESI_SHA256.txt her dosyanin saglama toplamini verir.
 Kod ve veri deposu: github.com/elmasnuryilmaz/tdp43-soce-manuscript

@@ -10,7 +10,7 @@ Sheets
   Fura2             ER release and Ca2+ readdition amplitudes (three wells/group, one plate)
   Fura2_per_culture historical sheet name; both phases per well and their ratio
   WST1              per-well metabolic signal at 48 h (n = 4)
-  Summary_stats     group means and SEM for Figures 1 and 2; Figure 1 tests
+  Summary_stats     group means and technical SEM; all laboratory data descriptive
 """
 import os
 import xml.etree.ElementTree as ET
@@ -101,29 +101,17 @@ for g in ["Untransduced control", "Non-targeting shRNA control", "shTDP-43"]:
 un = td.loc[td.group == "Untransduced control", "rel_expression"].astype(float).values
 nt = td.loc[td.group == "Non-targeting shRNA control", "rel_expression"].astype(float).values
 kd = td.loc[td.group == "shTDP-43", "rel_expression"].astype(float).values
-F, pa = stats.f_oneway(np.log2(un), np.log2(nt), np.log2(kd))
 rows.append(dict(panel="1A", measurement="TARDBP silencing", group="shTDP-43 vs controls",
                  n=4, mean=round(100 * (1 - kd.mean() / nt.mean()), 1), SEM="",
-                 test="one-way ANOVA on log2 values, Tukey post hoc", p_value=f"{pa:.3g}"))
+                 test="descriptive only; four technical RT-qPCR repeats per group", p_value=""))
 genes = ["TRPC1", "STIM1", "ORAI1", "ATP2A3"]
-raw_p = {}
-for g in genes:
-    c = np.array(qp[g]["Control"]); k = np.array(qp[g]["shTDP-43"])
-    raw_p[g] = stats.ttest_ind(c, k).pvalue
-order = sorted(raw_p, key=raw_p.get)
-holm = {}
-running = 0.0
-for rank, g in enumerate(order):
-    running = max(running, raw_p[g] * (len(genes) - rank))
-    holm[g] = min(1.0, running)
 for g in genes:
     c = np.array(qp[g]["Control"]); k = np.array(qp[g]["shTDP-43"])
     rows.append(dict(panel="1B", measurement=f"{g} relative mRNA", group=NT,
                      n=len(c), mean=round(c.mean(), 3), SEM=round(sem(c), 3), test="", p_value=""))
     rows.append(dict(panel="1B", measurement=f"{g} relative mRNA", group="shTDP-43",
                      n=len(k), mean=round(k.mean(), 3), SEM=round(sem(k), 3),
-                     test="two-tailed Student's t-test; Holm-adjusted across four targets",
-                     p_value=f"{holm[g]:.6g}"))
+                     test="descriptive only; four technical RT-qPCR repeats per group", p_value=""))
 # Figure 1C is WST-1; Figure 2C-D are Fura-2 group amplitudes.
 for tab, lab in [("WST_1_48h", "48 h")]:
     c = np.array(ws[tab]["Control"]); k = np.array(ws[tab]["shTDP-43"])
@@ -160,8 +148,8 @@ readme = pd.DataFrame({"sheet": ["TARDBP_qPCR", "Target_qPCR_Ct", "Target_qPCR_r
                                  "Fura2", "Fura2_per_culture", "WST1", "Summary_stats", "Primers",
                                  "Thermal_profile"],
     "content": [
-        "RT-qPCR of TARDBP in three groups (n = 4 each); raw Ct for "
-        "TARDBP and GAPDH, dCt, ddCt and 2^-ddCt. Experiment dates 14.04-21.05.2026.",
+        "RT-qPCR of TARDBP in three groups (four technical repeats each); raw Ct for "
+        "TARDBP and GAPDH, dCt, ddCt and 2^-ddCt. Recorded assay dates 14.04-21.05.2026.",
         "Raw Ct values for the four SOCE-associated targets and GAPDH in shTDP-43 cells and "
         "the non-targeting (scrambled) shRNA control, n = 4, "
         "same RNA set; experiment window 03.06-10.07.2026.",

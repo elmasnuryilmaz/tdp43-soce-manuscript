@@ -258,26 +258,9 @@ _sig = s9[(s9.proxy == "cryptic STMN2 PSI") & (s9.q_value < 0.05)]
 print("    q recomputed over %d informative tests; %d significant: %s"
       % (m, len(_sig), ", ".join("%s/%s q=%.4f" % (r.target_gene, r.region.split()[-1], r.q_value)
                                  for r in _sig.sort_values("q_value").itertuples())))
-# S10 NMD
-s10 = pd.read_csv(f"{D}/tablolar/S10_NMD_etkilesimi_SOCE.tsv", sep="\t")
-s10 = s10.rename(columns={"symbol": "gene", "interaction_log2": "interaction_log2",
-    "n_positive": "n_conditions_positive", "p_t4": "p_t_test_4conditions",
-    "q_t4": "q_t_test_4conditions", "p_sign4": "p_sign_test", "q_sign4": "q_sign_test",
-    "X": "interaction_XRN1", "XS": "interaction_XRN1_SMG6", "XU": "interaction_XRN1_UPF1",
-    "US": "interaction_UPF1_SMG6"})
-w(s10, f"{SUP}/S10_NMD_interaction_SOCE_panel.csv")
-pn = pd.read_csv(f"{M}/03_TABLOLAR/v3/nmd_panel_t4.csv")
-# the same one-sided test for the sixteen literature cryptic targets, quoted in Section 3.4
-_r = pd.read_csv(f"{D}/sonuclar/NMD_etkilesim_paylasimli_kontrol_t4_sembol.tsv", sep="\t")
-_POS16 = {"STMN2", "UNC13A", "HDGFL2", "ACTL6B", "AGRN", "KALRN", "ARHGAP32", "PFKP",
-          "ATG4B", "SETD5", "CAMK2B", "ELAVL3", "POLDIP3", "RSF1", "GPSM2", "SYNJ2"}
-_v = _r.loc[_r.symbol.isin(_POS16), "interaction_log2"].values
-_u = stats.mannwhitneyu(_v, _r.interaction_log2.values, alternative="greater")
-pn = pd.concat([pn, pd.DataFrame([{
-    "panel": "Cryptic_positive_controls_16", "n_genes": len(_v),
-    "median_interaction_log2": float(np.median(_v)),
-    "p_one_sided_MWU": float(_u.pvalue)}])], ignore_index=True)
-w(pn, f"{SUP}/S10b_NMD_panel_level_tests.csv")
+# S10 NMD: current descriptive contrasts, no independent-contrast tests.
+from audit_tables_v118 import nmd as build_nmd_descriptive, s13 as build_s13_corrected
+build_nmd_descriptive()
 # S11 APA
 s11 = pd.read_csv(f"{D}/tablolar/S12_APA_anlamli_olaylar.tsv", sep="\t")
 s11 = s11.rename(columns={"gene": "gene", "unit": "unit", "measure": "index",
@@ -353,11 +336,8 @@ s11.insert(s11.columns.get_loc("delta") + 1, "candidate_gradient",
 w(s11, f"{SUP}/S11_APA_candidate_gradients.csv")
 # S12 cryptic counts (= Table 3 source, per dataset)
 w(hc, f"{SUP}/S12_cryptic_counts_by_dataset.csv")
-# S13 SOAR exon junction level
-s13 = en_junction(pd.read_csv(f"{D}/tablolar/S14_STIM2_SOAR_ekzonu_birlesim_duzeyi.tsv", sep="\t"))
-s13 = s13.rename(columns={"yan": "flank"})
-s13["flank"] = s13.flank.replace({"asagi": "downstream", "yukari": "upstream"})
-w(s13, f"{SUP}/S13_STIM2_SOAR_exon_junction_level.csv")
+# S13 includes both exon flanks with chromosome-prefix normalization.
+build_s13_corrected()
 # S14 null test
 s14 = pd.read_csv(f"{D}/tablolar/S15_kriptik_esik_kalibrasyonu.tsv", sep="\t")
 s14.columns = ["dataset", "tier", "criteria", "real_calls", "null_calls",

@@ -312,7 +312,7 @@ for _s in ["1,640 samples with metadata after filtering",
            "whereas in cerebellum no comparison-group or ALS sample exceeded 1%",
            "although the diagnoses cannot be checked",
            "(partial ρ = −0.24, p = 0.12, and 0.00, p = 0.98",
-           "exceeded 1% of reads in at most 14% of samples, was unchanged in ALS spinal cord, where it did so in 41–67%",
+           "exceeded 1% of reads in at most 14% of samples, showed no statistically significant difference in ALS spinal cord, where it did so in 41–67%",
            "where it did so in 50–63%",
            "the direction it shares with the cellular model does not by itself link the two",
            "which regression on marker genes adjusts for only partially",
@@ -329,12 +329,12 @@ _st1 = _st[_st.geneID == "STIM1"]
 close("STIM1 transcripts in the stage-wise procedure", 7, len(_st1), tol=0)
 close("STIM1 screening-stage q", 5.49e-7, float(_st1.gene.iloc[0]), tol=1e-8)
 close("STIM1 transcripts confirmed at 0.05", 0, int((_st1.transcript < 0.05).sum()), tol=0)
-close("every STIM1 transcript has a confirmation-stage p of 1.0", 1,
+close("every evaluable STIM1 transcript has a confirmation-stage p of 1.0", 1,
       int((_st1.transcript == 1.0).all()), tol=0)
-for _s in ["the stage-wise confirmation did not single out any transcript",
-           "all seven STIM1 transcripts carried a confirmation-stage adjusted p of 1.0",
-           "isoform-level q = 0.33 and 0.77",
-           "stageR supplies the confirmation stage"]:
+for _s in ["none of seven evaluable transcripts passed stageR confirmation",
+           "all confirmation-stage adjusted p values = 1.0",
+           "isoforms had q = 0.33 and 0.77",
+           "stageR supplies transcript-level confirmation"]:
     check("present", _s, True)
 check("absent", "Isoform-level testing supported STIM1", False)
 
@@ -354,15 +354,16 @@ close("direction agrees for every shared gene", 1,
       int((np.sign(_sh.log2FC_published) == np.sign(_sh.log2FC_with_SV)).all()), tol=0)
 _g = _sva.set_index("gene")
 for _n in ["STIM1", "TRPC1", "ORAI3", "SARAF", "CBARP"]:
-    close(f"{_n} stays differentially expressed with surrogate variables", 1,
-          int(_g.loc[_n, "padj_with_SV"] < 0.05 and abs(_g.loc[_n, "log2FC_with_SV"]) >= 1
-              or _g.loc[_n, "padj_with_SV"] < 0.05), tol=0)
+    close(f"{_n} retains q < 0.05 in both fits (not necessarily the FC threshold)", 1,
+          int(_g.loc[_n, "padj_with_SV"] < 0.05 and _g.loc[_n, "padj_published"] < 0.05), tol=0)
+close("only ORAI3 and CBARP meet both DE cutoffs in both fits among these five", 1,
+      int(set([n for n in ["STIM1", "TRPC1", "ORAI3", "SARAF", "CBARP"] if n in _shared]) == {"ORAI3", "CBARP"}), tol=0)
 for _n in ["ORAI1", "ATP2A3", "ATP2A2", "STIM2"]:
     close(f"{_n} does not stay significant with surrogate variables", 0,
           int(_g.loc[_n, "padj_with_SV"] < 0.05), tol=0)
 for _s in ["which estimated two surrogate variables in the primary SH-SY5Y comparison",
-           "the median change in log2 fold change is 0.20 across the 14,012 genes",
-           "1,694 genes meet the thresholds in the model used here and 1,067 in the surrogate-variable model, 850 of them shared",
+           "The median absolute difference in log2 fold change was 0.20 across the 14,012 genes",
+           "1,067 genes met both DE thresholds, compared with 1,694 in the original model; 850 were shared",
            "source_data/svaseq_sensitivity_SHSY5Y.csv"]:
     check("present", _s, True)
 check("absent", "the principal findings were unchanged", False)
@@ -377,15 +378,15 @@ for _n, _title in ((1, "Aberrant splicing outlier detection"), (2, "Nonsense-med
     close(f"Supplementary Results {_n} cited in the manuscript", 1,
           int(f"Supplementary Results {_n}" in SEARCH_TXT), tol=0)
 
-for _v in ["SARAF intron 5 index rises in the iPSC-derived motor neurons (+0.097)",
-           "in SH-SY5Y the same unit is uninformative (0.000, interval −0.264 to +0.241)",
+for _v in ["human SARAF locus in iPSC-derived motor neurons (+0.097)",
+           "human SH-SY5Y estimate was 0.000 (interval −0.264 to +0.241)",
            "(δ = −0.482, p = 0.005), although not after Benjamini–Hochberg correction (q = 0.10)",
            "from δ = −0.562 to Cliff’s δ of −0.418 on the residuals at sample level (p = 0.002)"]:
     close(f"moved text kept in the supplementary: {_v[:40]}", 1, int(_v in _supp2), tol=0)
-for _v in ["smallest q = 0.053", "median interaction −0.11 log₂", "p = 0.62",
-           "4.8 versus 2.3 events", "Atp2a2 intron 6, +0.285", "Trpc1 intron 7, +0.260",
+for _v in ["without t tests, sign tests, panel-enrichment tests or FDR claims", "median interaction of −0.11 log₂", "not validated NMD rescue in this experiment",
+           "4.8 versus 2.3 events", "Atp2a2 intron 6 (+0.285)", "Trpc1 intron 7 (+0.260)",
            "δ = −0.562 to Cliff’s δ of −0.418", "donor-level δ = −1.000 for both",
-           "exact one-sided sign-test q = 0.310", "STIM1 was −0.325 (p = 0.317, q = 0.508)"]:
+           "range +1.19 to +2.23", "STIM1 had a mean interaction of −0.325 log₂"]:
     close(f"value kept in the supplementary text: {_v[:40]}", 1, int(_v in _supp2), tol=0)
 for _s in ["FRASER, run on the nine-sample doxycycline series, returned no genome-wide",
            "Because the four interventions reuse the same control and knockdown libraries",
@@ -394,12 +395,12 @@ for _s in ["FRASER, run on the nine-sample doxycycline series, returned no genom
     check("absent", _s, False)
 
 out.append("\n=== 27 September 2026 structural scan ===")
-for _s in ["Two nominal results among 24 dataset–panel combinations",
-           "there is no evidence that Ca²⁺ homeostasis genes are enriched for splicing changes",
+for _s in ["Two of the 24 dataset–panel combinations had nominal permutation p < 0.05",
+           "Neither survived adjustment for the number of comparisons",
            "3.4 Which splicing changes in SOCE genes survive the robustness checks",
            "alternative polyadenylation, which generates the truncated STMN2 transcript",
            "coupling to nonsense-mediated decay",
-           "In the iPSC-derived motor neurons two panels survived matching"]:
+           "In the iPSC-derived motor neurons two panels retained nominal associations after matching"]:
     check("present", _s, True)
 for _s in ["This is the central observation of the study",
            "tentative, motor-neuron-associated observation",
@@ -427,7 +428,7 @@ for _s in ["prepared for measurement 72 h after transduction, while puromycin se
            "was not re-measured in the June and July set",
            "GSE307054, the dataset of a preprint",
            "SARAF and CBARP changed in the same direction in cervical and lumbar cord",
-           "a smaller release also means weaker STIM activation",
+           "cannot distinguish altered ER store depletion from changes in STIM activation",
            "neither the cell number nor the dye loading of each cuvette was recorded",
            "BTP2, Synta66 or Gd³⁺",
            "the novel-site junction at this locus carried six",
@@ -435,9 +436,9 @@ for _s in ["prepared for measurement 72 h after transduction, while puromycin se
            "The original recordings, exported from the GraphPad Prism trace project and reproduced here unchanged",
            "The same two recordings as in A and B, that is the same measured F340/F380 values exported from that Prism project",
            "no value is smoothed or rescaled",
-           "The single-plate Fura-2 observation requires independent replication",
-           "the well-level Welch p value and confidence interval calculated previously cannot support",
-           "n = 4 wells of a single experiment, that is technical replicates; summarised descriptively and not tested",
+           "The laboratory observations require independent biological replication",
+           "it does not estimate between-experiment variability",
+           "WST-1 signal at 48 h, four wells from one experiment",
            "The NMD and APA screens are hypothesis-generating"]:
     check("present", _s, True)
 close("no independent-culture Fura-2 claims remain", 0,
@@ -466,7 +467,7 @@ close("S11 units below the candidate threshold are flagged", 1,
 for _s in ["the twelve core entry components", "the only high-confidence unannotated change anywhere in the SOCE panel",
            "three units of the Ca²⁺ panel likewise exclude zero",
            "this model provides no evidence of enrichment beyond the length and expression properties",
-           "Fisher’s exact test p = 0.48", "Three independent diseases, in four datasets",
+           "Fisher’s exact test p = 0.48", "four independent datasets covering Alzheimer’s disease, Parkinson’s disease and multiple sclerosis",
            "In the two human models compared at junction level", "Figure 1A", "Figure 1B", "Figure 1C"]:
     check("present", _s, True)
 for _s in ["twelve SOCE-machinery genes", "we did not detect high-confidence unannotated splicing changes in the store-operated entry machinery",
@@ -489,7 +490,7 @@ close("supplementary and main titles match", 1,
       int(_supp_doc.paragraphs[1].text == _main_doc.paragraphs[0].text), tol=0)
 close("highlights describe the Fura-2 difference without a functional claim", 1,
       int(_highlights_doc.paragraphs[3].text ==
-          "No RNA-processing event in the SOCE machinery explained the observed Fura-2 difference."), tol=0)
+          "RNA analyses identified candidates without establishing a SOCE mechanism."), tol=0)
 close("highlight names the one-plate design", 1,
       int("One-plate Fura-2 measurements" in _highlights_doc.paragraphs[1].text), tol=0)
 close("S1 description names the wells and plate", 1,
@@ -645,9 +646,11 @@ _unnamed = sorted({g for g in _ex.gene if f"*{g}*" not in TXT.split("## **Refere
 close("Ca2+ units excluding zero that Section 3.5 does not name", 0, len(_unnamed), tol=0)
 out.append("    " + ("all named: " + ", ".join(sorted(set(_ex.gene)))) if not _unnamed
            else "    unnamed: " + ", ".join(_unnamed))
-_s10b = pd.read_csv(f"{P}/supplementary/S10b_NMD_panel_level_tests.csv").set_index("panel")
-close("S10b positive-control panel p", 0.62,
-      float(_s10b.loc["Cryptic_positive_controls_16", "p_one_sided_MWU"]), tol=0.005)
+_s10b = pd.read_csv(f"{P}/supplementary/S10b_NMD_panel_descriptive_summary.csv").set_index("panel")
+close("S10b cryptic reference panel descriptive median", -0.1143427734,
+      float(_s10b.loc["Cryptic_splicing_reference_genes_16", "median_interaction_log2"]), tol=1e-8)
+close("S10b omits inferential tests", 0,
+      len([c for c in _s10b if c.startswith(("p_", "q_"))]), tol=0)
 
 out.append("\n=== manuscript strings that must be present ===")
 for s in ["10,926 versus 176 reads", "three spinal cord levels", "six brain regions",
@@ -687,7 +690,7 @@ for s in ["Sah P, et al.", "10,930", "four spinal cord regions", "p = 0.13)", "l
           "used in the first version of this analysis", "The original analysis treated eight contrasts",
           "the correction was applied only to the primary SH-SY5Y model",
           # 22 September 2026 audit
-          "require independent biological replication", "Ca²⁺ imaging",
+          "three independent cultures per group", "Ca²⁺ imaging",
           "isoform-level testing, to converge", "each of which is a minor member",
           "lie outside the core panel", "about two-thirds as many calls",
           "a second control moved in the expected direction", "silent in SH-SY5Y",

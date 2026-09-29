@@ -18,7 +18,7 @@ The earlier nine-figure manuscript (`MANUSCRIPT_v4_SUBMISSION_REVIEWED`) and
 its `figures/Figure1`–`Figure9` files remain as a historical version. The original
 `MANUSCRIPT_v4_SUBMISSION.docx` is also retained.
 
-The analyses grew out of the first author's doctoral thesis (Ege University, 2026). Five
+The analyses grew out of the first author's doctoral thesis (Ege University, 2026). Several
 analyses were revised for the manuscript; `CHANGES_FROM_THESIS.md` sets out what changed and
 why. Where the thesis and this repository differ, this repository is current.
 
@@ -89,7 +89,7 @@ Figure numbers are **not** burned into the images; the file name carries the num
 | `S7_SOCE_genes_annotation_free.csv` | SOCE genes in the junction-level analysis |
 | `S8_cryptic_STMN2_ALS_vs_control.csv` | cryptic PSI by region, ALS versus control |
 | `S9_cryptic_PSI_correlations_within_ALS.csv` | all 231 correlations within ALS samples |
-| `S10_NMD_interaction_SOCE_panel.csv`, `S10b_NMD_panel_level_tests.csv` | four-condition NMD interaction and panel-level tests (recomputed in v4) |
+| `S10_NMD_interaction_SOCE_panel.csv`, `S10b_NMD_panel_descriptive_summary.csv` | descriptive NMD interactions and panel medians; no inferential tests |
 | `S11_APA_candidate_gradients.csv` | depth-qualified coverage gradients after the `-j` correction, with the genomic windows of every unit |
 | `S12_cryptic_counts_by_dataset.csv` | call counts per comparison with the RBP controls |
 | `S13_STIM2_SOAR_exon_junction_level.csv` | SOAR exon at junction level |
@@ -97,16 +97,17 @@ Figure numbers are **not** burned into the images; the file name carries the num
 | `S15_STIM2.1_exon_six_datasets.csv` | STIM2.1 meta-analysis |
 | `S16_multiple_sclerosis_both_cohorts.csv`, `S16b_multiple_sclerosis_donor_level.csv` | MS analysis; the donor-level re-analysis is new in v4 |
 | `S17_dataset_accessions.csv` | every accession with design, library type, run-level groups for knockdown experiments and group definitions for patient cohorts |
-| `S18_TRPC1_cell_composition_adjustment.csv`, `S18b_cryptic_STMN2_by_group_and_region.csv`, `S18c_cryptic_STMN2_within_comparison_group.csv` | NYGC cell-marker adjustment and cryptic STMN2 comparison-group checks |
+| `S18_TRPC1_cell_composition_adjustment.csv`, `S18b_cryptic_STMN2_by_group_and_region.csv`, `S18c_cryptic_STMN2_within_comparison_group.csv`, `S18d_NYGC_donor_level_sensitivity.csv` | NYGC cell-marker adjustment and cryptic STMN2 comparison-group checks |
 
 A thesis-era supplementary table listing "cryptic-junction-positive and NMD-sensitive genes"
 is not part of this set: it was built from the superseded eight-contrast NMD statistics
-(`CHANGES_FROM_THESIS.md`, section 2), under which no gene passes genome-wide FDR.
+(`CHANGES_FROM_THESIS.md`, section 2), whose inferential p values have been withdrawn. Current NMD tables contain descriptive estimates only.
 
 ## How to reproduce
 
 For the current figure set, the laboratory source values are read by
-`code/fig_main_lab.py` and `code/build_source_data.py`; the representative Fura-2
+`code/fig_lab_descriptive_v118.py`; `code/relabel_s1_qpcr_v118.mjs` maintains the
+source workbook’s technical-replicate labels and descriptive summaries; the representative Fura-2
 traces come from the original Prism export and are not numerically redrawn.
 `code/fig_main_transcript_disease.py`, `code/fig_supp_splicing.py` and
 `code/fig_supp_rna_processing.py` generate the RNA figures. The retained S1 and S2
@@ -149,3 +150,28 @@ them.
 Code (`code/`): MIT licence, see `LICENSE`. Data, figures, tables and supplementary files:
 CC BY 4.0, see `LICENSE-DATA.md`. The manuscript files are shared for transparency and are not
 licensed for reuse until the article is published.
+
+## September 29 corrections and current rebuild order
+
+Release v1.0.6 includes the scientific audit corrections described in
+`CORRECTIONS_2026-09-29.md`. RT-qPCR has four technical measurements per group,
+Fura-2 three wells per group on one plate, and the available WST-1 values four
+wells from one experiment. None of these laboratory comparisons is assigned an
+inferential p value. Public RNA-seq experiments retain their own biological designs.
+
+Current analysis/figure entrypoints (with the workstation input paths configured):
+
+1. `python code/audit_tables_v118.py`: S13, descriptive S10/S10b, full NMD source table,
+   and all nine STIM1 transcript-test eligibility records.
+2. `python code/nygc_donor_sensitivity_v118.py`: S18d donor sensitivity; also reproduces
+   S18/S18b/S18c through the shared normalization module.
+3. `node code/relabel_s1_qpcr_v118.mjs`: preserve S1 measurements and update experimental units.
+4. `python code/fig_lab_descriptive_v118.py` and `python code/fig_nmd_descriptive_v118.py`:
+   current Figure 1 and Supplementary Figure S5.
+5. `python code/export_manuscript_md.py`, `python code/qa_check_v4.py` and
+   `python code/qa_audit_v118.py`: export and verify the edited manuscript and supporting files.
+
+`recalc_nmd_shared_control.R` now delegates to the descriptive builder. Old editing
+scripts and the historical nine-figure sources record earlier revisions; do not use
+them to overwrite the current reviewed DOCX. S18d corrects across regions within
+group/gene/model, whereas Table 5 corrects across genes within region.

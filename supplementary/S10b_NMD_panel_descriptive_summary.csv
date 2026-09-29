@@ -1,0 +1,6 @@
+panel,n_genes,median_interaction_log2,interpretation
+Tier1_SOCE_TRP_51,36,0.05223518841391006,descriptive; not an NMD-sensitivity test
+Tier2_Channel_Release_Transport_117,93,-0.04594130016060838,descriptive; not an NMD-sensitivity test
+Tier3_Curated_Calcium_Handling_258,207,-0.04168910474976295,descriptive; not an NMD-sensitivity test
+Tier4_Expanded_Calcium_Associated_732,539,-0.018740653166557264,descriptive; not an NMD-sensitivity test
+Cryptic_splicing_reference_genes_16,16,-0.11434277341692889,cryptic-splicing references; not a validated NMD-positive panel

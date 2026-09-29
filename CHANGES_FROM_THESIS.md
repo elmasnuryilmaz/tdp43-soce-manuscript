@@ -21,18 +21,17 @@ motor neurons, C2C12, NSC34); the control behaves as intended in the iPSC-derive
 polyadenylation site is absent from the mouse gene. Results:
 `supplementary/S11_APA_candidate_gradients.csv`, which now lists the genomic windows of every unit.
 
-## 2. NMD interaction: four conditions as the unit of inference
+## 2. NMD interaction: descriptive contrasts with shared controls
 
-The first analysis treated eight difference-of-differences values as independent observations,
-although the four NMD-inhibition conditions reuse the same two control and two TDP-43 knockdown
-libraries. The test was repeated with the four conditions as the unit of inference (`df = 3`),
-averaging replicates within each condition.
-
-Effect: no gene passes genome-wide FDR correction (smallest q = 0.053). *CBARP* moves from
-q = 0.0049 to q = 0.145 and is reported as a prioritised candidate rather than an established
-NMD target; the predicted NMD sensitivity of *STIM1* is withdrawn (interaction −0.325,
-p = 0.317). Results: `supplementary/S10_NMD_interaction_SOCE_panel.csv`,
-`supplementary/S10b_NMD_panel_level_tests.csv`.
+Both the original eight-value test and the later four-condition t/sign tests reuse
+the same baseline libraries. Averaging within conditions did not remove covariance
+or include uncertainty in the shared baseline difference. Their inferential p/q
+values are withdrawn. Current S10 and S10b report mean, range, condition estimates
+and panel medians without inferential tests. CBARP remains a positive descriptive
+pattern (+1.52 log2 across four contrasts), not an established NMD target.
+The 16 cryptic-splicing reference genes are not a validated NMD-positive panel;
+their summary cannot establish assay failure. The full descriptive gene table is
+`source_data/nmd_descriptive_all_genes.csv.gz`.
 
 ## 3. Transcript quantification: complete transcript-to-gene map, TPM
 
@@ -81,3 +80,13 @@ correction followed: the trimming reports show **Cutadapt 5.2**, not the 4.6 rec
 thesis. HISAT2 2.2.2, SAMtools 1.23 (alignment) and 1.21 (junction and coverage steps),
 featureCounts 2.1.1, Salmon 1.11.4, rMATS 4.3.0, LeafCutter 0.2.9, SUPPA2 2.3, regtools 1.0.0
 and FRASER 1.14.1 were confirmed. Full list: `environment.yml`.
+
+## 6. Experimental units and September 29 scientific audit
+
+The author confirmed that the Fura-2 observations are three wells from one plate,
+and the four RT-qPCR observations are technical repeats of the same biological
+sample per group. All laboratory comparisons are now descriptive; qPCR and Fura-2
+p values, biological confidence intervals and significance stars are omitted.
+WST-1 remains four wells from one of three experiments; the other experiments are
+not available. See `CORRECTIONS_2026-09-29.md` for the S13 coordinate/chromosome fix,
+STIM1 missing tests, DE threshold clarification and NYGC donor sensitivity.
