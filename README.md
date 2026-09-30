@@ -6,10 +6,13 @@ RNA-seq data and a single-plate Ca²⁺-readdition observation*.
 
 ![Graphical abstract: RT-qPCR fold changes and a one-plate Fura-2 observation, transcript-family composition, CBARP exon-4 junction usage and regional ALS tissue differences](figures/graphical_abstract.png)
 
-*The graphical abstract has one role: it is the optional journal graphical abstract and, at the same
-time, the summary of this repository. It is not a numbered figure of the manuscript and carries no result
-that is absent from the main text or the supplement. Every value in it is read from the files in this
-repository by `code/fig_graphical_abstract.py`; no regional effect is averaged and no diseases are ranked.*
+*Two graphical abstracts, two roles. The detailed four-panel summary above
+(`figures/graphical_abstract.*`, `code/fig_graphical_abstract.py`) is the summary of this repository; it is not sized
+for the journal. The graphical abstract for the journal is the simplified `figures/graphical_abstract_journal.*`
+(`code/fig_graphical_abstract_journal.py`): 5:2, 3900 × 1560 px at 300 dpi as PNG and TIFF, plus PDF and SVG, with
+type large enough to stay legible when ScienceDirect scales it to 500 × 200 px. Neither is a numbered figure of the
+manuscript and neither carries a result that is absent from the main text or the supplement. Every value in both is
+read from the files in this repository; no regional effect is averaged and no diseases are ranked.*
 
 The current edited manuscript is `manuscript/MANUSCRIPT_NEUROCHEMISTRY_INTERNATIONAL_FINAL.docx`
 (with matching `.md`). It has six main figures in `figures/main/` and nine
@@ -28,7 +31,8 @@ why. Where the thesis and this repository differ, this repository is current.
 ├── manuscript/            manuscript, Markdown and Word (the v4 files are historical)
 ├── figures/main/          current Figures 1–6, PNG (300 dpi or higher) and editable SVG
 ├── figures/supplementary/ current Supplementary Figures S1–S9 (PNG, SVG, PDF)
-├── figures/graphical_abstract.{png,pdf,svg}  optional graphical abstract, also the repository summary
+├── figures/graphical_abstract.{png,pdf,svg}  detailed summary of the repository (not sized for the journal)
+├── figures/graphical_abstract_journal.{png,tiff,pdf,svg}  graphical abstract for the journal (5:2)
 ├── figures/Figure1–9      historical nine-figure layout
 ├── tables/                Tables 1–5, CSV in the current manuscript order
 ├── supplementary/         Supplementary Tables S1–S18d, the editable supplement and its figure legends
@@ -43,7 +47,7 @@ why. Where the thesis and this repository differ, this repository is current.
 
 ## Evidence levels
 
-The manuscript, the supplement, the highlights and the graphical abstract use the same wording for what each
+The manuscript, the supplement, the highlights and the graphical abstracts use the same wording for what each
 kind of measurement can and cannot support.
 
 | Evidence | Unit of replication | Statistics | Where |
@@ -174,7 +178,8 @@ come from workbook S1, the tissue values from `tables/` and `supplementary/`):
 | `code/fig_supp_rna_processing.py` | Supplementary Figures S4, S6 and S8 |
 | `code/fig_nmd_descriptive_v118.py` | Supplementary Figure S5 |
 | `code/fig_redesign_main.py` | Supplementary Figure S2 |
-| `code/fig_graphical_abstract.py` | the graphical abstract |
+| `code/fig_graphical_abstract.py` | the detailed graphical abstract (repository summary) |
+| `code/fig_graphical_abstract_journal.py` | the simplified graphical abstract for the journal |
 
 `code/relabel_s1_qpcr_v118.mjs` maintains the source workbook's biological-replicate qPCR labels and summaries.
 The scripts still use the original workstation paths in several places; see the note under Requirements
@@ -240,7 +245,8 @@ Current analysis/figure entrypoints (with the workstation input paths configured
    Figure 1 and Supplementary Figure S5.
 5. `python code/revise_terminology_v122.py`: the renamed columns and labels of Table 4, S12, S14 and S5 (already applied; kept as a record).
 6. `python code/fig_revision_v122.py`, `python code/fig_splicing_revision.py 4 6`, `python code/fig_supp_rna_processing.py`
-   and `python code/fig_graphical_abstract.py`: the redrawn figures of v1.0.8.
+   and `python code/fig_graphical_abstract.py`: the redrawn figures of v1.0.8; `python code/fig_graphical_abstract_journal.py`
+   then draws the journal graphical abstract.
 7. `python code/revise_manuscript_v122.py`: edits the reviewed DOCX files of v1.0.7 into v1.0.8 (each replacement must find its
    text exactly once; it refuses to run on a file that is not in the v1.0.7 state) and `python code/build_supplementary_legends.py`
    copies the supplementary captions into the stand-alone legend files.

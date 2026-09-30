@@ -1027,6 +1027,25 @@ close("graphical abstract shows the CBARP junction", 1, int("CBARP splicing" in 
 close("graphical abstract makes no correlation-absence claim", 0, int("does not correlate" in _gs), tol=0)
 close("graphical abstract states that the Fura-2 data are not paired with RT-qPCR", 1, int("not paired with RT-qPCR" in _gs), tol=0)
 
+# -- journal graphical abstract: Elsevier format (5:2, at least 1328 x 531 px at 300 dpi), large type, message at the evidence level
+from PIL import Image as _PILImage
+_gj = f"{P}/figures/graphical_abstract_journal"
+for _e in ("png", "tiff", "pdf", "svg"):
+    close(f"journal graphical abstract exists as .{_e}", 1, int(os.path.exists(f"{_gj}.{_e}")), tol=0)
+_ji = _PILImage.open(f"{_gj}.tiff")
+close("journal graphical abstract is at least 1328 x 531 px", 1, int(_ji.size[0] >= 1328 and _ji.size[1] >= 531), tol=0)
+close("journal graphical abstract has the 5:2 ratio", 2.5, _ji.size[0] / _ji.size[1], tol=0.001)
+close("journal graphical abstract TIFF is 300 dpi RGB", 1, int(round(_ji.info["dpi"][0]) >= 300 and _ji.mode == "RGB"), tol=0)
+_js = io.open(f"{_gj}.svg", encoding="utf-8").read()
+for _s in ["RNA candidates for replicated follow-up, not a mechanism", "in 5 of 6 datasets", "not paired with mRNA", "one dot per region"]:
+    close(f"journal graphical abstract says '{_s}'", 1, int(_s in _js), tol=0)
+for _s in ["does not correlate", "Graphical abstract", "graphical abstract", "high-confidence"]:
+    close(f"journal graphical abstract does not contain '{_s}'", 0, int(_s in _js), tol=0)
+_jcode = io.open(f"{P}/code/fig_graphical_abstract_journal.py", encoding="utf-8").read()
+close("journal graphical abstract does not average regional deltas", 0, int("cliffs_delta.mean()" in _jcode), tol=0)
+_readme_txt = io.open(f"{P}/README.md", encoding="utf-8").read()
+close("README names the journal graphical abstract", 1, int("figures/graphical_abstract_journal" in _readme_txt), tol=0)
+
 # -- highlights
 close("highlights: four items", 4, len(_highlights_doc.paragraphs) - 1, tol=0)
 close("highlights: every item is at most 85 characters", 1, int(all(len(q.text) <= 85 for q in _highlights_doc.paragraphs[1:])), tol=0)

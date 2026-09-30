@@ -34,6 +34,9 @@ copies = [
     (PKG / "figures/graphical_abstract.png", "02_GORSELLER/Grafik_Ozet/graphical_abstract.png"),
     (PKG / "figures/graphical_abstract.svg", "02_GORSELLER/Grafik_Ozet/graphical_abstract.svg"),
 ]
+# graphical abstract for the journal (5:2; PNG, TIFF and PDF are the formats the publisher accepts)
+for ext in ("png", "tiff", "pdf"):
+    copies.append((PKG / f"figures/graphical_abstract_journal.{ext}", f"02_GORSELLER/Grafik_Ozet_Dergi/graphical_abstract_journal.{ext}"))
 # main figures keep the numbering used in the manuscript
 for n, stem in enumerate(sorted(p.stem for p in (PKG / "figures/main").glob("Figure*.png")), 1):
     for ext in ("png", "svg"):
@@ -73,8 +76,9 @@ figurlerin ayri dosyalarini, ek materyali ve veri dosyalarini icerir.
 02_GORSELLER
   Ana_Figurler   Figure1-6, PNG (baski cozunurlugu) ve SVG (duzenlenebilir)
   Ek_Figurler    Supplementary Figure S1-S9, PNG ve SVG
-  Grafik_Ozet    Istege bagli dergi grafik ozeti; ayni zamanda depo ozetidir. Makalenin numarali bir figuru
-                 degildir ve ana metinde ya da ekte gosterilmeyen bir bulgu tasimaz.
+  Grafik_Ozet    Depo icin ayrintili dort panelli ozet; dergi boyutunda degildir.
+  Grafik_Ozet_Dergi  Dergiye yuklenecek sadelestirilmis grafik ozet (5:2, 3900 x 1560 px; PNG, TIFF, PDF).
+                 Ikisi de makalenin numarali figuru degildir ve ana metinde ya da ekte gosterilmeyen bir bulgu tasimaz.
 
 03_TABLOLAR      Makaledeki Tablo 1-5'in CSV surumleri
 04_EK_VERI       Ek Tablo S1-S18d veri dosyalari (S1 laboratuvar ham verisi XLSX)
