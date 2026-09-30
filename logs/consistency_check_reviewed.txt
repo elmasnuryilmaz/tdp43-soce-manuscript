@@ -796,14 +796,17 @@ PASS  journal graphical abstract exists as .svg: manuscript 1 vs data 1
 PASS  journal graphical abstract is at least 1328 x 531 px: manuscript 1 vs data 1
 PASS  journal graphical abstract has the 5:2 ratio: manuscript 2.5 vs data 2.5
 PASS  journal graphical abstract TIFF is 300 dpi RGB: manuscript 1 vs data 1
-PASS  journal graphical abstract says 'RNA candidates for replicated follow-up, not a mechanism': manuscript 1 vs data 1
+PASS  journal graphical abstract says 'TDP-43 loss: calcium-regulatory RNA candidates': manuscript 1 vs data 1
 PASS  journal graphical abstract says 'in 5 of 6 datasets': manuscript 1 vs data 1
-PASS  journal graphical abstract says 'not paired with mRNA': manuscript 1 vs data 1
+PASS  journal graphical abstract says 'readdition': manuscript 1 vs data 1
 PASS  journal graphical abstract says 'one dot per region': manuscript 1 vs data 1
 PASS  journal graphical abstract does not contain 'does not correlate': manuscript 0 vs data 0
 PASS  journal graphical abstract does not contain 'Graphical abstract': manuscript 0 vs data 0
 PASS  journal graphical abstract does not contain 'graphical abstract': manuscript 0 vs data 0
 PASS  journal graphical abstract does not contain 'high-confidence': manuscript 0 vs data 0
+PASS  journal graphical abstract does not contain 'not a mechanism': manuscript 0 vs data 0
+PASS  journal graphical abstract does not contain 'one plate': manuscript 0 vs data 0
+PASS  journal graphical abstract does not contain 'not paired': manuscript 0 vs data 0
 PASS  journal graphical abstract does not average regional deltas: manuscript 0 vs data 0
 PASS  README names the journal graphical abstract: manuscript 1 vs data 1
 PASS  highlights: four items: manuscript 4 vs data 4
@@ -842,4 +845,4 @@ PASS  supplementary document inventories S16b: manuscript 1 vs data 1
     Introduction to Conclusion, including captions and Limitations: 13128 words
 PASS  Introduction to Conclusion is shorter than in v1.0.7 (13,396 words): manuscript 1 vs data 1
 
-==== 776 passed, 0 failed ====
+==== 779 passed, 0 failed ====

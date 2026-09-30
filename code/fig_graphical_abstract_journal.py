@@ -102,7 +102,7 @@ def caption(col, line1, line2):
 
 # ------------------------------------------------------------------ A1: RT-qPCR
 text(GX["A"], TITLE_Y, "mRNA, RT-qPCR, n = 4", 16, "bold", max_w=3.75)
-ax = axes_in(0.45, 3.42, 3.50, 0.72)
+ax = axes_in(0.45, 3.22, 3.50, 0.84)
 folds = []
 for i, g in enumerate(GENES):
     c = rel[(rel.gene == g) & (rel.group == NT)].rel_expression.to_numpy(float)
@@ -116,24 +116,23 @@ for i, g in enumerate(GENES):
     ax.text(i, -0.30, g, ha="center", va="top", fontsize=14.5, fontstyle="italic", color=INK)
 assert [round(f, 1) for f in folds] == [1.8, 1.9, 1.7, 3.2], folds
 ax.set_xlim(-0.55, 3.55)
-ax.set_ylim(0, 3.2)
+ax.set_ylim(0, 3.45)
 ax.axis("off")
 
 # ------------------------------------------------------------------ A2: Fura-2, one plate
-text(GX["A"], 2.86, r"$\mathbf{Ca^{2+}}$ readdition, one plate", 16, "bold", max_w=3.75)
+text(GX["A"], 2.62, r"$\mathbf{Ca^{2+}}$ readdition", 16, "bold", max_w=3.75)
 rows = [(NT, "control", BLUE), ("shTDP-43", "knockdown", ORANGE)]
-ax = axes_in(1.52, 1.78, 2.40, 0.80)
+ax = axes_in(1.52, 1.52, 2.40, 0.86)
 for j, (grp, lab, colr) in enumerate(rows):
     v = fura.loc[fura.group == grp, "readdition"].to_numpy(float)
     assert len(v) == 3
     y = 1 - j
     ax.barh(y, v.mean(), 0.62, color=colr)
     ax.scatter(v, y + np.array([-0.16, 0.0, 0.16]), s=44, facecolor="white", edgecolor=INK, lw=1.1, zorder=3)
-    bg.text(1.42, 1.78 + 0.80 * (y + 0.5) / 2.0, lab, ha="right", va="center", fontsize=15, fontweight="bold", color=colr)
+    bg.text(1.42, 1.52 + 0.86 * (y + 0.5) / 2.0, lab, ha="right", va="center", fontsize=15, fontweight="bold", color=colr)
 ax.set_xlim(0, 2.3)
 ax.set_ylim(-0.5, 1.5)
 ax.axis("off")
-caption("A", "3 wells per group; separate", "cultures, not paired with mRNA")
 
 # ------------------------------------------------------------------ B: CBARP exon-4 junction usage
 text(GX["B"], TITLE_Y, "CBARP splicing changed", 17, "bold", max_w=3.75)
@@ -182,7 +181,7 @@ caption("C", "one dot per region, Cliff's δ;", "filled dots: q < 0.05")
 # ------------------------------------------------------------------ bottom line
 bg.add_patch(FancyBboxPatch((0.30, 0.14), W - 0.60, 0.66, boxstyle="round,pad=0,rounding_size=0.12",
                             facecolor=PALE, edgecolor="none"))
-text(W / 2, 0.47, "RNA candidates for replicated follow-up, not a mechanism", 22, "bold", max_w=12.0)
+text(W / 2, 0.47, "TDP-43 loss: calcium-regulatory RNA candidates", 22, "bold", max_w=12.0)
 
 fig.savefig(str(OUT) + ".png", dpi=300)
 fig.savefig(str(OUT) + ".pdf")

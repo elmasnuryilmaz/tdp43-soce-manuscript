@@ -1037,9 +1037,9 @@ close("journal graphical abstract is at least 1328 x 531 px", 1, int(_ji.size[0]
 close("journal graphical abstract has the 5:2 ratio", 2.5, _ji.size[0] / _ji.size[1], tol=0.001)
 close("journal graphical abstract TIFF is 300 dpi RGB", 1, int(round(_ji.info["dpi"][0]) >= 300 and _ji.mode == "RGB"), tol=0)
 _js = io.open(f"{_gj}.svg", encoding="utf-8").read()
-for _s in ["RNA candidates for replicated follow-up, not a mechanism", "in 5 of 6 datasets", "not paired with mRNA", "one dot per region"]:
+for _s in ["TDP-43 loss: calcium-regulatory RNA candidates", "in 5 of 6 datasets", "readdition", "one dot per region"]:
     close(f"journal graphical abstract says '{_s}'", 1, int(_s in _js), tol=0)
-for _s in ["does not correlate", "Graphical abstract", "graphical abstract", "high-confidence"]:
+for _s in ["does not correlate", "Graphical abstract", "graphical abstract", "high-confidence", "not a mechanism", "one plate", "not paired"]:
     close(f"journal graphical abstract does not contain '{_s}'", 0, int(_s in _js), tol=0)
 _jcode = io.open(f"{P}/code/fig_graphical_abstract_journal.py", encoding="utf-8").read()
 close("journal graphical abstract does not average regional deltas", 0, int("cliffs_delta.mean()" in _jcode), tol=0)
